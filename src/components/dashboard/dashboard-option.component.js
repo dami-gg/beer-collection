@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import logo from '../../logo.svg';
+import logo from '../../assets/images/logo.svg';
 
-class DashboardOptionComponent extends Component {
+class DashboardOption extends Component {
   render() {
     return (
         <Link to={this.props.url}>
@@ -15,4 +15,4 @@ class DashboardOptionComponent extends Component {
   }
 }
 
-export default DashboardOptionComponent;
+export default DashboardOption;

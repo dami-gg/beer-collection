@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import './App.scss';
+import ReactDOM from 'react-dom';
 
-import Header from './components/common/HeaderComponent';
-import RouteHandler from './components/common/RouteHandler';
+import './assets/styles/main.scss';
+
+import Header from './components/common/header.component';
+import RouteHandler from './components/common/route-handler.component';
 
 class App extends Component {
   render() {
     return (
-        <div className="App">
+        <div className="app">
           <Header />
           <RouteHandler />
         </div>
@@ -16,3 +18,9 @@ class App extends Component {
 }
 
 export default App;
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+);
+
