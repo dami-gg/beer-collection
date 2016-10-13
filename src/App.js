@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import DashboardComponent from './components/dashboard/DashboardComponent';
+
+import Header from './components/common/HeaderComponent';
+import RouteHandler from './components/common/RouteHandler';
 
 class App extends Component {
   render() {
     return (
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <h2>Beer collection</h2>
-          </div>
-          <DashboardComponent />
+          <Header />
+          <RouteHandler />
         </div>
     );
   }
