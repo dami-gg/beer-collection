@@ -6,8 +6,8 @@ class DashboardComponent extends Component {
   render() {
     return (
         <div className="dashboard">
-          <DashboardOptionComponent title="Add beer to the list"/>
-          <DashboardOptionComponent title="See list of beers"/>
+          <DashboardOptionComponent title="Add beer to the list" url="/beer/add"/>
+          <DashboardOptionComponent title="See list of beers" url="/beer/list"/>
         </div>
     );
   }
