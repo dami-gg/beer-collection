@@ -1,44 +1,55 @@
 import React, {Component} from 'react';
-import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
+
+import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
+import {Field, reduxForm} from 'redux-form';
 
 class Form extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      type: '',
-      country: ''
-    };
-  }
-
-  handleChange = (property, value) => {
-    this.setState({...this.state, [property]: value});
-  };
-
   render() {
     return (
-        <section className="beer beer--add">
-          <h1>Add a new beer to the collection</h1>
-          <form>
-            <FormGroup
-                controlId="beerName">
-              <ControlLabel>Name</ControlLabel>
-              <FormControl
-                  type="text"
-                  value={this.state.name}
-                  placeholder="Enter name"
-                  onChange={this.handleChange}
-              />
-            </FormGroup>
-            <Button
-                type="submit"
-                bsStyle="primary">
-              Submit
-            </Button>
-          </form>
-        </section>
+        <form onSubmit={this.props.handleSubmit}>
+          <FormGroup
+              controlId="name">
+            <ControlLabel>Name</ControlLabel>
+            <Field
+                name="name"
+                className="form-control"
+                placeholder="Enter name"
+                component="input"
+                type="text"/>
+          </FormGroup>
+
+          <FormGroup
+              controlId="type">
+            <ControlLabel>Type</ControlLabel>
+            <Field
+                name="type"
+                className="form-control"
+                placeholder="Enter type"
+                component="input"
+                type="text"/>
+          </FormGroup>
+
+          <FormGroup
+              controlId="origin">
+            <ControlLabel>Origin</ControlLabel>
+            <Field
+                name="origin"
+                className="form-control"
+                placeholder="Enter origin"
+                component="input"
+                type="text"/>
+          </FormGroup>
+
+          <Button
+              type="submit"
+              bsStyle="primary">
+            Save
+          </Button>
+        </form>
     );
   }
 }
 
-export default Form;
+export default reduxForm({
+  form: 'beer'
+})(Form);
