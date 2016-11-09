@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './dashboard.scss';
-import DashboardOption from './dashboard-option.component';
+import DashboardOption from './DashboardOption';
 
 class Dashboard extends Component {
   render() {

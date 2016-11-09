@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import Header from '../common/header.component';
-import RouteHandler from '../common/route-handler.component';
+import Header from '../common/Header';
+import RouteHandler from '../common/RouteHandler';
 
 class App extends Component {
   render() {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
-class BeerAdd extends Component {
+class Form extends Component {
   constructor() {
     super();
     this.state = {
@@ -41,4 +41,4 @@ class BeerAdd extends Component {
   }
 }
 
-export default BeerAdd;
+export default Form;

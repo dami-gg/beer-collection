@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import DashboardComponent from '../dashboard/dashboard.component';
+import DashboardComponent from '../dashboard/Dashboard';
 
 class Home extends Component {
   render() {
