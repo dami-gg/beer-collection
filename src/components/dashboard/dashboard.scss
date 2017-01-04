@@ -1,5 +1,17 @@
 .dashboard {
-    &__option {
-        text-align: center;
+  padding-top: 30px;
+
+  &__option {
+    text-align: center;
+
+    &__image {
+      max-height: 160px;
     }
+
+    &__title {
+      color: black;
+      font-size: 18px;
+      padding-top: 10px;
+    }
+  }
 }
