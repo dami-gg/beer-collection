@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
-import {createStore} from 'redux';
 
 import App from './components/app/App';
-import reducers from './reducers';
+import configureStore from './common/store.config';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles/main.scss';
 
-const store = createStore(reducers);
+const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>

@@ -52,13 +52,16 @@
   },
   "dependencies": {
     "bootstrap": "3",
+    "firebase": "^3.6.4",
+    "node-uuid": "^1.4.7",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "redux": "^3.6.0",
-    "redux-form": "^6.2.0"
+    "redux-form": "^6.2.0",
+    "redux-thunk": "^2.1.0"
   },
   "scripts": {
     "start": "node scripts/start.js",

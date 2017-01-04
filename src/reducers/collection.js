@@ -4,14 +4,20 @@ const initialState = [];
 
 const collection = (state = initialState, action) => {
   switch(action.type) {
-    case types.LOAD_COLLECTION:
+    case types.LOAD_COLLECTION_SUCCESS:
       return action.collection;
 
-    case types.ADD_BEER:
+    case types.LOAD_COLLECTION_ERROR:
+      return [];
+
+    case types.ADD_BEER_SUCCESS:
       return [
           ...state,
           action.beer
       ];
+
+    case types.ADD_BEER_ERROR:
+      return state;
 
     case types.EDIT_BEER:
       return [

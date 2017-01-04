@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {v4} from 'node-uuid';
 
 import {addBeer, editBeer, setCurrentBeer} from '../../actions';
 import Form from '../form/Form';
@@ -14,6 +15,7 @@ class Beer extends Component {
 
   handleSubmit = (formValues) => {
     let beer = {
+      id: this.props.params.mode === 'add' ? v4() : this.props.currentBeer.id,
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin

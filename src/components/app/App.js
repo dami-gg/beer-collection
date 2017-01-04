@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+import {loadCollection} from '../../actions';
 
 import Header from '../common/Header';
 import RouteHandler from '../common/RouteHandler';
 
 class App extends Component {
+  componentWillMount() {
+    if(!this.props.collection) {
+      this.props.loadCollection();
+    }
+  }
+
   render() {
     return (
         <div className="app">
@@ -14,4 +23,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  collection: state.collection
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadCollection: () => {
+      dispatch(loadCollection());
+    }
+  }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
