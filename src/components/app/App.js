@@ -8,9 +8,7 @@ import RouteHandler from '../common/RouteHandler';
 
 class App extends Component {
   componentWillMount() {
-    if(!this.props.collection) {
-      this.props.loadCollection();
-    }
+    this.props.loadCollection();
   }
 
   render() {

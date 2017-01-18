@@ -16,7 +16,7 @@ class Dashboard extends Component {
           />
           <DashboardOption
               title="See list of beers"
-              url="/beer/list"
+              url="/collection"
               image={crate}
           />
         </div>

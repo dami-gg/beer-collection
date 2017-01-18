@@ -7,14 +7,13 @@ import database from '../common/database';
 
 export const loadCollection = () => {
   return dispatch => {
-    return database.ref('/').once('value', snap => {
-      debugger;
-      const collection = snap.val();
+    let query = database.ref('beers').orderByKey();
+    return query.once('value', snapshot => {
+      let collection = Object.values(snapshot.val()); // TODO There should be a better way to do this
       dispatch(loadCollectionSuccessAction(collection))
     })
         .catch((error) => {
           // TODO Log error
-          debugger;
           dispatch(loadCollectionErrorAction(error));
         });
   }
@@ -22,16 +21,16 @@ export const loadCollection = () => {
 
 export const addBeer = (beer) => {
   return dispatch => {
-    debugger;
-    database.ref('/').push({
-      beer
+    database.ref(`beers/${beer.id}`).set({
+      id: beer.id,
+      name: beer.name,
+      type: beer.type,
+      origin: beer.origin
     })
         .then(() => {
-          debugger;
           dispatch(addBeerSuccessAction(beer));
         })
         .catch((error) => {
-          debugger;
           dispatch(addBeerErrorAction(error));
         });
   }
