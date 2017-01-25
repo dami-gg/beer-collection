@@ -1,39 +1,20 @@
 import * as types from '../constants/action-types';
-import database from '../common/database';
 
 /*
  COLLECTION
  */
 
 export const loadCollection = () => {
-  return dispatch => {
-    let query = database.ref('beers').orderByKey();
-    return query.once('value', snapshot => {
-      let collection = Object.values(snapshot.val()); // TODO There should be a better way to do this
-      dispatch(loadCollectionSuccessAction(collection))
-    })
-        .catch((error) => {
-          // TODO Log error
-          dispatch(loadCollectionErrorAction(error));
-        });
-  }
+  return {
+    type: types.LOAD_COLLECTION
+  };
 };
 
 export const addBeer = (beer) => {
-  return dispatch => {
-    database.ref(`beers/${beer.id}`).set({
-      id: beer.id,
-      name: beer.name,
-      type: beer.type,
-      origin: beer.origin
-    })
-        .then(() => {
-          dispatch(addBeerSuccessAction(beer));
-        })
-        .catch((error) => {
-          dispatch(addBeerErrorAction(error));
-        });
-  }
+  return {
+    type: types.ADD_BEER,
+    beer
+  };
 };
 
 export const editBeer = (beer, index) => {
@@ -69,34 +50,3 @@ export const resetCurrentBeer = () => {
   }
 };
 
-/*
- PRIVATE METHODS
- */
-
-function loadCollectionSuccessAction(collection) {
-  return {
-    type: types.LOAD_COLLECTION_SUCCESS,
-    collection
-  };
-}
-
-function loadCollectionErrorAction(error) {
-  return {
-    type: types.LOAD_COLLECTION_ERROR,
-    error: error
-  }
-}
-
-function addBeerSuccessAction(beer) {
-  return {
-    type: types.ADD_BEER_SUCCESS,
-    beer
-  };
-}
-
-function addBeerErrorAction(error) {
-  return {
-    type: types.ADD_BEER_ERROR,
-    error: error
-  }
-}
