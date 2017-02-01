@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {hashHistory} from 'react-router';
 
 class Collection extends Component {
+  navigateToDetailPage(id) {
+    hashHistory.push(`/beer/edit/${id}`);
+  }
+
   render() {
     let beerList = this.props.collection.map((beer) => {
       return (
-          <tr key={beer.id}>
+          <tr key={beer.id} onClick={() => this.navigateToDetailPage(beer.id)}>
             <td>{beer.name}</td>
             <td>{beer.type}</td>
             <td>{beer.origin}</td>

@@ -9,13 +9,13 @@ const navigation = (state = initialState, action) => {
     case types.SET_CURRENT_BEER:
       return {
         ...state,
-        shownBeer: action.beer
+        currentBeer: action.beer
       };
 
     case types.RESET_CURRENT_BEER:
       return {
         ...state,
-        shownBeer: undefined
+        currentBeer: undefined
       };
 
     default:

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Router, Route, hashHistory} from 'react-router';
 
 import Home from '../home/Home';
-import Beer from '../beer/Beer';
+import BeerAdd from '../beer/BeerAdd';
+import BeerEdit from '../beer/BeerEdit';
 import Collection from '../collection/Collection';
 
 const NotFound = () => (
@@ -14,7 +15,8 @@ class RouteHandler extends Component {
     return (
         <Router history={hashHistory}>
           <Route path='/' component={Home}/>
-          <Route path="/beer/:mode" component={Beer} />
+          <Route path="/beer/add" component={BeerAdd} />
+          <Route path="/beer/edit/:beerId" component={BeerEdit} />
           <Route path="/collection" component={Collection} />
           <Route path='*' component={NotFound}/>
         </Router>

@@ -19,12 +19,19 @@ const collection = (state = initialState, action) => {
     case types.ADD_BEER_ERROR:
       return state;
 
-    case types.EDIT_BEER:
+    case types.UPDATE_BEER_SUCCESS:
+      let index = state.findIndex((element) => {
+        return element.id === action.beer.id;
+      });
+
       return [
-          ...state.slice(0, action.index),
-          action.beer,
-          ...state.slice(action.index + 1)
+        ...state.slice(0, index),
+        action.beer,
+        ...state.slice(index + 1)
       ];
+
+    case types.UPDATE_BEER_ERROR:
+      return state;
 
     case types.DELETE_BEER:
       return [

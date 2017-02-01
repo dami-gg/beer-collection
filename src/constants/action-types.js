@@ -10,7 +10,10 @@ export const ADD_BEER = 'ADD_BEER';
 export const ADD_BEER_SUCCESS = 'ADD_BEER_SUCCESS';
 export const ADD_BEER_ERROR = 'ADD_BEER_ERROR';
 
-export const EDIT_BEER = 'EDIT_BEER';
+export const UPDATE_BEER = 'UPDATE_BEER';
+export const UPDATE_BEER_SUCCESS = 'UPDATE_BEER_SUCCESS';
+export const UPDATE_BEER_ERROR = 'UPDATE_BEER_ERROR';
+
 export const DELETE_BEER = 'DELETE_BEER';
 
 /*

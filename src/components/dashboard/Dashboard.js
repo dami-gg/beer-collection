@@ -10,12 +10,12 @@ class Dashboard extends Component {
     return (
         <div className="dashboard">
           <DashboardOption
-              title="Add beer to the list"
+              title="Add beer to your collection"
               url="/beer/add"
               image={tap}
           />
           <DashboardOption
-              title="See list of beers"
+              title="See your collection"
               url="/collection"
               image={crate}
           />

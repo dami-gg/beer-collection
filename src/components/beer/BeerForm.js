@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import {Field, reduxForm} from 'redux-form';
 
-class Form extends Component {
+class BeerForm extends Component {
   render() {
     return (
         <form onSubmit={this.props.handleSubmit}>
@@ -50,6 +51,13 @@ class Form extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'beer'
-})(Form);
+const mapStateToProps = (state) => ({
+  initialValues: state.navigation.currentBeer || {}
+});
+
+export default connect(
+    mapStateToProps
+)(reduxForm({
+  form: 'beerForm'
+})(BeerForm));
+

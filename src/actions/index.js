@@ -17,11 +17,10 @@ export const addBeer = (beer) => {
   };
 };
 
-export const editBeer = (beer, index) => {
+export const updateBeer = (beer) => {
   return {
-    type: types.EDIT_BEER,
-    beer,
-    index
+    type: types.UPDATE_BEER,
+    beer
   }
 };
 
