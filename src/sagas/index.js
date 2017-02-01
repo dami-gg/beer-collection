@@ -1,10 +1,13 @@
+import {fork} from 'redux-saga/effects';
+
 import watchLoadCollectionSaga from './load-collection.saga';
 import watchAddBeerSaga from './add-beer.saga';
 
 function* rootSaga() {
+  debugger;
   yield [
-    watchLoadCollectionSaga,
-    watchAddBeerSaga
+    fork(watchLoadCollectionSaga),
+    fork(watchAddBeerSaga)
   ];
 }
 
