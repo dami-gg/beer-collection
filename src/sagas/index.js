@@ -4,8 +4,7 @@ import watchLoadCollectionSaga from './load-collection.saga';
 import watchAddBeerSaga from './add-beer.saga';
 
 function* rootSaga() {
-  debugger;
-  yield [
+ yield [
     fork(watchLoadCollectionSaga),
     fork(watchAddBeerSaga)
   ];
