@@ -24,7 +24,8 @@ function putBeerToDB(beer) {
           id: beer.id,
           name: beer.name,
           type: beer.type,
-          origin: beer.origin
+          origin: beer.origin,
+          image: beer.image
         })
         .then(() => resolve())
         .catch((error) => reject(error));

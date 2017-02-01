@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
+import {Col} from 'react-bootstrap';
+
+import logo from '../../assets/images/logo.png';
+
+import './collection.scss';
 
 class Collection extends Component {
   navigateToDetailPage(id) {
@@ -10,28 +15,17 @@ class Collection extends Component {
   render() {
     let beerList = this.props.collection.map((beer) => {
       return (
-          <tr key={beer.id} onClick={() => this.navigateToDetailPage(beer.id)}>
-            <td>{beer.name}</td>
-            <td>{beer.type}</td>
-            <td>{beer.origin}</td>
-          </tr>
+          <Col className="beer" xs={12} sm={3} md={1}
+               onClick={() => this.navigateToDetailPage(beer.id)}>
+            <img src={beer.image || logo} className="beer__image" alt="beer-logo"/>
+            <p className="beer__name">{beer.name}</p>
+          </Col>
       );
     });
 
     return (
-        <div className="table-responsive">
-          <table className="table table-hover">
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Origin</th>
-            </tr>
-            </thead>
-            <tbody>
-              {beerList}
-            </tbody>
-          </table>
+        <div className="collection">
+          {beerList}
         </div>
     );
   }
