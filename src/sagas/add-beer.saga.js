@@ -10,7 +10,7 @@ function* watchAddBeerSaga() {
 function* addBeerSaga(action) {
   try {
     yield call(postBeerToDB, action.beer);
-    yield put({type: types.ADD_BEER_SUCCESS});
+    yield put({type: types.ADD_BEER_SUCCESS, beer: action.beer});
   }
   catch (error) {
     yield put({type: types.ADD_BEER_ERROR, error: error.message});

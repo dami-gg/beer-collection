@@ -22,7 +22,7 @@ function getCollectionFromDB() {
 
   return new Promise((resolve, reject) => {
     query.once('value', snapshot => {
-      resolve({collection: Object.values(snapshot.val())}); // TODO There should be a better way to do this rather than Object.values
+      resolve({collection: Object.values(snapshot.val())});
       // TODO Handle rejection
     });
   });
