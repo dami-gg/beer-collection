@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './dashboard.scss';
-import DashboardOption from './DashboardOption';
+import DashboardOption from './dashboard-option/DashboardOption';
 
 import crate from '../../assets/images/crate.png';
 import tap from '../../assets/images/tap.png';
