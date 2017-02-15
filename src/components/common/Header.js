@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {hashHistory} from 'react-router';
 
@@ -5,7 +7,7 @@ import './header.scss';
 import logo from '../../assets/images/logo.png';
 
 class Header extends Component {
-  navigateToHome() {
+  navigateToHome(): void {
     hashHistory.push('/');
   }
 

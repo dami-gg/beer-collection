@@ -1,8 +1,16 @@
+// @flow
+
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Col} from 'react-bootstrap';
 
 class DashboardOption extends Component {
+  props: {
+    url: string,
+    image: string,
+    title: string
+  };
+
   render() {
     return (
         <Link to={this.props.url}>

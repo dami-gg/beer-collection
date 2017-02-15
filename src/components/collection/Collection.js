@@ -1,3 +1,6 @@
+// @flow
+import type { Beer } from '../../types/types';
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {hashHistory} from 'react-router';
@@ -8,12 +11,16 @@ import logo from '../../assets/images/logo.png';
 import './collection.scss';
 
 class Collection extends Component {
-  navigateToDetailPage(id) {
+  props: {
+    collection: Array<Beer>;
+  };
+
+  navigateToDetailPage(id: string) {
     hashHistory.push(`/beer/edit/${id}`);
   }
 
   render() {
-    let beerList = this.props.collection.map((beer) => {
+    let beerList = this.props.collection.map((beer: Beer) => {
       return (
           <Col className="beer" xs={12} sm={3} md={1}
                onClick={() => this.navigateToDetailPage(beer.id)}>
@@ -31,7 +38,7 @@ class Collection extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: Object) => ({
   collection: state.collection
 });
 

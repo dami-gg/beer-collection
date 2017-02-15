@@ -1,3 +1,6 @@
+// @flow
+import type { Beer, BeerFormValues } from '../../types/types';
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
@@ -5,21 +8,29 @@ import {updateBeer, setCurrentBeer} from '../../actions';
 import Form from './BeerForm';
 
 class BeerEdit extends Component {
-  componentWillMount() {
+  props: {
+    params: Object;
+    currentBeer: Beer;
+    collection: Array<Beer>;
+    setCurrentBeer: Function;
+    updateBeer: Function;
+  };
+
+  componentWillMount(): void {
     if (this.props.params.beerId) {
       // Find beer in collection and store it in state
       this.props.setCurrentBeer(this.findBeerInCollection(this.props.params.beerId));
     }
   }
 
-  findBeerInCollection(beerId) {
-    return this.props.collection.find((element) => {
+  findBeerInCollection(beerId: string) {
+    return this.props.collection.find((element: Beer) => {
       return element.id === beerId;
     });
   }
 
-  handleSubmit = (formValues) => {
-    let beer = {
+  handleSubmit = (formValues: BeerFormValues): void => {
+    let beer: Beer = {
       id: this.props.currentBeer.id,
       name: formValues.name,
       type: formValues.type,
@@ -40,18 +51,18 @@ class BeerEdit extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: Object): Object => ({
   collection: state.collection,
   currentBeer: state.navigation.currentBeer
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Function): Object => {
   return {
-    updateBeer: (beer) => {
+    updateBeer: (beer: Beer) => {
       dispatch(updateBeer(beer));
     },
 
-    setCurrentBeer: (beer) => {
+    setCurrentBeer: (beer: Beer) => {
       dispatch(setCurrentBeer(beer));
     }
   }

@@ -1,25 +1,28 @@
-import * as types from '../constants/action-types';
+// @flow
+import type { Beer } from '../types/types';
+
+import * as actionTypes from '../constants/action-types';
 
 const initialState = [];
 
-const collection = (state = initialState, action) => {
+const collection = (state: Array<Beer> = initialState, action: Object): Array<Beer> => {
   switch(action.type) {
-    case types.LOAD_COLLECTION_SUCCESS:
+    case actionTypes.LOAD_COLLECTION_SUCCESS:
       return action.collection;
 
-    case types.LOAD_COLLECTION_ERROR:
+    case actionTypes.LOAD_COLLECTION_ERROR:
       return [];
 
-    case types.ADD_BEER_SUCCESS:
+    case actionTypes.ADD_BEER_SUCCESS:
       return [
           ...state,
           action.beer
       ];
 
-    case types.ADD_BEER_ERROR:
+    case actionTypes.ADD_BEER_ERROR:
       return state;
 
-    case types.UPDATE_BEER_SUCCESS:
+    case actionTypes.UPDATE_BEER_SUCCESS:
       let index = state.findIndex((element) => {
         return element.id === action.beer.id;
       });
@@ -30,10 +33,10 @@ const collection = (state = initialState, action) => {
         ...state.slice(index + 1)
       ];
 
-    case types.UPDATE_BEER_ERROR:
+    case actionTypes.UPDATE_BEER_ERROR:
       return state;
 
-    case types.DELETE_BEER:
+    case actionTypes.DELETE_BEER:
       return [
           ...state.slice(0, action.index),
           ...state.slice(action.index + 1)

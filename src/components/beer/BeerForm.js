@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
@@ -5,6 +7,10 @@ import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import {Field, reduxForm} from 'redux-form';
 
 class BeerForm extends Component {
+  props: {
+    handleSubmit: Function;
+  };
+
   render() {
     return (
         <form onSubmit={this.props.handleSubmit}>
@@ -51,7 +57,7 @@ class BeerForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: Object): Object => ({
   initialValues: state.navigation.currentBeer || {}
 });
 

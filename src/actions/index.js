@@ -1,32 +1,52 @@
-import * as types from '../constants/action-types';
+// @flow
+
+import type { Beer } from '../types/types';
+
+type ActionWithNoParameters = {
+  type: string;
+};
+
+type ActionWithBeerParameter = {
+  type: string;
+  beer: Beer;
+};
+
+type ActionWithIndexParameter = {
+  type: string;
+  index: string;
+};
+
+type Action = ActionWithNoParameters | ActionWithBeerParameter | ActionWithIndexParameter;
+
+import * as actionTypes from '../constants/action-types';
 
 /*
  COLLECTION
  */
 
-export const loadCollection = () => {
+export const loadCollection = (): Action => {
   return {
-    type: types.LOAD_COLLECTION
+    type: actionTypes.LOAD_COLLECTION
   };
 };
 
-export const addBeer = (beer) => {
+export const addBeer = (beer: Beer): Action => {
   return {
-    type: types.ADD_BEER,
+    type: actionTypes.ADD_BEER,
     beer
   };
 };
 
-export const updateBeer = (beer) => {
+export const updateBeer = (beer: Beer): Action => {
   return {
-    type: types.UPDATE_BEER,
+    type: actionTypes.UPDATE_BEER,
     beer
   }
 };
 
-export const deleteBeer = (index) => {
+export const deleteBeer = (index: string): Action => {
   return {
-    type: types.DELETE_BEER,
+    type: actionTypes.DELETE_BEER,
     index
   }
 };
@@ -36,16 +56,16 @@ export const deleteBeer = (index) => {
  */
 
 
-export const setCurrentBeer = (beer) => {
+export const setCurrentBeer = (beer: Beer): Action => {
   return {
-    type: types.SET_CURRENT_BEER,
+    type: actionTypes.SET_CURRENT_BEER,
     beer
   }
 };
 
-export const resetCurrentBeer = () => {
+export const resetCurrentBeer = (): Action => {
   return {
-    type: types.RESET_CURRENT_BEER
+    type: actionTypes.RESET_CURRENT_BEER
   }
 };
 

@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {Router, Route, hashHistory} from 'react-router';
 

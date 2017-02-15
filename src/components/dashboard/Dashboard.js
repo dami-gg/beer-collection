@@ -1,6 +1,9 @@
+// @flow
+
 import React, {Component} from 'react';
-import './dashboard.scss';
 import DashboardOption from './dashboard-option/DashboardOption';
+
+import './dashboard.scss';
 
 import crate from '../../assets/images/crate.png';
 import tap from '../../assets/images/tap.png';
