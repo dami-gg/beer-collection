@@ -1,7 +1,7 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
+import firebase from 'firebase';
 
 import * as types from '../constants/action-types';
-import database from '../common/database';
 
 function* watchUpdateBeerSaga() {
   yield takeEvery(types.UPDATE_BEER, updateBeerSaga);
@@ -19,7 +19,7 @@ function* updateBeerSaga(action) {
 
 function putBeerToDB(beer) {
   return new Promise((resolve, reject) => {
-    database.ref(`beers/${beer.id}`)
+    firebase.database().ref(`beers/${beer.id}`)
         .update({
           id: beer.id,
           name: beer.name,

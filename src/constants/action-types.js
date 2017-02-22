@@ -22,5 +22,8 @@ export const DELETE_BEER: string = 'DELETE_BEER';
  NAVIGATION
  */
 
+export const LOG_USER_IN: string = 'LOG_USER_IN';
+export const LOG_USER_OUT: string = 'LOG_USER_OUT';
+
 export const SET_CURRENT_BEER: string = 'SET_CURRENT_BEER';
 export const RESET_CURRENT_BEER: string = 'RESET_CURRENT_BEER';

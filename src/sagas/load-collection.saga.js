@@ -1,7 +1,7 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
+import firebase from 'firebase';
 
 import * as types from '../constants/action-types';
-import database from '../common/database';
 
 function* watchLoadCollectionSaga() {
   yield takeEvery(types.LOAD_COLLECTION, loadCollectionSaga);
@@ -18,7 +18,7 @@ function* loadCollectionSaga() {
 }
 
 function getCollectionFromDB() {
-  let query = database.ref('beers').orderByKey();
+  let query = firebase.database().ref('beers').orderByKey();
 
   return new Promise((resolve, reject) => {
     query.once('value', snapshot => {

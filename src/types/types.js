@@ -14,3 +14,9 @@ export type BeerFormValues = {
   origin: ?string;
   image: ?string;
 };
+
+export type User = {
+  email: string;
+  displayName: string;
+  photoUrl: ?string;
+};
