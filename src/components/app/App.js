@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 
-import Header from '../common/Header';
+import Header from '../header/Header';
 import RouteHandler from '../common/RouteHandler';
 import Login from '../login/Login';
 
