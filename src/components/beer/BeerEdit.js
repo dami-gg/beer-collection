@@ -29,13 +29,13 @@ class BeerEdit extends Component {
     });
   }
 
-  handleSubmit = (formValues: BeerFormValues): void => {
+  submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
     let beer: Beer = {
       id: this.props.currentBeer.id,
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin,
-      image: formValues.image
+      image: imageUrl
     };
 
     this.props.updateBeer(beer);
@@ -45,7 +45,7 @@ class BeerEdit extends Component {
     return (
         <section>
           <h1>Edit beer from your collection</h1>
-          <Form onSubmit={this.handleSubmit} />
+          <Form onSubmit={this.submitHandler} />
         </section>
     );
   }

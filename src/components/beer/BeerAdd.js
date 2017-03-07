@@ -14,13 +14,13 @@ class BeerAdd extends Component {
     addBeer: Function
   };
 
-  handleSubmit = (formValues: BeerFormValues): void => {
+  submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
     let beer: Beer = {
       id: v4(),
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin,
-      image: formValues.image
+      image: imageUrl
     };
 
     this.props.addBeer(beer);
@@ -30,7 +30,7 @@ class BeerAdd extends Component {
     return (
         <section>
           <h1>Add a new beer to your collection</h1>
-          <Form onSubmit={this.handleSubmit} />
+          <Form onSubmit={this.submitHandler} />
         </section>
     );
   }
