@@ -23,6 +23,7 @@ class Collection extends Component {
     let beerList = this.props.collection.map((beer: Beer) => {
       return (
           <Col className="beer" xs={12} sm={3} md={1}
+               key={beer.id}
                onClick={() => this.navigateToDetailPage(beer.id)}>
             <img src={beer.image || logo} className="beer__image" alt="beer-logo"/>
             <p className="beer__name">{beer.name}</p>

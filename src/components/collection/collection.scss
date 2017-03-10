@@ -1,12 +1,13 @@
 .collection {
-  padding: 15px;
+  margin: 15px;
 
   .beer {
     border: 1px solid dimgrey;
     border-radius: 20px;
+    color: white;
+    cursor: pointer;
     margin: 10px 0;
     text-align: center;
-    cursor: pointer;
 
     @media(min-width: 768px) {
       margin: 10px;
