@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 
 import Header from '../header/Header';
-import RouteHandler from '../common/RouteHandler';
+import Home from '../home/Home';
 import Login from '../login/Login';
+import BeerAdd from '../beer/BeerAdd';
+import BeerEdit from '../beer/BeerEdit';
+import Collection from '../collection/Collection';
 
 import {logUserIn, logUserOut} from '../../actions';
 
@@ -21,17 +25,33 @@ class App extends Component {
   }
 
   handleAccess() {
-    return (this.props.user)
-        ? (<RouteHandler />)
-        : (<Login />);
+    if (this.props.user) {
+      return (
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/beer/add" component={BeerAdd}/>
+              <Route path="/beer/edit/:beerId" component={BeerEdit}/>
+              <Route path="/collection" component={Collection}/>
+              <Route render={() => <h1>404: This page could not be found!</h1>}/>
+            </Switch>
+          </div>
+      );
+    }
+
+    else {
+      return (<Login />);
+    }
   }
 
   render() {
     return (
-        <div className="app">
-          <Header />
-          {this.handleAccess()}
-        </div>
+        <Router>
+          <div className="app">
+            <Header />
+            {this.handleAccess()}
+          </div>
+        </Router>
     );
   }
 }

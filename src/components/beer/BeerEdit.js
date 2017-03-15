@@ -17,9 +17,11 @@ class BeerEdit extends Component {
   };
 
   componentWillMount(): void {
-    if (this.props.params.beerId) {
+    const beerId: string = this.props.match.params.beerId;
+
+    if (beerId) {
       // Find beer in collection and store it in state
-      this.props.setCurrentBeer(this.findBeerInCollection(this.props.params.beerId));
+      this.props.setCurrentBeer(this.findBeerInCollection(beerId));
     }
   }
 

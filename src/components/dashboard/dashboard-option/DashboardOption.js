@@ -1,11 +1,11 @@
 // @flow
 
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {Col} from 'react-bootstrap';
 
 class DashboardOption extends Component {
-  props: {
+  props:{
     url: string,
     image: string,
     title: string

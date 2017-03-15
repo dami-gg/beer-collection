@@ -22,6 +22,8 @@ class Dashboard extends Component {
               url="/collection"
               image={crate}
           />
+
+
         </div>
     );
   }
