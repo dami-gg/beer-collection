@@ -1,12 +1,12 @@
 // @flow
-import type { Beer, BeerFormValues } from '../../types/types';
+import type { Beer, BeerFormValues } from '../../../types/types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {v4} from 'node-uuid';
 
-import {addBeer} from '../../actions';
-import Form from './BeerForm';
+import {addBeer} from '../../../actions';
+import Form from '../beer-form/BeerForm';
 
 class BeerAdd extends Component {
   props: {

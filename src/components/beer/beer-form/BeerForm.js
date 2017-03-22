@@ -4,11 +4,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 
-import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
+import {Row, Col, FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import {Field, reduxForm} from 'redux-form';
-import BeerImageInput from './BeerImageInput'
+import BeerImageInput from '../beer-image/BeerImageInput'
 
-import type {BeerFormValues} from '../../types/types';
+import type {BeerFormValues} from '../../../types/types';
+
+import './beer-form.scss';
 
 class BeerForm extends Component {
   props:{
@@ -85,7 +87,6 @@ class BeerForm extends Component {
             },
             () => {
               // Upload is complete
-              debugger;
               resolve(uploadProcess.snapshot.downloadURL);
             }
         );
@@ -100,50 +101,64 @@ class BeerForm extends Component {
   render() {
     const {handleSubmit} = this.props; // redux-form automatically adds a method called handleSubmit to the props
     return (
-        <form onSubmit={handleSubmit(this.preSubmit)}>
-          <FormGroup
-              controlId="name">
-            <ControlLabel>Name</ControlLabel>
-            <Field
-                name="name"
-                className="form-control"
-                placeholder="Enter name"
-                component="input"
-                type="text"/>
-          </FormGroup>
+        <form className="beer-form"
+              onSubmit={handleSubmit(this.preSubmit)}>
+          <Row className="beer-form__fields">
+            <Col lg={4}>
+              <FormGroup
+                  controlId="name">
+                <ControlLabel>Name</ControlLabel>
+                <Field
+                    name="name"
+                    className="form-control"
+                    placeholder="Enter name"
+                    component="input"
+                    type="text"/>
+              </FormGroup>
 
-          <FormGroup
-              controlId="type">
-            <ControlLabel>Type</ControlLabel>
-            <Field
-                name="type"
-                className="form-control"
-                placeholder="Enter type"
-                component="input"
-                type="text"/>
-          </FormGroup>
+              <FormGroup
+                  controlId="type">
+                <ControlLabel>Type</ControlLabel>
+                <Field
+                    name="type"
+                    className="form-control"
+                    placeholder="Enter type"
+                    component="input"
+                    type="text"/>
+              </FormGroup>
 
-          <FormGroup
-              controlId="origin">
-            <ControlLabel>Origin</ControlLabel>
-            <Field
-                name="origin"
-                className="form-control"
-                placeholder="Enter origin"
-                component="input"
-                type="text"/>
-          </FormGroup>
+              <FormGroup
+                  controlId="origin">
+                <ControlLabel>Origin</ControlLabel>
+                <Field
+                    name="origin"
+                    className="form-control"
+                    placeholder="Enter origin"
+                    component="input"
+                    type="text"/>
+              </FormGroup>
+            </Col>
 
-          <BeerImageInput
-              handleImageSelection={this.handleImageSelection}
-              thumbnail={this.state.thumbnail}>
-          </BeerImageInput>
+            <Col lg={4}>
+              <BeerImageInput
+                  handleImageSelection={this.handleImageSelection}
+                  thumbnail={this.state.thumbnail}>
+              </BeerImageInput>
+            </Col>
+          </Row>
 
-          <Button
-              type="submit"
-              bsStyle="primary">
-            Save
-          </Button>
+          <Row className="beer-form__buttons">
+            <Button
+                type="submit"
+                bsStyle="success">
+              Save
+            </Button>
+
+            <Button
+                bsStyle="danger">
+              Cancel
+            </Button>
+          </Row>
         </form>
     );
   }

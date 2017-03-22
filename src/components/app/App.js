@@ -6,8 +6,8 @@ import firebase from 'firebase';
 import Header from '../header/Header';
 import Home from '../home/Home';
 import Login from '../login/Login';
-import BeerAdd from '../beer/BeerAdd';
-import BeerEdit from '../beer/BeerEdit';
+import BeerAdd from '../beer/beer-add/BeerAdd';
+import BeerEdit from '../beer/beer-edit/BeerEdit';
 import Collection from '../collection/Collection';
 
 import {logUserIn, logUserOut} from '../../actions';
