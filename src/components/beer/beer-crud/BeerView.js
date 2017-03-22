@@ -3,16 +3,20 @@ import type {Beer} from '../../../types/types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router'
 
 import {updateBeer, setCurrentBeer} from '../../../actions';
 import Form from '../beer-form/BeerForm';
 
 class BeerView extends Component {
   props:{
-    params: Object;
-    currentBeer: Beer;
-    collection: Array<Beer>;
-    setCurrentBeer: Function;
+    params: Object,
+    currentBeer: Beer,
+    collection: Array<Beer>,
+    setCurrentBeer: Function,
+    match: Object,
+    location: Object,
+    history: Object
   };
 
   componentWillMount():void {
@@ -31,11 +35,19 @@ class BeerView extends Component {
   }
 
   submitHandler = ():void => {
-    // Route to edit beer
+    this.redirectToBeerEditPage();
   }
 
   cancelHandler = ():void => {
-    // Route to collection
+    this.redirectToCollection();
+  }
+
+  redirectToBeerEditPage = ():void => {
+    this.props.history.push(`/beer/edit/${this.props.currentBeer.id}`);
+  }
+
+  redirectToCollection = ():void => {
+    this.props.history.push('/collection');
   }
 
   render() {
@@ -47,7 +59,7 @@ class BeerView extends Component {
                 readOnly={true}
                 submitButtonLabel="Edit"
                 cancelButtonLabel="Back"
-                currentImage={this.props.currentBeer && this.props.currentBeer.image} />
+                currentImage={this.props.currentBeer && this.props.currentBeer.image}/>
         </section>
     );
   }
@@ -70,7 +82,9 @@ const mapDispatchToProps = (dispatch:Function):Object => {
   }
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(BeerView);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(BeerView)
+);

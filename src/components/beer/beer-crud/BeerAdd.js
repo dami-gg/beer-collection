@@ -3,6 +3,7 @@ import type {Beer, BeerFormValues} from '../../../types/types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router'
 import {v4} from 'node-uuid';
 
 import {addBeer} from '../../../actions';
@@ -11,7 +12,10 @@ import Form from '../beer-form/BeerForm';
 class BeerAdd extends Component {
   props:{
     params: Object,
-    addBeer: Function
+    addBeer: Function,
+    match: Object,
+    location: Object,
+    history: Object
   };
 
   submitHandler = (formValues:BeerFormValues, imageUrl:string):void => {
@@ -24,10 +28,19 @@ class BeerAdd extends Component {
     };
 
     this.props.addBeer(beer);
+    this.redirectToCollection();
   }
 
   cancelHandler = ():void => {
-    // Route to dashboard
+    this.redirectToHome();
+  }
+
+  redirectToCollection = ():void => {
+    this.props.history.push('/collection');
+  }
+
+  redirectToHome = ():void => {
+    this.props.history.push('/');
   }
 
   render() {
@@ -55,7 +68,9 @@ const mapDispatchToProps = (dispatch:Function):Object => {
   }
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(BeerAdd);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(BeerAdd)
+);

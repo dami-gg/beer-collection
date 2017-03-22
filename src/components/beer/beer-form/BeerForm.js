@@ -165,8 +165,9 @@ class BeerForm extends Component {
             </Button>
 
             <Button
-                bsStyle="danger">
-              { this.props.cancelButtonLabel || 'Save'}
+                bsStyle="danger"
+                onClick={() => this.props.onCancel()}>
+              { this.props.cancelButtonLabel || 'Cancel'}
             </Button>
           </Row>
         </form>
