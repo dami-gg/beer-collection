@@ -1,16 +1,22 @@
 .collection {
-  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 30px;
+
+  @media(min-width: 768px) {
+    flex-direction: row;
+  }
 
   .beer {
-    border: 1px solid dimgrey;
-    border-radius: 20px;
     color: white;
     cursor: pointer;
-    margin: 10px 0;
+    margin: 0 10px;
     text-align: center;
+    width: 40%;
 
     @media(min-width: 768px) {
-      margin: 10px;
+      width: 10%;
     }
 
     &:hover {
@@ -18,8 +24,8 @@
     }
 
     &__image {
-      max-height: 100%;
-      max-width: 100%;
+      max-height: 200px;
+      max-width: 200px;
     }
   }
 }

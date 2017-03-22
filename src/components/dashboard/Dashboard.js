@@ -15,15 +15,12 @@ class Dashboard extends Component {
           <DashboardOption
               title="Add beer to your collection"
               url="/beer/add"
-              image={tap}
-          />
+              image={tap}/>
+
           <DashboardOption
               title="See your collection"
               url="/collection"
-              image={crate}
-          />
-
-
+              image={crate}/>
         </div>
     );
   }
