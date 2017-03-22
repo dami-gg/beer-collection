@@ -14,7 +14,12 @@ import './beer-form.scss';
 
 class BeerForm extends Component {
   props:{
-    onSubmit: Function
+    onSubmit: Function,
+    onCancel: Function,
+    readOnly: boolean,
+    submitButtonLabel: string,
+    cancelButtonLabel: string,
+    currentImage: string
   };
 
   constructor(props) {
@@ -113,6 +118,7 @@ class BeerForm extends Component {
                     className="form-control"
                     placeholder="Enter name"
                     component="input"
+                    disabled={this.props.readOnly}
                     type="text"/>
               </FormGroup>
 
@@ -124,6 +130,7 @@ class BeerForm extends Component {
                     className="form-control"
                     placeholder="Enter type"
                     component="input"
+                    disabled={this.props.readOnly}
                     type="text"/>
               </FormGroup>
 
@@ -135,6 +142,7 @@ class BeerForm extends Component {
                     className="form-control"
                     placeholder="Enter origin"
                     component="input"
+                    disabled={this.props.readOnly}
                     type="text"/>
               </FormGroup>
             </Col>
@@ -142,7 +150,9 @@ class BeerForm extends Component {
             <Col lg={4}>
               <BeerImageInput
                   handleImageSelection={this.handleImageSelection}
-                  thumbnail={this.state.thumbnail}>
+                  thumbnail={this.state.thumbnail}
+                  readOnly={this.props.readOnly}
+                  currentImage={this.props.currentImage}>
               </BeerImageInput>
             </Col>
           </Row>
@@ -151,12 +161,12 @@ class BeerForm extends Component {
             <Button
                 type="submit"
                 bsStyle="success">
-              Save
+              { this.props.submitButtonLabel || 'Save'}
             </Button>
 
             <Button
                 bsStyle="danger">
-              Cancel
+              { this.props.cancelButtonLabel || 'Save'}
             </Button>
           </Row>
         </form>

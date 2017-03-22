@@ -17,7 +17,7 @@ class Collection extends Component {
   render() {
     let beerList = this.props.collection.map((beer:Beer) => {
       return (
-          <Link to={`/beer/edit/${beer.id}`}
+          <Link to={`/beer/view/${beer.id}`}
                 className="beer" key={beer.id}>
             <img src={beer.image || logo}
                  className="img-responsive img-rounded beer__image"

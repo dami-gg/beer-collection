@@ -1,5 +1,5 @@
 // @flow
-import type { Beer, BeerFormValues } from '../../../types/types';
+import type {Beer, BeerFormValues} from '../../../types/types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -9,13 +9,13 @@ import {addBeer} from '../../../actions';
 import Form from '../beer-form/BeerForm';
 
 class BeerAdd extends Component {
-  props: {
+  props:{
     params: Object,
     addBeer: Function
   };
 
-  submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
-    let beer: Beer = {
+  submitHandler = (formValues:BeerFormValues, imageUrl:string):void => {
+    let beer:Beer = {
       id: v4(),
       name: formValues.name,
       type: formValues.type,
@@ -26,23 +26,30 @@ class BeerAdd extends Component {
     this.props.addBeer(beer);
   }
 
+  cancelHandler = ():void => {
+    // Route to dashboard
+  }
+
   render() {
     return (
         <section>
           <h1>Add a new beer to your collection</h1>
-          <Form onSubmit={this.submitHandler} />
+          <Form onSubmit={this.submitHandler}
+                onCancel={this.cancelHandler}
+                submitButtonLabel="Save"
+                cancelButtonLabel="Cancel"/>
         </section>
     );
   }
 }
 
-const mapStateToProps = (state: Object): Object => ({
+const mapStateToProps = (state:Object):Object => ({
   collection: state.collection
 });
 
-const mapDispatchToProps = (dispatch: Function): Object => {
+const mapDispatchToProps = (dispatch:Function):Object => {
   return {
-    addBeer: (beer: Beer) => {
+    addBeer: (beer:Beer) => {
       dispatch(addBeer(beer));
     }
   }

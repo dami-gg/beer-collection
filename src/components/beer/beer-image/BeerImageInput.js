@@ -5,7 +5,9 @@ import './beer-image.scss';
 class BeerImageInput extends Component {
   props:{
     handleImageSelection: Function,
-    thumbnail: string
+    thumbnail: string,
+    readOnly: boolean,
+    currentImage: string
   };
 
   render() {
@@ -13,16 +15,20 @@ class BeerImageInput extends Component {
         <div className="beer-image">
           <div className="beer-image__frame">
             {
-              this.props.thumbnail &&
+              (this.props.thumbnail || this.props.currentImage) &&
               <img className="img-responsive"
-                   src={this.props.thumbnail} alt=""></img>
+                   src={this.props.thumbnail || this.props.currentImage}
+                   alt=""></img>
             }
           </div>
-          <div className="beer-image__buttons">
-            <input className="beer-image__buttons--add"
-                   type="file"
-                   onChange={this.props.handleImageSelection}/>
-          </div>
+          {
+            !this.props.readOnly &&
+            <div className="beer-image__buttons">
+              <input className="beer-image__buttons--add"
+                     type="file"
+                     onChange={this.props.handleImageSelection}/>
+            </div>
+          }
         </div>
     )
   }

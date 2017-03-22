@@ -1,5 +1,5 @@
 // @flow
-import type { Beer, BeerFormValues } from '../../../types/types';
+import type {Beer, BeerFormValues} from '../../../types/types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -8,7 +8,7 @@ import {updateBeer, setCurrentBeer} from '../../../actions';
 import Form from '../beer-form/BeerForm';
 
 class BeerEdit extends Component {
-  props: {
+  props:{
     params: Object;
     currentBeer: Beer;
     collection: Array<Beer>;
@@ -16,8 +16,8 @@ class BeerEdit extends Component {
     updateBeer: Function;
   };
 
-  componentWillMount(): void {
-    const beerId: string = this.props.match.params.beerId;
+  componentWillMount():void {
+    const beerId:string = this.props.match.params.beerId;
 
     if (beerId) {
       // Find beer in collection and store it in state
@@ -25,14 +25,14 @@ class BeerEdit extends Component {
     }
   }
 
-  findBeerInCollection(beerId: string) {
-    return this.props.collection.find((element: Beer) => {
+  findBeerInCollection(beerId:string) {
+    return this.props.collection.find((element:Beer) => {
       return element.id === beerId;
     });
   }
 
-  submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
-    let beer: Beer = {
+  submitHandler = (formValues:BeerFormValues, imageUrl:string):void => {
+    let beer:Beer = {
       id: this.props.currentBeer.id,
       name: formValues.name,
       type: formValues.type,
@@ -43,28 +43,36 @@ class BeerEdit extends Component {
     this.props.updateBeer(beer);
   }
 
+  cancelHandler = ():void => {
+    // Route to view
+  }
+
   render() {
     return (
         <section>
           <h1>Edit beer from your collection</h1>
-          <Form onSubmit={this.submitHandler} />
+          <Form onSubmit={this.submitHandler}
+                onCancel={this.cancelHandler}
+                submitButtonLabel="Save"
+                cancelButtonLabel="Cancel"
+                currentImage={this.props.currentBeer && this.props.currentBeer.image} />
         </section>
     );
   }
 }
 
-const mapStateToProps = (state: Object): Object => ({
+const mapStateToProps = (state:Object):Object => ({
   collection: state.collection,
   currentBeer: state.navigation.currentBeer
 });
 
-const mapDispatchToProps = (dispatch: Function): Object => {
+const mapDispatchToProps = (dispatch:Function):Object => {
   return {
-    updateBeer: (beer: Beer) => {
+    updateBeer: (beer:Beer) => {
       dispatch(updateBeer(beer));
     },
 
-    setCurrentBeer: (beer: Beer) => {
+    setCurrentBeer: (beer:Beer) => {
       dispatch(setCurrentBeer(beer));
     }
   }
