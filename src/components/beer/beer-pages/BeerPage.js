@@ -20,7 +20,7 @@ class BeerPage extends Component {
   render() {
     return (
         <section className="beer-page">
-          <h1>{this.props.heading}</h1>
+          <h1 className="beer-page__heading">{this.props.heading}</h1>
           <Form
               onSubmit={this.props.submitHandler}
               onCancel={this.props.cancelHandler}
