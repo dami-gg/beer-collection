@@ -6,9 +6,9 @@ import firebase from 'firebase';
 import Header from '../header/Header';
 import Home from '../home/Home';
 import Login from '../login/Login';
-import BeerAdd from '../beer/beer-crud/BeerAdd';
-import BeerEdit from '../beer/beer-crud/BeerEdit';
-import BeerView from '../beer/beer-crud/BeerView';
+import BeerAdd from '../beer/beer-pages/BeerAdd';
+import BeerEdit from '../beer/beer-pages/BeerEdit';
+import BeerView from '../beer/beer-pages/BeerView';
 import Collection from '../collection/Collection';
 
 import {logUserIn, logUserOut} from '../../actions';

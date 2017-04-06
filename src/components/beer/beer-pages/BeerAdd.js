@@ -7,10 +7,10 @@ import {withRouter} from 'react-router'
 import {v4} from 'node-uuid';
 
 import {addBeer} from '../../../actions';
-import Form from '../beer-form/BeerForm';
+import BeerPage from './BeerPage';
 
 class BeerAdd extends Component {
-  props:{
+  props: {
     params: Object,
     addBeer: Function,
     match: Object,
@@ -18,8 +18,8 @@ class BeerAdd extends Component {
     history: Object
   };
 
-  submitHandler = (formValues:BeerFormValues, imageUrl:string):void => {
-    let beer:Beer = {
+  submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
+    let beer: Beer = {
       id: v4(),
       name: formValues.name,
       type: formValues.type,
@@ -31,38 +31,38 @@ class BeerAdd extends Component {
     this.redirectToCollection();
   }
 
-  cancelHandler = ():void => {
+  cancelHandler = (): void => {
     this.redirectToHome();
   }
 
-  redirectToCollection = ():void => {
+  redirectToCollection = (): void => {
     this.props.history.push('/collection');
   }
 
-  redirectToHome = ():void => {
+  redirectToHome = (): void => {
     this.props.history.push('/');
   }
 
   render() {
     return (
-        <section>
-          <h1>Add a new beer to your collection</h1>
-          <Form onSubmit={this.submitHandler}
-                onCancel={this.cancelHandler}
-                submitButtonLabel="Save"
-                cancelButtonLabel="Cancel"/>
-        </section>
+        <BeerPage
+            heading="Add a new beer to your collection"
+            submitHandler={this.submitHandler}
+            cancelHandler={this.cancelHandler}
+            submitButtonLabel="Save"
+            cancelButtonLabel="Cancel">
+        </BeerPage>
     );
   }
 }
 
-const mapStateToProps = (state:Object):Object => ({
+const mapStateToProps = (state: Object): Object => ({
   collection: state.collection
 });
 
-const mapDispatchToProps = (dispatch:Function):Object => {
+const mapDispatchToProps = (dispatch: Function): Object => {
   return {
-    addBeer: (beer:Beer) => {
+    addBeer: (beer: Beer) => {
       dispatch(addBeer(beer));
     }
   }

@@ -9,8 +9,8 @@ type NavigationState = {
 import * as actionTypes from '../constants/action-types';
 
 const initialState = {
-  user: null,
-  currentBeer: null
+  user: undefined,
+  currentBeer: undefined
 };
 
 const navigation = (state:NavigationState = initialState, action:Object):NavigationState => {
@@ -24,7 +24,7 @@ const navigation = (state:NavigationState = initialState, action:Object):Navigat
     case actionTypes.LOG_USER_OUT:
       return {
         ...state,
-        user: null
+        user: initialState.user
       };
 
     case actionTypes.SET_CURRENT_BEER:
@@ -36,7 +36,7 @@ const navigation = (state:NavigationState = initialState, action:Object):Navigat
     case actionTypes.RESET_CURRENT_BEER:
       return {
         ...state,
-        currentBeer: null
+        currentBeer: initialState.currentBeer
       };
 
     default:
