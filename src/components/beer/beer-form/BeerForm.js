@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 
-import {Row, Col, FormGroup, ControlLabel, Button} from 'react-bootstrap';
+import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import {Field, reduxForm} from 'redux-form';
 import BeerImageInput from '../beer-image/BeerImageInput'
 
@@ -13,7 +13,7 @@ import type {BeerFormValues} from '../../../types/types';
 import './beer-form.scss';
 
 class BeerForm extends Component {
-  props:{
+  props: {
     onSubmit: Function,
     onCancel: Function,
     readOnly: boolean,
@@ -41,7 +41,7 @@ class BeerForm extends Component {
    *
    * @param formValues
    */
-  preSubmit(formValues:BeerFormValues) {
+  preSubmit(formValues: BeerFormValues) {
     this.handleImageUpload()
         .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
         .catch(error => console.log(error)); // TODO Handle error
@@ -108,8 +108,8 @@ class BeerForm extends Component {
     return (
         <form className="beer-form"
               onSubmit={handleSubmit(this.preSubmit)}>
-          <Row className="beer-form__fields">
-            <Col lg={4}>
+          <div className="beer-form__inputs">
+            <div className="beer-form__inputs__fields">
               <FormGroup
                   controlId="name">
                 <ControlLabel>Name</ControlLabel>
@@ -145,19 +145,17 @@ class BeerForm extends Component {
                     disabled={this.props.readOnly}
                     type="text"/>
               </FormGroup>
-            </Col>
+            </div>
 
-            <Col lg={4}>
-              <BeerImageInput
-                  handleImageSelection={this.handleImageSelection}
-                  thumbnail={this.state.thumbnail}
-                  readOnly={this.props.readOnly}
-                  currentImage={this.props.currentImage}>
-              </BeerImageInput>
-            </Col>
-          </Row>
+            <BeerImageInput
+                handleImageSelection={this.handleImageSelection}
+                thumbnail={this.state.thumbnail}
+                readOnly={this.props.readOnly}
+                currentImage={this.props.currentImage}>
+            </BeerImageInput>
+          </div>
 
-          <Row className="beer-form__buttons">
+          <div className="beer-form__buttons">
             <Button
                 type="submit"
                 bsStyle="success">
@@ -169,13 +167,13 @@ class BeerForm extends Component {
                 onClick={() => this.props.onCancel()}>
               { this.props.cancelButtonLabel || 'Cancel'}
             </Button>
-          </Row>
+          </div>
         </form>
     );
   }
 }
 
-const mapStateToProps = (state:Object):Object => ({
+const mapStateToProps = (state: Object): Object => ({
   initialValues: state.navigation.currentBeer || {}
 });
 

@@ -5,6 +5,8 @@ import React, {Component} from 'react';
 
 import Form from '../beer-form/BeerForm';
 
+import './beer-pages.scss';
+
 class BeerPage extends Component {
   props: {
     heading: string,
@@ -17,7 +19,7 @@ class BeerPage extends Component {
 
   render() {
     return (
-        <section>
+        <section className="beer-page">
           <h1>{this.props.heading}</h1>
           <Form
               onSubmit={this.props.submitHandler}

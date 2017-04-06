@@ -3,7 +3,7 @@ import type {Beer, BeerFormValues} from '../../../types/types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router'
+import {withRouter} from 'react-router';
 import {v4} from 'node-uuid';
 
 import {addBeer} from '../../../actions';

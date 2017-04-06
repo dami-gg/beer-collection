@@ -13,6 +13,8 @@ import Collection from '../collection/Collection';
 
 import {logUserIn, logUserOut} from '../../actions';
 
+import './app.scss';
+
 class App extends Component {
   componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {

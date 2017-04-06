@@ -10,6 +10,10 @@ body {
   font-family: sans-serif;
 }
 
+a:hover, a:focus {
+  text-decoration: none;
+}
+
 section {
   margin: 2%;
 }

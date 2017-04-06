@@ -14,11 +14,9 @@ class Login extends Component {
   render() {
     return (
         <div className="login">
-          <div className="col-md-12 login__wrapper">
-            <div className="login__box">
-              <p className="form-title">Please sign in</p>
-
+          <div className="login__box">
               <form className="login__form">
+                <p className="login__form__title">Please sign in</p>
                 <input type="text" placeholder="Username"/>
                 <input type="password" placeholder="Password"/>
                 <input type="submit" value="Sign in"
@@ -30,7 +28,6 @@ class Login extends Component {
                 Sign in with Google
               </div>
             </div>
-          </div>
         </div>
     );
   }
