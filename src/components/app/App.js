@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {connect} from 'react-redux';
-import firebase from 'firebase';
+import requiresAuth from '../authentication/AuthenticatedComponent';
 
 import Header from '../header/Header';
 import Home from '../home/Home';
@@ -11,41 +11,29 @@ import BeerEdit from '../beer/beer-pages/BeerEdit';
 import BeerView from '../beer/beer-pages/BeerView';
 import Collection from '../collection/Collection';
 
-import {logUserIn, logUserOut} from '../../actions';
-
 import './app.scss';
 
 class App extends Component {
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.props.logUserIn(user);
-      }
-      else {
-        this.props.logUserOut();
-      }
-    });
-  }
+  props: {
+    match: Object,
+    location: Object,
+    history: Object
+  };
 
-  handleAccess() {
-    if (this.props.user) {
-      return (
-          <div>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/beer/add" component={BeerAdd}/>
-              <Route path="/beer/edit/:beerId" component={BeerEdit}/>
-              <Route path="/beer/view/:beerId" component={BeerView}/>
-              <Route path="/collection" component={Collection}/>
-              <Route render={() => <h1>404: This page could not be found!</h1>}/>
-            </Switch>
-          </div>
-      );
-    }
-
-    else {
-      return (<Login />);
-    }
+  getRoutes() {
+    return (
+        <div>
+          <Switch>
+            <Route exact path="/" component={requiresAuth(Home)}/>
+            <Route path="/beer/add" component={requiresAuth(BeerAdd)}/>
+            <Route path="/beer/edit/:beerId" component={requiresAuth(BeerEdit)}/>
+            <Route path="/beer/view/:beerId" component={requiresAuth(BeerView)}/>
+            <Route path="/collection" component={requiresAuth(Collection)}/>
+            <Route path="/login" component={Login}/>
+            <Route render={() => <h1>404: This page could not be found!</h1>}/>
+          </Switch>
+        </div>
+    );
   }
 
   render() {
@@ -53,30 +41,12 @@ class App extends Component {
         <Router>
           <div className="app">
             <Header />
-            {this.handleAccess()}
+            {this.getRoutes()}
           </div>
         </Router>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.navigation.user
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    logUserIn: (user) => {
-      dispatch(logUserIn(user));
-    },
-    logUserOut: () => {
-      dispatch(logUserOut());
-    }
-  }
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App);
+export default App;
 
