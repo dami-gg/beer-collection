@@ -4,11 +4,11 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import firebase from 'firebase'
 
 import Header from '../header/Header';
-import {routes} from '../../routes/routes';
+import {routes} from '../../routes';
 import {logUserIn, logUserOut} from '../../actions';
-import {completeAuthentication} from '../../utils/utils';
+import {completeAuthentication} from '../../utils';
 
-import type {User} from '../../types/types';
+import type {User} from '../../types';
 
 import './app.scss';
 

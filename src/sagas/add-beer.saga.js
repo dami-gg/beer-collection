@@ -1,7 +1,7 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
 import firebase from 'firebase';
 
-import * as types from '../constants/index';
+import * as types from '../constants';
 
 function* watchAddBeerSaga() {
   yield takeEvery(types.ADD_BEER, addBeerSaga);

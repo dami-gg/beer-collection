@@ -4,8 +4,8 @@ import {withRouter} from 'react-router';
 import firebase from 'firebase'
 
 import Spinner from '../spinner/Spinner';
-import type {User} from '../../types/types';
-import {startAuthentication, isAuthenticating} from '../../utils/utils';
+import type {User} from '../../types';
+import {startAuthentication, isAuthenticating} from '../../utils';
 
 import './login.scss';
 

@@ -1,12 +1,12 @@
 // @flow
-import type {User, Beer} from '../types/types';
+import type {User, Beer} from '../types';
 
 type NavigationState = {
   user: ?User;
   currentBeer: ?Beer;
 };
 
-import * as actionTypes from '../constants/index';
+import * as actionTypes from '../constants';
 
 const initialState = {
   user: undefined,

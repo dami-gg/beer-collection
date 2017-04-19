@@ -1,5 +1,5 @@
 // @flow
-import type {Beer} from '../../types/types';
+import type {Beer} from '../../types';
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';

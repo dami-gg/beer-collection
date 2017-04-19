@@ -1,5 +1,5 @@
 // @flow
-import type { User, Beer } from '../types/types';
+import type { User, Beer } from '../types';
 
 type ActionWithNoParameters = {
   type: string;
@@ -22,7 +22,7 @@ type ActionWithIndexParameter = {
 
 type Action = ActionWithNoParameters | ActionWithUserParameter | ActionWithBeerParameter | ActionWithIndexParameter;
 
-import * as actionTypes from '../constants/index';
+import * as actionTypes from '../constants';
 
 /*
  COLLECTION

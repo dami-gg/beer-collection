@@ -1,12 +1,12 @@
 // @flow
-import type {Beer, BeerFormValues} from '../../../types/types';
+import type {Beer, BeerFormValues} from '../../../types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router'
 
 import {updateBeer, setCurrentBeer} from '../../../actions';
-import {findItemInCollectionById} from '../../../utils/utils';
+import {findItemInCollectionById} from '../../../utils';
 import BeerPage from './BeerPage';
 
 class BeerEdit extends Component {

@@ -8,7 +8,7 @@ import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import {Field, reduxForm} from 'redux-form';
 import BeerImageInput from '../beer-image/BeerImageInput'
 
-import type {BeerFormValues} from '../../../types/types';
+import type {BeerFormValues} from '../../../types';
 
 import './beer-form.scss';
 
