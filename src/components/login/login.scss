@@ -2,6 +2,16 @@
   display: flex;
   justify-content: center;
 
+  .spinner {
+    margin-top: 50%;
+    font-size: 100px;
+
+    @media(min-width: 768px) {
+      margin-top: 15%;
+      font-size: 200px;
+    }
+  }
+
   &__box {
     display: flex;
     flex-direction: column;

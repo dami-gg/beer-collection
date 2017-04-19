@@ -1,7 +1,7 @@
 // @flow
 import type { Beer } from '../types/types';
 
-import * as actionTypes from '../constants/action-types';
+import * as actionTypes from '../constants/index';
 
 const initialState = [];
 

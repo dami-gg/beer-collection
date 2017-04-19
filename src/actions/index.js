@@ -22,7 +22,7 @@ type ActionWithIndexParameter = {
 
 type Action = ActionWithNoParameters | ActionWithUserParameter | ActionWithBeerParameter | ActionWithIndexParameter;
 
-import * as actionTypes from '../constants/action-types';
+import * as actionTypes from '../constants/index';
 
 /*
  COLLECTION
@@ -85,3 +85,8 @@ export const resetCurrentBeer = (): Action => {
   };
 };
 
+export const authenticate = (): Action => {
+  return {
+    type: actionTypes.AUTHENTICATE
+  };
+};

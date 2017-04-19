@@ -6,6 +6,7 @@ import firebase from 'firebase'
 import Header from '../header/Header';
 import {routes} from '../../routes/routes';
 import {logUserIn, logUserOut} from '../../actions';
+import {completeAuthentication} from '../../utils/utils';
 
 import type {User} from '../../types/types';
 
@@ -31,6 +32,7 @@ class App extends Component {
 
   login(user: User) {
     this.props.logUserIn(user);
+    completeAuthentication();
   }
 
   logout() {

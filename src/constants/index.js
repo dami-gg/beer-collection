@@ -1,7 +1,13 @@
 // @flow
 
 /*
- COLLECTION
+  GENERAL
+ */
+
+export const AUTHENTICATING_KEY = 'authenticating';
+
+/*
+ COLLECTION ACTION TYPES
  */
 
 export const LOAD_COLLECTION: string = 'LOAD_COLLECTION';
@@ -19,7 +25,7 @@ export const UPDATE_BEER_ERROR: string = 'UPDATE_BEER_ERROR';
 export const DELETE_BEER: string = 'DELETE_BEER';
 
 /*
- NAVIGATION
+ NAVIGATION ACTION TYPES
  */
 
 export const LOG_USER_IN: string = 'LOG_USER_IN';

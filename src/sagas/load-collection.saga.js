@@ -1,7 +1,7 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
 import firebase from 'firebase';
 
-import * as types from '../constants/action-types';
+import * as types from '../constants/index';
 
 function* watchLoadCollectionSaga() {
   yield takeEvery(types.LOAD_COLLECTION, loadCollectionSaga);

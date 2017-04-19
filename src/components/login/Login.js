@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import firebase from 'firebase'
 
+import Spinner from '../spinner/Spinner';
 import type {User} from '../../types/types';
+import {startAuthentication, isAuthenticating} from '../../utils/utils';
 
 import './login.scss';
 
@@ -12,7 +14,9 @@ class Login extends Component {
     user: User,
     match: Object,
     location: Object,
-    history: Object
+    history: Object,
+    authenticating: boolean,
+    authenticate: Function
   };
 
   componentWillMount() {
@@ -36,28 +40,32 @@ class Login extends Component {
   handleAuthenticationWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    firebase.auth().signInWithRedirect(provider);
+    startAuthentication();
 
-    // TODO Show loading icon after pressing button till getting result? (firebase.auth().getRedirectResult())
+    firebase.auth().signInWithRedirect(provider);
   }
 
   render() {
     return (
         <div className="login">
-          <div className="login__box">
-            <form className="login__form">
-              <p className="login__form__title">Please sign in</p>
-              <input type="text" placeholder="Username"/>
-              <input type="password" placeholder="Password"/>
-              <input type="submit" value="Sign in"
-                     className="btn btn-success btn--sign-in"/>
-            </form>
+          {
+            isAuthenticating() ? <Spinner></Spinner> :
 
-            <div className="btn btn-primary"
-                 onClick={this.handleAuthenticationWithGoogle}>
-              Sign in with Google
-            </div>
-          </div>
+                <div className="login__box">
+                  <form className="login__form">
+                    <p className="login__form__title">Please sign in</p>
+                    <input type="text" placeholder="Username"/>
+                    <input type="password" placeholder="Password"/>
+                    <input type="submit" value="Sign in"
+                           className="btn btn-success btn--sign-in"/>
+                  </form>
+
+                  <div className="btn btn-primary"
+                       onClick={this.handleAuthenticationWithGoogle}>
+                    Sign in with Google
+                  </div>
+                </div>
+          }
         </div>
     );
   }

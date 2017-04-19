@@ -6,14 +6,14 @@ type NavigationState = {
   currentBeer: ?Beer;
 };
 
-import * as actionTypes from '../constants/action-types';
+import * as actionTypes from '../constants/index';
 
 const initialState = {
   user: undefined,
   currentBeer: undefined
 };
 
-const navigation = (state:NavigationState = initialState, action:Object):NavigationState => {
+const navigation = (state: NavigationState = initialState, action: Object): NavigationState => {
   switch (action.type) {
     case actionTypes.LOG_USER_IN:
       return {
