@@ -1,9 +1,22 @@
 .beer-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   &__frame {
-    border: 1px solid white;
-    border-radius: 25px;
-    width: 300px;
+    display: flex;
+    justify-content: center;
+    width: 200px;
     height: 300px;
+
+    &--empty {
+      border: 1px solid white;
+      border-radius: 25px;
+    }
+
+    @media(min-width: 768px) {
+      width: 300px;
+    }
   }
 
   &__buttons {
@@ -11,8 +24,13 @@
   }
 
   img {
-    max-width: 300px;
+    border-radius: 25px;
+    max-width: 200px;
     max-height: 300px;
+
+    @media(min-width: 768px) {
+      max-width: 300px;
+    }
   }
 }
 

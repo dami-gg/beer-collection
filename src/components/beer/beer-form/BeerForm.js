@@ -4,8 +4,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 
-import {FormGroup, ControlLabel, Button} from 'react-bootstrap';
-import {Field, reduxForm} from 'redux-form';
+import {Button} from 'react-bootstrap';
+import {reduxForm} from 'redux-form';
+import BeerFormInputFields from './BeerFormInputFields';
 import BeerImageInput from '../beer-image/BeerImageInput'
 
 import type {BeerFormValues} from '../../../types';
@@ -109,43 +110,9 @@ class BeerForm extends Component {
         <form className="beer-form"
               onSubmit={handleSubmit(this.preSubmit)}>
           <div className="beer-form__inputs">
-            <div className="beer-form__inputs__fields">
-              <FormGroup
-                  controlId="name">
-                <ControlLabel>Name</ControlLabel>
-                <Field
-                    name="name"
-                    className="form-control"
-                    placeholder="Enter name"
-                    component="input"
-                    disabled={this.props.readOnly}
-                    type="text"/>
-              </FormGroup>
-
-              <FormGroup
-                  controlId="type">
-                <ControlLabel>Type</ControlLabel>
-                <Field
-                    name="type"
-                    className="form-control"
-                    placeholder="Enter type"
-                    component="input"
-                    disabled={this.props.readOnly}
-                    type="text"/>
-              </FormGroup>
-
-              <FormGroup
-                  controlId="origin">
-                <ControlLabel>Origin</ControlLabel>
-                <Field
-                    name="origin"
-                    className="form-control"
-                    placeholder="Enter origin"
-                    component="input"
-                    disabled={this.props.readOnly}
-                    type="text"/>
-              </FormGroup>
-            </div>
+            <BeerFormInputFields
+              readOnly={this.props.readOnly}>
+            </BeerFormInputFields>
 
             <BeerImageInput
                 handleImageSelection={this.handleImageSelection}

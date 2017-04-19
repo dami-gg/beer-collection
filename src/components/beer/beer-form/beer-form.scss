@@ -12,6 +12,14 @@
       justify-content: space-between;
     }
 
+    > div {
+      margin-bottom: 25px;
+
+      @media(min-width: 768px) {
+        margin-bottom: 0;
+      }
+    }
+
     &__fields {
       display: flex;
       flex-direction: column;

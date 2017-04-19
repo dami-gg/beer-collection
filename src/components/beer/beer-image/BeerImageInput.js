@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import './beer-image.scss';
 
 class BeerImageInput extends Component {
-  props:{
+  props: {
     handleImageSelection: Function,
     thumbnail: string,
     readOnly: boolean,
@@ -13,14 +13,13 @@ class BeerImageInput extends Component {
   render() {
     return (
         <div className="beer-image">
-          <div className="beer-image__frame">
+          <div className={(this.props.thumbnail || this.props.currentImage) ? 'beer-image__frame' : 'beer-image__frame-empty'}>
             {
               (this.props.thumbnail || this.props.currentImage) &&
-              <img className="img-responsive"
-                   src={this.props.thumbnail || this.props.currentImage}
-                   alt=""></img>
+              <img src={this.props.thumbnail || this.props.currentImage} alt=""></img>
             }
           </div>
+
           {
             !this.props.readOnly &&
             <div className="beer-image__buttons">
@@ -30,7 +29,7 @@ class BeerImageInput extends Component {
             </div>
           }
         </div>
-    )
+    );
   }
 }
 

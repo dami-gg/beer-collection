@@ -1,0 +1,22 @@
+.rating {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+
+  @media(min-width: 768px) {
+    padding: 0 80px;
+  }
+
+  i {
+    font-size: 30px;
+
+    @media(min-width: 768px) {
+      cursor: pointer;
+      font-size: 40px;
+    }
+
+    &:hover, &.selected {
+      color: yellow;
+    }
+  }
+}
