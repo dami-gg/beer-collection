@@ -50,7 +50,8 @@ class BeerView extends Component {
             cancelHandler={this.cancelHandler}
             submitButtonLabel="Edit"
             cancelButtonLabel="Back"
-            currentBeer={this.props.currentBeer}>
+            currentBeer={this.props.currentBeer}
+            readOnly={true}>
         </BeerPage>
     );
   }

@@ -6,4 +6,8 @@
   &__heading {
     margin-bottom: 30px;
   }
+
+  .form-control[disabled] {
+    cursor: default;
+  }
 }

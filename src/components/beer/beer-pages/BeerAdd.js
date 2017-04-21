@@ -24,7 +24,8 @@ class BeerAdd extends Component {
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin,
-      image: imageUrl
+      image: imageUrl,
+      rating: formValues.rating
     };
 
     this.props.addBeer(beer);

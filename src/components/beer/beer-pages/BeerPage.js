@@ -14,7 +14,8 @@ class BeerPage extends Component {
     cancelHandler: Function,
     submitButtonLabel: string,
     cancelButtonLabel: string,
-    currentBeer: Beer
+    currentBeer: Beer,
+    readOnly: boolean
   };
 
   render() {
@@ -26,7 +27,8 @@ class BeerPage extends Component {
               onCancel={this.props.cancelHandler}
               submitButtonLabel={this.props.submitButtonLabel}
               cancelButtonLabel={this.props.cancelButtonLabel}
-              currentImage={this.props.currentBeer && this.props.currentBeer.image}>
+              currentImage={this.props.currentBeer && this.props.currentBeer.image}
+              readOnly={this.props.readOnly}>
           </Form>
         </section>
     );

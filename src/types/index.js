@@ -6,6 +6,7 @@ export type Beer = {
   type: ?string;
   origin: ?string;
   image: ?string;
+  rating: ?number;
 };
 
 export type BeerFormValues = {
@@ -13,6 +14,7 @@ export type BeerFormValues = {
   type: ?string;
   origin: ?string;
   image: ?string;
+  rating: ?number;
 };
 
 export type User = {

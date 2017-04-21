@@ -33,7 +33,8 @@ class BeerEdit extends Component {
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin,
-      image: imageUrl
+      image: imageUrl || this.props.currentBeer.image,
+      rating: formValues.rating
     };
 
     this.props.updateBeer(beer);
