@@ -1,42 +1,48 @@
 .collection {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   margin-top: 30px;
   padding: 0 2%;
 
-  @media(min-width: 768px) {
-    flex-direction: row;
-  }
-
-  .beer {
+  .results {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    margin: 0 10px;
-    text-align: center;
-    width: 40%;
+    flex-wrap: wrap;
+    margin-top: 30px;
 
     @media(min-width: 768px) {
-      width: 10%;
+      flex-direction: row;
     }
 
-    &:hover {
-      background-color: white;
-      border-radius: 25px;
-      color: black;
-    }
+    .beer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      margin: 0 10px;
+      text-align: center;
+      width: 40%;
 
-    &__image {
-      max-height: 200px;
-      max-width: 200px;
-    }
+      @media(min-width: 768px) {
+        width: 10%;
+      }
 
-    &__name {
-      font-size: 16px;
-      margin-top: 10px;
+      &:hover {
+        background-color: white;
+        border-radius: 25px;
+        color: black;
+      }
+
+      &__image {
+        max-height: 200px;
+        max-width: 200px;
+      }
+
+      &__name {
+        font-size: 16px;
+        margin-top: 10px;
+      }
     }
   }
 }

@@ -5,17 +5,31 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import SearchBox from '../search-box/SearchBox';
+
 import logo from '../../assets/images/logo.png';
 
 import './collection.scss';
 
 class Collection extends Component {
-  props:{
+  props: {
     collection: Array<Beer>;
   };
 
-  render() {
-    let beerList = this.props.collection.map((beer:Beer) => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filterRegex: null
+    };
+  }
+
+  getResults = () => {
+    const results = this.props.collection.filter((beer: Beer) =>
+        this.state.filterRegex ? this.state.filterRegex.test(beer.name) : true
+    );
+
+    return results.map((beer: Beer) => {
       return (
           <Link to={`/beer/view/${beer.id}`}
                 className="beer" key={beer.id}>
@@ -26,16 +40,30 @@ class Collection extends Component {
           </Link>
       );
     });
+  }
 
+  updateFilter = event => {
+    const query = event.target.value;
+    const invalid = /[°"§%()\[\]\/{}=\\?´`'#<>|,;.:+_-]+/g;
+    const filter = query.replace(invalid, '');
+    const regex = new RegExp(filter, 'i');
+
+    this.setState({
+      filterRegex: regex
+    });
+  }
+
+  render() {
     return (
         <div className="collection">
-          {beerList}
+          <SearchBox changeHandler={this.updateFilter}></SearchBox>
+          <div className="results">{this.getResults()}</div>
         </div>
     );
   }
 }
 
-const mapStateToProps = (state:Object) => ({
+const mapStateToProps = (state: Object) => ({
   collection: state.collection
 });
 
