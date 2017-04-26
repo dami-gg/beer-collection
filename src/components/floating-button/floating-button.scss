@@ -1,0 +1,52 @@
+.floating-button {
+  &__button {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    border-radius: 50px;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__icon {
+      font-size: 24px;
+      margin-top: 18px;
+    }
+  }
+
+  &__label {
+    visibility: hidden;
+    opacity: 0;
+
+    @media(min-width: 768px) {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      bottom: 48px;
+      right: 105px;
+      transition: visibility 0s, opacity 0.5s ease;
+
+      &__text {
+        color: black;
+        background-color: white;
+        padding: 10px;
+        border-radius: 3px;
+      }
+
+      &__arrow {
+        color: white;
+      }
+    }
+  }
+
+  &__button:hover + &__label {
+    @media(min-width: 768px) {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

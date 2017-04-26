@@ -4,8 +4,10 @@ import type {Beer} from '../../types';
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 
 import SearchBox from '../search-box/SearchBox';
+import FloatingButton from '../floating-button/FloatingButton';
 
 import logo from '../../assets/images/logo.png';
 
@@ -13,7 +15,10 @@ import './collection.scss';
 
 class Collection extends Component {
   props: {
-    collection: Array<Beer>;
+    collection: Array<Beer>,
+    match: Object,
+    location: Object,
+    history: Object
   };
 
   constructor(props) {
@@ -53,11 +58,22 @@ class Collection extends Component {
     });
   }
 
+  redirectToAddPage = (): void => {
+    this.props.history.push('/beer/add');
+  }
+
   render() {
     return (
         <div className="collection">
           <SearchBox changeHandler={this.updateFilter}></SearchBox>
           <div className="results">{this.getResults()}</div>
+          <FloatingButton
+              iconClass="fa fa-plus"
+              label="Add a new beer"
+              buttonColor="green"
+              iconColor="white"
+              clickHandler={this.redirectToAddPage}>
+          </FloatingButton>
         </div>
     );
   }
@@ -67,6 +83,8 @@ const mapStateToProps = (state: Object) => ({
   collection: state.collection
 });
 
-export default connect(
-    mapStateToProps
-)(Collection);
+export default withRouter(
+    connect(
+        mapStateToProps
+    )(Collection)
+);
