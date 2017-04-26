@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
-import {updateBeer, setCurrentBeer} from '../../../actions';
+import {updateBeer, setCurrentBeer, resetCurrentBeer} from '../../../actions';
 import {findItemInCollectionById} from '../../../utils';
 import BeerPage from './BeerPage';
 
@@ -24,6 +24,10 @@ class BeerView extends Component {
     // Find beer in collection and store it in state
     const currentBeer: Beer = findItemInCollectionById(this.props.match.params.beerId, this.props.collection);
     this.props.setCurrentBeer(currentBeer);
+  }
+
+  componentWillUnmount(): void {
+    this.props.resetCurrentBeer();
   }
 
   submitHandler = (): void => {
@@ -70,6 +74,10 @@ const mapDispatchToProps = (dispatch: Function): Object => {
 
     setCurrentBeer: (beer: Beer) => {
       dispatch(setCurrentBeer(beer));
+    },
+
+    resetCurrentBeer: () => {
+      dispatch(resetCurrentBeer());
     }
   }
 };
