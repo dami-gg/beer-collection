@@ -28,30 +28,24 @@ import * as actionTypes from '../constants';
  COLLECTION
  */
 
-export const loadCollection = (): Action => {
-  return {
-    type: actionTypes.LOAD_COLLECTION
-  };
-};
-
 export const addBeer = (beer: Beer): Action => {
   return {
-    type: actionTypes.ADD_BEER,
+    type: actionTypes.ADD_BEER_TO_DATABASE,
     beer
   };
 };
 
 export const updateBeer = (beer: Beer): Action => {
   return {
-    type: actionTypes.UPDATE_BEER,
+    type: actionTypes.UPDATE_BEER_IN_DATABASE,
     beer
   };
 };
 
-export const deleteBeer = (index: string): Action => {
+export const deleteBeer = (beer: Beer): Action => {
   return {
-    type: actionTypes.DELETE_BEER,
-    index
+    type: actionTypes.DELETE_BEER_FROM_DATABASE,
+    beer
   };
 };
 
@@ -82,11 +76,5 @@ export const setCurrentBeer = (beer: Beer): Action => {
 export const resetCurrentBeer = (): Action => {
   return {
     type: actionTypes.RESET_CURRENT_BEER
-  };
-};
-
-export const authenticate = (): Action => {
-  return {
-    type: actionTypes.AUTHENTICATE
   };
 };

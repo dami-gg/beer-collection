@@ -10,19 +10,17 @@ export const AUTHENTICATING_KEY = 'authenticating';
  COLLECTION ACTION TYPES
  */
 
-export const LOAD_COLLECTION: string = 'LOAD_COLLECTION';
-export const LOAD_COLLECTION_SUCCESS: string = 'LOAD_COLLECTION_SUCCESS';
-export const LOAD_COLLECTION_ERROR: string = 'LOAD_COLLECTION_ERROR';
-
-export const ADD_BEER: string = 'ADD_BEER';
-export const ADD_BEER_SUCCESS: string = 'ADD_BEER_SUCCESS';
+export const ADD_BEER_TO_DATABASE: string = 'ADD_BEER_TO_DATABASE';
+export const ADD_BEER_TO_STATE: string = 'ADD_BEER_TO_STATE';
 export const ADD_BEER_ERROR: string = 'ADD_BEER_ERROR';
 
-export const UPDATE_BEER: string = 'UPDATE_BEER';
-export const UPDATE_BEER_SUCCESS: string = 'UPDATE_BEER_SUCCESS';
+export const UPDATE_BEER_IN_DATABASE: string = 'UPDATE_BEER_IN_DATABASE';
+export const UPDATE_BEER_IN_STATE: string = 'UPDATE_BEER_IN_STATE';
 export const UPDATE_BEER_ERROR: string = 'UPDATE_BEER_ERROR';
 
-export const DELETE_BEER: string = 'DELETE_BEER';
+export const DELETE_BEER_FROM_DATABASE: string = 'DELETE_BEER_FROM_DATABASE';
+export const DELETE_BEER_FROM_STATE: string = 'DELETE_BEER_FROM_STATE';
+export const DELETE_BEER_ERROR: string = 'DELETE_BEER_ERROR';
 
 /*
  NAVIGATION ACTION TYPES

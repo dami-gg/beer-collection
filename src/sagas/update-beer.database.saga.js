@@ -3,21 +3,20 @@ import firebase from 'firebase';
 
 import * as types from '../constants';
 
-function* watchUpdateBeerSaga() {
-  yield takeEvery(types.UPDATE_BEER, updateBeerSaga);
+function* watchUpdatedBeerInApplicationSaga() {
+  yield takeEvery(types.UPDATE_BEER_IN_DATABASE, updateBeerInDatabaseSaga);
 }
 
-function* updateBeerSaga(action) {
+function* updateBeerInDatabaseSaga(action) {
   try {
-    yield call(putBeerToDB, action.beer);
-    yield put({type: types.UPDATE_BEER_SUCCESS, beer: action.beer});
+    yield call(putBeerToDatabase, action.beer);
   }
   catch (error) {
     yield put({type: types.UPDATE_BEER_ERROR, error: error.message});
   }
 }
 
-function putBeerToDB(beer) {
+function putBeerToDatabase(beer) {
   return new Promise((resolve, reject) => {
     firebase.database().ref(`beers/${beer.id}`)
         .update({
@@ -29,8 +28,8 @@ function putBeerToDB(beer) {
           rating: beer.rating
         })
         .then(() => resolve())
-        .catch((error) => reject(error));
+        .catch(error => reject(error));
   });
 }
 
-export default watchUpdateBeerSaga;
+export default watchUpdatedBeerInApplicationSaga;

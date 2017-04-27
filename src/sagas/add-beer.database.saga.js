@@ -3,21 +3,20 @@ import firebase from 'firebase';
 
 import * as types from '../constants';
 
-function* watchAddBeerSaga() {
-  yield takeEvery(types.ADD_BEER, addBeerSaga);
+function* watchAddedBeerInApplicationSaga() {
+  yield takeEvery(types.ADD_BEER_TO_DATABASE, addBeerToDatabase);
 }
 
-function* addBeerSaga(action) {
+function* addBeerToDatabase(action) {
   try {
-    yield call(postBeerToDB, action.beer);
-    yield put({type: types.ADD_BEER_SUCCESS, beer: action.beer});
+    yield call(postBeerToDatabase, action.beer);
   }
   catch (error) {
     yield put({type: types.ADD_BEER_ERROR, error: error.message});
   }
 }
 
-function postBeerToDB(beer) {
+function postBeerToDatabase(beer) {
   return new Promise((resolve, reject) => {
     firebase.database().ref(`beers/${beer.id}`)
         .set({
@@ -32,4 +31,4 @@ function postBeerToDB(beer) {
   });
 }
 
-export default watchAddBeerSaga;
+export default watchAddedBeerInApplicationSaga;

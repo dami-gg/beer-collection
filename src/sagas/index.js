@@ -1,14 +1,20 @@
 import {fork} from 'redux-saga/effects';
 
-import watchLoadCollectionSaga from './load-collection.saga';
-import watchAddBeerSaga from './add-beer.saga';
-import watchUpdateBeerSaga from './update-beer.saga';
+import watchAddedBeerInApplicationSaga from './add-beer.database.saga';
+import watchAddedBeerInDatabaseSaga from './add-beer.state.saga';
+import watchUpdatedBeerInApplicationSaga from './update-beer.database.saga';
+import watchUpdatedBeerInDatabaseSaga from './update-beer.state.saga';
+import watchDeletedBeerInApplicationSaga from './delete-beer.database.saga';
+import watchDeletedBeerInDatabaseSaga from './delete-beer.state.saga';
 
 function* rootSaga() {
   yield [
-    fork(watchLoadCollectionSaga),
-    fork(watchAddBeerSaga),
-    fork(watchUpdateBeerSaga)
+    fork(watchAddedBeerInApplicationSaga),
+    fork(watchAddedBeerInDatabaseSaga),
+    fork(watchUpdatedBeerInApplicationSaga),
+    fork(watchUpdatedBeerInDatabaseSaga),
+    fork(watchDeletedBeerInApplicationSaga),
+    fork(watchDeletedBeerInDatabaseSaga)
   ];
 }
 
