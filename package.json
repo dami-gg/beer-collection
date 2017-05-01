@@ -2,7 +2,8 @@
   "name": "beer-collection",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://dami-gg.github.io/beer-collection",
+  "license": "MIT",
+  "homepage": "https://beer-collection.herokuapp.com/",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
