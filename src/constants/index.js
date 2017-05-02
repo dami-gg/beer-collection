@@ -5,6 +5,7 @@
  */
 
 export const AUTHENTICATING_KEY = 'authenticating';
+export const RESULTS_PER_PAGE = 20;
 
 /*
  COLLECTION ACTION TYPES

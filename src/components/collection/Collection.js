@@ -8,6 +8,7 @@ import {withRouter} from 'react-router';
 
 import SearchBox from '../search-box/SearchBox';
 import FloatingButton from '../floating-button/FloatingButton';
+import Pagination from '../pagination/Pagination';
 
 import logo from '../../assets/images/logo.png';
 
@@ -66,6 +67,7 @@ class Collection extends Component {
     return (
         <div className="collection">
           <SearchBox changeHandler={this.updateFilter}></SearchBox>
+          <Pagination></Pagination>
           <div className="results">{this.getResults()}</div>
           <FloatingButton
               iconClass="fa fa-plus"
