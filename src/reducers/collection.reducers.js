@@ -10,9 +10,8 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
 
   switch (action.type) {
     case actionTypes.ADD_BEER_TO_STATE:
-      // If the beer natural position by alphabetical order is not the last, which would mean it's added on startup from
+      // If the beer's natural position by alphabetical order is not the last, which would mean it's added on startup from
       // the database, it means it's been created in the current session and has to be inserted in the right position
-      debugger;
       const lastBeer = state.length > 0 ? state[state.length - 1] : null;
       const newBeerName = action.beer.name.toLowerCase();
 
