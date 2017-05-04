@@ -11,7 +11,6 @@ import rootSaga  from './sagas';
 
 import App from './components/app/App';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles/main.scss';
 
 const config = {
