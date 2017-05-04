@@ -26,7 +26,8 @@ class Collection extends Component {
     super(props);
 
     this.state = {
-      filterRegex: null
+      filterRegex: null,
+      currentPage: 1
     };
   }
 
@@ -63,12 +64,25 @@ class Collection extends Component {
     this.props.history.push('/beer/add');
   }
 
+  navigateToPage = (page: number): void => {
+    console.log(page);
+  }
+
   render() {
     return (
         <div className="collection">
-          <SearchBox changeHandler={this.updateFilter}></SearchBox>
-          <Pagination></Pagination>
-          <div className="results">{this.getResults()}</div>
+          <div className="collection__filters">
+            <SearchBox
+                className="collection__filters__search"
+                changeHandler={this.updateFilter}>
+            </SearchBox>
+            <Pagination
+                className="collection__filters__pagination"
+                currentPage={this.state.currentPage}
+                onNavigation={this.navigateToPage}>
+            </Pagination>
+          </div>
+          <div className="collection__results">{this.getResults()}</div>
           <FloatingButton
               iconClass="fa fa-plus"
               label="Add a new beer"

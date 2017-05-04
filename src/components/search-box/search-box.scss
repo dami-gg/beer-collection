@@ -2,10 +2,6 @@
   display: flex;
   align-items: center;
 
-  @media(min-width: 768px) {
-    width: 20%;
-  }
-
   &__input {
     height: 40px;
     width: 100%;
