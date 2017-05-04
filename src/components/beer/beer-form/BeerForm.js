@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import {reduxForm} from 'redux-form';
 
 import Button from '../../button/Button';
-import BeerFormInputFields from './BeerFormInputFields';
+import BeerFormInputFields from './BeerFormFields';
 import BeerImageInput from '../beer-image/BeerImageInput'
 
 import type {BeerFormValues} from '../../../types';

@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+import {reduxForm} from 'redux-form';
 import firebase from 'firebase'
 
 import Button from '../button/Button';
+import FormField from '../form-field/FormField';
 import Spinner from '../spinner/Spinner';
 import type {User} from '../../types';
 import {startAuthentication, isAuthenticating} from '../../utils';
@@ -55,8 +57,14 @@ class Login extends Component {
                 <div className="login__box">
                   <form className="login__form">
                     <p className="login__form__title">Please sign in</p>
-                    <input type="text" placeholder="Username"/>
-                    <input type="password" placeholder="Password"/>
+                    <FormField
+                        name="username"
+                        placeholder="Username">
+                    </FormField>
+                    <FormField
+                        name="password"
+                        placeholder="Password">
+                    </FormField>
                     <Button color="green"
                             classes="button--sign-in"
                             type="submit">
@@ -79,6 +87,4 @@ const mapStateToProps = state => ({
   user: state.navigation.user
 });
 
-export default withRouter(
-    connect(mapStateToProps)(Login)
-);
+export default withRouter(connect(mapStateToProps)(reduxForm({form: 'login'})(Login)));
