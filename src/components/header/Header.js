@@ -5,9 +5,10 @@ import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {Link} from 'react-router-dom';
 
-import './header.scss';
-import {Button} from 'react-bootstrap';
+import Button from '../button/Button';
+
 import logo from '../../assets/images/logo.png';
+import './header.scss';
 
 class Header extends Component {
   logout():void {
@@ -27,7 +28,7 @@ class Header extends Component {
             this.props.user &&
 
             <div className="logout">
-              <Button bsStyle="danger"
+              <Button color="red"
                       onClick={this.logout}>
                 Logout
               </Button>

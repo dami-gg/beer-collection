@@ -3,9 +3,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
-
-import {Button} from 'react-bootstrap';
 import {reduxForm} from 'redux-form';
+
+import Button from '../../button/Button';
 import BeerFormInputFields from './BeerFormInputFields';
 import BeerImageInput from '../beer-image/BeerImageInput'
 
@@ -111,7 +111,7 @@ class BeerForm extends Component {
               onSubmit={handleSubmit(this.preSubmit)}>
           <div className="beer-form__inputs">
             <BeerFormInputFields
-              readOnly={this.props.readOnly}>
+                readOnly={this.props.readOnly}>
             </BeerFormInputFields>
 
             <BeerImageInput
@@ -125,13 +125,13 @@ class BeerForm extends Component {
           <div className="beer-form__buttons">
             <Button
                 type="submit"
-                bsStyle="success">
+                color="green">
               { this.props.submitButtonLabel || 'Save'}
             </Button>
 
             <Button
-                bsStyle="danger"
-                onClick={() => this.props.onCancel()}>
+                color="red"
+                onClick={this.props.onCancel}>
               { this.props.cancelButtonLabel || 'Cancel'}
             </Button>
           </div>

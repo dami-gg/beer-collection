@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import firebase from 'firebase'
 
+import Button from '../button/Button';
 import Spinner from '../spinner/Spinner';
 import type {User} from '../../types';
 import {startAuthentication, isAuthenticating} from '../../utils';
@@ -56,14 +57,17 @@ class Login extends Component {
                     <p className="login__form__title">Please sign in</p>
                     <input type="text" placeholder="Username"/>
                     <input type="password" placeholder="Password"/>
-                    <input type="submit" value="Sign in"
-                           className="btn btn-success btn--sign-in"/>
+                    <Button color="green"
+                            classes="button--sign-in"
+                            type="submit">
+                      Sign in
+                    </Button>
                   </form>
 
-                  <div className="btn btn-primary"
-                       onClick={this.handleAuthenticationWithGoogle}>
+                  <Button color="blue"
+                          onClick={this.handleAuthenticationWithGoogle}>
                     Sign in with Google
-                  </div>
+                  </Button>
                 </div>
           }
         </div>
