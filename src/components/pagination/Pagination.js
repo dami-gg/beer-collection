@@ -1,8 +1,5 @@
 // @flow
-import type {Beer} from '../../types';
-
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, {PureComponent} from 'react';
 
 import {RESULTS_PER_PAGE, TOTAL_PAGE_BUTTONS, PLACEHOLDER_PAGE_LABEL} from '../../constants';
 
@@ -10,11 +7,11 @@ import PageButton from './PageButton';
 
 import './pagination.scss';
 
-class Pagination extends Component {
+class Pagination extends PureComponent {
   totalPages: number = undefined;
 
   props: {
-    collection: Array<Beer>,
+    numItems: number,
     currentPage: number,
     onNavigation: Function
   };
@@ -28,37 +25,42 @@ class Pagination extends Component {
   }
 
   componentWillMount() {
-    this.totalPages = 12; // TODO this.getTotalPages();
+    this.totalPages = this.getTotalPages();
   }
 
   getTotalPages() {
-    return this.props.collection && Math.ceil(this.props.collection.length / RESULTS_PER_PAGE);
+    if (!this.props.numItems) {
+      return 1;
+    }
+
+    return Math.ceil(this.props.numItems / RESULTS_PER_PAGE);
   }
 
   navigateToPage(page) {
     if (page !== PLACEHOLDER_PAGE_LABEL) {
-      this.props.onNavigation({page});
+      this.props.onNavigation(page);
     }
   }
 
   navigateToPreviousPage() {
-    if (this.currentPage !== 1) {
-      this.navigateToPage(this.currentPage - 1);
+    if (this.props.currentPage !== 1) {
+      this.navigateToPage(this.props.currentPage - 1);
     }
   }
 
   navigateToNextPage() {
-    if (this.currentPage !== this.totalPages) {
-      this.navigateToPage(this.currentPage + 1);
+    if (this.props.currentPage !== this.totalPages) {
+      this.navigateToPage(this.props.currentPage + 1);
     }
   }
 
   generatePageButtons() {
     return this.getButtonLabels().map((item, i) => (
         <PageButton key={i}
-                    label={i}
+                    label={item}
                     clickHandler={this.navigateToPage}
-                    active={this.props.currentPage === i}>
+                    active={this.props.currentPage === item}
+                    disabled={item === PLACEHOLDER_PAGE_LABEL}>
         </PageButton>
     ));
   }
@@ -67,10 +69,10 @@ class Pagination extends Component {
     if (this.totalPages <= TOTAL_PAGE_BUTTONS) {
       return this.generateMinimumButtons();
     }
-    else if (this.currentPage <= 3) {
+    else if (this.props.currentPage <= 3) {
       return this.generateInitialPageButtons();
     }
-    else if (this.currentPage >= this.totalPages - 2) {
+    else if (this.props.currentPage >= this.totalPages - 2) {
       return this.generateEndingPageButtons();
     }
     else {
@@ -79,7 +81,7 @@ class Pagination extends Component {
   }
 
   generateMinimumButtons(): Array<any> {
-    return Array(this.totalPages).fill(0).map(index => index + 1);
+    return Array(this.totalPages).fill(0).map((value, index) => index + 1);
   }
 
   generateInitialPageButtons(): Array<any> {
@@ -96,9 +98,9 @@ class Pagination extends Component {
     let buttons: Array<any> = [];
     buttons.push(1);
     buttons.push(PLACEHOLDER_PAGE_LABEL);
-    buttons.push(this.currentPage - 1);
-    buttons.push(this.currentPage);
-    buttons.push(this.currentPage + 1);
+    buttons.push(this.props.currentPage - 1);
+    buttons.push(this.props.currentPage);
+    buttons.push(this.props.currentPage + 1);
     buttons.push(PLACEHOLDER_PAGE_LABEL);
     buttons.push(this.totalPages);
     return buttons;
@@ -119,7 +121,7 @@ class Pagination extends Component {
 
   render() {
     return (
-        <div className="pagination">
+        <div className={`pagination ${this.totalPages === 1 ? 'pagination--hidden' : ''}`}>
           <PageButton label="&laquo;"
                       disabled={this.props.currentPage === 1}
                       clickHandler={this.navigateToPreviousPage}>
@@ -136,9 +138,4 @@ class Pagination extends Component {
   }
 }
 
-const mapStateToProps = (state: Object) => ({
-  collection: state.collection,
-  currentPage: state.currentPage || 1 // TODO
-});
-
-export default connect(mapStateToProps)(Pagination);
+export default Pagination;

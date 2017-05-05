@@ -11,6 +11,7 @@ import FloatingButton from '../floating-button/FloatingButton';
 import Pagination from '../pagination/Pagination';
 
 import logo from '../../assets/images/logo.png';
+import {RESULTS_PER_PAGE} from '../../constants';
 
 import './collection.scss';
 
@@ -36,7 +37,9 @@ class Collection extends Component {
         this.state.filterRegex ? this.state.filterRegex.test(beer.name) : true
     );
 
-    return results.map((beer: Beer) => {
+    const offset = (this.state.currentPage ? this.state.currentPage - 1 : 0) * RESULTS_PER_PAGE;
+
+    return results.slice(offset, offset + RESULTS_PER_PAGE).map((beer: Beer) => {
       return (
           <Link to={`/beer/view/${beer.id}`}
                 className="beer" key={beer.id}>
@@ -65,7 +68,7 @@ class Collection extends Component {
   }
 
   navigateToPage = (page: number): void => {
-    console.log(page);
+    this.setState({currentPage: page});
   }
 
   render() {
@@ -78,6 +81,7 @@ class Collection extends Component {
             </SearchBox>
             <Pagination
                 className="collection__filters__pagination"
+                numItems={this.props.collection.length}
                 currentPage={this.state.currentPage}
                 onNavigation={this.navigateToPage}>
             </Pagination>
