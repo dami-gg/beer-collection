@@ -1,3 +1,5 @@
+@import "normalize";
+
 body {
   background: url('../images/login-background.jpg') no-repeat center top fixed;
   -webkit-background-size: cover;
@@ -8,9 +10,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 14px;
 }
 
-a:hover, a:focus {
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+a, a:hover, a:focus {
   text-decoration: none;
 }
 

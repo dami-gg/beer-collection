@@ -8,8 +8,10 @@ import {withRouter} from 'react-router';
 
 import SearchBox from '../search-box/SearchBox';
 import FloatingButton from '../floating-button/FloatingButton';
+import Pagination from '../pagination/Pagination';
 
 import logo from '../../assets/images/logo.png';
+import {RESULTS_PER_PAGE} from '../../constants';
 
 import './collection.scss';
 
@@ -25,7 +27,8 @@ class Collection extends Component {
     super(props);
 
     this.state = {
-      filterRegex: null
+      filterRegex: null,
+      currentPage: 1
     };
   }
 
@@ -34,7 +37,9 @@ class Collection extends Component {
         this.state.filterRegex ? this.state.filterRegex.test(beer.name) : true
     );
 
-    return results.map((beer: Beer) => {
+    const offset = (this.state.currentPage ? this.state.currentPage - 1 : 0) * RESULTS_PER_PAGE;
+
+    return results.slice(offset, offset + RESULTS_PER_PAGE).map((beer: Beer) => {
       return (
           <Link to={`/beer/view/${beer.id}`}
                 className="beer" key={beer.id}>
@@ -62,11 +67,26 @@ class Collection extends Component {
     this.props.history.push('/beer/add');
   }
 
+  navigateToPage = (page: number): void => {
+    this.setState({currentPage: page});
+  }
+
   render() {
     return (
         <div className="collection">
-          <SearchBox changeHandler={this.updateFilter}></SearchBox>
-          <div className="results">{this.getResults()}</div>
+          <div className="collection__filters">
+            <SearchBox
+                className="collection__filters__search"
+                changeHandler={this.updateFilter}>
+            </SearchBox>
+            <Pagination
+                className="collection__filters__pagination"
+                numItems={this.props.collection.length}
+                currentPage={this.state.currentPage}
+                onNavigation={this.navigateToPage}>
+            </Pagination>
+          </div>
+          <div className="collection__results">{this.getResults()}</div>
           <FloatingButton
               iconClass="fa fa-plus"
               label="Add a new beer"
