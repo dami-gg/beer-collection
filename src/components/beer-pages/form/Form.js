@@ -5,15 +5,15 @@ import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {reduxForm} from 'redux-form';
 
-import Button from '../../button/Button';
-import BeerFormInputFields from './BeerFormFields';
-import BeerImageInput from '../beer-image/BeerImageInput'
+import Button from '../../common/button/Button';
+import FormFields from '../form-fields/FormFields';
+import ImageUploader from '../image-uploader/ImageUploader'
 
 import type {BeerFormValues} from '../../../types';
 
-import './beer-form.scss';
+import './form.scss';
 
-class BeerForm extends Component {
+class Form extends Component {
   props: {
     onSubmit: Function,
     onCancel: Function,
@@ -110,16 +110,16 @@ class BeerForm extends Component {
         <form className="beer-form"
               onSubmit={handleSubmit(this.preSubmit)}>
           <div className="beer-form__inputs">
-            <BeerFormInputFields
+            <FormFields
                 readOnly={this.props.readOnly}>
-            </BeerFormInputFields>
+            </FormFields>
 
-            <BeerImageInput
+            <ImageUploader
                 handleImageSelection={this.handleImageSelection}
                 thumbnail={this.state.thumbnail}
                 readOnly={this.props.readOnly}
                 currentImage={this.props.currentImage}>
-            </BeerImageInput>
+            </ImageUploader>
           </div>
 
           <div className="beer-form__buttons">
@@ -148,5 +148,5 @@ export default connect(
     mapStateToProps
 )(reduxForm({
   form: 'beerForm'
-})(BeerForm));
+})(Form));
 

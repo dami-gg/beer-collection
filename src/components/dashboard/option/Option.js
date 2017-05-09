@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
-import './dashboard-option.scss';
+import './option.scss';
 
 class DashboardOption extends Component {
   props: {

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {Link} from 'react-router-dom';
 
-import Button from '../button/Button';
+import Button from '../common/button/Button';
 
 import logo from '../../assets/images/logo.png';
 import './header.scss';

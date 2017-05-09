@@ -1,7 +1,7 @@
 // @flow
 
 import React, {Component} from 'react';
-import DashboardOption from './dashboard-option/DashboardOption';
+import DashboardOption from './option/Option';
 
 import './dashboard.scss';
 

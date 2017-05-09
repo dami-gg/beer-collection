@@ -1,6 +1,6 @@
 import React from 'react';
 import Dashboard from './Dashboard';
-import DashboardOption from './dashboard-option/DashboardOption';
+import DashboardOption from './dashboard-option/Option';
 
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer';

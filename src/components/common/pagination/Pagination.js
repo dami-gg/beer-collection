@@ -1,7 +1,7 @@
 // @flow
 import React, {PureComponent} from 'react';
 
-import {RESULTS_PER_PAGE, TOTAL_PAGE_BUTTONS, PLACEHOLDER_PAGE_LABEL} from '../../constants';
+import {RESULTS_PER_PAGE, TOTAL_PAGE_BUTTONS, PLACEHOLDER_PAGE_LABEL} from '../../../constants';
 
 import PageButton from './PageButton';
 

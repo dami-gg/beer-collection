@@ -6,9 +6,9 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
-import SearchBox from '../search-box/SearchBox';
-import FloatingButton from '../floating-button/FloatingButton';
-import Pagination from '../pagination/Pagination';
+import SearchBox from '../common/search-box/SearchBox';
+import FloatingButton from '../common/floating-button/FloatingButton';
+import Pagination from '../common/pagination/Pagination';
 
 import logo from '../../assets/images/logo.png';
 import {RESULTS_PER_PAGE} from '../../constants';

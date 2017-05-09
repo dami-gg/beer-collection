@@ -7,9 +7,9 @@ import {withRouter} from 'react-router';
 import {v4} from 'node-uuid';
 
 import {addBeer} from '../../../actions';
-import BeerPage from './BeerPage';
+import Page from '../Page';
 
-class BeerAdd extends Component {
+class Add extends Component {
   props: {
     params: Object,
     addBeer: Function,
@@ -46,13 +46,13 @@ class BeerAdd extends Component {
 
   render() {
     return (
-        <BeerPage
+        <Page
             heading="Add a new beer to your collection"
             submitHandler={this.submitHandler}
             cancelHandler={this.cancelHandler}
             submitButtonLabel="Save"
             cancelButtonLabel="Cancel">
-        </BeerPage>
+        </Page>
     );
   }
 }
@@ -73,5 +73,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(BeerAdd)
+    )(Add)
 );

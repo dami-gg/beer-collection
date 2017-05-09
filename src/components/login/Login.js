@@ -4,9 +4,9 @@ import {withRouter} from 'react-router';
 import {reduxForm} from 'redux-form';
 import firebase from 'firebase'
 
-import Button from '../button/Button';
-import FormField from '../form-field/FormField';
-import Spinner from '../spinner/Spinner';
+import Button from '../common/button/Button';
+import FormField from '../common/form-field/FormField';
+import Spinner from '../common/spinner/Spinner';
 import type {User} from '../../types';
 import {startAuthentication, isAuthenticating} from '../../utils';
 

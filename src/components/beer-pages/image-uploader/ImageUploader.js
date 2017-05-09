@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import './beer-image.scss';
+import './image-uploader.scss';
 
-class BeerImageInput extends Component {
+class ImageUploader extends Component {
   props: {
     handleImageSelection: Function,
     thumbnail: string,
@@ -33,4 +33,4 @@ class BeerImageInput extends Component {
   }
 }
 
-export default BeerImageInput;
+export default ImageUploader;
