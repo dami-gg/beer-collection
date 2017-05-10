@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 
 import FormField from '../../common/form-field/FormField';
@@ -5,7 +7,7 @@ import Rating from '../rating/Rating';
 
 import '../form/form.scss';
 
-const FormFields = (props) => (
+const FormFields = (props: Object) => (
     <div className="beer-form__fields">
       <FormField
           name="name"

@@ -14,8 +14,8 @@ class Page extends Component {
     cancelHandler: Function,
     submitButtonLabel: string,
     cancelButtonLabel: string,
-    currentBeer: Beer,
-    readOnly: boolean
+    currentBeer?: Beer,
+    readOnly?: boolean
   };
 
   render() {

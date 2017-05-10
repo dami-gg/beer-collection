@@ -1,6 +1,11 @@
 // @flow
 import type {Beer} from '../../types/beer.types';
 
+type State = {
+  filterRegex?: Object,
+  currentPage: number
+};
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
@@ -14,6 +19,11 @@ import './collection.scss';
 const RESULTS_PER_PAGE: number = 20;
 
 export class Collection extends Component {
+  state: State;
+  navigateToPage: Function;
+  updateFilterRegex: Function;
+  redirectToAddPage: Function;
+
   props: {
     collection: Array<Beer>,
     match: Object,
@@ -21,11 +31,11 @@ export class Collection extends Component {
     history: Object
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.state = {
-      filterRegex: null,
+      filterRegex: undefined,
       currentPage: 1
     };
 
@@ -34,7 +44,7 @@ export class Collection extends Component {
     this.redirectToAddPage = this.redirectToAddPage.bind(this);
   }
 
-  updateFilterRegex(filterRegex) {
+  updateFilterRegex(filterRegex: Object): void {
     this.setState({filterRegex});
   }
 

@@ -13,14 +13,14 @@ export const RESET_CURRENT_BEER: string = 'RESET_CURRENT_BEER';
   ACTIONS
  */
 
-export const setCurrentBeer = (beer: Beer): ActionWithNoParameters => {
+export const setCurrentBeer = (beer: Beer): ActionWithBeerParameter => {
   return {
     type: SET_CURRENT_BEER,
     beer
   };
 };
 
-export const resetCurrentBeer = (): ActionWithBeerParameter => {
+export const resetCurrentBeer = (): ActionWithNoParameters => {
   return {
     type: RESET_CURRENT_BEER
   };

@@ -1,10 +1,12 @@
+// @flow
+
 import React from 'react';
 
 import {Field} from 'redux-form';
 
 import './form-field.scss';
 
-const FormField = (props) => (
+const FormField = (props: Object) => (
     <div className="form__field">
       {
         props.label &&

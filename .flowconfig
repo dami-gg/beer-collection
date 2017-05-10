@@ -2,4 +2,8 @@
 .*node_modules/fbjs.*
 
 [options]
-module.name_mapper='.*\(.scss\)' -> 'empty/object'
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.jsx
+module.file_ext=.css
+module.file_ext=.scss

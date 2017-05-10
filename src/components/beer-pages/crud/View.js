@@ -16,6 +16,8 @@ export class View extends Component {
     currentBeer: Beer,
     collection: Array<Beer>,
     setCurrentBeer: Function,
+    updateBeer: Function,
+    resetCurrentBeer: Function,
     match: Object,
     location: Object,
     history: Object

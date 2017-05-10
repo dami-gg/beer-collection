@@ -8,7 +8,10 @@ import './pagination.scss';
 const PLACEHOLDER_PAGE_LABEL: string = '...';
 
 class Pagination extends PureComponent {
-  totalPages: number = undefined;
+  totalPages: number;
+  navigateToPage: Function;
+  navigateToPreviousPage: Function;
+  navigateToNextPage: Function;
 
   props: {
     numItems: number,
@@ -18,7 +21,7 @@ class Pagination extends PureComponent {
     onNavigation: Function
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.navigateToPage = this.navigateToPage.bind(this);
@@ -38,7 +41,7 @@ class Pagination extends PureComponent {
     return Math.ceil(this.props.numItems / this.props.resultsPerPage);
   }
 
-  navigateToPage(page) {
+  navigateToPage(page: number) {
     if (page !== PLACEHOLDER_PAGE_LABEL) {
       this.props.onNavigation(page);
     }

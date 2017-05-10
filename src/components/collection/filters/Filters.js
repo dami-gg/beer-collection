@@ -15,7 +15,7 @@ class Filters extends PureComponent {
     onPageChange: Function
   };
 
-  updateFilter = event => {
+  updateFilter = (event: Object) => {
     const query = event.target.value;
     const invalid = /[°"§%()\[\]\/{}=\\?´`'#<>|,;.:+_-]+/g;
     const filter = query.replace(invalid, '');

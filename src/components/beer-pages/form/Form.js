@@ -1,5 +1,10 @@
 // @flow
 
+type State = {
+  imageFile?: Object,
+  thumbnail: string
+};
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
@@ -14,20 +19,26 @@ import type {BeerFormValues} from '../../../types/beer.types';
 import './form.scss';
 
 export class Form extends Component {
+  state: State;
+  preSubmit: Function;
+  handleImageSelection: Function;
+  getThumbnail: Function;
+
   props: {
     onSubmit: Function,
     onCancel: Function,
     readOnly: boolean,
     submitButtonLabel: string,
     cancelButtonLabel: string,
-    currentImage: string
+    currentImage: string,
+    handleSubmit: Function // redux-form automatically adds a method called handleSubmit to the props
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.state = {
-      imageFile: '',
+      imageFile: undefined,
       thumbnail: ''
     };
 
@@ -48,24 +59,20 @@ export class Form extends Component {
         .catch(error => console.log(error)); // TODO Handle error
   }
 
-  handleImageSelection(event) {
+  handleImageSelection(event: Object) {
     event.persist();
-    const file = event.target.files[0];
+    const imageFile = event.target.files[0];
 
-    this.setState({
-      imageFile: file
-    });
+    this.setState({imageFile});
 
-    this.readFile(file, this.getThumbnail);
+    this.readFile(imageFile, this.getThumbnail);
   }
 
-  getThumbnail(thumbnail) {
-    this.setState({
-      thumbnail: thumbnail
-    });
+  getThumbnail(thumbnail: string) {
+    this.setState({thumbnail});
   }
 
-  readFile(file, callback) {
+  readFile(file: Object, callback: Function) {
     const reader = new FileReader();
 
     reader.onload = () => callback(reader.result);
@@ -105,10 +112,9 @@ export class Form extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props; // redux-form automatically adds a method called handleSubmit to the props
     return (
         <form className="beer-form"
-              onSubmit={handleSubmit(this.preSubmit)}>
+              onSubmit={this.props.handleSubmit(this.preSubmit)}>
           <div className="beer-form__inputs">
             <FormFields
                 readOnly={this.props.readOnly}>
