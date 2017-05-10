@@ -8,7 +8,7 @@ import {routes} from './routes';
 import {logUserIn, logUserOut} from '../../actions/authentication.actions';
 import {completeAuthentication} from '../../utils';
 
-import type {User} from '../../types';
+import type {User} from '../../types/user.types';
 
 import './app.scss';
 

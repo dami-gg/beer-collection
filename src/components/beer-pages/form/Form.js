@@ -9,7 +9,7 @@ import Button from '../../common/button/Button';
 import FormFields from '../form-fields/FormFields';
 import ImageUploader from '../image-uploader/ImageUploader'
 
-import type {BeerFormValues} from '../../../types';
+import type {BeerFormValues} from '../../../types/beer.types';
 
 import './form.scss';
 

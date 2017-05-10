@@ -1,6 +1,7 @@
 // @flow
 
-import type { Beer, User } from '../types';
+import type {Beer} from './beer.types';
+import type {User} from './user.types';
 
 export type ActionWithNoParameters = {
   type: string;

@@ -1,5 +1,5 @@
 // @flow
-import type {Beer, BeerFormValues} from '../../../types';
+import type {Beer, BeerFormValues} from '../../../types/beer.types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';

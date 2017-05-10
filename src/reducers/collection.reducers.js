@@ -1,5 +1,5 @@
 // @flow
-import type {Beer} from '../types';
+import type {Beer} from '../types/beer.types';
 
 import {
     ADD_BEER_TO_STATE,

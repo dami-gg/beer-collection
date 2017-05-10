@@ -1,3 +1,6 @@
+// @flow
+import type {User} from '../../types/user.types';
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
@@ -7,7 +10,6 @@ import firebase from 'firebase'
 import Button from '../common/button/Button';
 import FormField from '../common/form-field/FormField';
 import Spinner from '../common/spinner/Spinner';
-import type {User} from '../../types';
 import {startAuthentication, isAuthenticating} from '../../utils';
 
 import './login.scss';

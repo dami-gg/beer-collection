@@ -16,9 +16,3 @@ export type BeerFormValues = {
   image: ?string;
   rating: ?number;
 };
-
-export type User = {
-  email: string;
-  displayName: string;
-  photoUrl: ?string;
-};

@@ -1,5 +1,5 @@
 // @flow
-import type {User} from '../types';
+import type {User} from '../types/user.types';
 
 type AuthenticationState = {
   user: ?User;

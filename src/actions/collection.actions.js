@@ -1,6 +1,5 @@
 // @flow
-import type { Beer } from '../types';
-
+import type { Beer } from '../types/beer.types';
 import type { ActionWithBeerParameter } from '../types/action.types';
 
 /*
