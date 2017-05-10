@@ -9,7 +9,7 @@ import {v4} from 'node-uuid';
 import {addBeer} from '../../../actions';
 import Page from '../Page';
 
-class Add extends Component {
+export class Add extends Component {
   props: {
     params: Object,
     addBeer: Function,

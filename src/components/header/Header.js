@@ -10,7 +10,7 @@ import Button from '../common/button/Button';
 import logo from '../../assets/images/logo.png';
 import './header.scss';
 
-class Header extends Component {
+export class Header extends Component {
   logout():void {
     firebase.auth().signOut();
   }

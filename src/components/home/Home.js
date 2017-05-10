@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import Dashboard from '../dashboard/Dashboard';
 
-class Home extends Component {
+export class Home extends Component {
   render() {
     return (
         <div>

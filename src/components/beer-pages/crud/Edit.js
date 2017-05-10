@@ -9,7 +9,7 @@ import {updateBeer, setCurrentBeer, resetCurrentBeer} from '../../../actions';
 import {findItemInCollectionById} from '../../../utils';
 import Page from '../Page';
 
-class Edit extends Component {
+export class Edit extends Component {
   props: {
     params: Object,
     currentBeer: Beer,

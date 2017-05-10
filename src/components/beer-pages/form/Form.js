@@ -13,7 +13,7 @@ import type {BeerFormValues} from '../../../types';
 
 import './form.scss';
 
-class Form extends Component {
+export class Form extends Component {
   props: {
     onSubmit: Function,
     onCancel: Function,

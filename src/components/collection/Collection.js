@@ -15,7 +15,7 @@ import {RESULTS_PER_PAGE} from '../../constants';
 
 import './collection.scss';
 
-class Collection extends Component {
+export class Collection extends Component {
   props: {
     collection: Array<Beer>,
     match: Object,

@@ -12,7 +12,7 @@ import {startAuthentication, isAuthenticating} from '../../utils';
 
 import './login.scss';
 
-class Login extends Component {
+export class Login extends Component {
   props: {
     user: User,
     match: Object,

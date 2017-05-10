@@ -12,7 +12,7 @@ import type {User} from '../../types';
 
 import './app.scss';
 
-class App extends Component {
+export class App extends Component {
   props: {
     user: User,
     logUserIn: Function,
