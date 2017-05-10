@@ -1,6 +1,6 @@
 import {takeEvery, put} from 'redux-saga/effects';
 
-import {createEventChannel} from '../utils';
+import {createEventChannel} from './utils';
 
 import {UPDATE_BEER_IN_STATE, UPDATE_BEER_ERROR} from '../actions/collection.actions';
 

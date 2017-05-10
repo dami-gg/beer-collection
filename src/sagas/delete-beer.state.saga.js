@@ -1,6 +1,6 @@
 import {takeEvery, put} from 'redux-saga/effects';
 
-import {createEventChannel} from '../utils';
+import {createEventChannel} from './utils';
 
 import {DELETE_BEER_FROM_STATE, DELETE_BEER_ERROR} from '../actions/collection.actions';
 

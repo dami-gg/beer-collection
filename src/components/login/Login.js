@@ -10,7 +10,7 @@ import firebase from 'firebase'
 import Button from '../common/button/Button';
 import FormField from '../common/form-field/FormField';
 import Spinner from '../common/spinner/Spinner';
-import {startAuthentication, isAuthenticating} from '../../utils';
+import {startAuthentication, isAuthenticating} from '../../utils/authentication';
 
 import './login.scss';
 

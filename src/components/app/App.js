@@ -6,7 +6,7 @@ import firebase from 'firebase'
 import Header from '../header/Header';
 import {routes} from './routes';
 import {logUserIn, logUserOut} from '../../actions/authentication.actions';
-import {completeAuthentication} from '../../utils';
+import {completeAuthentication} from '../../utils/authentication';
 
 import type {User} from '../../types/user.types';
 
