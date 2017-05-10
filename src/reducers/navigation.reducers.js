@@ -1,39 +1,25 @@
 // @flow
-import type {User, Beer} from '../types';
+import type {Beer} from '../types';
 
 type NavigationState = {
-  user: ?User;
   currentBeer: ?Beer;
 };
 
-import * as actionTypes from '../constants';
+import {SET_CURRENT_BEER, RESET_CURRENT_BEER} from '../actions/navigation.actions';
 
 const initialState = {
-  user: undefined,
   currentBeer: undefined
 };
 
 const navigation = (state: NavigationState = initialState, action: Object): NavigationState => {
   switch (action.type) {
-    case actionTypes.LOG_USER_IN:
-      return {
-        ...state,
-        user: action.user
-      };
-
-    case actionTypes.LOG_USER_OUT:
-      return {
-        ...state,
-        user: initialState.user
-      };
-
-    case actionTypes.SET_CURRENT_BEER:
+    case SET_CURRENT_BEER:
       return {
         ...state,
         currentBeer: action.beer
       };
 
-    case actionTypes.RESET_CURRENT_BEER:
+    case RESET_CURRENT_BEER:
       return {
         ...state,
         currentBeer: initialState.currentBeer

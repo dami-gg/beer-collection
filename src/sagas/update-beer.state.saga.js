@@ -2,7 +2,7 @@ import {takeEvery, put} from 'redux-saga/effects';
 
 import {createEventChannel} from '../utils';
 
-import * as types from '../constants';
+import {UPDATE_BEER_IN_STATE, UPDATE_BEER_ERROR} from '../actions/collection.actions';
 
 function* watchUpdatedBeerInDatabaseSaga() {
   const updateChannel = createEventChannel('beers', 'name', 'child_changed');
@@ -12,10 +12,10 @@ function* watchUpdatedBeerInDatabaseSaga() {
 
 function* updateBeerInStateSaga(beer) {
   try {
-    yield put({type: types.UPDATE_BEER_IN_STATE, beer: beer});
+    yield put({type: UPDATE_BEER_IN_STATE, beer: beer});
   }
   catch (error) {
-    yield put({type: types.UPDATE_BEER_ERROR, error: error.message});
+    yield put({type: UPDATE_BEER_ERROR, error: error.message});
   }
 }
 

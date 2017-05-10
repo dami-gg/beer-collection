@@ -5,7 +5,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
-import {updateBeer, setCurrentBeer, resetCurrentBeer} from '../../../actions';
+import {updateBeer} from '../../../actions/collection.actions';
+import {setCurrentBeer, resetCurrentBeer} from '../../../actions/navigation.actions';
 import {findItemInCollectionById} from '../../../utils';
 import Page from '../Page';
 

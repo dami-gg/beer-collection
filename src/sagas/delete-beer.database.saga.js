@@ -1,10 +1,10 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
 import firebase from 'firebase';
 
-import * as types from '../constants';
+import {DELETE_BEER_FROM_DATABASE, DELETE_BEER_ERROR} from '../actions/collection.actions';
 
 function* watchDeletedBeerInApplicationSaga() {
-  yield takeEvery(types.DELETE_BEER_FROM_DATABASE, deleteBeerFromDatabaseSaga);
+  yield takeEvery(DELETE_BEER_FROM_DATABASE, deleteBeerFromDatabaseSaga);
 }
 
 function* deleteBeerFromDatabaseSaga(action) {
@@ -12,7 +12,7 @@ function* deleteBeerFromDatabaseSaga(action) {
     yield call(deleteBeerFromDatabase, action.beer);
   }
   catch (error) {
-    yield put({type: types.DELETE_BEER_ERROR, error: error.message});
+    yield put({type: DELETE_BEER_ERROR, error: error.message});
   }
 }
 

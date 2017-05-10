@@ -40,7 +40,7 @@ export class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.navigation.user
+  user: state.authentication.user
 });
 
 export default connect(

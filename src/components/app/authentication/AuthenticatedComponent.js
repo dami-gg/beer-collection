@@ -41,7 +41,7 @@ export default function requiresAuth(OriginalComponent) {
   }
 
   const mapStateToProps = state => ({
-    user: state.navigation.user
+    user: state.authentication.user
   });
 
   return withRouter(

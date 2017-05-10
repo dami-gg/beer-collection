@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {v4} from 'node-uuid';
 
-import {addBeer} from '../../../actions';
+import {addBeer} from '../../../actions/collection.actions';
 import Page from '../Page';
 
 export class Add extends Component {

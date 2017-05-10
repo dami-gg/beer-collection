@@ -5,7 +5,7 @@ import firebase from 'firebase'
 
 import Header from '../header/Header';
 import {routes} from './routes';
-import {logUserIn, logUserOut} from '../../actions';
+import {logUserIn, logUserOut} from '../../actions/authentication.actions';
 import {completeAuthentication} from '../../utils';
 
 import type {User} from '../../types';
@@ -52,7 +52,7 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.navigation.user
+  user: state.authentication.user
 });
 
 const mapDispatchToProps = dispatch => {

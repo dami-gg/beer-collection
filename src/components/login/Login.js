@@ -84,7 +84,7 @@ export class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.navigation.user
+  user: state.authentication.user
 });
 
 export default withRouter(connect(mapStateToProps)(reduxForm({form: 'login'})(Login)));

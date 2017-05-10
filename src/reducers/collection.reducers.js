@@ -1,7 +1,14 @@
 // @flow
 import type {Beer} from '../types';
 
-import * as actionTypes from '../constants';
+import {
+    ADD_BEER_TO_STATE,
+    UPDATE_BEER_IN_STATE,
+    DELETE_BEER_FROM_STATE,
+    ADD_BEER_ERROR,
+    UPDATE_BEER_ERROR,
+    DELETE_BEER_ERROR
+} from '../actions/collection.actions';
 
 const initialState = [];
 
@@ -9,7 +16,7 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
   let index: number;
 
   switch (action.type) {
-    case actionTypes.ADD_BEER_TO_STATE:
+    case ADD_BEER_TO_STATE:
       // If the beer's natural position by alphabetical order is not the last, which would mean it's added on startup from
       // the database, it means it's been created in the current session and has to be inserted in the right position
       const lastBeer = state.length > 0 ? state[state.length - 1] : null;
@@ -32,7 +39,7 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
         ];
       }
 
-    case actionTypes.UPDATE_BEER_IN_STATE:
+    case UPDATE_BEER_IN_STATE:
       index = state.findIndex(element => element.id === action.beer.id);
 
       return [
@@ -41,7 +48,7 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
         ...state.slice(index + 1)
       ];
 
-    case actionTypes.DELETE_BEER_FROM_STATE:
+    case DELETE_BEER_FROM_STATE:
       index = state.findIndex(element => element.id === action.beer.id);
 
       return [
@@ -49,9 +56,9 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
         ...state.slice(index + 1)
       ];
 
-    case actionTypes.ADD_BEER_ERROR:
-    case actionTypes.UPDATE_BEER_ERROR:
-    case actionTypes.DELETE_BEER_ERROR:
+    case ADD_BEER_ERROR:
+    case UPDATE_BEER_ERROR:
+    case DELETE_BEER_ERROR:
       return state;
 
     default:
