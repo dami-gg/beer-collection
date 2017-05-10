@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import requiresAuth from './authentication/AuthenticatedComponent';
 
-import Home from '../home/Home';
+import Dashboard from '../dashboard/Dashboard';
 import Login from '../login/Login';
 import Add from '../beer-pages/crud/Add';
 import Edit from '../beer-pages/crud/Edit';
@@ -11,7 +11,7 @@ import Collection from '../collection/Collection';
 
 export const routes = (
     <Switch>
-      <Route exact path="/" component={requiresAuth(Home)}/>
+      <Route exact path="/" component={requiresAuth(Dashboard)}/>
       <Route path="/beer/add" component={requiresAuth(Add)}/>
       <Route path="/beer/edit/:beerId" component={requiresAuth(Edit)}/>
       <Route path="/beer/view/:beerId" component={requiresAuth(View)}/>
