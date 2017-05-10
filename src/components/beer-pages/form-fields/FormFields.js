@@ -1,39 +1,47 @@
 // @flow
 
-import React from 'react';
+import React, {PureComponent} from 'react';
 
 import FormField from '../../common/form-field/FormField';
 import Rating from '../rating/Rating';
 
 import '../form/form.scss';
 
-const FormFields = (props: Object) => (
-    <div className="beer-form__fields">
-      <FormField
-          name="name"
-          label="Name"
-          disabled={props.readOnly}
-          placeholder="Enter name">
-      </FormField>
+class FormFields extends PureComponent {
+  props: {
+    readOnly?: boolean
+  }
 
-      <FormField
-          name="type"
-          label="Type"
-          disabled={props.readOnly}
-          placeholder="Enter type">
-      </FormField>
+  render() {
+    return (
+        <div className="beer-form__fields">
+          <FormField
+              name="name"
+              label="Name"
+              disabled={this.props.readOnly}
+              placeholder="Enter name">
+          </FormField>
 
-      <FormField
-          name="origin"
-          label="Origin"
-          disabled={props.readOnly}
-          placeholder="Enter origin">
-      </FormField>
+          <FormField
+              name="type"
+              label="Type"
+              disabled={this.props.readOnly}
+              placeholder="Enter type">
+          </FormField>
 
-      <Rating
-          readOnly={props.readOnly}>
-      </Rating>
-    </div>
-);
+          <FormField
+              name="origin"
+              label="Origin"
+              disabled={this.props.readOnly}
+              placeholder="Enter origin">
+          </FormField>
+
+          <Rating
+              readOnly={this.props.readOnly}>
+          </Rating>
+        </div>
+    );
+  }
+}
 
 export default FormFields;

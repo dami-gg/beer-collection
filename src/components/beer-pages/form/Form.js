@@ -7,7 +7,6 @@ type State = {
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import firebase from 'firebase';
 import {reduxForm} from 'redux-form';
 
 import Button from '../../common/button/Button';
@@ -15,6 +14,8 @@ import FormFields from '../form-fields/FormFields';
 import ImageUploader from '../image-uploader/ImageUploader'
 
 import type {BeerFormValues} from '../../../types/beer.types';
+
+import {readFile, handleImageUpload} from './form.helpers';
 
 import './form.scss';
 
@@ -54,7 +55,7 @@ export class Form extends Component {
    * @param formValues
    */
   preSubmit(formValues: BeerFormValues) {
-    this.handleImageUpload()
+    handleImageUpload(this.state.imageFile)
         .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
         .catch(error => console.log(error)); // TODO Handle error
   }
@@ -65,50 +66,11 @@ export class Form extends Component {
 
     this.setState({imageFile});
 
-    this.readFile(imageFile, this.getThumbnail);
+    readFile(imageFile, this.getThumbnail);
   }
 
   getThumbnail(thumbnail: string) {
     this.setState({thumbnail});
-  }
-
-  readFile(file: Object, callback: Function) {
-    const reader = new FileReader();
-
-    reader.onload = () => callback(reader.result);
-
-    reader.readAsDataURL(file);
-  }
-
-  handleImageUpload() {
-    return new Promise((resolve, reject) => {
-      const file = this.state.imageFile;
-
-      if (file) {
-        const storageRef = firebase.storage().ref(`/beer-images/${file.name}`);
-        const uploadProcess = storageRef.put(file);
-
-        uploadProcess.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            snapshot => {
-              // Uploading
-              let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log(progress);
-            },
-            error => {
-              // TODO Handle error
-              reject(error);
-            },
-            () => {
-              // Upload is complete
-              resolve(uploadProcess.snapshot.downloadURL);
-            }
-        );
-      }
-
-      else {
-        resolve('');
-      }
-    });
   }
 
   render() {

@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import './search-box.scss';
 
-class SearchBox extends Component {
+class SearchBox extends PureComponent {
   props: {
     changeHandler: Function
   };

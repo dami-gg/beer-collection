@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
-import firebase from 'firebase'
 
 import Header from '../header/Header';
 import {routes} from './routes';
 import {logUserIn, logUserOut} from '../../actions/authentication.actions';
-import {completeAuthentication} from '../../utils/authentication';
+import {completeAuthentication, startAuthenticationListener} from '../../helpers/authentication.helpers';
 
 import type {User} from '../../types/user.types';
 
 import './app.scss';
 
 export class App extends Component {
+  login: Function;
+  logout: Function;
+
   props: {
     user: User,
     logUserIn: Function,
@@ -22,12 +24,15 @@ export class App extends Component {
     history: Object
   };
 
-  componentWillMount() {
-    this.startAuthenticationListener();
+  constructor(props: Object) {
+    super(props);
+
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
-  startAuthenticationListener() {
-    firebase.auth().onAuthStateChanged(user => user ? this.login(user) : this.logout());
+  componentWillMount() {
+    startAuthenticationListener(this.login, this.logout);
   }
 
   login(user: User) {

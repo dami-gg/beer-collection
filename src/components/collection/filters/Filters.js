@@ -6,6 +6,8 @@ import Pagination from '../../common/pagination/Pagination';
 
 const TOTAL_PAGE_BUTTONS: number = 7;
 
+import {getRegularExpression} from './filters.helpers';
+
 class Filters extends PureComponent {
   props: {
     numItems: number,
@@ -16,11 +18,7 @@ class Filters extends PureComponent {
   };
 
   updateFilter = (event: Object) => {
-    const query = event.target.value;
-    const invalid = /[°"§%()\[\]\/{}=\\?´`'#<>|,;.:+_-]+/g;
-    const filter = query.replace(invalid, '');
-    const regex = new RegExp(filter, 'i');
-
+    const regex = getRegularExpression(event.target.value);
     this.props.onFilterUpdate(regex);
   }
 

@@ -1,13 +1,13 @@
 // @flow
 import type {Beer} from '../../types/beer.types';
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Form from './form/Form';
 
 import './pages.scss';
 
-class Page extends Component {
+class Page extends PureComponent {
   props: {
     heading: string,
     submitHandler: Function,

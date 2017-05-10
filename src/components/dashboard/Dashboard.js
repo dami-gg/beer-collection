@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Option from './option/Option';
 
 import './dashboard.scss';
@@ -10,7 +10,7 @@ import tap from '../../assets/images/tap.png';
 import statistics from '../../assets/images/statistics.png';
 import globe from '../../assets/images/globe.png';
 
-class Dashboard extends Component {
+class Dashboard extends PureComponent {
   render() {
     return (
         <div className="dashboard">

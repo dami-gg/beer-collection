@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import './image-uploader.scss';
 
-class ImageUploader extends Component {
+class ImageUploader extends PureComponent {
   props: {
     handleImageSelection: Function,
     thumbnail: string,

@@ -2,7 +2,6 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import firebase from 'firebase';
 import {Link} from 'react-router-dom';
 
 import Button from '../common/button/Button';
@@ -10,11 +9,9 @@ import Button from '../common/button/Button';
 import logo from '../../assets/images/logo.png';
 import './header.scss';
 
-export class Header extends Component {
-  logout():void {
-    firebase.auth().signOut();
-  }
+import {logout} from '../../helpers/authentication.helpers';
 
+export class Header extends Component {
   render() {
     return (
         <div className="header">
@@ -29,7 +26,7 @@ export class Header extends Component {
 
             <div className="logout">
               <Button color="red"
-                      onClick={this.logout}>
+                      onClick={logout}>
                 Logout
               </Button>
             </div>

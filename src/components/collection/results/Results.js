@@ -7,6 +7,8 @@ import {Link} from 'react-router-dom';
 
 import logo from '../../../assets/images/logo.png';
 
+import {getResults} from './results.helpers';
+
 class Results extends PureComponent {
   props: {
     collection: Array<Beer>,
@@ -15,14 +17,10 @@ class Results extends PureComponent {
     currentPage: number
   };
 
-  getResults = () => {
-    const results = this.props.collection.filter((beer: Beer) =>
-        this.props.filterRegex ? this.props.filterRegex.test(beer.name) : true
-    );
+  getResultLinks() {
+    const {collection, filterRegex, currentPage, resultsPerPage} = this.props;
 
-    const offset = (this.props.currentPage ? this.props.currentPage - 1 : 0) * this.props.resultsPerPage;
-
-    return results.slice(offset, offset + this.props.resultsPerPage).map((beer: Beer) => {
+    return getResults(collection, filterRegex, currentPage, resultsPerPage).map((beer: Beer) => {
       return (
           <Link to={`/beer/view/${beer.id}`}
                 className="beer" key={beer.id}>
@@ -38,7 +36,7 @@ class Results extends PureComponent {
   render() {
     return (
         <div className="collection__results">
-          {this.getResults()}
+          {this.getResultLinks()}
         </div>
     );
   }

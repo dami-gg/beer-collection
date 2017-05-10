@@ -5,12 +5,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {reduxForm} from 'redux-form';
-import firebase from 'firebase'
 
 import Button from '../common/button/Button';
 import FormField from '../common/form-field/FormField';
 import Spinner from '../common/spinner/Spinner';
-import {startAuthentication, isAuthenticating} from '../../utils/authentication';
+import {isAuthenticating, handleAuthenticationWithGoogle} from '../../helpers/authentication.helpers';
 
 import './login.scss';
 
@@ -42,14 +41,6 @@ export class Login extends Component {
     this.props.history.push('/');
   }
 
-  handleAuthenticationWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    startAuthentication();
-
-    firebase.auth().signInWithRedirect(provider);
-  }
-
   render() {
     return (
         <div className="login">
@@ -75,7 +66,7 @@ export class Login extends Component {
                   </form>
 
                   <Button color="blue"
-                          onClick={this.handleAuthenticationWithGoogle}>
+                          onClick={handleAuthenticationWithGoogle}>
                     Sign in with Google
                   </Button>
                 </div>

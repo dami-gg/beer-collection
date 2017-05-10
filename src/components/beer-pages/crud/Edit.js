@@ -7,7 +7,7 @@ import {withRouter} from 'react-router'
 
 import {updateBeer} from '../../../actions/collection.actions';
 import {setCurrentBeer, resetCurrentBeer} from '../../../actions/navigation.actions';
-import {findItemInCollectionById} from '../../../utils/collection';
+import {findItemInCollectionById} from '../../../helpers/collection.helpers';
 import Page from '../Page';
 
 export class Edit extends Component {
