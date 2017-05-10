@@ -1,11 +1,11 @@
 import React from 'react';
 
-import FormField from '../../form-field/FormField';
+import FormField from '../../common/form-field/FormField';
 import Rating from '../rating/Rating';
 
-import './beer-form.scss';
+import '../form/form.scss';
 
-const BeerFormFields = (props) => (
+const FormFields = (props) => (
     <div className="beer-form__fields">
       <FormField
           name="name"
@@ -34,4 +34,4 @@ const BeerFormFields = (props) => (
     </div>
 );
 
-export default BeerFormFields;
+export default FormFields;

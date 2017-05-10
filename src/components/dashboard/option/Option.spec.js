@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardOption from './DashboardOption';
+import DashboardOption from './Option';
 import {Link} from 'react-router';
 
 import {shallow} from 'enzyme';

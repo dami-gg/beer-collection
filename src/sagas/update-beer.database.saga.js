@@ -1,10 +1,10 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
 import firebase from 'firebase';
 
-import * as types from '../constants';
+import {UPDATE_BEER_IN_DATABASE, UPDATE_BEER_ERROR} from '../actions/collection.actions';
 
 function* watchUpdatedBeerInApplicationSaga() {
-  yield takeEvery(types.UPDATE_BEER_IN_DATABASE, updateBeerInDatabaseSaga);
+  yield takeEvery(UPDATE_BEER_IN_DATABASE, updateBeerInDatabaseSaga);
 }
 
 function* updateBeerInDatabaseSaga(action) {
@@ -12,7 +12,7 @@ function* updateBeerInDatabaseSaga(action) {
     yield call(putBeerToDatabase, action.beer);
   }
   catch (error) {
-    yield put({type: types.UPDATE_BEER_ERROR, error: error.message});
+    yield put({type: UPDATE_BEER_ERROR, error: error.message});
   }
 }
 

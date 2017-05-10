@@ -1,18 +1,20 @@
+// @flow
+import type {User} from '../../types/user.types';
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {reduxForm} from 'redux-form';
 import firebase from 'firebase'
 
-import Button from '../button/Button';
-import FormField from '../form-field/FormField';
-import Spinner from '../spinner/Spinner';
-import type {User} from '../../types';
-import {startAuthentication, isAuthenticating} from '../../utils';
+import Button from '../common/button/Button';
+import FormField from '../common/form-field/FormField';
+import Spinner from '../common/spinner/Spinner';
+import {startAuthentication, isAuthenticating} from '../../utils/authentication';
 
 import './login.scss';
 
-class Login extends Component {
+export class Login extends Component {
   props: {
     user: User,
     match: Object,
@@ -84,7 +86,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.navigation.user
+  user: state.authentication.user
 });
 
 export default withRouter(connect(mapStateToProps)(reduxForm({form: 'login'})(Login)));

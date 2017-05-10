@@ -1,7 +1,7 @@
 // @flow
 
 import React, {Component} from 'react';
-import DashboardOption from './dashboard-option/DashboardOption';
+import Option from './option/Option';
 
 import './dashboard.scss';
 
@@ -14,22 +14,22 @@ class Dashboard extends Component {
   render() {
     return (
         <div className="dashboard">
-          <DashboardOption
+          <Option
               title="Add a new beer"
               url="/beer/add"
               image={tap}/>
 
-          <DashboardOption
+          <Option
               title="See your collection"
               url="/collection"
               image={crate}/>
 
-          <DashboardOption
+          <Option
               title="See statistics"
               url="/statistics"
               image={statistics}/>
 
-          <DashboardOption
+          <Option
               title="Beer map"
               url="/map"
               image={globe}/>

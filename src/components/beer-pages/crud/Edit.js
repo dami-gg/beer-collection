@@ -1,20 +1,23 @@
 // @flow
-import type {Beer} from '../../../types';
+import type {Beer, BeerFormValues} from '../../../types/beer.types';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
+import {withRouter} from 'react-router'
 
-import {updateBeer, setCurrentBeer, resetCurrentBeer} from '../../../actions';
-import {findItemInCollectionById} from '../../../utils';
-import BeerPage from './BeerPage';
+import {updateBeer} from '../../../actions/collection.actions';
+import {setCurrentBeer, resetCurrentBeer} from '../../../actions/navigation.actions';
+import {findItemInCollectionById} from '../../../utils/collection';
+import Page from '../Page';
 
-class BeerView extends Component {
+export class Edit extends Component {
   props: {
     params: Object,
     currentBeer: Beer,
     collection: Array<Beer>,
     setCurrentBeer: Function,
+    resetCurrentBeer: Function,
+    updateBeer: Function,
     match: Object,
     location: Object,
     history: Object
@@ -30,33 +33,38 @@ class BeerView extends Component {
     this.props.resetCurrentBeer();
   }
 
-  submitHandler = (): void => {
-    this.redirectToBeerEditPage();
+  submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
+    let beer: Beer = {
+      id: this.props.currentBeer.id,
+      name: formValues.name,
+      type: formValues.type,
+      origin: formValues.origin,
+      image: imageUrl || this.props.currentBeer.image,
+      rating: formValues.rating
+    };
+
+    this.props.updateBeer(beer);
+    this.redirectToViewPage();
   }
 
   cancelHandler = (): void => {
-    this.redirectToCollection();
+    this.redirectToViewPage();
   }
 
-  redirectToBeerEditPage = (): void => {
-    this.props.history.push(`/beer/edit/${this.props.currentBeer.id}`);
-  }
-
-  redirectToCollection = (): void => {
-    this.props.history.push('/collection');
+  redirectToViewPage = (): void => {
+    this.props.history.push(`/beer/view/${this.props.currentBeer.id}`);
   }
 
   render() {
     return (
-        <BeerPage
-            heading={this.props.currentBeer && this.props.currentBeer.name}
+        <Page
+            heading="Edit beer from your collection"
             submitHandler={this.submitHandler}
             cancelHandler={this.cancelHandler}
-            submitButtonLabel="Edit"
-            cancelButtonLabel="Back"
-            currentBeer={this.props.currentBeer}
-            readOnly={true}>
-        </BeerPage>
+            submitButtonLabel="Save"
+            cancelButtonLabel="Cancel"
+            currentBeer={this.props.currentBeer}>
+        </Page>
     );
   }
 }
@@ -78,7 +86,7 @@ const mapDispatchToProps = (dispatch: Function): Object => {
 
     resetCurrentBeer: () => {
       dispatch(resetCurrentBeer());
-    }
+    },
   }
 };
 
@@ -86,5 +94,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(BeerView)
+    )(Edit)
 );

@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 import firebase from 'firebase';
 import {Link} from 'react-router-dom';
 
-import Button from '../button/Button';
+import Button from '../common/button/Button';
 
 import logo from '../../assets/images/logo.png';
 import './header.scss';
 
-class Header extends Component {
+export class Header extends Component {
   logout():void {
     firebase.auth().signOut();
   }
@@ -40,7 +40,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.navigation.user
+  user: state.authentication.user
 });
 
 export default connect(

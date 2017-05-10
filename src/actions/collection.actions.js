@@ -1,16 +1,9 @@
 // @flow
+import type { Beer } from '../types/beer.types';
+import type { ActionWithBeerParameter } from '../types/action.types';
 
 /*
-  GENERAL
- */
-
-export const AUTHENTICATING_KEY: string = 'authenticating';
-export const RESULTS_PER_PAGE: number = 20;
-export const TOTAL_PAGE_BUTTONS: number = 7;
-export const PLACEHOLDER_PAGE_LABEL: string = '...';
-
-/*
- COLLECTION ACTION TYPES
+  ACTION TYPES
  */
 
 export const ADD_BEER_TO_DATABASE: string = 'ADD_BEER_TO_DATABASE';
@@ -26,11 +19,26 @@ export const DELETE_BEER_FROM_STATE: string = 'DELETE_BEER_FROM_STATE';
 export const DELETE_BEER_ERROR: string = 'DELETE_BEER_ERROR';
 
 /*
- NAVIGATION ACTION TYPES
+  ACTIONS
  */
 
-export const LOG_USER_IN: string = 'LOG_USER_IN';
-export const LOG_USER_OUT: string = 'LOG_USER_OUT';
+export const addBeer = (beer: Beer): ActionWithBeerParameter => {
+  return {
+    type: ADD_BEER_TO_DATABASE,
+    beer
+  };
+};
 
-export const SET_CURRENT_BEER: string = 'SET_CURRENT_BEER';
-export const RESET_CURRENT_BEER: string = 'RESET_CURRENT_BEER';
+export const updateBeer = (beer: Beer): ActionWithBeerParameter => {
+  return {
+    type: UPDATE_BEER_IN_DATABASE,
+    beer
+  };
+};
+
+export const deleteBeer = (beer: Beer): ActionWithBeerParameter => {
+  return {
+    type: DELETE_BEER_FROM_DATABASE,
+    beer
+  };
+};

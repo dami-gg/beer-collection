@@ -4,15 +4,15 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import firebase from 'firebase'
 
 import Header from '../header/Header';
-import {routes} from '../../routes';
-import {logUserIn, logUserOut} from '../../actions';
-import {completeAuthentication} from '../../utils';
+import {routes} from './routes';
+import {logUserIn, logUserOut} from '../../actions/authentication.actions';
+import {completeAuthentication} from '../../utils/authentication';
 
-import type {User} from '../../types';
+import type {User} from '../../types/user.types';
 
 import './app.scss';
 
-class App extends Component {
+export class App extends Component {
   props: {
     user: User,
     logUserIn: Function,
@@ -52,7 +52,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.navigation.user
+  user: state.authentication.user
 });
 
 const mapDispatchToProps = dispatch => {

@@ -1,11 +1,11 @@
 // @flow
 import React, {PureComponent} from 'react';
 
-import {RESULTS_PER_PAGE, TOTAL_PAGE_BUTTONS, PLACEHOLDER_PAGE_LABEL} from '../../constants';
-
 import PageButton from './PageButton';
 
 import './pagination.scss';
+
+const PLACEHOLDER_PAGE_LABEL: string = '...';
 
 class Pagination extends PureComponent {
   totalPages: number = undefined;
@@ -13,6 +13,8 @@ class Pagination extends PureComponent {
   props: {
     numItems: number,
     currentPage: number,
+    resultsPerPage: number,
+    totalPageButtons: number,
     onNavigation: Function
   };
 
@@ -33,7 +35,7 @@ class Pagination extends PureComponent {
       return 1;
     }
 
-    return Math.ceil(this.props.numItems / RESULTS_PER_PAGE);
+    return Math.ceil(this.props.numItems / this.props.resultsPerPage);
   }
 
   navigateToPage(page) {
@@ -66,7 +68,7 @@ class Pagination extends PureComponent {
   }
 
   getButtonLabels(): Array<any> {
-    if (this.totalPages <= TOTAL_PAGE_BUTTONS) {
+    if (this.totalPages <= this.props.totalPageButtons) {
       return this.generateMinimumButtons();
     }
     else if (this.props.currentPage <= 3) {
@@ -85,7 +87,7 @@ class Pagination extends PureComponent {
   }
 
   generateInitialPageButtons(): Array<any> {
-    const remainingButtons = TOTAL_PAGE_BUTTONS - 2;
+    const remainingButtons = this.props.totalPageButtons - 2;
 
     let buttons: Array<any> = Array(remainingButtons).fill(0)
         .map((value, index) => index + 1);
@@ -111,7 +113,7 @@ class Pagination extends PureComponent {
     startingButtons.push(1);
     startingButtons.push(PLACEHOLDER_PAGE_LABEL);
 
-    const remainingButtons = this.TOTAL_PAGE_BUTTONS - 2;
+    const remainingButtons = this.props.totalPageButtons - 2;
 
     let endingButtons: Array<any> = Array(remainingButtons).fill(0)
         .map((value, index) => index + this.totalPages - remainingButtons + 1);

@@ -1,13 +1,13 @@
 // @flow
-import type {Beer} from '../../../types';
+import type {Beer} from '../../types/beer.types';
 
 import React, {Component} from 'react';
 
-import Form from '../beer-form/BeerForm';
+import Form from './form/Form';
 
-import './beer-pages.scss';
+import './pages.scss';
 
-class BeerPage extends Component {
+class Page extends Component {
   props: {
     heading: string,
     submitHandler: Function,
@@ -35,4 +35,4 @@ class BeerPage extends Component {
   }
 }
 
-export default BeerPage;
+export default Page;

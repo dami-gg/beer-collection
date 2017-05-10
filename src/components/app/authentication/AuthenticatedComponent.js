@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
-import type {User} from '../../types';
+import type {User} from '../../../types/user.types';
 
 export default function requiresAuth(OriginalComponent) {
   class AuthenticatedComponent extends Component {
@@ -41,7 +41,7 @@ export default function requiresAuth(OriginalComponent) {
   }
 
   const mapStateToProps = state => ({
-    user: state.navigation.user
+    user: state.authentication.user
   });
 
   return withRouter(

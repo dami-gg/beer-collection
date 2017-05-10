@@ -1,21 +1,23 @@
 // @flow
-import type {Beer} from '../../types';
+import type {Beer} from '../../types/beer.types';
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
-import SearchBox from '../search-box/SearchBox';
-import FloatingButton from '../floating-button/FloatingButton';
-import Pagination from '../pagination/Pagination';
+import SearchBox from '../common/search-box/SearchBox';
+import FloatingButton from '../common/floating-button/FloatingButton';
+import Pagination from '../common/pagination/Pagination';
 
 import logo from '../../assets/images/logo.png';
-import {RESULTS_PER_PAGE} from '../../constants';
 
 import './collection.scss';
 
-class Collection extends Component {
+const RESULTS_PER_PAGE: number = 20;
+const TOTAL_PAGE_BUTTONS: number = 7;
+
+export class Collection extends Component {
   props: {
     collection: Array<Beer>,
     match: Object,
@@ -83,6 +85,8 @@ class Collection extends Component {
                 className="collection__filters__pagination"
                 numItems={this.props.collection.length}
                 currentPage={this.state.currentPage}
+                resultsPerPage={RESULTS_PER_PAGE}
+                totalPageButtons={TOTAL_PAGE_BUTTONS}
                 onNavigation={this.navigateToPage}>
             </Pagination>
           </div>
