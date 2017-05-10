@@ -1,11 +1,11 @@
 // @flow
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 
 import './option.scss';
 
-class DashboardOption extends Component {
+class Option extends PureComponent {
   props: {
     title: string,
     url: string,
@@ -28,4 +28,4 @@ class DashboardOption extends Component {
   }
 }
 
-export default DashboardOption;
+export default Option;

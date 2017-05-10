@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import './floating-button.scss';
 
-class FloatingButton extends Component {
+class FloatingButton extends PureComponent {
   props: {
     iconClass: string,
     label: string,

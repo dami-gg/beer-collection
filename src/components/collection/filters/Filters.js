@@ -31,6 +31,7 @@ class Filters extends PureComponent {
               className="collection__filters__search"
               changeHandler={this.updateFilter}>
           </SearchBox>
+
           <Pagination
               className="collection__filters__pagination"
               numItems={this.props.numItems}

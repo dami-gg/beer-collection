@@ -1,19 +1,29 @@
 import React from 'react';
 import Dashboard from './Dashboard';
-import DashboardOption from './dashboard-option/Option';
+import Option from './option/Option';
+
+import {StaticRouter as Router} from 'react-router-dom';
 
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer';
 
 describe('Dashboard', () => {
-  let component;
+  let component,
+      element,
+      mock;
+
+  beforeEach(mocks);
 
   it('should render without crashing', () => {
     shallow(<Dashboard />);
   });
 
   it('should match the snapshot', () => {
-    component = renderer.create(<Dashboard />);
+    component = renderer.create(
+        <Router context={mock.context}>
+          <Dashboard/>
+        </Router>
+    );
     let json = component.toJSON();
 
     expect(json).toMatchSnapshot();
@@ -23,11 +33,15 @@ describe('Dashboard', () => {
     beforeEach(setup);
 
     it('should render a dashboard element', () => {
-      expect(component.find('.dashboard').length).toEqual(1);
+      element = component.find('.dashboard');
+
+      expect(element.length).toEqual(1);
     });
 
-    it('should render two DashboardOption components', () => {
-      expect(component.find(DashboardOption).length).toEqual(2);
+    it('should render four Option components', () => {
+      element = component.find(Option);
+
+      expect(element.length).toEqual(4);
     });
   });
 
@@ -37,6 +51,12 @@ describe('Dashboard', () => {
 
   function render() {
     component = shallow(<Dashboard />);
+  }
+
+  function mocks() {
+    mock = {
+      context: {}
+    };
   }
 });
 
