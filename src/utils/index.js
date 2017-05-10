@@ -1,6 +1,7 @@
 import {eventChannel} from 'redux-saga';
 import firebase from 'firebase';
-import {AUTHENTICATING_KEY} from '../constants'
+
+const AUTHENTICATING_KEY: string = 'authenticating';
 
 export const findItemInCollectionById = (id: string, collection) =>
     collection.find(element => element.id === id);

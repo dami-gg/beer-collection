@@ -11,9 +11,11 @@ import FloatingButton from '../common/floating-button/FloatingButton';
 import Pagination from '../common/pagination/Pagination';
 
 import logo from '../../assets/images/logo.png';
-import {RESULTS_PER_PAGE} from '../../constants';
 
 import './collection.scss';
+
+const RESULTS_PER_PAGE: number = 20;
+const TOTAL_PAGE_BUTTONS: number = 7;
 
 export class Collection extends Component {
   props: {
@@ -83,6 +85,8 @@ export class Collection extends Component {
                 className="collection__filters__pagination"
                 numItems={this.props.collection.length}
                 currentPage={this.state.currentPage}
+                resultsPerPage={RESULTS_PER_PAGE}
+                totalPageButtons={TOTAL_PAGE_BUTTONS}
                 onNavigation={this.navigateToPage}>
             </Pagination>
           </div>
