@@ -1,0 +1,52 @@
+exports[`Statistics should match the snapshot 1`] = `
+<div
+  className="statistics">
+  <div
+    className="dashboard">
+    <div
+      className="dashboard__option">
+      <a
+        className="dashboard__option__card"
+        href="/ratings"
+        onClick={[Function anonymous]}>
+        <div
+          className="dashboard__option__image-wrapper">
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="" />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper">
+          <p
+            className="dashboard__option__title">
+            Rating
+          </p>
+        </div>
+      </a>
+    </div>
+    <div
+      className="dashboard__option">
+      <a
+        className="dashboard__option__card"
+        href="/origin"
+        onClick={[Function anonymous]}>
+        <div
+          className="dashboard__option__image-wrapper">
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="" />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper">
+          <p
+            className="dashboard__option__title">
+            Origin
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;

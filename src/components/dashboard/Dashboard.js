@@ -1,39 +1,33 @@
 // @flow
 
-import React, {PureComponent} from 'react';
-import Option from './option/Option';
+import React, { PureComponent } from "react";
+import Option from "./option/Option";
 
-import './dashboard.scss';
-
-import crate from '../../assets/images/crate.png';
-import tap from '../../assets/images/tap.png';
-import statistics from '../../assets/images/statistics.png';
-import globe from '../../assets/images/globe.png';
+import "./dashboard.scss";
 
 class Dashboard extends PureComponent {
+  props: {
+    items: Array<Object>
+  };
+
+  getDashboardItems() {
+    return this.props.items && this.props.items.length
+      ? this.props.items.map((item, i) => (
+          <Option
+            key={i}
+            title={item.title}
+            url={item.url}
+            image={item.image}
+          />
+        ))
+      : "";
+  }
+
   render() {
     return (
-        <div className="dashboard">
-          <Option
-              title="Add a new beer"
-              url="/beer/add"
-              image={tap}/>
-
-          <Option
-              title="See your collection"
-              url="/collection"
-              image={crate}/>
-
-          <Option
-              title="See statistics"
-              url="/statistics"
-              image={statistics}/>
-
-          <Option
-              title="Beer map"
-              url="/map"
-              image={globe}/>
-        </div>
+      <div className="dashboard">
+        {this.getDashboardItems()}
+      </div>
     );
   }
 }

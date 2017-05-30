@@ -1,0 +1,28 @@
+export const RATINGS: Array<Object> = [
+  {
+    value: 5,
+    icon: "heart"
+  },
+  {
+    value: 4,
+    icon: "star"
+  },
+  {
+    value: 3,
+    icon: "smile"
+  },
+  {
+    value: 2,
+    icon: "meh"
+  },
+  {
+    value: 1,
+    icon: "frown"
+  }
+];
+
+export const NOT_RATED_KEY: string = "Not rated";
+
+export const RATINGS_LABELS: Array<string> = RATINGS.map(
+  rating => rating.value
+).push(NOT_RATED_KEY);

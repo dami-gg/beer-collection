@@ -1,20 +1,20 @@
 // @flow
-import type {Beer} from '../../types/beer.types';
+import type { Beer } from "../../types/beer.types";
 
 type State = {
   filterRegex?: Object,
   currentPage: number
 };
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
-import Filters from './filters/Filters';
-import Results from './results/Results';
-import FloatingButton from '../common/floating-button/FloatingButton';
+import Filters from "./filters/Filters";
+import Results from "./results/Results";
+import FloatingButton from "../common/floating-button/FloatingButton";
 
-import './collection.scss';
+import "./collection.scss";
 
 const RESULTS_PER_PAGE: number = 20;
 
@@ -45,43 +45,43 @@ export class Collection extends Component {
   }
 
   updateFilterRegex(filterRegex: Object): void {
-    this.setState({filterRegex});
+    this.setState({ filterRegex });
   }
 
   navigateToPage = (currentPage: number): void => {
-    this.setState({currentPage});
-  }
+    this.setState({ currentPage });
+  };
 
   redirectToAddPage = (): void => {
-    this.props.history.push('/beer/add');
-  }
+    this.props.history.push("/beer/add");
+  };
 
   render() {
     return (
-        <div className="collection">
-          <Filters
-              numItems={this.props.collection.length}
-              resultsPerPage={RESULTS_PER_PAGE}
-              currentPage={this.state.currentPage}
-              onFilterUpdate={this.updateFilterRegex}
-              onPageChange={this.navigateToPage}>
-          </Filters>
+      <div className="collection">
+        <Filters
+          numItems={this.props.collection.length}
+          resultsPerPage={RESULTS_PER_PAGE}
+          currentPage={this.state.currentPage}
+          onFilterUpdate={this.updateFilterRegex}
+          onPageChange={this.navigateToPage}
+        />
 
-          <Results
-              collection={this.props.collection}
-              filterRegex={this.state.filterRegex}
-              resultsPerPage={RESULTS_PER_PAGE}
-              currentPage={this.state.currentPage}>
-          </Results>
+        <Results
+          collection={this.props.collection}
+          filterRegex={this.state.filterRegex}
+          resultsPerPage={RESULTS_PER_PAGE}
+          currentPage={this.state.currentPage}
+        />
 
-          <FloatingButton
-              iconClass="fa fa-plus"
-              label="Add a new beer"
-              buttonColor="green"
-              iconColor="white"
-              clickHandler={this.redirectToAddPage}>
-          </FloatingButton>
-        </div>
+        <FloatingButton
+          iconClass="fa fa-plus"
+          label="Add a new beer"
+          buttonColor="green"
+          iconColor="white"
+          clickHandler={this.redirectToAddPage}
+        />
+      </div>
     );
   }
 }
@@ -90,8 +90,4 @@ const mapStateToProps = (state: Object) => ({
   collection: state.collection
 });
 
-export default withRouter(
-    connect(
-        mapStateToProps
-    )(Collection)
-);
+export default withRouter(connect(mapStateToProps)(Collection));
