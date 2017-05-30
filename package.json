@@ -9,7 +9,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "test:coverage": "npm test -- --coverage",
-    "flow": "flow"
+    "flow": "flow",
+    "flow:coverage": "flow coverage"
   },
   "devDependencies": {
     "autoprefixer": "6.4.1",
