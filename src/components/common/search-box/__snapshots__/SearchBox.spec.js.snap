@@ -1,0 +1,12 @@
+exports[`SearchBox should match the snapshot 1`] = `
+<div
+  className="search-box">
+  <input
+    className="search-box__input"
+    onChange={undefined}
+    placeholder="Search by name"
+    type="text" />
+  <i
+    className="search-box__icon fa fa-search" />
+</div>
+`;
