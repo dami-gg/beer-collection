@@ -6,12 +6,13 @@ const PAGE_OPTIONS: Array<Object> = [
   {
     title: "Rating",
     url: "/ratings",
-    image: ""
+    image: "https://unsplash.it/150/150", // TODO
+    hidden: true
   },
   {
     title: "Origin",
     url: "/origin",
-    image: ""
+    image: "https://unsplash.it/150/150" // TODO
   }
 ];
 

@@ -20,13 +20,7 @@ describe("Graphs helpers", () => {
     });
   });
 
-  xdescribe("getRatingData", () => {
-    it("should produce no data if the collection is empty", () => {
-      result = getRatingData([]);
-
-      expect(result).toEqual([]);
-    });
-    
+  describe("getRatingData", () => {
     it("should reduce the collection to an array of objects with counts per rating", () => {
       result = getRatingData(mock.collection);
     });

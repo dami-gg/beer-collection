@@ -8,14 +8,12 @@ import {
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Cell
+  Cell,
+  ResponsiveContainer
 } from "recharts";
 
 import { COLORS } from "./graphs.constants";
-import {getOriginData} from './graphs.helpers';
+import { getOriginData } from "./graphs.helpers";
 
 import "./graphs.scss";
 
@@ -26,26 +24,21 @@ class Origin extends Component {
 
   render() {
     const data = getOriginData(this.props.collection);
-    
+
     return (
-      <div className="statistic">
+      <div className="graph graph--origin">
         <h1>Number of beers by origin</h1>
-        <BarChart
-          className="graph graph--origin"
-          width={600}
-          height={300}
-          data={data}
-        >
-          <XAxis dataKey="origin" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip />
-          <Bar dataKey="count" fill="#8884d8">
-            {data.map((entry, index) => (
-              <Cell key={index} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Bar>
-        </BarChart>
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={data}>
+            <XAxis dataKey="origin" stroke="white" />
+            <YAxis stroke="white" />
+            <Bar dataKey="count" fill="#8884d8">
+              {data.map((entry, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     );
   }

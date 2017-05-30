@@ -23,6 +23,6 @@ export const RATINGS: Array<Object> = [
 
 export const NOT_RATED_KEY: string = "Not rated";
 
-export const RATINGS_LABELS: Array<string> = RATINGS.map(
+export const RATINGS_LABELS : Array<string>= [...RATINGS.map(
   rating => rating.value
-).push(NOT_RATED_KEY);
+), NOT_RATED_KEY];

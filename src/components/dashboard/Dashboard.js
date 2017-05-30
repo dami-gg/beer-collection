@@ -12,7 +12,7 @@ class Dashboard extends PureComponent {
 
   getDashboardItems() {
     return this.props.items && this.props.items.length
-      ? this.props.items.map((item, i) => (
+      ? this.props.items.map((item, i) => !item.hidden && (
           <Option
             key={i}
             title={item.title}

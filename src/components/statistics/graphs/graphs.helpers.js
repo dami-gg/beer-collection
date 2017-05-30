@@ -31,7 +31,7 @@ export const getRatingData = (collection: Array<Beer>) => {
   }, []);
 
   let index: number;
-
+  
   return collection.reduce((accumulator: Array<Object>, current: Beer) => {
     index = accumulator.findIndex(
       element =>
