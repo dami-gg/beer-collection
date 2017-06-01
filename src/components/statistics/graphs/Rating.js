@@ -19,7 +19,6 @@ class Rating extends Component {
 
   componentWillMount() {
     this.data = getRatingData(this.props.collection);
-    console.log(this.data);
   }
 
   render() {

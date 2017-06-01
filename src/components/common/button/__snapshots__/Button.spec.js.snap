@@ -1,9 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
 exports[`Button should match the snapshot 1`] = `
 <button
   className="button button--undefined undefined"
-  onClick={[Function]}
-  type="button"
-/>
+  onClick={[Function onClick]}
+  type="button" />
 `;

@@ -3,7 +3,7 @@ import { Field } from "redux-form";
 
 class RatingButton extends PureComponent {
   props: {
-    value: number,
+    value: string,
     icon: string
   };
 

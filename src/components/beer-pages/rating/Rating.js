@@ -8,7 +8,7 @@ import "./rating.scss";
 class Rating extends PureComponent {
   getButtons() {
     return RATINGS.map((rating, index) => (
-      <RatingButton key={index} value={rating.value} icon={rating.icon} />
+      <RatingButton key={index} value={`${rating.value}`} icon={rating.icon} />
     ));
   }
 
