@@ -1,13 +1,13 @@
 // @flow
-import type {Beer} from '../../../types/beer.types';
+import type { Beer } from "../../../types/beer.types";
 
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from "react";
 
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import logo from '../../../assets/images/logo.png';
+import placeholderLabel from "../../../assets/images/label.png";
 
-import {getResults} from './results.helpers';
+import { getResults } from "./results.helpers";
 
 class Results extends PureComponent {
   props: {
@@ -18,26 +18,42 @@ class Results extends PureComponent {
   };
 
   getResultLinks() {
-    const {collection, filterRegex, currentPage, resultsPerPage} = this.props;
+    const { collection, filterRegex, currentPage, resultsPerPage } = this.props;
+    const results = getResults(
+      collection,
+      filterRegex,
+      currentPage,
+      resultsPerPage
+    );
 
-    return getResults(collection, filterRegex, currentPage, resultsPerPage).map((beer: Beer) => {
+    return results.map((beer: Beer) => {
       return (
-          <Link to={`/beer/view/${beer.id}`}
-                className="beer" key={beer.id}>
-            <img src={beer.image || logo}
-                 className="beer__image"
-                 alt={`${beer.name} logo`}/>
-            <p className="beer__name">{beer.name}</p>
-          </Link>
+        <Link to={`/beer/view/${beer.id}`} className="beer" key={beer.id}>
+          <ul className="beer__card">
+            <li>
+              <img
+                className={`beer__image ${!beer.image ? 'beer__image--placeholder' : ''}`}
+                width="200"
+                height="200"
+                src={beer.image || placeholderLabel}
+                alt={`${beer.name} logo`}
+              />
+            </li>
+            <li>
+              <h2 className="beer__name">{beer.name}</h2>
+              <p className="beer__description">{beer.origin}</p>
+            </li>            
+          </ul>
+        </Link>
       );
     });
   }
 
   render() {
     return (
-        <div className="collection__results">
-          {this.getResultLinks()}
-        </div>
+      <div className="collection__results">
+        {this.getResultLinks()}
+      </div>
     );
   }
 }
