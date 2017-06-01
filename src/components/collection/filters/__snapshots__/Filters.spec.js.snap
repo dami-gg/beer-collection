@@ -1,31 +1,23 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
 exports[`Filters should match the snapshot 1`] = `
 <div
-  className="collection__filters"
->
+  className="collection__filters">
   <div
-    className="search-box"
-  >
+    className="search-box">
     <input
       className="search-box__input"
-      onChange={[Function]}
+      onChange={[Function anonymous]}
       placeholder="Search by name"
-      type="text"
-    />
+      type="text" />
     <i
-      className="search-box__icon fa fa-search"
-    />
+      className="search-box__icon fa fa-search" />
   </div>
   <div
-    className="pagination pagination--hidden"
-  >
+    className="pagination pagination--hidden">
     <a
       className="pagination__button
                        
                        "
-      onClick={[Function]}
-    >
+      onClick={[Function onClick]}>
       <span>
         «
       </span>
@@ -34,8 +26,7 @@ exports[`Filters should match the snapshot 1`] = `
       className="pagination__button
                        
                        "
-      onClick={[Function]}
-    >
+      onClick={[Function onClick]}>
       <span>
         1
       </span>
@@ -44,8 +35,7 @@ exports[`Filters should match the snapshot 1`] = `
       className="pagination__button
                        
                        "
-      onClick={[Function]}
-    >
+      onClick={[Function onClick]}>
       <span>
         »
       </span>

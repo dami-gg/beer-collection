@@ -1,5 +1,4 @@
 @import "normalize";
-
 body {
   background: url('../images/login-background.jpg') no-repeat center top fixed;
   -webkit-background-size: cover;
@@ -13,11 +12,15 @@ body {
   font-size: 14px;
 }
 
-*, :after, :before {
+*,
+ :after,
+ :before {
   box-sizing: border-box;
 }
 
-a, a:hover, a:focus {
+a,
+a:hover,
+a:focus {
   text-decoration: none;
 }
 
@@ -27,4 +30,11 @@ section {
 
 .intro {
   font-size: large;
+}
+
+h1 {
+  font-size: 22px;
+  @media(min-width: 768px) {
+    font-size: 28px;
+  }
 }

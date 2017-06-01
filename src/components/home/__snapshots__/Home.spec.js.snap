@@ -1,0 +1,96 @@
+exports[`Home should match the snapshot 1`] = `
+<div
+  className="home">
+  <div
+    className="dashboard">
+    <div
+      className="dashboard__option">
+      <a
+        className="dashboard__option__card"
+        href="/beer/add"
+        onClick={[Function anonymous]}>
+        <div
+          className="dashboard__option__image-wrapper">
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="test-file-stub" />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper">
+          <p
+            className="dashboard__option__title">
+            Add a new beer
+          </p>
+        </div>
+      </a>
+    </div>
+    <div
+      className="dashboard__option">
+      <a
+        className="dashboard__option__card"
+        href="/collection"
+        onClick={[Function anonymous]}>
+        <div
+          className="dashboard__option__image-wrapper">
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="test-file-stub" />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper">
+          <p
+            className="dashboard__option__title">
+            See your collection
+          </p>
+        </div>
+      </a>
+    </div>
+    <div
+      className="dashboard__option">
+      <a
+        className="dashboard__option__card"
+        href="/statistics"
+        onClick={[Function anonymous]}>
+        <div
+          className="dashboard__option__image-wrapper">
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="test-file-stub" />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper">
+          <p
+            className="dashboard__option__title">
+            See statistics
+          </p>
+        </div>
+      </a>
+    </div>
+    <div
+      className="dashboard__option">
+      <a
+        className="dashboard__option__card"
+        href="/map"
+        onClick={[Function anonymous]}>
+        <div
+          className="dashboard__option__image-wrapper">
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="test-file-stub" />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper">
+          <p
+            className="dashboard__option__title">
+            Beer map
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;
