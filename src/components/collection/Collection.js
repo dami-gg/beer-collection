@@ -14,6 +14,7 @@ import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
 
+import {getAllBeerTypes} from '../../helpers/collection.helpers';
 import "./collection.scss";
 
 const RESULTS_PER_PAGE: number = 20;
@@ -23,6 +24,7 @@ export class Collection extends Component {
   navigateToPage: Function;
   updateFilterRegex: Function;
   redirectToAddPage: Function;
+  allBeerTypes: Array<string>;
 
   props: {
     collection: Array<Beer>,
@@ -42,6 +44,10 @@ export class Collection extends Component {
     this.navigateToPage = this.navigateToPage.bind(this);
     this.updateFilterRegex = this.updateFilterRegex.bind(this);
     this.redirectToAddPage = this.redirectToAddPage.bind(this);
+  }
+
+  componentWillMount(): void {
+    this.allBeerTypes = getAllBeerTypes(this.props.collection);
   }
 
   updateFilterRegex(filterRegex: Object): void {
@@ -72,6 +78,7 @@ export class Collection extends Component {
           filterRegex={this.state.filterRegex}
           resultsPerPage={RESULTS_PER_PAGE}
           currentPage={this.state.currentPage}
+          allBeerTypes={this.allBeerTypes}
         />
 
         <FloatingButton

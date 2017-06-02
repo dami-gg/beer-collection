@@ -7,15 +7,16 @@ import { Link } from "react-router-dom";
 
 import placeholderLabel from "../../../assets/images/label.png";
 
-import { getResults } from "./results.helpers";
+import { getResults, getBeerTypeLabelStyle } from "./results.helpers";
 
 class Results extends PureComponent {
   props: {
     collection: Array<Beer>,
     filterRegex: Object,
     resultsPerPage: number,
-    currentPage: number
-  };
+    currentPage: number,
+    allBeerTypes: Array<string>
+  };  
 
   getResultLinks() {
     const { collection, filterRegex, currentPage, resultsPerPage } = this.props;
@@ -31,8 +32,14 @@ class Results extends PureComponent {
         <Link to={`/beer/view/${beer.id}`} className="beer" key={beer.id}>
           <ul className="beer__card">
             <li>
+              <div
+                className="beer__type"
+                style={getBeerTypeLabelStyle(beer.type, this.props.allBeerTypes)}
+              >
+                {beer.type}
+              </div>
               <img
-                className={`beer__image ${!beer.image ? 'beer__image--placeholder' : ''}`}
+                className={`beer__image ${!beer.image ? "beer__image--placeholder" : ""}`}
                 width="200"
                 height="200"
                 src={beer.image || placeholderLabel}
@@ -42,7 +49,7 @@ class Results extends PureComponent {
             <li>
               <h2 className="beer__name">{beer.name}</h2>
               <p className="beer__description">{beer.origin}</p>
-            </li>            
+            </li>
           </ul>
         </Link>
       );
