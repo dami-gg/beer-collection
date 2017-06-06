@@ -14,6 +14,7 @@ class Pagination extends PureComponent {
   navigateToNextPage: Function;
 
   props: {
+    className: string, 
     numItems: number,
     currentPage: number,
     resultsPerPage: number,
@@ -126,7 +127,7 @@ class Pagination extends PureComponent {
 
   render() {
     return (
-        <div className={`pagination ${this.totalPages === 1 ? 'pagination--hidden' : ''}`}>
+        <div className={`pagination ${this.totalPages === 1 ? 'pagination--hidden' : ''} ${this.props.className}`}>
           <PageButton label="&laquo;"
                       disabled={this.props.currentPage === 1}
                       clickHandler={this.navigateToPreviousPage}>

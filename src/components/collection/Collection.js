@@ -2,7 +2,8 @@
 import type { Beer } from "../../types/beer.types";
 
 type State = {
-  filterRegex?: Object,
+  searchFilterRegex?: Object,
+  typeFilter?: string,
   currentPage: number
 };
 
@@ -17,13 +18,14 @@ import FloatingButton from "../common/floating-button/FloatingButton";
 import {getAllBeerTypes} from '../../helpers/collection.helpers';
 import "./collection.scss";
 
-const RESULTS_PER_PAGE: number = 20;
+const RESULTS_PER_PAGE: number = 18;
 
 export class Collection extends Component {
   state: State;
   navigateToPage: Function;
-  updateFilterRegex: Function;
+  updateSearchFilterRegex: Function;
   redirectToAddPage: Function;
+  updateTypeFilter: Function;
   allBeerTypes: Array<string>;
 
   props: {
@@ -37,21 +39,23 @@ export class Collection extends Component {
     super(props);
 
     this.state = {
-      filterRegex: undefined,
+      searchFilterRegex: undefined,
+      typeFilter: undefined,
       currentPage: 1
     };
 
     this.navigateToPage = this.navigateToPage.bind(this);
-    this.updateFilterRegex = this.updateFilterRegex.bind(this);
+    this.updateSearchFilterRegex = this.updateSearchFilterRegex.bind(this);
     this.redirectToAddPage = this.redirectToAddPage.bind(this);
+    this.updateTypeFilter = this.updateTypeFilter.bind(this);
   }
 
   componentWillMount(): void {
     this.allBeerTypes = getAllBeerTypes(this.props.collection);
   }
 
-  updateFilterRegex(filterRegex: Object): void {
-    this.setState({ filterRegex });
+  updateSearchFilterRegex(searchFilterRegex: Object): void {
+    this.setState({ searchFilterRegex });
   }
 
   navigateToPage = (currentPage: number): void => {
@@ -62,6 +66,10 @@ export class Collection extends Component {
     this.props.history.push("/beer/add");
   };
 
+  updateTypeFilter = (type: string): void => {
+    this.setState({typeFilter: type});
+  };
+
   render() {
     return (
       <div className="collection">
@@ -69,16 +77,19 @@ export class Collection extends Component {
           numItems={this.props.collection.length}
           resultsPerPage={RESULTS_PER_PAGE}
           currentPage={this.state.currentPage}
-          onFilterUpdate={this.updateFilterRegex}
+          onSearchFilterUpdate={this.updateSearchFilterRegex}
           onPageChange={this.navigateToPage}
+          allBeerTypes={this.allBeerTypes}
+          onTypeFilterUpdate={this.updateTypeFilter}
         />
 
         <Results
           collection={this.props.collection}
-          filterRegex={this.state.filterRegex}
+          searchFilterRegex={this.state.searchFilterRegex}
           resultsPerPage={RESULTS_PER_PAGE}
           currentPage={this.state.currentPage}
           allBeerTypes={this.allBeerTypes}
+          typeFilter={this.state.typeFilter}
         />
 
         <FloatingButton

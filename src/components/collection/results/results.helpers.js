@@ -7,11 +7,19 @@ export const getResults = (
   collection: Array<Beer>,
   filterRegex: Object,
   currentPage: number,
-  resultsPerPage: number
+  resultsPerPage: number,
+  typeFilter: string
 ): Array<Beer> => {
-  const results = collection.filter(
-    (beer: Beer) => (filterRegex ? filterRegex.test(beer.name) : true)
-  );
+  const results = collection.filter((beer: Beer) => {
+    if (filterRegex && !filterRegex.test(beer.name)) {
+      return false;
+    }
+    if (typeFilter && beer.type !== typeFilter) {
+      return false;
+    }
+
+    return true;
+  });
 
   const offset = (currentPage ? currentPage - 1 : 0) * resultsPerPage;
 

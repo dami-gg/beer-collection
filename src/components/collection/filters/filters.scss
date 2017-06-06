@@ -1,0 +1,32 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  @media(min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+  &__filter {
+    margin-bottom: 20px;
+    @media(min-width: 768px) {
+      margin-bottom: 0;
+    }
+    &--search {
+      @media(min-width: 768px) {
+        width: 20%;
+        margin-right: 5%;
+      }
+    }
+    &--type {
+      @media(min-width: 768px) {
+        width: 10%;
+      }
+    }
+    &--pagination {
+      align-self: center;
+      @media(min-width: 768px) {
+        width: 10%;
+        margin-left: auto;
+      }
+    }
+  }
+}

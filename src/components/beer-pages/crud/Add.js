@@ -33,15 +33,11 @@ export class Add extends Component {
   }
 
   cancelHandler = (): void => {
-    this.redirectToHome();
+    this.redirectToCollection();
   }
 
   redirectToCollection = (): void => {
     this.props.history.push('/collection');
-  }
-
-  redirectToHome = (): void => {
-    this.props.history.push('/');
   }
 
   render() {

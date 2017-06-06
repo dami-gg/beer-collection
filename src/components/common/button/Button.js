@@ -6,7 +6,7 @@ import './button.scss';
 
 class Button extends PureComponent {
   props: {
-    type: string,
+    type?: string,
     color: string,
     classes?: string,
     onClick: Function,

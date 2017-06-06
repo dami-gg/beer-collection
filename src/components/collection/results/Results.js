@@ -9,22 +9,32 @@ import placeholderLabel from "../../../assets/images/label.png";
 
 import { getResults, getBeerTypeLabelStyle } from "./results.helpers";
 
+import "./results.scss";
+
 class Results extends PureComponent {
   props: {
     collection: Array<Beer>,
-    filterRegex: Object,
+    searchFilterRegex: Object,
     resultsPerPage: number,
     currentPage: number,
-    allBeerTypes: Array<string>
-  };  
+    allBeerTypes: Array<string>,
+    typeFilter?: string
+  };
 
   getResultLinks() {
-    const { collection, filterRegex, currentPage, resultsPerPage } = this.props;
+    const {
+      collection,
+      searchFilterRegex,
+      currentPage,
+      resultsPerPage,
+      typeFilter
+    } = this.props;
     const results = getResults(
       collection,
-      filterRegex,
+      searchFilterRegex,
       currentPage,
-      resultsPerPage
+      resultsPerPage,
+      typeFilter
     );
 
     return results.map((beer: Beer) => {
@@ -34,7 +44,10 @@ class Results extends PureComponent {
             <li>
               <div
                 className="beer__type"
-                style={getBeerTypeLabelStyle(beer.type, this.props.allBeerTypes)}
+                style={getBeerTypeLabelStyle(
+                  beer.type,
+                  this.props.allBeerTypes
+                )}
               >
                 {beer.type}
               </div>
@@ -58,7 +71,7 @@ class Results extends PureComponent {
 
   render() {
     return (
-      <div className="collection__results">
+      <div className="results">
         {this.getResultLinks()}
       </div>
     );
