@@ -8,13 +8,17 @@ export const getResults = (
   filterRegex: Object,
   currentPage: number,
   resultsPerPage: number,
-  typeFilter: string
+  typeFilter: string,
+  originFilter: string
 ): Array<Beer> => {
   const results = collection.filter((beer: Beer) => {
     if (filterRegex && !filterRegex.test(beer.name)) {
       return false;
     }
     if (typeFilter && beer.type !== typeFilter) {
+      return false;
+    }
+    if (originFilter && beer.origin !== originFilter) {
       return false;
     }
 

@@ -11,3 +11,11 @@ export const getAllBeerTypes = (collection: Array<Beer>) =>
     }
     return accumulator;
   }, []);
+
+export const getAllBeerOrigins = (collection: Array<Beer>) =>
+  collection.reduce((accumulator: Array<string>, current: Beer) => {
+    if (!accumulator.find(element => element === current.origin)) {
+      accumulator.push(current.origin);
+    }
+    return accumulator;
+  }, []);

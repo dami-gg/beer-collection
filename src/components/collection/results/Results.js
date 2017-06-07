@@ -18,7 +18,9 @@ class Results extends PureComponent {
     resultsPerPage: number,
     currentPage: number,
     allBeerTypes: Array<string>,
-    typeFilter?: string
+    typeFilter?: string,
+    allBeerOrigins: Array<string>,
+    originFilter?: string
   };
 
   getResultLinks() {
@@ -27,14 +29,16 @@ class Results extends PureComponent {
       searchFilterRegex,
       currentPage,
       resultsPerPage,
-      typeFilter
+      typeFilter,
+      originFilter
     } = this.props;
     const results = getResults(
       collection,
       searchFilterRegex,
       currentPage,
       resultsPerPage,
-      typeFilter
+      typeFilter,
+      originFilter
     );
 
     return results.map((beer: Beer) => {

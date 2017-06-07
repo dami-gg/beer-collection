@@ -1,6 +1,7 @@
 .filters {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   @media(min-width: 768px) {
     flex-direction: row;
     align-items: center;
@@ -16,17 +17,27 @@
         margin-right: 5%;
       }
     }
-    &--type {
+    &--type,
+    &--origin {
+      width: 48%;
+      margin: 0 1%;
       @media(min-width: 768px) {
         width: 10%;
+        margin-right: 5%;
       }
     }
     &--pagination {
       align-self: center;
+      order: -1;
       @media(min-width: 768px) {
         width: 10%;
         margin-left: auto;
+        order: 0;
       }
     }
+  }
+  &__dropdowns {
+    display: flex;
+    margin-bottom: 20px;
   }
 }

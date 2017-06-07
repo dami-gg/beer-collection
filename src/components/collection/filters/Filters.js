@@ -9,11 +9,12 @@ const TOTAL_PAGE_BUTTONS: number = 7;
 
 import { getRegularExpression } from "./filters.helpers";
 
-import './filters.scss';
+import "./filters.scss";
 
 class Filters extends PureComponent {
-  allBeerTypesLabel: string = 'All types';
-  
+  allBeerTypesLabel: string = "All types";
+  allBeerOriginsLabel: string = "All origins";
+
   props: {
     numItems: number,
     resultsPerPage: number,
@@ -21,7 +22,9 @@ class Filters extends PureComponent {
     onSearchFilterUpdate: Function,
     onPageChange: Function,
     allBeerTypes: Array<string>,
-    onTypeFilterUpdate: Function
+    onTypeFilterUpdate: Function,
+    allBeerOrigins: Array<string>,
+    onOriginFilterUpdate: Function
   };
 
   updateSearchFilter = (event: Object) => {
@@ -30,7 +33,15 @@ class Filters extends PureComponent {
   };
 
   updateTypeFilter = (type: string) => {
-    this.props.onTypeFilterUpdate(type !== this.allBeerTypesLabel ? type : undefined);
+    this.props.onTypeFilterUpdate(
+      type !== this.allBeerTypesLabel ? type : undefined
+    );
+  };
+
+  updateOriginFilter = (origin: string) => {
+    this.props.onOriginFilterUpdate(
+      origin !== this.allBeerOriginsLabel ? origin : undefined
+    );
   };
 
   render() {
@@ -41,13 +52,23 @@ class Filters extends PureComponent {
           changeHandler={this.updateSearchFilter}
         />
 
-        <DropdownFilter
-          className="filters__filter filters__filter--type"
-          type="type"
-          values={this.props.allBeerTypes}
-          allOptionsLabel={this.allBeerTypesLabel}
-          onOptionSelected={this.updateTypeFilter}
-        />
+        <div className="filters__dropdowns">
+          <DropdownFilter
+            className="filters__filter filters__filter--type"
+            type="type"
+            values={this.props.allBeerTypes}
+            allOptionsLabel={this.allBeerTypesLabel}
+            onOptionSelected={this.updateTypeFilter}
+          />
+
+          <DropdownFilter
+            className="filters__filter filters__filter--origin"
+            type="origin"
+            values={this.props.allBeerOrigins}
+            allOptionsLabel={this.allBeerOriginsLabel}
+            onOptionSelected={this.updateOriginFilter}
+          />
+        </div>
 
         <Pagination
           className="filters__filter filters__filter--pagination"

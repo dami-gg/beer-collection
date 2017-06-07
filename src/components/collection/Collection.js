@@ -4,6 +4,7 @@ import type { Beer } from "../../types/beer.types";
 type State = {
   searchFilterRegex?: Object,
   typeFilter?: string,
+  originFilter?: string,
   currentPage: number
 };
 
@@ -15,7 +16,7 @@ import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
 
-import {getAllBeerTypes} from '../../helpers/collection.helpers';
+import {getAllBeerTypes, getAllBeerOrigins} from '../../helpers/collection.helpers';
 import "./collection.scss";
 
 const RESULTS_PER_PAGE: number = 18;
@@ -27,6 +28,7 @@ export class Collection extends Component {
   redirectToAddPage: Function;
   updateTypeFilter: Function;
   allBeerTypes: Array<string>;
+  allBeerOrigins: Array<string>;
 
   props: {
     collection: Array<Beer>,
@@ -41,6 +43,7 @@ export class Collection extends Component {
     this.state = {
       searchFilterRegex: undefined,
       typeFilter: undefined,
+      originFilter: undefined,
       currentPage: 1
     };
 
@@ -52,6 +55,7 @@ export class Collection extends Component {
 
   componentWillMount(): void {
     this.allBeerTypes = getAllBeerTypes(this.props.collection);
+    this.allBeerOrigins = getAllBeerOrigins(this.props.collection);
   }
 
   updateSearchFilterRegex(searchFilterRegex: Object): void {
@@ -70,6 +74,10 @@ export class Collection extends Component {
     this.setState({typeFilter: type});
   };
 
+  updateOriginFilter = (origin: string): void => {
+    this.setState({originFilter: origin});
+  };
+
   render() {
     return (
       <div className="collection">
@@ -81,6 +89,8 @@ export class Collection extends Component {
           onPageChange={this.navigateToPage}
           allBeerTypes={this.allBeerTypes}
           onTypeFilterUpdate={this.updateTypeFilter}
+          allBeerOrigins={this.allBeerOrigins}
+          onOriginFilterUpdate={this.updateOriginFilter}
         />
 
         <Results
@@ -90,6 +100,8 @@ export class Collection extends Component {
           currentPage={this.state.currentPage}
           allBeerTypes={this.allBeerTypes}
           typeFilter={this.state.typeFilter}
+          allBeerOrigins={this.allBeerOrigins}
+          originFilter={this.state.originFilter}
         />
 
         <FloatingButton
