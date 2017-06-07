@@ -67,7 +67,7 @@ class DropdownFilter extends Component {
     return (
       <div className={`dropdown-filter dropdown-filter--${this.props.type} ${this.props.className}`}>
         <Button
-          classes="dropdown-filter__button"
+          className="dropdown-filter__button"
           color="blue"
           onClick={event => this.toggleContent()}
         >

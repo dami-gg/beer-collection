@@ -3,56 +3,46 @@
   justify-content: center;
   width: 100%;
   padding: 5px 10px;
-
   @media(min-width: 768px) {
     width: 25%;
+    margin-bottom: 25px;
   }
-
   &__card {
     background-color: white;
     display: flex;
     align-items: center;
     padding: 10px;
     width: 100%;
-
     @media(min-width: 768px) {
       flex-direction: column;
       text-align: center;
       width: 50%;
     }
   }
-
   &__image-wrapper {
     width: 40%;
-
     @media(min-width: 768px) {
       width: auto;
     }
   }
-
   &__image {
     width: 80px;
     height: 80px;
-
     @media(min-width: 768px) {
       width: 150px;
       height: 150px;
     }
   }
-
   &__title-wrapper {
     width: 60%;
-
     @media(min-width: 768px) {
       width: auto;
     }
   }
-
   &__title {
     color: black;
     font-size: 16px;
     padding-top: 10px;
-
     @media(min-width: 768px) {
       font-size: 18px;
     }

@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 
 import Dashboard from "../dashboard/Dashboard";
 
+import origin from '../../assets/images/origin.png';
+
 const PAGE_OPTIONS: Array<Object> = [
   {
     title: "Rating",
@@ -12,7 +14,7 @@ const PAGE_OPTIONS: Array<Object> = [
   {
     title: "Origin",
     url: "/origin",
-    image: "https://unsplash.it/150/150" // TODO
+    image: origin
   }
 ];
 

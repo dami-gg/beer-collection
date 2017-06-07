@@ -59,7 +59,7 @@ export class Login extends Component {
                         placeholder="Password">
                     </FormField>
                     <Button color="green"
-                            classes="button--sign-in"
+                            className="button--sign-in"
                             type="submit">
                       Sign in
                     </Button>

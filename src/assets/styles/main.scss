@@ -1,6 +1,6 @@
 @import "normalize";
 body {
-  background: url('../images/login-background.jpg') no-repeat center top fixed;
+  background: url('../images/background.jpg') no-repeat center top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -10,6 +10,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
+  overflow-y: scroll;
 }
 
 *,

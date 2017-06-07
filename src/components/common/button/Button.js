@@ -8,7 +8,7 @@ class Button extends PureComponent {
   props: {
     type?: string,
     color: string,
-    classes?: string,
+    className?: string,
     onClick: Function,
     children: any
   };
@@ -16,7 +16,7 @@ class Button extends PureComponent {
   render() {
     return (
         <button type={this.props.type || "button"}
-                className={`button button--${this.props.color} ${this.props.classes}`}
+                className={`button button--${this.props.color} ${this.props.className}`}
                 onClick={event => this.props.onClick && this.props.onClick(event)}>
           {this.props.children}
         </button>
