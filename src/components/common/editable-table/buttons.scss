@@ -1,0 +1,15 @@
+.buttons {
+  display: flex;
+  align-items: flex-end;
+  width: 170px;
+  .button {
+    width: 70px;
+    margin-right: 15px;
+    &--shown {
+      display: block;
+    }
+    &--hidden {
+      display: none;
+    }
+  }
+}

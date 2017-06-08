@@ -49,6 +49,7 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
       ];
 
     case DELETE_BEER_FROM_STATE:
+      debugger;
       index = state.findIndex(element => element.id === action.beer.id);
 
       return [

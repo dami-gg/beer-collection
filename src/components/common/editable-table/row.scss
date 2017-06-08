@@ -1,4 +1,4 @@
-.editable-table__row {
+.row {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,26 +10,14 @@
   height: 60px;
   padding-left: 15px;
   padding-right: 15px;
-  &--even {
+  &--light {
     background-color: white;
   }
-  &--odd {
+  &--dark {
     background-color: lightgray;
+  }
+  &--edit {
+    background-color: lightblue;
   }
 }
 
-.editable-table__buttons {
-  display: flex;
-  align-items: flex-end;
-  width: 170px;
-  .button {
-    width: 70px;
-    margin-right: 15px;
-    &--shown {
-      display: block;
-    }
-    &--hidden {
-      display: none;
-    }
-  }
-}

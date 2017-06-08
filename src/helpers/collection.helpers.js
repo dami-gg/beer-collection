@@ -19,3 +19,4 @@ export const getAllBeerOrigins = (collection: Array<Beer>) =>
     }
     return accumulator;
   }, []);
+

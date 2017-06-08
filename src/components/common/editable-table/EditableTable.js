@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 
-import EditableRow from "./EditableRow";
+import Row from "./Row";
 
 import "./editable-table.scss";
 
@@ -9,29 +9,39 @@ class EditableTable extends PureComponent {
   props: {
     columns: Array<Object>,
     rows: Array<Object>,
-    onSave: Function
+    onEdit: Function,
+    onCreate: Function,
+    onDelete: Function
   };
 
   getHeader() {
-    return this.props.columns.map((column: string, index: number) =>
-      this.getCell(column.name, index)
-    );
+    return this.props.columns.map((column: Object, index: number) => (
+      <div className="editable-table__header__column" key={index}>
+        {column.name}
+      </div>
+    ));
   }
 
   getRows() {
     return this.props.rows.map((row: Object, index: number) => (
-      <EditableRow
+      <Row
         row={row}
+        type={index % 2 === 0 ? "light" : "dark"}
         key={index}
-        orderClass={index % 2 === 0 ? "even" : "odd"}
         columns={this.props.columns}
-        onSave={this.props.onSave}
+        onSave={this.props.onEdit}
+        onDelete={this.props.onDelete}
       />
     ));
   }
 
-  getCell(cell: string, index: number) {
-    return <div className="editable-table__cell" key={index}>{cell}</div>;
+  getExtraRow() {
+    return <Row
+        row={{}}
+        type="extra"
+        columns={this.props.columns}
+        onSave={this.props.onCreate}
+      />;
   }
 
   render() {
@@ -40,6 +50,7 @@ class EditableTable extends PureComponent {
         <div className="editable-table__header">
           {this.getHeader()}
         </div>
+        {this.getExtraRow()}
         {this.getRows()}
       </div>
     );

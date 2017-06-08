@@ -3,8 +3,13 @@ import type { Beer } from "../../../types/beer.types";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { v4 } from "node-uuid";
 
-import {updateBeer} from '../../../actions/collection.actions';
+import {
+  addBeer,
+  updateBeer,
+  deleteBeer
+} from "../../../actions/collection.actions";
 import EditableTable from "../../common/editable-table/EditableTable";
 
 import "./multi-edit.scss";
@@ -16,17 +21,19 @@ class MultiEdit extends Component {
 
   constructor(props) {
     super(props);
-    
+
+    this.createBeer = this.createBeer.bind(this);
     this.editBeer = this.editBeer.bind(this);
+    this.deleteBeer = this.deleteBeer.bind(this);
   }
 
   getColumns(): Array<any> {
     return [
-      { name: "Name", id: 'name', editable: true, type: 'text' },
-      { name: "Type", id: 'type', editable: true, type: 'text' },
-      { name: "Origin", id: 'origin', editable: true, type: 'text' },
-      { name: "Rating", id: 'rating', editable: true, type: 'number' },
-      { name: "Image", id: 'image', editable: false, type: 'image' }
+      { name: "Name", id: "name", editable: true, type: "text" },
+      { name: "Type", id: "type", editable: true, type: "text" },
+      { name: "Origin", id: "origin", editable: true, type: "text" },
+      { name: "Rating", id: "rating", editable: true, type: "number" },
+      { name: "Image", id: "image", editable: false, type: "image" }
     ];
   }
 
@@ -42,12 +49,30 @@ class MultiEdit extends Component {
     ]);
   }
 
+  createBeer(newBeer: Beer) {
+    newBeer.id = v4();
+    newBeer.image = "";
+    this.props.addBeer(newBeer);
+  }
+
   editBeer(editedBeer: Beer) {
     this.props.updateBeer(editedBeer);
   }
 
+  deleteBeer(deletedBeer: Beer) {
+    this.props.deleteBeer(deletedBeer);
+  }
+
   render() {
-    return <EditableTable columns={this.getColumns()} rows={this.props.collection} onSave={this.editBeer} />;
+    return (
+      <EditableTable
+        columns={this.getColumns()}
+        rows={this.props.collection}
+        onCreate={this.createBeer}
+        onEdit={this.editBeer}
+        onDelete={this.deleteBeer}
+      />
+    );
   }
 }
 
@@ -57,10 +82,16 @@ const mapStateToProps = (state: Object): Object => ({
 
 const mapDispatchToProps = (dispatch: Function): Object => {
   return {
+    addBeer: (beer: Beer) => {
+      dispatch(addBeer(beer));
+    },
     updateBeer: (beer: Beer) => {
       dispatch(updateBeer(beer));
+    },
+    deleteBeer: (beer: Beer) => {
+      dispatch(deleteBeer(beer));
     }
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MultiEdit);

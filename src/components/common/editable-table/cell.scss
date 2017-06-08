@@ -1,0 +1,28 @@
+.cell {
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 180px;
+  &--edit {
+    padding-left: 0;
+  }
+  &__image {
+    max-height: 50px;
+    max-width: 50px;
+  }
+  &__number {
+    padding-left: 15px;
+  }
+  &__input {
+    padding-left: 30px;
+    height: 40px;
+    border: 1px solid black;
+    background-color: white;
+    &--number {
+      padding-left: 45px;
+    }
+  }
+}
