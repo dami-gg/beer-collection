@@ -1,18 +1,21 @@
 // @flow
-import type {Beer} from '../types/beer.types';
+import type { Beer } from "../types/beer.types";
 
 import {
-    ADD_BEER_TO_STATE,
-    UPDATE_BEER_IN_STATE,
-    DELETE_BEER_FROM_STATE,
-    ADD_BEER_ERROR,
-    UPDATE_BEER_ERROR,
-    DELETE_BEER_ERROR
-} from '../actions/collection.actions';
+  ADD_BEER_TO_STATE,
+  UPDATE_BEER_IN_STATE,
+  DELETE_BEER_FROM_STATE,
+  ADD_BEER_ERROR,
+  UPDATE_BEER_ERROR,
+  DELETE_BEER_ERROR
+} from "../actions/collection.actions";
 
 const initialState = [];
 
-const collection = (state: Array<Beer> = initialState, action: Object): Array<Beer> => {
+const collection = (
+  state: Array<Beer> = initialState,
+  action: Object
+): Array<Beer> => {
   let index: number;
 
   switch (action.type) {
@@ -23,39 +26,25 @@ const collection = (state: Array<Beer> = initialState, action: Object): Array<Be
       const newBeerName = action.beer.name.toLowerCase();
 
       if (lastBeer && newBeerName < lastBeer.name.toLowerCase()) {
-        index = state.findIndex(element => element.name.toLowerCase() > newBeerName);
+        index = state.findIndex(
+          element => element.name.toLowerCase() > newBeerName
+        );
 
-        return [
-          ...state.slice(0, index),
-          action.beer,
-          ...state.slice(index + 1)
-        ];
-      }
-
+        return [...state.slice(0, index), action.beer, ...state.slice(index)];
+      } 
       else {
-        return [
-          ...state,
-          action.beer
-        ];
+        return [...state, action.beer];
       }
 
     case UPDATE_BEER_IN_STATE:
       index = state.findIndex(element => element.id === action.beer.id);
 
-      return [
-        ...state.slice(0, index),
-        action.beer,
-        ...state.slice(index + 1)
-      ];
+      return [...state.slice(0, index), action.beer, ...state.slice(index + 1)];
 
     case DELETE_BEER_FROM_STATE:
-      debugger;
       index = state.findIndex(element => element.id === action.beer.id);
 
-      return [
-        ...state.slice(0, index),
-        ...state.slice(index + 1)
-      ];
+      return [...state.slice(0, index), ...state.slice(index + 1)];
 
     case ADD_BEER_ERROR:
     case UPDATE_BEER_ERROR:
