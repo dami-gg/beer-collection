@@ -38,10 +38,10 @@ class Row extends Component {
   }
 
   getCells() {
-    return this.props.columns.map((column: Object, index: number) => (
+    return this.props.columns.map((column: Object) => (
       <Cell
-        key={index}
-        content={this.state.editedRow[column.id]}
+        key={column.id}
+        content={this.state.editedRow[column.id] || ''}
         column={column}
         onChange={this.updateChanges}
         readOnly={this.state.readOnly}
@@ -85,7 +85,7 @@ class Row extends Component {
 
     if (this.isExtraRow()) {
       this.setState({
-        editedRow: this.props.row
+        editedRow: {}
       });
     } else {
       this.disableEditMode();

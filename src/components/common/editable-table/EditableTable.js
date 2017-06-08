@@ -15,8 +15,8 @@ class EditableTable extends PureComponent {
   };
 
   getHeader() {
-    return this.props.columns.map((column: Object, index: number) => (
-      <div className="editable-table__header__column" key={index}>
+    return this.props.columns.map((column: Object) => (
+      <div className="editable-table__header__column" key={column.id}>
         {column.name}
       </div>
     ));
@@ -27,7 +27,7 @@ class EditableTable extends PureComponent {
       <Row
         row={row}
         type={index % 2 === 0 ? "light" : "dark"}
-        key={index}
+        key={row.id}
         columns={this.props.columns}
         onSave={this.props.onEdit}
         onDelete={this.props.onDelete}
