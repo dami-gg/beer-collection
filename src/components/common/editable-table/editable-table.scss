@@ -1,27 +1,33 @@
 .editable-table {
   margin: 30px;
   &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-grow: 0;
-    flex-wrap: wrap;
-    width: 100%;
-    background-color: black;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px 185px 10px 10px;
-    &__column {
-      flex-grow: 1;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding-left: 30px;
-      padding-right: 20px;
-      width: 180px;
-      img {
-        max-height: 50px;
-        max-width: 50px;
+    display: none;
+    @media(min-width: 992px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-grow: 0;
+      flex-wrap: wrap;
+      width: 100%;
+      background-color: black;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px 185px 10px 10px;
+      &__column {
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding-left: 30px;
+        padding-right: 20px;
+        width: 180px;
+        &.mobile-hidden {
+          display: none;
+        }
+        img {
+          max-height: 50px;
+          max-width: 50px;
+        }
       }
     }
   }

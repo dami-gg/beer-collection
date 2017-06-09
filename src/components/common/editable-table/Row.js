@@ -17,8 +17,8 @@ class Row extends Component {
   props: {
     row: Object,
     columns: Array<Object>,
-    onSave: Function,
     type?: string,
+    onSave: Function,
     onDelete: Function
   };
 
@@ -41,7 +41,7 @@ class Row extends Component {
     return this.props.columns.map((column: Object) => (
       <Cell
         key={column.id}
-        content={this.state.editedRow[column.id] || ''}
+        content={this.state.editedRow[column.id]}
         column={column}
         onChange={this.updateChanges}
         readOnly={this.state.readOnly}

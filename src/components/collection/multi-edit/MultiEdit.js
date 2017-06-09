@@ -12,6 +12,8 @@ import {
 } from "../../../actions/collection.actions";
 import EditableTable from "../../common/editable-table/EditableTable";
 
+import { COLUMNS } from "./multi-edit.constants";
+
 import "./multi-edit.scss";
 
 class MultiEdit extends Component {
@@ -25,16 +27,6 @@ class MultiEdit extends Component {
     this.createBeer = this.createBeer.bind(this);
     this.editBeer = this.editBeer.bind(this);
     this.deleteBeer = this.deleteBeer.bind(this);
-  }
-
-  getColumns(): Array<any> {
-    return [
-      { name: "Name", id: "name", editable: true, type: "text" },
-      { name: "Type", id: "type", editable: true, type: "text" },
-      { name: "Origin", id: "origin", editable: true, type: "text" },
-      { name: "Rating", id: "rating", editable: true, type: "number" },
-      { name: "Image", id: "image", editable: false, type: "image" }
-    ];
   }
 
   getRows(): Array<Array<any>> {
@@ -66,7 +58,7 @@ class MultiEdit extends Component {
   render() {
     return (
       <EditableTable
-        columns={this.getColumns()}
+        columns={COLUMNS}
         rows={this.props.collection}
         onCreate={this.createBeer}
         onEdit={this.editBeer}

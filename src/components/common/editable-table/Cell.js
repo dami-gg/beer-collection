@@ -1,11 +1,11 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import "./cell.scss";
 
-class Cell extends Component {
+class Cell extends PureComponent {
   props: {
-    content: Object,
+    content: string,
     column: Object,
     onChange: Function,
     readOnly: boolean
@@ -14,11 +14,9 @@ class Cell extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: props.content || "" };
-
     this.handleChange = this.handleChange.bind(this);
   }
-
+  
   getContent() {
     return this.props.readOnly || !this.props.column.editable
       ? this.getReadOnlyContent()
@@ -52,7 +50,7 @@ class Cell extends Component {
   }
 
   getReadOnlyText() {
-    return <span className="cell__number">{this.props.content}</span>;
+    return <span className="cell__text">{this.props.content}</span>;
   }
 
   getReadOnlyImage() {
@@ -70,7 +68,8 @@ class Cell extends Component {
       <input
         className={`cell__input cell__input--${this.props.column.type}`}
         type="text"
-        value={this.state.value}
+        value={this.props.content ? this.props.content : ''}
+        placeholder={this.props.column.name}
         onChange={this.handleChange}
       />
     );
@@ -88,7 +87,9 @@ class Cell extends Component {
 
   render() {
     return (
-      <div className={`cell cell--${this.props.readOnly ? "read" : "edit"}`}>
+      <div
+        className={`cell ${this.props.column.hiddenOnMobile ? "mobile-hidden" : ""}`}
+      >
         {this.getContent()}
       </div>
     );

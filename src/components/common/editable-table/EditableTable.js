@@ -16,7 +16,10 @@ class EditableTable extends PureComponent {
 
   getHeader() {
     return this.props.columns.map((column: Object) => (
-      <div className="editable-table__header__column" key={column.id}>
+      <div
+        className={`editable-table__header__column ${column.hiddenOnMobile ? "mobile-hidden" : ""}`}
+        key={column.id}
+      >
         {column.name}
       </div>
     ));
@@ -36,12 +39,14 @@ class EditableTable extends PureComponent {
   }
 
   getExtraRow() {
-    return <Row
+    return (
+      <Row
         row={{}}
         type="extra"
         columns={this.props.columns}
         onSave={this.props.onCreate}
-      />;
+      />
+    );
   }
 
   render() {
