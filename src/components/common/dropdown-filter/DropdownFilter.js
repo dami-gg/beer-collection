@@ -1,12 +1,15 @@
 // @flow
 
 type State = {
-  showContent: boolean,
-  selectedOption: string
+  selectedOption: string,
+  showOptions: boolean
 };
 
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
+
 import Button from "../button/Button";
+import Options from "./Options";
 
 import "./dropdown-filter.scss";
 
@@ -14,6 +17,7 @@ class DropdownFilter extends Component {
   state: State;
 
   props: {
+    id?: string,
     type: string,
     className: string,
     values: Array<string>,
@@ -25,47 +29,44 @@ class DropdownFilter extends Component {
     super(props);
 
     this.state = {
-      showContent: false,
-      selectedOption: this.props.allOptionsLabel || this.props.values[0]
+      selectedOption: this.props.allOptionsLabel || this.props.values[0],
+      showOptions: false
     };
+
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("click", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleClickOutside);
+  }
+
+  handleClickOutside(event) {
+    const domNode = ReactDOM.findDOMNode(this);
+
+    if (!domNode || !domNode.contains(event.target)) {
+      this.setState({ showOptions: false });
+    }
   }
 
   handleOptionSelection = (option?: string) => {
     this.props.onOptionSelected(option);
-    this.setState({selectedOption: option});
+    this.setState({ selectedOption: option });
     this.toggleContent();
-  }
-
-  getOptions() {
-    let options = this.props.values.map((value: string, index: number) => (
-      <li
-        className="dropdown-filter__option"
-        key={index + 1}
-        onClick={event => this.handleOptionSelection(value)}
-      >
-        {value}
-      </li>
-    ));
-    if (this.props.allOptionsLabel) {
-      options.unshift(
-        <li
-          className="dropdown-filter__option dropdown-filter__option--default"
-          key={0}
-          onClick={event => this.handleOptionSelection(this.props.allOptionsLabel)}>
-          {this.props.allOptionsLabel}
-        </li>
-      );
-    }
-    return options;
-  }
+  };
 
   toggleContent() {
-    this.setState({ showContent: !this.state.showContent });
+    this.setState({ showOptions: !this.state.showOptions });
   }
 
   render() {
     return (
-      <div className={`dropdown-filter dropdown-filter--${this.props.type} ${this.props.className}`}>
+      <div
+        className={`dropdown-filter dropdown-filter--${this.props.type} ${this.props.className}`}
+      >
         <Button
           className="dropdown-filter__button"
           color="blue"
@@ -74,11 +75,12 @@ class DropdownFilter extends Component {
           {this.state.selectedOption}
           <span className="dropdown-filter__arrow" />
         </Button>
-        <ul
-          className={`dropdown-filter__options ${this.state.showContent ? "shown" : "hidden"}`}
-        >
-          {this.getOptions()}
-        </ul>
+        <Options
+          values={this.props.values}
+          allOptionsLabel={this.props.allOptionsLabel}
+          onOptionSelected={this.handleOptionSelection}
+          visible={this.state.showOptions}
+        />
       </div>
     );
   }
