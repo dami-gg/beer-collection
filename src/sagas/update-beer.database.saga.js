@@ -22,10 +22,10 @@ function putBeerToDatabase(beer) {
         .update({
           id: beer.id,
           name: beer.name,
-          type: beer.type,
-          origin: beer.origin,
-          image: beer.image,
-          rating: beer.rating
+          type: beer.type || '',
+          origin: beer.origin || '',
+          image: beer.image || '',
+          rating: beer.rating || ''
         })
         .then(() => resolve())
         .catch(error => reject(error));
