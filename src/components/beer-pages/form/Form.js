@@ -1,7 +1,7 @@
 // @flow
 
 type State = {
-  imageFile?: Object,
+  imageFile: any,
   thumbnail: string
 };
 
@@ -24,6 +24,7 @@ import "./form.scss";
 export class Form extends Component {
   state: State;
   preSubmit: Function;
+  loadImage: Function;
   getThumbnail: Function;
 
   props: {

@@ -8,8 +8,8 @@ export const getResults = (
   filterRegex: Object,
   currentPage: number,
   resultsPerPage: number,
-  typeFilter: string,
-  originFilter: string
+  typeFilter?: string,
+  originFilter?: string
 ): Array<Beer> => {
   const results = collection.filter((beer: Beer) => {
     if (filterRegex && !filterRegex.test(beer.name)) {
@@ -31,7 +31,7 @@ export const getResults = (
 };
 
 export const getBeerTypeLabelStyle = (
-  type: string,
+  type?: string,
   allBeerTypes: Array<string>
 ) => {
   const typeIndex: number = allBeerTypes.findIndex(

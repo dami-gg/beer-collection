@@ -16,8 +16,15 @@ import { COLUMNS } from "./multi-edit.constants";
 import "./multi-edit.scss";
 
 class MultiEdit extends Component {
+  createBeer: Function;
+  editBeer: Function;
+  deleteBeer: Function;
+
   props: {
-    collection: Array<Beer>
+    collection: Array<Beer>,
+    addBeer: Function,
+    updateBeer: Function,
+    deleteBeer: Function
   };
 
   constructor(props) {
@@ -40,7 +47,7 @@ class MultiEdit extends Component {
     ]);
   }
 
-  createBeer(newBeer: Beer) {    
+  createBeer(newBeer: Beer) {
     this.props.addBeer(newBeer);
   }
 

@@ -8,6 +8,8 @@ import { readFile } from "./image-uploader.helpers";
 import "./image-uploader.scss";
 
 class ImageUploader extends PureComponent {
+  handleImageSelection: Function;
+  
   props: {
     onImageSelected: Function,
     thumbnail: string,
@@ -18,7 +20,7 @@ class ImageUploader extends PureComponent {
     buttonLabel?: string
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.handleImageSelection = this.handleImageSelection.bind(this);

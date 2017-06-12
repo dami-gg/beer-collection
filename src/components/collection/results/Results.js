@@ -32,6 +32,7 @@ class Results extends PureComponent {
       typeFilter,
       originFilter
     } = this.props;
+
     const results = getResults(
       collection,
       searchFilterRegex,
@@ -49,7 +50,7 @@ class Results extends PureComponent {
               <div
                 className="beer__type"
                 style={getBeerTypeLabelStyle(
-                  beer.type,
+                  beer.type || '',
                   this.props.allBeerTypes
                 )}
               >

@@ -15,6 +15,7 @@ import "./dropdown-filter.scss";
 
 class DropdownFilter extends Component {
   state: State;
+  handleClickOutside: Function;
 
   props: {
     id?: string,
@@ -44,7 +45,7 @@ class DropdownFilter extends Component {
     document.removeEventListener("click", this.handleClickOutside);
   }
 
-  handleClickOutside(event) {
+  handleClickOutside(event: Object) {
     const domNode = ReactDOM.findDOMNode(this);
 
     if (!domNode || !domNode.contains(event.target)) {

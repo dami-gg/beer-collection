@@ -7,7 +7,7 @@ import {withRouter} from 'react-router';
 
 import {updateBeer} from '../../../actions/collection.actions';
 import {setCurrentBeer, resetCurrentBeer} from '../../../actions/navigation.actions';
-import {findItemInCollectionById} from '../../../helpers/collection.helpers';
+import {findBeerInCollectionById} from '../../../helpers/collection.helpers';
 import Page from '../Page';
 
 export class View extends Component {
@@ -25,7 +25,7 @@ export class View extends Component {
 
   componentWillMount(): void {
     // Find beer in collection and store it in state
-    const currentBeer: Beer = findItemInCollectionById(this.props.match.params.beerId, this.props.collection);
+    const currentBeer: Beer = findBeerInCollectionById(this.props.match.params.beerId, this.props.collection);
     this.props.setCurrentBeer(currentBeer);
   }
 

@@ -1,7 +1,8 @@
 // @flow
 type State = {
   readOnly: boolean,
-  editedRow: Object
+  editedRow: Object,
+  imagesToUpload: Array<Object>
 };
 
 import React, { Component } from "react";
@@ -17,16 +18,22 @@ import "./row.scss";
 
 class Row extends Component {
   state: State;
+  enableEditMode: Function;
+  finishEdition: Function;
+  discardChanges: Function;
+  updateChanges: Function;
+  deleteRow: Function;
+  enqueueImage: Function;
 
   props: {
     row: Object,
     columns: Array<Object>,
     type?: string,
     onSave: Function,
-    onDelete: Function
+    onDelete?: Function
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.state = {
@@ -72,7 +79,7 @@ class Row extends Component {
     });
   }
 
-  updateChanges(column, value, imageFile) {
+  updateChanges(column: Object, value: any) {
     this.setState({
       editedRow: { ...this.state.editedRow, [column.id]: value }
     });
@@ -113,7 +120,9 @@ class Row extends Component {
 
   deleteRow() {
     // TODO Add confirmation message
-    this.props.onDelete(this.props.row);
+    if (this.props.onDelete) {
+      this.props.onDelete(this.props.row);
+    }
   }
 
   render() {

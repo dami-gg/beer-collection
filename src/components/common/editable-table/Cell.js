@@ -1,4 +1,8 @@
 // @flow
+type State = {
+  thumbnail: any
+};
+
 import React, { Component } from "react";
 
 import ImageUploader from "../../common/image-uploader/ImageUploader";
@@ -6,6 +10,11 @@ import ImageUploader from "../../common/image-uploader/ImageUploader";
 import "./cell.scss";
 
 class Cell extends Component {
+  state: State;
+  handleChange: Function;
+  loadImage: Function;
+  getThumbnail: Function;
+
   props: {
     content: string,
     column: Object,
@@ -14,7 +23,7 @@ class Cell extends Component {
     readOnly: boolean
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.state = {
@@ -121,7 +130,7 @@ class Cell extends Component {
     );
   }
 
-  handleChange(event) {
+  handleChange(event: Object): void {
     const value = event.target.value;
     this.props.onChange(this.props.column, value);
   }

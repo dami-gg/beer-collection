@@ -18,7 +18,7 @@ export class Add extends Component {
   };
 
   submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
-    let beer: Beer = {
+    let beer = {
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin,
