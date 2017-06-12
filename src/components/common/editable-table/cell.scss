@@ -18,10 +18,9 @@
   }
   &.mobile-hidden {
     display: none;
-  }
-  &__image {
-    max-height: 50px;
-    max-width: 50px;
+    @media(min-width: 1200px) {
+      display: flex;
+    }
   }
   &__input {
     width: 96%;
@@ -36,6 +35,17 @@
       margin-left: -4%;
       padding-left: 4%;
       text-align: left;
+    }
+  }
+  &__image {
+    max-height: 50px;
+    max-width: 50px;
+  }
+  &__image-upload {
+    display: flex;
+    align-items: center;
+    .cell__image {
+      margin-right: 10px;
     }
   }
 }

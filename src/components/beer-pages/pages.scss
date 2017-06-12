@@ -2,11 +2,9 @@
   display: flex;
   flex-direction: column;
   padding: 0 15%;
-
   &__heading {
     margin-bottom: 30px;
   }
-
   .form-control[disabled] {
     cursor: default;
   }

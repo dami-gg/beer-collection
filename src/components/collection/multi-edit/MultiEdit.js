@@ -3,15 +3,14 @@ import type { Beer } from "../../../types/beer.types";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { v4 } from "node-uuid";
+
+import EditableTable from "../../common/editable-table/EditableTable";
 
 import {
   addBeer,
   updateBeer,
   deleteBeer
 } from "../../../actions/collection.actions";
-import EditableTable from "../../common/editable-table/EditableTable";
-
 import { COLUMNS } from "./multi-edit.constants";
 
 import "./multi-edit.scss";
@@ -41,9 +40,7 @@ class MultiEdit extends Component {
     ]);
   }
 
-  createBeer(newBeer: Beer) {
-    newBeer.id = v4();
-    newBeer.image = "";
+  createBeer(newBeer: Beer) {    
     this.props.addBeer(newBeer);
   }
 

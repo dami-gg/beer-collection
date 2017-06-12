@@ -18,19 +18,19 @@
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-
+  &:focus {
+    outline: none;
+  }
   &--green {
     color: white;
     background-color: #5cb85c;
     border-color: #4cae4c;
   }
-
   &--red {
     color: white;
     background-color: #d9534f;
     border-color: #d43f3a;
   }
-
   &--blue {
     color: white;
     background-color: #337ab7;

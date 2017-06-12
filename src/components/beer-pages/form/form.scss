@@ -1,43 +1,39 @@
 .beer-form {
   display: flex;
   flex-direction: column;
-
   &__inputs {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     @media(min-width: 768px) {
       flex-direction: row;
       justify-content: space-between;
     }
   }
-
   &__fields {
     display: flex;
     flex-direction: column;
     order: 1;
     margin-top: 25px;
-
     @media(min-width: 768px) {
       width: 50%;
       order: 0;
       margin-top: 0;
     }
   }
-
   &__buttons {
     display: flex;
     justify-content: center;
-
     @media(min-width: 768px) {
       justify-content: flex-start;
     }
-
     .button {
       margin-right: 15px;
       width: 150px;
       height: 40px;
     }
+  }
+  .image-uploader__uploader {
+    margin-top: 20px;
   }
 }

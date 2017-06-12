@@ -5,24 +5,25 @@ type State = {
   thumbnail: string
 };
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {reduxForm} from 'redux-form';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { reduxForm } from "redux-form";
 
-import Button from '../../common/button/Button';
-import FormFields from '../form-fields/FormFields';
-import ImageUploader from '../image-uploader/ImageUploader'
+import Button from "../../common/button/Button";
+import FormFields from "../form-fields/FormFields";
+import ImageUploader from "../../common/image-uploader/ImageUploader";
 
-import type {BeerFormValues} from '../../../types/beer.types';
+import type { BeerFormValues } from "../../../types/beer.types";
 
-import {readFile, handleImageUpload} from './form.helpers';
+import {
+  handleImageUpload
+} from "../../common/image-uploader/image-uploader.helpers";
 
-import './form.scss';
+import "./form.scss";
 
 export class Form extends Component {
   state: State;
   preSubmit: Function;
-  handleImageSelection: Function;
   getThumbnail: Function;
 
   props: {
@@ -40,11 +41,11 @@ export class Form extends Component {
 
     this.state = {
       imageFile: undefined,
-      thumbnail: ''
+      thumbnail: ""
     };
 
     this.preSubmit = this.preSubmit.bind(this);
-    this.handleImageSelection = this.handleImageSelection.bind(this);
+    this.loadImage = this.loadImage.bind(this);
     this.getThumbnail = this.getThumbnail.bind(this);
   }
 
@@ -56,54 +57,47 @@ export class Form extends Component {
    */
   preSubmit(formValues: BeerFormValues) {
     handleImageUpload(this.state.imageFile)
-        .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
-        .catch(error => console.log(error)); // TODO Handle error
+      .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
+      .catch(error => console.log(error)); // TODO Handle error
   }
 
-  handleImageSelection(event: Object) {
-    event.persist();
-    const imageFile = event.target.files[0];
-
-    this.setState({imageFile});
-
-    readFile(imageFile, this.getThumbnail);
+  loadImage(imageFile: Object) {
+    this.setState({ imageFile });
   }
 
   getThumbnail(thumbnail: string) {
-    this.setState({thumbnail});
+    this.setState({ thumbnail });
   }
 
   render() {
     return (
-        <form className="beer-form"
-              onSubmit={this.props.handleSubmit(this.preSubmit)}>
-          <div className="beer-form__inputs">
-            <FormFields
-                readOnly={this.props.readOnly}>
-            </FormFields>
+      <form
+        className="beer-form"
+        onSubmit={this.props.handleSubmit(this.preSubmit)}
+      >
+        <div className="beer-form__inputs">
+          <FormFields readOnly={this.props.readOnly} />
 
-            <ImageUploader
-                handleImageSelection={this.handleImageSelection}
-                thumbnail={this.state.thumbnail}
-                readOnly={this.props.readOnly}
-                currentImage={this.props.currentImage}>
-            </ImageUploader>
-          </div>
+          <ImageUploader
+            onImageSelected={this.loadImage}
+            thumbnail={this.state.thumbnail}
+            readOnly={this.props.readOnly}
+            currentImage={this.props.currentImage}
+            onImageLoaded={this.getThumbnail}
+            buttonLabel={"Choose image"}
+          />
+        </div>
 
-          <div className="beer-form__buttons">
-            <Button
-                type="submit"
-                color="green">
-              { this.props.submitButtonLabel || 'Save'}
-            </Button>
+        <div className="beer-form__buttons">
+          <Button type="submit" color="green">
+            {this.props.submitButtonLabel || "Save"}
+          </Button>
 
-            <Button
-                color="red"
-                onClick={this.props.onCancel}>
-              { this.props.cancelButtonLabel || 'Cancel'}
-            </Button>
-          </div>
-        </form>
+          <Button color="red" onClick={this.props.onCancel}>
+            {this.props.cancelButtonLabel || "Cancel"}
+          </Button>
+        </div>
+      </form>
     );
   }
 }
@@ -112,9 +106,8 @@ const mapStateToProps = (state: Object): Object => ({
   initialValues: state.navigation.currentBeer || {}
 });
 
-export default connect(
-    mapStateToProps
-)(reduxForm({
-  form: 'beerForm'
-})(Form));
-
+export default connect(mapStateToProps)(
+  reduxForm({
+    form: "beerForm"
+  })(Form)
+);

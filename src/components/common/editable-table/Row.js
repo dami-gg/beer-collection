@@ -9,6 +9,10 @@ import React, { Component } from "react";
 import Cell from "./Cell";
 import Buttons from "./Buttons";
 
+import {
+  handleBatchImageUpload
+} from "../../common/image-uploader/image-uploader.helpers";
+
 import "./row.scss";
 
 class Row extends Component {
@@ -27,14 +31,16 @@ class Row extends Component {
 
     this.state = {
       readOnly: props.type === "extra" ? false : true,
-      editedRow: props.row
+      editedRow: props.row,
+      imagesToUpload: []
     };
 
     this.enableEditMode = this.enableEditMode.bind(this);
-    this.saveChanges = this.saveChanges.bind(this);
+    this.finishEdition = this.finishEdition.bind(this);
     this.discardChanges = this.discardChanges.bind(this);
     this.updateChanges = this.updateChanges.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
+    this.enqueueImage = this.enqueueImage.bind(this);
   }
 
   getCells() {
@@ -44,6 +50,7 @@ class Row extends Component {
         content={this.state.editedRow[column.id]}
         column={column}
         onChange={this.updateChanges}
+        onImageChange={this.enqueueImage}
         readOnly={this.state.readOnly}
       />
     ));
@@ -65,31 +72,43 @@ class Row extends Component {
     });
   }
 
-  updateChanges(columnId, value) {
+  updateChanges(column, value, imageFile) {
     this.setState({
-      editedRow: { ...this.state.editedRow, [columnId]: value }
+      editedRow: { ...this.state.editedRow, [column.id]: value }
+    });
+  }
+
+  enqueueImage(imageFile: Object) {
+    this.setState({
+      imagesToUpload: [...this.state.imagesToUpload, imageFile]
     });
   }
 
   discardChanges() {
-    if (!this.isExtraRow()) {
-      this.disableEditMode();
-    }
-    this.setState({
-      editedRow: this.props.row
-    });
-  }
-
-  saveChanges() {
-    this.props.onSave(this.state.editedRow);
-
     if (this.isExtraRow()) {
       this.setState({
-        editedRow: {}
+        editedRow: this.props.row
       });
     } else {
       this.disableEditMode();
     }
+  }
+
+  finishEdition() {
+    if (this.state.imagesToUpload.length > 0) {
+      handleBatchImageUpload(this.state.imagesToUpload)
+        .then(imageUrl => {
+          this.saveChanges();
+        })
+        .catch(error => console.log(error));
+    } else {
+      this.saveChanges();
+    }
+  }
+
+  saveChanges() {
+    this.props.onSave(this.state.editedRow);
+    this.discardChanges();
   }
 
   deleteRow() {
@@ -107,7 +126,7 @@ class Row extends Component {
           readOnly={this.state.readOnly}
           onEdit={this.enableEditMode}
           onCancel={this.discardChanges}
-          onSave={this.saveChanges}
+          onSave={this.finishEdition}
           onDelete={this.deleteRow}
         />
       </div>

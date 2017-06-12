@@ -26,7 +26,7 @@ export const COLUMNS: Array<Object> = [
   {
     name: "Image",
     id: "image",
-    editable: false,
+    editable: true,
     type: "image",
     hiddenOnMobile: true
   }

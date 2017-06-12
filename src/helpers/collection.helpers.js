@@ -1,6 +1,8 @@
 // @flow
 import type { Beer } from "../types/beer.types";
 
+import { v4 } from "node-uuid";
+
 export const findItemInCollectionById = (id: string, collection: Array<Beer>) =>
   collection.find(element => element.id === id);
 
@@ -20,3 +22,12 @@ export const getAllBeerOrigins = (collection: Array<Beer>) =>
     return accumulator;
   }, []);
 
+export const prepareNewBeerForStorage = (beer: Beer) => {
+  beer.id = v4();
+  beer.type = beer.type || '';
+  beer.origin = beer.origin || '';
+  beer.image = beer.image || '';
+  beer.rating = beer.rating || '';
+
+  return beer;
+};

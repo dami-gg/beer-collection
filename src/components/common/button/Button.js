@@ -9,7 +9,7 @@ class Button extends PureComponent {
     type?: string,
     color: string,
     className?: string,
-    onClick: Function,
+    onClick?: Function,
     children: any
   };
 

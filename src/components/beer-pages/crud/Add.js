@@ -1,13 +1,12 @@
 // @flow
-import type {Beer, BeerFormValues} from '../../../types/beer.types';
+import type { Beer, BeerFormValues } from "../../../types/beer.types";
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
-import {v4} from 'node-uuid';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
-import {addBeer} from '../../../actions/collection.actions';
-import Page from '../Page';
+import { addBeer } from "../../../actions/collection.actions";
+import Page from "../Page";
 
 export class Add extends Component {
   props: {
@@ -20,7 +19,6 @@ export class Add extends Component {
 
   submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
     let beer: Beer = {
-      id: v4(),
       name: formValues.name,
       type: formValues.type,
       origin: formValues.origin,
@@ -30,25 +28,25 @@ export class Add extends Component {
 
     this.props.addBeer(beer);
     this.redirectToCollection();
-  }
+  };
 
   cancelHandler = (): void => {
     this.redirectToCollection();
-  }
+  };
 
   redirectToCollection = (): void => {
-    this.props.history.push('/collection');
-  }
+    this.props.history.push("/collection");
+  };
 
   render() {
     return (
-        <Page
-            heading="Add a new beer to your collection"
-            submitHandler={this.submitHandler}
-            cancelHandler={this.cancelHandler}
-            submitButtonLabel="Save"
-            cancelButtonLabel="Cancel">
-        </Page>
+      <Page
+        heading="Add a new beer to your collection"
+        submitHandler={this.submitHandler}
+        cancelHandler={this.cancelHandler}
+        submitButtonLabel="Save"
+        cancelButtonLabel="Cancel"
+      />
     );
   }
 }
@@ -62,12 +60,7 @@ const mapDispatchToProps = (dispatch: Function): Object => {
     addBeer: (beer: Beer) => {
       dispatch(addBeer(beer));
     }
-  }
+  };
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Add)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Add));
