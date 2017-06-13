@@ -7,43 +7,28 @@ import "./buttons.scss";
 
 class Buttons extends PureComponent {
   props: {
-    readOnly: boolean,
-    onEdit: Function,
-    onCancel: Function,
-    onSave: Function,
-    onDelete: Function
+    onPositiveButtonClick: Function,
+    onNegativeButtonClick: Function,
+    positiveButtonLabel: string,
+    negativeButtonLabel: string,
+    positiveButtonColor: string,
+    negativeButtonColor: string
   };
 
   render() {
     return (
       <div className="buttons">
         <Button
-          className={`button--${this.props.readOnly ? "shown" : "hidden"}`}
-          color="blue"
-          onClick={event => this.props.onEdit()}
+          color={this.props.positiveButtonColor}
+          onClick={event => this.props.onPositiveButtonClick()}
         >
-          Edit
+          {this.props.positiveButtonLabel}
         </Button>
         <Button
-          className={`button--${!this.props.readOnly ? "shown" : "hidden"}`}
-          color="green"
-          onClick={event => this.props.onSave()}
+          color={this.props.negativeButtonColor}
+          onClick={event => this.props.onNegativeButtonClick()}
         >
-          Save
-        </Button>
-        <Button
-          className={`button--${!this.props.readOnly ? "shown" : "hidden"}`}
-          color="grey"
-          onClick={event => this.props.onCancel()}
-        >
-          Cancel
-        </Button>
-        <Button
-          className={`button--${this.props.readOnly ? "shown" : "hidden"}`}
-          color="red"
-          onClick={event => this.props.onDelete()}
-        >
-          Delete
+          {this.props.negativeButtonLabel}
         </Button>
       </div>
     );

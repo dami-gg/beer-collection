@@ -30,7 +30,7 @@ class EditableTable extends PureComponent {
       <Row
         row={row}
         type={index % 2 === 0 ? "light" : "dark"}
-        key={row.id}
+        key={`${row.id}${index}`} // Trick to make all the rows update when adding an item and keep the correct background colors
         columns={this.props.columns}
         onSave={this.props.onEdit}
         onDelete={this.props.onDelete}

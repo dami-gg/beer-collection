@@ -21,12 +21,14 @@ function* addBeerToDatabase(action) {
 }
 
 function postBeerToDatabase(beer) {
+  beer.id = v4();
+  
   return new Promise((resolve, reject) => {
     firebase
       .database()
       .ref(`beers/${beer.id}`)
       .set({
-        id: v4(),
+        id: beer.id,
         name: beer.name || "Beer without name",
         type: beer.type || "",
         origin: beer.origin || "",

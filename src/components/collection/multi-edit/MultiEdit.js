@@ -78,15 +78,9 @@ const mapStateToProps = (state: Object): Object => ({
 
 const mapDispatchToProps = (dispatch: Function): Object => {
   return {
-    addBeer: (beer: Beer) => {
-      dispatch(addBeer(beer));
-    },
-    updateBeer: (beer: Beer) => {
-      dispatch(updateBeer(beer));
-    },
-    deleteBeer: (beer: Beer) => {
-      dispatch(deleteBeer(beer));
-    }
+    addBeer: (beer: Beer) => dispatch(addBeer(beer)),
+    updateBeer: (beer: Beer) => dispatch(updateBeer(beer)),
+    deleteBeer: (beer: Beer) => dispatch(deleteBeer(beer))
   };
 };
 
