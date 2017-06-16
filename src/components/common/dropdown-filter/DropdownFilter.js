@@ -1,10 +1,4 @@
 // @flow
-
-type State = {
-  selectedOption: string,
-  showOptions: boolean
-};
-
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
@@ -12,6 +6,11 @@ import Button from "../button/Button";
 import Options from "./Options";
 
 import "./dropdown-filter.scss";
+
+type State = {
+  selectedOption: string,
+  showOptions: boolean
+};
 
 class DropdownFilter extends Component {
   state: State;

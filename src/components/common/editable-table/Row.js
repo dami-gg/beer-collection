@@ -1,4 +1,15 @@
 // @flow
+import React, { Component } from "react";
+
+import Cell from "./Cell";
+import Buttons from "./Buttons";
+
+import {
+  handleBatchImageUpload
+} from "../../common/image-uploader/image-uploader.helpers";
+
+import "./row.scss";
+
 type State = {
   readOnly: boolean,
   editedRow: Object,
@@ -12,17 +23,6 @@ type State = {
   positiveButtonColor: string,
   negativeButtonColor: string
 };
-
-import React, { Component } from "react";
-
-import Cell from "./Cell";
-import Buttons from "./Buttons";
-
-import {
-  handleBatchImageUpload
-} from "../../common/image-uploader/image-uploader.helpers";
-
-import "./row.scss";
 
 class Row extends Component {
   state: State;

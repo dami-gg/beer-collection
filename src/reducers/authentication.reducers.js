@@ -1,17 +1,20 @@
 // @flow
-import type {User} from '../types/user.types';
+import type { User } from "../types/user.types";
+
+import { LOG_USER_IN, LOG_USER_OUT } from "../actions/authentication.actions";
 
 type AuthenticationState = {
-  user: ?User;
+  user: ?User
 };
-
-import {LOG_USER_IN, LOG_USER_OUT} from '../actions/authentication.actions';
 
 const initialState = {
-  user: undefined,
+  user: undefined
 };
 
-const authentication = (state: AuthenticationState = initialState, action: Object): AuthenticationState => {
+const authentication = (
+  state: AuthenticationState = initialState,
+  action: Object
+): AuthenticationState => {
   switch (action.type) {
     case LOG_USER_IN:
       return {
