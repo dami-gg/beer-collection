@@ -1,10 +1,4 @@
 // @flow
-
-type State = {
-  imageFile: any,
-  thumbnail: string
-};
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
@@ -20,6 +14,11 @@ import {
 } from "../../common/image-uploader/image-uploader.helpers";
 
 import "./form.scss";
+
+type State = {
+  imageFile: any,
+  thumbnail: string
+};
 
 export class Form extends Component {
   state: State;

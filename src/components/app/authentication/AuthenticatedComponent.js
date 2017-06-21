@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
+// @flow
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
-import type {User} from '../../../types/user.types';
+import type { User } from "../../../types/user.types";
 
-export default function requiresAuth(OriginalComponent) {
+export default function Authenticated(OriginalComponent: any) {
   class AuthenticatedComponent extends Component {
     props: {
       user: User,
@@ -28,14 +29,14 @@ export default function requiresAuth(OriginalComponent) {
     }
 
     redirectHome() {
-      this.props.history.push('/login');
+      this.props.history.push("/login");
     }
 
     render() {
       return (
-          <div>
-            {this.props.user && <OriginalComponent {...this.props} />}
-          </div>
+        <div>
+          {this.props.user && <OriginalComponent {...this.props} />}
+        </div>
       );
     }
   }
@@ -44,9 +45,5 @@ export default function requiresAuth(OriginalComponent) {
     user: state.authentication.user
   });
 
-  return withRouter(
-      connect(mapStateToProps)(AuthenticatedComponent)
-  );
+  return withRouter(connect(mapStateToProps)(AuthenticatedComponent));
 }
-
-

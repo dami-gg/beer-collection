@@ -5,11 +5,11 @@ import SearchBox from "../../common/search-box/SearchBox";
 import Pagination from "../../common/pagination/Pagination";
 import DropdownFilter from "../../common/dropdown-filter/DropdownFilter";
 
-const TOTAL_PAGE_BUTTONS: number = 7;
-
 import { getRegularExpression } from "./filters.helpers";
 
 import "./filters.scss";
+
+const TOTAL_PAGE_BUTTONS: number = 7;
 
 class Filters extends PureComponent {
   allBeerTypesLabel: string = "All types";

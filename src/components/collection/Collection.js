@@ -1,13 +1,6 @@
 // @flow
 import type { Beer } from "../../types/beer.types";
 
-type State = {
-  searchFilterRegex?: Object,
-  typeFilter?: string,
-  originFilter?: string,
-  currentPage: number
-};
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
@@ -16,8 +9,18 @@ import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
 
-import {getAllBeerTypes, getAllBeerOrigins} from '../../helpers/collection.helpers';
+import {
+  getAllBeerTypes,
+  getAllBeerOrigins
+} from "../../helpers/collection.helpers";
 import "./collection.scss";
+
+type State = {
+  searchFilterRegex?: Object,
+  typeFilter?: string,
+  originFilter?: string,
+  currentPage: number
+};
 
 const RESULTS_PER_PAGE: number = 18;
 
@@ -71,11 +74,11 @@ export class Collection extends Component {
   };
 
   updateTypeFilter = (type: string): void => {
-    this.setState({typeFilter: type});
+    this.setState({ typeFilter: type });
   };
 
   updateOriginFilter = (origin: string): void => {
-    this.setState({originFilter: origin});
+    this.setState({ originFilter: origin });
   };
 
   render() {

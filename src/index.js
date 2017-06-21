@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import firebase from "firebase";
 import { AppContainer } from "react-hot-loader";
+import registerServiceWorker from './registerServiceWorker';
 
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
@@ -26,7 +27,10 @@ firebase.initializeApp(config);
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+const store = createStore(
+  reducers,
+  applyMiddleware(sagaMiddleware)
+);
 
 sagaMiddleware.run(rootSaga);
 
@@ -52,3 +56,5 @@ if (module.hot) {
     );
   });
 }
+
+registerServiceWorker();

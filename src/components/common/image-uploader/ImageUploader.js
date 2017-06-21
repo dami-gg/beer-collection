@@ -46,7 +46,7 @@ class ImageUploader extends PureComponent {
             <img
               className="image-uploader__preview__image"
               src={this.props.thumbnail || this.props.currentImage}
-              role="presentation"
+              alt="Thumbnail"
             />}
         </div>
 

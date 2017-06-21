@@ -31,8 +31,7 @@ const collection = (
         );
 
         return [...state.slice(0, index), action.beer, ...state.slice(index)];
-      } 
-      else {
+      } else {
         return [...state, action.beer];
       }
 

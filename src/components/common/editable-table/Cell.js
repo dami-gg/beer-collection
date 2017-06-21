@@ -1,13 +1,13 @@
 // @flow
-type State = {
-  thumbnail: any
-};
-
 import React, { Component } from "react";
 
 import ImageUploader from "../../common/image-uploader/ImageUploader";
 
 import "./cell.scss";
+
+type State = {
+  thumbnail: any
+};
 
 class Cell extends Component {
   state: State;
@@ -76,7 +76,7 @@ class Cell extends Component {
       ? <img
           className="cell__image"
           src={this.props.content}
-          role="presentation"
+          alt="Current"
         />
       : <span className="cell__text">No image</span>;
   }
@@ -99,7 +99,7 @@ class Cell extends Component {
           <img
             className="cell__image"
             src={this.props.content}
-            role="presentation"
+            alt="Uploaded"
           />
           {this.getImageUploader()}
         </div>

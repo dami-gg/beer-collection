@@ -49,14 +49,14 @@ export class Login extends Component {
 
                 <div className="login__box">
                   <form className="login__form">
-                    <p className="login__form__title">Please sign in</p>
+                    <h1 className="login__form__title">Please sign in</h1>
                     <FormField
-                        name="username"
-                        placeholder="Username">
+                        label="Username"
+                        name="username">
                     </FormField>
                     <FormField
-                        name="password"
-                        placeholder="Password">
+                        label="Password"
+                        name="password">
                     </FormField>
                     <Button color="green"
                             className="button--sign-in"

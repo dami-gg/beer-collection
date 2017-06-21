@@ -17,7 +17,7 @@ export class Header extends Component {
         <div className="header">
           <Link to="/" className="logo-container">
             <div className="logo">
-              <img src={logo} alt="logo"/>
+              <img src={logo} alt="logo" height="30px" width="25px"/>
             </div>
             <span className="title">Beer collection</span>
           </Link>

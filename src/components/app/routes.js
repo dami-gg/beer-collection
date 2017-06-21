@@ -1,30 +1,55 @@
+// @flow
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import requiresAuth from "./authentication/AuthenticatedComponent";
+import Authenticated from "./authentication/AuthenticatedComponent";
+import Async from "./async/AsyncComponent";
 
-import Home from "../home/Home";
-import Login from "../login/Login";
-import Add from "../beer-pages/crud/Add";
-import Edit from "../beer-pages/crud/Edit";
-import View from "../beer-pages/crud/View";
-import Collection from "../collection/Collection";
-import MultiEdit from "../collection/multi-edit/MultiEdit";
-import Statistics from "../statistics/Statistics";
-import Rating from '../statistics/graphs/Rating';
-import Origin from '../statistics/graphs/Origin';
+const homeAsyncLoader = () => import("../home/Home");
+const loginAsyncLoader = () => import("../login/Login");
+const collectionAsyncLoader = () => import("../collection/Collection");
+const addPageAsyncLoader = () => import("../beer-pages/crud/Add");
+const editPageAsyncLoader = () => import("../beer-pages/crud/Edit");
+const viewPageAsyncLoader = () => import("../beer-pages/crud/View");
+const multiEditAsyncLoader = () => import("../collection/multi-edit/MultiEdit");
+const statisticsAsyncLoader = () => import("../statistics/Statistics");
+const ratingAsyncLoader = () => import("../statistics/graphs/Rating");
+const originAsyncLoader = () => import("../statistics/graphs/Origin");
 
 export const routes = (
   <Switch>
-    <Route exact path="/" component={requiresAuth(Home)} />
-    <Route path="/beer/add" component={requiresAuth(Add)} />
-    <Route path="/beer/edit/:beerId" component={requiresAuth(Edit)} />
-    <Route path="/beer/view/:beerId" component={requiresAuth(View)} />
-    <Route exact path="/collection" component={requiresAuth(Collection)} />
-    <Route exact path="/collection/manage" component={requiresAuth(MultiEdit)} />
-    <Route path="/statistics" component={requiresAuth(Statistics)} />
-    <Route path="/ratings" component={requiresAuth(Rating)} />
-    <Route path="/origin" component={requiresAuth(Origin)} />
-    <Route path="/login" component={Login} />
+    <Route exact path="/" component={Authenticated(Async(homeAsyncLoader))} />
+    <Route
+      path="/beer/add"
+      component={Authenticated(Async(addPageAsyncLoader))}
+    />
+    <Route
+      path="/beer/edit/:beerId"
+      component={Authenticated(Async(editPageAsyncLoader))}
+    />
+    <Route
+      path="/beer/view/:beerId"
+      component={Authenticated(Async(viewPageAsyncLoader))}
+    />
+    <Route
+      exact
+      path="/collection"
+      component={Authenticated(Async(collectionAsyncLoader))}
+    />
+    <Route
+      exact
+      path="/collection/manage"
+      component={Authenticated(Async(multiEditAsyncLoader))}
+    />
+    <Route
+      path="/statistics"
+      component={Authenticated(Async(statisticsAsyncLoader))}
+    />
+    <Route
+      path="/ratings"
+      component={Authenticated(Async(ratingAsyncLoader))}
+    />
+    <Route path="/origin" component={Authenticated(Async(originAsyncLoader))} />
+    <Route path="/login" component={Async(loginAsyncLoader)} />
     <Route render={() => <h1>404: This page could not be found!</h1>} />
   </Switch>
 );
