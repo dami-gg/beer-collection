@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import firebase from "firebase";
 import { AppContainer } from "react-hot-loader";
+import registerServiceWorker from './registerServiceWorker';
 
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
@@ -55,3 +56,5 @@ if (module.hot) {
     );
   });
 }
+
+registerServiceWorker();
