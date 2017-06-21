@@ -2,8 +2,8 @@
   "name": "Beer collection",
   "short_name": "Beers!",
   "theme_color": "#2196f3",
-  "background_color": "#2196f3",
-  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "Scope": "/",
   "start_url": "./?utm_source=web_app_manifest",  
   "icons": [
