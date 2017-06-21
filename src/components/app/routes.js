@@ -14,6 +14,7 @@ const multiEditAsyncLoader = () => import("../collection/multi-edit/MultiEdit");
 const statisticsAsyncLoader = () => import("../statistics/Statistics");
 const ratingAsyncLoader = () => import("../statistics/graphs/Rating");
 const originAsyncLoader = () => import("../statistics/graphs/Origin");
+const errorAsyncLoader = () => import("../error/Error");
 
 export const routes = (
   <Switch>
@@ -50,6 +51,6 @@ export const routes = (
     />
     <Route path="/origin" component={Authenticated(Async(originAsyncLoader))} />
     <Route path="/login" component={Async(loginAsyncLoader)} />
-    <Route render={() => <h1>404: This page could not be found!</h1>} />
+    <Route component={Async(errorAsyncLoader)} />
   </Switch>
 );
