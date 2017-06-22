@@ -7,6 +7,8 @@ import DropdownFilter from "../../common/dropdown-filter/DropdownFilter";
 
 import { getRegularExpression } from "./filters.helpers";
 
+import { RESULTS_PER_PAGE, ALL_FILTER_OPTION } from "../collection.constants";
+
 import "./filters.scss";
 
 const TOTAL_PAGE_BUTTONS: number = 7;
@@ -17,31 +19,30 @@ class Filters extends PureComponent {
 
   props: {
     numItems: number,
-    resultsPerPage: number,
     currentPage: number,
-    onSearchFilterUpdate: Function,
     onPageChange: Function,
     allBeerTypes: Array<string>,
-    onTypeFilterUpdate: Function,
     allBeerOrigins: Array<string>,
-    onOriginFilterUpdate: Function
+    onFilterUpdate: Function
   };
 
   updateSearchFilter = (event: Object) => {
-    const regex = getRegularExpression(event.target.value);
-    this.props.onSearchFilterUpdate(regex);
+    const searchFilterRegex = getRegularExpression(event.target.value);
+    this.props.onFilterUpdate({ searchFilterRegex });
   };
 
   updateTypeFilter = (type: string) => {
-    this.props.onTypeFilterUpdate(
-      type !== this.allBeerTypesLabel ? type : undefined
-    );
+    this.props.onFilterUpdate({
+      typeFilter: type !== this.allBeerTypesLabel ? type : ALL_FILTER_OPTION
+    });
   };
 
   updateOriginFilter = (origin: string) => {
-    this.props.onOriginFilterUpdate(
-      origin !== this.allBeerOriginsLabel ? origin : undefined
-    );
+    this.props.onFilterUpdate({
+      originFilter: origin !== this.allBeerOriginsLabel
+        ? origin
+        : ALL_FILTER_OPTION
+    });
   };
 
   render() {
@@ -74,7 +75,7 @@ class Filters extends PureComponent {
           className="filters__filter filters__filter--pagination"
           numItems={this.props.numItems}
           currentPage={this.props.currentPage}
-          resultsPerPage={this.props.resultsPerPage}
+          resultsPerPage={RESULTS_PER_PAGE}
           totalPageButtons={TOTAL_PAGE_BUTTONS}
           onNavigation={this.props.onPageChange}
         />

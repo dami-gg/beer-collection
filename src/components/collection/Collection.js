@@ -9,11 +9,14 @@ import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
 
-import { RESULTS_PER_PAGE } from "./collection.constants";
-import { getAllBeerTypes, getAllBeerOrigins } from "./collection.helpers";
+import { ALL_FILTER_OPTION } from "./collection.constants";
 import {
+  getAllBeerTypes,
+  getAllBeerOrigins,
+  getFilteredBeers,
+  getBeersForPage,
   preloadCollectionImagesForPage
-} from "../collection/collection.helpers";
+} from "./collection.helpers";
 
 import "./collection.scss";
 
@@ -22,15 +25,15 @@ type State = {
   typeFilter?: string,
   originFilter?: string,
   currentPage: number,
-  nextPagePreloaded: boolean
+  nextPagePreloaded: boolean,
+  filteredBeers: Array<any>,
+  beersInCurrentPage: Array<any>
 };
 
 export class Collection extends Component {
   state: State;
   navigateToPage: Function;
-  updateSearchFilterRegex: Function;
   redirectToAddPage: Function;
-  updateTypeFilter: Function;
   allBeerTypes: Array<string>;
   allBeerOrigins: Array<string>;
 
@@ -46,23 +49,28 @@ export class Collection extends Component {
 
     this.state = {
       searchFilterRegex: undefined,
-      typeFilter: undefined,
-      originFilter: undefined,
+      typeFilter: ALL_FILTER_OPTION,
+      originFilter: ALL_FILTER_OPTION,
       currentPage: 1,
-      nextPagePreloaded: false
+      nextPagePreloaded: false,
+      filteredBeers: [],
+      beersInCurrentPage: []
     };
 
     this.navigateToPage = this.navigateToPage.bind(this);
-    this.updateSearchFilterRegex = this.updateSearchFilterRegex.bind(this);
     this.redirectToAddPage = this.redirectToAddPage.bind(this);
-    this.updateTypeFilter = this.updateTypeFilter.bind(this);
+    this.updateFilter = this.updateFilter.bind(this);
   }
 
   componentWillMount(): void {
     this.allBeerTypes = getAllBeerTypes(this.props.collection);
     this.allBeerOrigins = getAllBeerOrigins(this.props.collection);
 
-    this.setState({ nextPagePreloaded: false });
+    this.setState({
+      nextPagePreloaded: false
+    });
+
+    this.updateResults();
   }
 
   componentDidMount(): void {
@@ -77,50 +85,53 @@ export class Collection extends Component {
     }
   }
 
-  updateSearchFilterRegex(searchFilterRegex: Object): void {
-    this.setState({ searchFilterRegex });
-  }
-
   navigateToPage = (currentPage: number): void => {
-    this.setState({ currentPage });
+    this.updateResults({ currentPage });
   };
 
   redirectToAddPage = (): void => {
     this.props.history.push("/beer/add");
   };
 
-  updateTypeFilter = (type: string): void => {
-    this.setState({ typeFilter: type });
+  updateFilter = (filter: Object): void => {
+    this.updateResults({
+      ...filter,
+      currentPage: 1
+    });
   };
 
-  updateOriginFilter = (origin: string): void => {
-    this.setState({ originFilter: origin });
+  updateResults = (newState?: Object): void => {
+    const filteredBeers = getFilteredBeers(
+      this.props.collection,
+      (newState && newState.searchFilterRegex) || this.state.searchFilterRegex,
+      (newState && newState.typeFilter) || this.state.typeFilter,
+      (newState && newState.originFilter) || this.state.originFilter
+    );
+
+    const beersInCurrentPage = getBeersForPage(
+      filteredBeers,
+      (newState && newState.currentPage) || this.state.currentPage
+    );
+
+    this.setState({ ...newState, filteredBeers, beersInCurrentPage });
   };
 
   render() {
     return (
       <div className="collection">
         <Filters
-          numItems={this.props.collection.length}
-          resultsPerPage={RESULTS_PER_PAGE}
+          numItems={this.state.filteredBeers.length}
           currentPage={this.state.currentPage}
-          onSearchFilterUpdate={this.updateSearchFilterRegex}
           onPageChange={this.navigateToPage}
           allBeerTypes={this.allBeerTypes}
-          onTypeFilterUpdate={this.updateTypeFilter}
           allBeerOrigins={this.allBeerOrigins}
-          onOriginFilterUpdate={this.updateOriginFilter}
+          onFilterUpdate={this.updateFilter}
         />
 
         <Results
-          collection={this.props.collection}
-          searchFilterRegex={this.state.searchFilterRegex}
-          resultsPerPage={RESULTS_PER_PAGE}
-          currentPage={this.state.currentPage}
+          results={this.state.beersInCurrentPage}
           allBeerTypes={this.allBeerTypes}
-          typeFilter={this.state.typeFilter}
           allBeerOrigins={this.allBeerOrigins}
-          originFilter={this.state.originFilter}
         />
 
         <FloatingButton

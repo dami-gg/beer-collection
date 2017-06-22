@@ -7,42 +7,19 @@ import { Link } from "react-router-dom";
 
 import placeholderLabel from "../../../assets/images/label.png";
 
-import { getResults, getBeerTypeLabelStyle } from "./results.helpers";
+import { getBeerTypeLabelStyle } from "./results.helpers";
 
 import "./results.scss";
 
 class Results extends PureComponent {
   props: {
-    collection: Array<Beer>,
-    searchFilterRegex: Object,
-    resultsPerPage: number,
-    currentPage: number,
+    results: Array<Beer>,
     allBeerTypes: Array<string>,
-    typeFilter?: string,
-    allBeerOrigins: Array<string>,
-    originFilter?: string
+    allBeerOrigins: Array<string>
   };
 
   getResultLinks() {
-    const {
-      collection,
-      searchFilterRegex,
-      currentPage,
-      resultsPerPage,
-      typeFilter,
-      originFilter
-    } = this.props;
-
-    const results = getResults(
-      collection,
-      searchFilterRegex,
-      currentPage,
-      resultsPerPage,
-      typeFilter,
-      originFilter
-    );
-
-    return results.map((beer: Beer) => {
+    return this.props.results.map((beer: Beer) => {
       return (
         <Link to={`/beer/view/${beer.id}`} className="beer" key={beer.id}>
           <ul className="beer__card">
@@ -50,7 +27,7 @@ class Results extends PureComponent {
               <div
                 className="beer__type"
                 style={getBeerTypeLabelStyle(
-                  beer.type || '',
+                  beer.type || "",
                   this.props.allBeerTypes
                 )}
               >

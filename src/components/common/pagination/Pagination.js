@@ -1,11 +1,12 @@
 // @flow
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from "react";
 
-import PageButton from './PageButton';
+import PageButton from "./PageButton";
 
-import './pagination.scss';
+import { getButtonLabels } from "./pagination.helpers";
+import { PLACEHOLDER_PAGE_LABEL } from "./pagination.constants";
 
-const PLACEHOLDER_PAGE_LABEL: string = '...';
+import "./pagination.scss";
 
 class Pagination extends PureComponent {
   totalPages: number;
@@ -14,7 +15,7 @@ class Pagination extends PureComponent {
   navigateToNextPage: Function;
 
   props: {
-    className: string, 
+    className: string,
     numItems: number,
     currentPage: number,
     resultsPerPage: number,
@@ -28,18 +29,16 @@ class Pagination extends PureComponent {
     this.navigateToPage = this.navigateToPage.bind(this);
     this.navigateToPreviousPage = this.navigateToPreviousPage.bind(this);
     this.navigateToNextPage = this.navigateToNextPage.bind(this);
-  }
 
-  componentWillMount() {
     this.totalPages = this.getTotalPages();
   }
 
-  getTotalPages() {
-    if (!this.props.numItems) {
-      return 1;
-    }
+  componentWillUpdate(nextProps: Object) {
+    this.totalPages = this.getTotalPages(nextProps.numItems);
+  }
 
-    return Math.ceil(this.props.numItems / this.props.resultsPerPage);
+  getTotalPages(numItems: number = this.props.numItems) {
+    return Math.ceil(numItems / this.props.resultsPerPage);
   }
 
   navigateToPage(page: number) {
@@ -61,85 +60,40 @@ class Pagination extends PureComponent {
   }
 
   generatePageButtons() {
-    return this.getButtonLabels().map((item, i) => (
-        <PageButton key={i}
-                    label={item}
-                    clickHandler={this.navigateToPage}
-                    active={this.props.currentPage === item}
-                    disabled={item === PLACEHOLDER_PAGE_LABEL}>
-        </PageButton>
+    return getButtonLabels(
+      this.totalPages,
+      this.props.totalPageButtons,
+      this.props.currentPage
+    ).map((item, i) => (
+      <PageButton
+        key={i}
+        label={item}
+        clickHandler={this.navigateToPage}
+        active={this.props.currentPage === item}
+        disabled={item === PLACEHOLDER_PAGE_LABEL}
+      />
     ));
-  }
-
-  getButtonLabels(): Array<any> {
-    if (this.totalPages <= this.props.totalPageButtons) {
-      return this.generateMinimumButtons();
-    }
-    else if (this.props.currentPage <= 3) {
-      return this.generateInitialPageButtons();
-    }
-    else if (this.props.currentPage >= this.totalPages - 2) {
-      return this.generateEndingPageButtons();
-    }
-    else {
-      return this.generateIntermediatePageButtons();
-    }
-  }
-
-  generateMinimumButtons(): Array<any> {
-    return Array(this.totalPages).fill(0).map((value, index) => index + 1);
-  }
-
-  generateInitialPageButtons(): Array<any> {
-    const remainingButtons = this.props.totalPageButtons - 2;
-
-    let buttons: Array<any> = Array(remainingButtons).fill(0)
-        .map((value, index) => index + 1);
-    buttons.push(PLACEHOLDER_PAGE_LABEL);
-    buttons.push(this.totalPages);
-    return buttons;
-  }
-
-  generateIntermediatePageButtons(): Array<any> {
-    let buttons: Array<any> = [];
-    buttons.push(1);
-    buttons.push(PLACEHOLDER_PAGE_LABEL);
-    buttons.push(this.props.currentPage - 1);
-    buttons.push(this.props.currentPage);
-    buttons.push(this.props.currentPage + 1);
-    buttons.push(PLACEHOLDER_PAGE_LABEL);
-    buttons.push(this.totalPages);
-    return buttons;
-  }
-
-  generateEndingPageButtons(): Array<any> {
-    let startingButtons: Array<any> = [];
-    startingButtons.push(1);
-    startingButtons.push(PLACEHOLDER_PAGE_LABEL);
-
-    const remainingButtons = this.props.totalPageButtons - 2;
-
-    let endingButtons: Array<any> = Array(remainingButtons).fill(0)
-        .map((value, index) => index + this.totalPages - remainingButtons + 1);
-
-    return [...startingButtons, ...endingButtons];
   }
 
   render() {
     return (
-        <div className={`pagination ${this.totalPages === 1 ? 'pagination--hidden' : ''} ${this.props.className}`}>
-          <PageButton label="&laquo;"
-                      disabled={this.props.currentPage === 1}
-                      clickHandler={this.navigateToPreviousPage}>
-          </PageButton>
+      <div
+        className={`pagination ${this.totalPages === 1 ? "pagination--hidden" : ""} ${this.props.className}`}
+      >
+        <PageButton
+          label="&laquo;"
+          disabled={this.props.currentPage === 1}
+          clickHandler={this.navigateToPreviousPage}
+        />
 
-          { this.generatePageButtons() }
+        {this.generatePageButtons()}
 
-          <PageButton label="&raquo;"
-                      disabled={this.props.currentPage === this.totalPages}
-                      clickHandler={this.navigateToNextPage}>
-          </PageButton>
-        </div>
+        <PageButton
+          label="&raquo;"
+          disabled={this.props.currentPage === this.totalPages}
+          clickHandler={this.navigateToNextPage}
+        />
+      </div>
     );
   }
 }
