@@ -7,7 +7,7 @@ import {withRouter} from 'react-router';
 
 import {updateBeer} from '../../../actions/collection.actions';
 import {setCurrentBeer, resetCurrentBeer} from '../../../actions/navigation.actions';
-import {findBeerInCollectionById} from '../../../helpers/collection.helpers';
+import {findBeerInCollectionById} from '../../collection/collection.helpers';
 import Page from '../Page';
 
 export class View extends Component {

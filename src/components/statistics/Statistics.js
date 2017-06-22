@@ -1,22 +1,8 @@
+// @flow
 import React, { PureComponent } from "react";
 
 import Dashboard from "../dashboard/Dashboard";
-
-import origin from '../../assets/images/origin.png';
-
-const PAGE_OPTIONS: Array<Object> = [
-  {
-    title: "Rating",
-    url: "/ratings",
-    image: "https://unsplash.it/150/150", // TODO
-    hidden: true
-  },
-  {
-    title: "Origin",
-    url: "/origin",
-    image: origin
-  }
-];
+import {PAGE_OPTIONS} from "./statistics.constants";
 
 export class Statistics extends PureComponent {
   render() {

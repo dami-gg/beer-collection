@@ -9,20 +9,21 @@ import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
 
+import { RESULTS_PER_PAGE } from "./collection.constants";
+import { getAllBeerTypes, getAllBeerOrigins } from "./collection.helpers";
 import {
-  getAllBeerTypes,
-  getAllBeerOrigins
-} from "../../helpers/collection.helpers";
+  preloadCollectionImagesForPage
+} from "../collection/collection.helpers";
+
 import "./collection.scss";
 
 type State = {
   searchFilterRegex?: Object,
   typeFilter?: string,
   originFilter?: string,
-  currentPage: number
+  currentPage: number,
+  nextPagePreloaded: boolean
 };
-
-const RESULTS_PER_PAGE: number = 18;
 
 export class Collection extends Component {
   state: State;
@@ -47,7 +48,8 @@ export class Collection extends Component {
       searchFilterRegex: undefined,
       typeFilter: undefined,
       originFilter: undefined,
-      currentPage: 1
+      currentPage: 1,
+      nextPagePreloaded: false
     };
 
     this.navigateToPage = this.navigateToPage.bind(this);
@@ -59,6 +61,20 @@ export class Collection extends Component {
   componentWillMount(): void {
     this.allBeerTypes = getAllBeerTypes(this.props.collection);
     this.allBeerOrigins = getAllBeerOrigins(this.props.collection);
+
+    this.setState({ nextPagePreloaded: false });
+  }
+
+  componentDidMount(): void {
+    if (!this.state.nextPagePreloaded) {
+      // Preload images for fast load of the next page of the collection in case the user navigates there
+      preloadCollectionImagesForPage(
+        this.props.collection,
+        this.state.currentPage + 1
+      );
+
+      this.setState({ nextPagePreloaded: true });
+    }
   }
 
   updateSearchFilterRegex(searchFilterRegex: Object): void {
