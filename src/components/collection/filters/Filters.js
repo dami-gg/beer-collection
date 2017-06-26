@@ -26,8 +26,8 @@ class Filters extends PureComponent {
     onFilterUpdate: Function
   };
 
-  updateSearchFilter = (event: Object) => {
-    const searchFilterRegex = getRegularExpression(event.target.value);
+  updateSearchFilter = (query: string) => {
+    const searchFilterRegex = getRegularExpression(query);
     this.props.onFilterUpdate({ searchFilterRegex });
   };
 
