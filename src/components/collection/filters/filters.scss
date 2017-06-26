@@ -28,9 +28,8 @@
     &--pagination {
       align-self: center;      
       @media(min-width: 768px) {
-        width: 10%;
+        width: 20%;
         margin-left: auto;
-        order: 0;
       }
     }
   }
