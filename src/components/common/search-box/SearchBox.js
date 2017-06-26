@@ -1,14 +1,23 @@
+// @flow
 import React, { Component } from "react";
 
 import "./search-box.scss";
 
+type State = {
+  value: string
+};
+
 class SearchBox extends Component {
+  state: State;
+  onChange: Function;
+  clearInput: Function;
+
   props: {
     className: string,
     changeHandler: Function
   };
 
-  constructor(props) {
+  constructor(props: Object) {
     super(props);
 
     this.state = {
@@ -42,7 +51,6 @@ class SearchBox extends Component {
           className="search-box__input"
           type="text"
           value={this.state.value}
-          ref={this.saveRef}
           placeholder="Search by name"
           onChange={this.onChange}
         />

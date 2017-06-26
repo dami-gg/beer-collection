@@ -1,3 +1,5 @@
+// @flow
+
 export const COLUMNS: Array<Object> = [
   {
     name: "Name",

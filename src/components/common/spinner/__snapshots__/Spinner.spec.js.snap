@@ -2,5 +2,6 @@
 
 exports[`Spinner should match the snapshot 1`] = `
 <div
-  className="spinner" />
+  className="spinner"
+/>
 `;

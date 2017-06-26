@@ -1,3 +1,4 @@
+// @flow
 export const RATINGS: Array<Object> = [
   {
     value: 5,

@@ -2,24 +2,72 @@
 
 exports[`Filters should match the snapshot 1`] = `
 <div
-  className="collection__filters">
+  className="filters"
+>
   <div
-    className="search-box">
+    className="search-box filters__filter filters__filter--search"
+  >
     <input
       className="search-box__input"
-      onChange={[Function anonymous]}
+      onChange={[Function]}
       placeholder="Search by name"
-      type="text" />
+      type="text"
+      value=""
+    />
+    <div
+      className="search-box__clear"
+    />
     <i
-      className="search-box__icon fa fa-search" />
+      className="search-box__icon fa fa-search"
+    />
   </div>
   <div
-    className="pagination pagination--hidden">
+    className="filters__dropdowns"
+  >
+    <div
+      className="dropdown-filter dropdown-filter--type filters__filter filters__filter--type"
+    >
+      <button
+        className="button button--blue dropdown-filter__button"
+        onClick={[Function]}
+        type="button"
+      >
+        All types
+        <span
+          className="dropdown-filter__arrow"
+        />
+      </button>
+      <ul
+        className="options hidden"
+      />
+    </div>
+    <div
+      className="dropdown-filter dropdown-filter--origin filters__filter filters__filter--origin"
+    >
+      <button
+        className="button button--blue dropdown-filter__button"
+        onClick={[Function]}
+        type="button"
+      >
+        All origins
+        <span
+          className="dropdown-filter__arrow"
+        />
+      </button>
+      <ul
+        className="options hidden"
+      />
+    </div>
+  </div>
+  <div
+    className="pagination  filters__filter filters__filter--pagination"
+  >
     <a
       className="pagination__button
                        
                        "
-      onClick={[Function onClick]}>
+      onClick={[Function]}
+    >
       <span>
         «
       </span>
@@ -28,7 +76,8 @@ exports[`Filters should match the snapshot 1`] = `
       className="pagination__button
                        
                        "
-      onClick={[Function onClick]}>
+      onClick={[Function]}
+    >
       <span>
         1
       </span>
@@ -36,8 +85,69 @@ exports[`Filters should match the snapshot 1`] = `
     <a
       className="pagination__button
                        
+                       pagination__button--disabled"
+      onClick={[Function]}
+    >
+      <span>
+        ...
+      </span>
+    </a>
+    <a
+      className="pagination__button
+                       
                        "
-      onClick={[Function onClick]}>
+      onClick={[Function]}
+    >
+      <span>
+        6
+      </span>
+    </a>
+    <a
+      className="pagination__button
+                       
+                       "
+      onClick={[Function]}
+    >
+      <span>
+        7
+      </span>
+    </a>
+    <a
+      className="pagination__button
+                       
+                       "
+      onClick={[Function]}
+    >
+      <span>
+        8
+      </span>
+    </a>
+    <a
+      className="pagination__button
+                       
+                       pagination__button--disabled"
+      onClick={[Function]}
+    >
+      <span>
+        ...
+      </span>
+    </a>
+    <a
+      className="pagination__button
+                       
+                       "
+      onClick={[Function]}
+    >
+      <span>
+        NaN
+      </span>
+    </a>
+    <a
+      className="pagination__button
+                       
+                       "
+      onClick={[Function]}
+    >
       <span>
         »
       </span>

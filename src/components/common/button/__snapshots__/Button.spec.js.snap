@@ -2,7 +2,8 @@
 
 exports[`Button should match the snapshot 1`] = `
 <button
-  className="button button--undefined undefined"
-  onClick={[Function onClick]}
-  type="button" />
+  className="button button--undefined "
+  onClick={[Function]}
+  type="button"
+/>
 `;

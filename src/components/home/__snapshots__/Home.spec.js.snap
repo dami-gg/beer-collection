@@ -2,92 +2,146 @@
 
 exports[`Home should match the snapshot 1`] = `
 <div
-  className="home">
+  className="home"
+>
   <div
-    className="dashboard">
+    className="dashboard"
+  >
     <div
-      className="dashboard__option">
+      className="dashboard__option"
+    >
       <a
         className="dashboard__option__card"
         href="/beer/add"
-        onClick={[Function anonymous]}>
+        onClick={[Function]}
+      >
         <div
-          className="dashboard__option__image-wrapper">
+          className="dashboard__option__image-wrapper"
+        >
           <img
             alt="logo"
             className="dashboard__option__image"
-            src="test-file-stub" />
+            src="tap.png"
+          />
         </div>
         <div
-          className="dashboard__option__title-wrapper">
+          className="dashboard__option__title-wrapper"
+        >
           <p
-            className="dashboard__option__title">
+            className="dashboard__option__title"
+          >
             Add a new beer
           </p>
         </div>
       </a>
     </div>
     <div
-      className="dashboard__option">
+      className="dashboard__option"
+    >
       <a
         className="dashboard__option__card"
         href="/collection"
-        onClick={[Function anonymous]}>
+        onClick={[Function]}
+      >
         <div
-          className="dashboard__option__image-wrapper">
+          className="dashboard__option__image-wrapper"
+        >
           <img
             alt="logo"
             className="dashboard__option__image"
-            src="test-file-stub" />
+            src="crate.png"
+          />
         </div>
         <div
-          className="dashboard__option__title-wrapper">
+          className="dashboard__option__title-wrapper"
+        >
           <p
-            className="dashboard__option__title">
+            className="dashboard__option__title"
+          >
             See your collection
           </p>
         </div>
       </a>
     </div>
     <div
-      className="dashboard__option">
+      className="dashboard__option"
+    >
       <a
         className="dashboard__option__card"
-        href="/statistics"
-        onClick={[Function anonymous]}>
+        href="/collection/manage"
+        onClick={[Function]}
+      >
         <div
-          className="dashboard__option__image-wrapper">
+          className="dashboard__option__image-wrapper"
+        >
           <img
             alt="logo"
             className="dashboard__option__image"
-            src="test-file-stub" />
+            src="caps.png"
+          />
         </div>
         <div
-          className="dashboard__option__title-wrapper">
+          className="dashboard__option__title-wrapper"
+        >
           <p
-            className="dashboard__option__title">
+            className="dashboard__option__title"
+          >
+            Manage collection
+          </p>
+        </div>
+      </a>
+    </div>
+    <div
+      className="dashboard__option"
+    >
+      <a
+        className="dashboard__option__card"
+        href="/statistics"
+        onClick={[Function]}
+      >
+        <div
+          className="dashboard__option__image-wrapper"
+        >
+          <img
+            alt="logo"
+            className="dashboard__option__image"
+            src="statistics.png"
+          />
+        </div>
+        <div
+          className="dashboard__option__title-wrapper"
+        >
+          <p
+            className="dashboard__option__title"
+          >
             See statistics
           </p>
         </div>
       </a>
     </div>
     <div
-      className="dashboard__option">
+      className="dashboard__option"
+    >
       <a
         className="dashboard__option__card"
         href="/map"
-        onClick={[Function anonymous]}>
+        onClick={[Function]}
+      >
         <div
-          className="dashboard__option__image-wrapper">
+          className="dashboard__option__image-wrapper"
+        >
           <img
             alt="logo"
             className="dashboard__option__image"
-            src="test-file-stub" />
+            src="globe.png"
+          />
         </div>
         <div
-          className="dashboard__option__title-wrapper">
+          className="dashboard__option__title-wrapper"
+        >
           <p
-            className="dashboard__option__title">
+            className="dashboard__option__title"
+          >
             Beer map
           </p>
         </div>

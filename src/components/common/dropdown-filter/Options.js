@@ -15,7 +15,11 @@ class Options extends PureComponent {
     this.props.onOptionSelected(option);
   };
 
-  getOptions() {
+  getOptions(): Array<any> {
+    if (!this.props.values) {
+      return [];
+    }
+    
     let options: Array<
       any
     > = this.props.values.map((value: string, index: number) => (

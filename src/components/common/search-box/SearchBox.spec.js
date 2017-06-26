@@ -25,7 +25,7 @@ describe("SearchBox", () => {
 
     it("should render an input which on change calls the change handler", () => {
       element = component.find("input");
-      element.simulate("change");
+      element.simulate("change", mock.event);
 
       expect(mock.props.changeHandler).toHaveBeenCalled();
     });
@@ -43,6 +43,11 @@ describe("SearchBox", () => {
     mock = {
       props: {
         changeHandler: jest.fn()
+      },
+      event: {
+        target: {
+          value: ''
+        }
       }
     };
   }

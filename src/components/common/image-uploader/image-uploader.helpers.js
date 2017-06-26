@@ -1,5 +1,4 @@
 // @flow
-
 import firebase from "firebase";
 
 export const readFile = (file: Object, callback: Function) => {

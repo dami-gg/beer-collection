@@ -11,17 +11,17 @@ import {
 import "./row.scss";
 
 type State = {
-  readOnly: boolean,
+  readOnly?: boolean,
   editedRow: Object,
   imagesToUpload: Array<Object>,
-  waitingForConfirmation: boolean,
+  waitingForConfirmation?: boolean,
   background: string,
-  positiveButtonHandler: Function,
-  negativeButtonHandler: Function,
-  positiveButtonLabel: string,
-  negativeButtonLabel: string,
-  positiveButtonColor: string,
-  negativeButtonColor: string
+  positiveButtonHandler?: Function,
+  negativeButtonHandler?: Function,
+  positiveButtonLabel?: string,
+  negativeButtonLabel?: string,
+  positiveButtonColor?: string,
+  negativeButtonColor?: string
 };
 
 class Row extends Component {
@@ -48,7 +48,8 @@ class Row extends Component {
 
     this.state = {
       editedRow: props.row,
-      imagesToUpload: []
+      imagesToUpload: [],
+      background: ""
     };
 
     this.setReadOnlyMode = this.setReadOnlyMode.bind(this);

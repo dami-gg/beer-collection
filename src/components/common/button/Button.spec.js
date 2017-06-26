@@ -1,51 +1,49 @@
-import React from 'react';
-import Button from './Button';
+import React from "react";
+import Button from "./Button";
 
-import {shallow} from 'enzyme';
-import renderer from 'react-test-renderer';
+import { shallow } from "enzyme";
+import renderer from "react-test-renderer";
 
-describe('Button', () => {
-  let component,
-      element,
-      mock;
+describe("Button", () => {
+  let component, element, mock;
 
   beforeEach(mocks);
 
-  it('should render without crashing', () => {
-    shallow(<Button></Button>);
+  it("should render without crashing", () => {
+    shallow(<Button />);
   });
 
-  it('should match the snapshot', () => {
-    component = renderer.create(<Button></Button>);
+  it("should match the snapshot", () => {
+    component = renderer.create(<Button />);
     let json = component.toJSON();
 
     expect(json).toMatchSnapshot();
   });
 
-  describe('render', () => {
+  describe("render", () => {
     beforeEach(setup);
 
-    it('should render a button of the type specified in the props', () => {
-      element = component.find('button');
+    it("should render a button of the type specified in the props", () => {
+      element = component.find("button");
 
       expect(element.props().type).toBe(mock.props.type);
     });
 
-    it('should render a button of the type specified in the props', () => {
-      element = component.find('button');
-      element.simulate('click');
+    it("should render a button of the type specified in the props", () => {
+      element = component.find("button");
+      element.simulate("click");
 
       expect(mock.props.onClick).toHaveBeenCalled();
     });
 
-    it('should render a button with the class specified in props', () => {
-      element = component.find('button');
+    it("should render a button with the class specified in props", () => {
+      element = component.find("button");
 
-      expect(element.hasClass(mock.props.classes)).toBe(true);
+      expect(element.hasClass(mock.props.className)).toBe(true);
     });
 
-    it('should render a button of the color specified in props', () => {
-      element = component.find('button');
+    it("should render a button of the color specified in props", () => {
+      element = component.find("button");
 
       expect(element.hasClass(`button--${mock.props.color}`)).toBe(true);
     });
@@ -57,24 +55,23 @@ describe('Button', () => {
 
   function render() {
     component = shallow(
-        <Button
-            type={mock.props.type}
-            color={mock.props.color}
-            classes={mock.props.classes}
-            onClick={mock.props.onClick}>
-        </Button>
+      <Button
+        type={mock.props.type}
+        color={mock.props.color}
+        className={mock.props.className}
+        onClick={mock.props.onClick}
+      />
     );
   }
 
   function mocks() {
     mock = {
       props: {
-        type: 'type',
-        color: 'color',
-        classes: 'classes',
+        type: "type",
+        color: "color",
+        className: "className",
         onClick: jest.fn()
       }
     };
   }
 });
-

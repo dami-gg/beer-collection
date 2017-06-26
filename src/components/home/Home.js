@@ -9,7 +9,7 @@ import { PAGE_OPTIONS } from "./home.constants";
 import { RESULTS_PER_PAGE } from "../collection/collection.constants";
 import { preloadBeerImage } from "../collection/collection.helpers";
 
-class Home extends Component {
+export class Home extends Component {
   props: {
     collection: Array<Beer>
   };

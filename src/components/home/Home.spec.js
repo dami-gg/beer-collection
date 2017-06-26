@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './Home';
+import {Home} from './Home';
 import Dashboard from '../dashboard/Dashboard';
 
 import {StaticRouter as Router} from 'react-router-dom';

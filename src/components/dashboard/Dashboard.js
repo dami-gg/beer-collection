@@ -1,5 +1,4 @@
 // @flow
-
 import React, { PureComponent } from "react";
 import Option from "./option/Option";
 

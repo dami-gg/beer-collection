@@ -2,22 +2,28 @@
 
 exports[`Option should match the snapshot 1`] = `
 <div
-  className="dashboard__option">
+  className="dashboard__option"
+>
   <a
     className="dashboard__option__card"
     href="/url"
-    onClick={[Function anonymous]}>
+    onClick={[Function]}
+  >
     <div
-      className="dashboard__option__image-wrapper">
+      className="dashboard__option__image-wrapper"
+    >
       <img
         alt="logo"
         className="dashboard__option__image"
-        src="IMAGE" />
+        src="IMAGE"
+      />
     </div>
     <div
-      className="dashboard__option__title-wrapper">
+      className="dashboard__option__title-wrapper"
+    >
       <p
-        className="dashboard__option__title">
+        className="dashboard__option__title"
+      >
         TITLE
       </p>
     </div>

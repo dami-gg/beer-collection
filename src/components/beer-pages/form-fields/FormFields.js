@@ -1,5 +1,4 @@
 // @flow
-
 import React, {PureComponent} from 'react';
 
 import FormField from '../../common/form-field/FormField';

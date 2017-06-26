@@ -2,20 +2,26 @@
 
 exports[`FloatingButton should match the snapshot 1`] = `
 <div
-  className="floating-button">
+  className="floating-button"
+>
   <div
     className="floating-button__button"
     onClick={undefined}
-    style={Object {}}>
+    style={Object {}}
+  >
     <i
-      className="undefined floating-button__button__icon" />
+      className="undefined floating-button__button__icon"
+    />
   </div>
   <div
-    className="floating-button__label">
+    className="floating-button__label"
+  >
     <div
-      className="floating-button__label__text" />
+      className="floating-button__label__text"
+    />
     <i
-      className="fa fa-play floating-button__label__arrow" />
+      className="fa fa-play floating-button__label__arrow"
+    />
   </div>
 </div>
 `;

@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from "react";
 import { Field } from "redux-form";
 

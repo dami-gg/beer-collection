@@ -1,5 +1,4 @@
 // @flow
-
 import firebase from 'firebase'
 
 const AUTHENTICATING_KEY: string = 'authenticating';

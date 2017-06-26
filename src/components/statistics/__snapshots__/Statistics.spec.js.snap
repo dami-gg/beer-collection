@@ -2,26 +2,34 @@
 
 exports[`Statistics should match the snapshot 1`] = `
 <div
-  className="statistics">
+  className="statistics"
+>
   <div
-    className="dashboard">
+    className="dashboard"
+  >
     <div
-      className="dashboard__option">
+      className="dashboard__option"
+    >
       <a
         className="dashboard__option__card"
         href="/origin"
-        onClick={[Function anonymous]}>
+        onClick={[Function]}
+      >
         <div
-          className="dashboard__option__image-wrapper">
+          className="dashboard__option__image-wrapper"
+        >
           <img
             alt="logo"
             className="dashboard__option__image"
-            src="https://unsplash.it/150/150" />
+            src="origin.png"
+          />
         </div>
         <div
-          className="dashboard__option__title-wrapper">
+          className="dashboard__option__title-wrapper"
+        >
           <p
-            className="dashboard__option__title">
+            className="dashboard__option__title"
+          >
             Origin
           </p>
         </div>

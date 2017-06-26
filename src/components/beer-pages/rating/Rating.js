@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from "react";
 
 import RatingButton from "./RatingButton";
