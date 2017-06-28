@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should match the snapshot 1`] = `
+<div
+  className="pagination  undefined"
+>
+  <a
+    className="pagination__button
+                     
+                     "
+    onClick={[Function]}
+  >
+    <span>
+      «
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     
+                     "
+    onClick={[Function]}
+  >
+    <span>
+      1
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     
+                     pagination__button--disabled"
+    onClick={[Function]}
+  >
+    <span>
+      ...
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     
+                     "
+    onClick={[Function]}
+  >
+    <span>
+      NaN
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     pagination__button--active
+                     "
+    onClick={[Function]}
+  >
+    <span />
+  </a>
+  <a
+    className="pagination__button
+                     
+                     "
+    onClick={[Function]}
+  >
+    <span>
+      NaN
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     
+                     pagination__button--disabled"
+    onClick={[Function]}
+  >
+    <span>
+      ...
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     
+                     "
+    onClick={[Function]}
+  >
+    <span>
+      NaN
+    </span>
+  </a>
+  <a
+    className="pagination__button
+                     
+                     "
+    onClick={[Function]}
+  >
+    <span>
+      »
+    </span>
+  </a>
+</div>
+`;

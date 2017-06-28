@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should match the snapshot 1`] = `
+<div
+  className="header"
+>
+  <a
+    className="logo-container"
+    href="/"
+    onClick={[Function]}
+  >
+    <div
+      className="logo"
+    >
+      <img
+        alt="logo"
+        height="30px"
+        src="logo.png"
+        width="25px"
+      />
+    </div>
+    <span
+      className="title"
+    >
+      Beer collection
+    </span>
+  </a>
+</div>
+`;
