@@ -10,10 +10,10 @@ class Error extends PureComponent {
     return (
       <div className="error-page">
         <h1 className="error-page__title">This page could not be found!</h1>
-        <p className="error-page__text">Please try again</p>
         <div className="error-page__image-wrapper">
             <img className="error-page__image" src={error} alt="error"/>
         </div>
+        <p className="error-page__text">Please try again</p>
       </div>
     );
   }
