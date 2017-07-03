@@ -1,0 +1,10 @@
+{
+    "presets": [
+        "react-app",
+        "flow"
+    ],
+    "plugins": [
+        "react-hot-loader/babel"
+    ],
+    "retainLines": true
+}

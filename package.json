@@ -20,6 +20,7 @@
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.0.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react-app": "^3.0.0",
     "babel-runtime": "6.23.0",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
@@ -28,12 +29,13 @@
     "css-loader": "0.28.1",
     "dotenv": "4.0.0",
     "enzyme": "^2.7.1",
-    "eslint": "^4.0.0",
+    "eslint": "^4.1.1",
+    "eslint-config-airbnb-base": "^11.2.0",
     "eslint-config-react-app": "^1.0.4",
     "eslint-loader": "1.5.0",
     "eslint-plugin-flowtype": "^2.34.0",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-jsx-a11y": "5.1.0",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.11.1",
@@ -70,6 +72,7 @@
     "chart.js": "^2.5.0",
     "firebase": "^4.1.2",
     "node-uuid": "^1.4.7",
+    "prettier": "^1.5.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^4.4.5",
@@ -106,16 +109,5 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "react-hot-loader/babel"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   }
 }
