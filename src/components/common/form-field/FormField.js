@@ -5,7 +5,7 @@ import { Field } from "redux-form";
 
 import "./form-field.scss";
 
-const FormField = (props: Object) => (
+const FormField = (props: Object) =>
   <div className="form__field">
     {props.label &&
       <label className="form__field__label" htmlFor={props.name}>
@@ -18,11 +18,10 @@ const FormField = (props: Object) => (
       type={props.type || "text"}
       name={props.name}
       value=""
-      disabled={props.readOnly}
+      disabled={props.disabled}
       component="input"
       placeholder={props.placeholder}
     />
-  </div>
-);
+  </div>;
 
 export default FormField;

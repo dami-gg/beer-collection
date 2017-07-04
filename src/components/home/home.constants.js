@@ -29,6 +29,7 @@ export const PAGE_OPTIONS: Array<Object> = [
   {
     title: "Beer map",
     url: "/map",
-    image: globe
+    image: globe,
+    disabled: true
   }
 ];

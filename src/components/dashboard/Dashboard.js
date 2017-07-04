@@ -17,6 +17,7 @@ class Dashboard extends PureComponent {
             title={item.title}
             url={item.url}
             image={item.image}
+            disabled={item.disabled}
           />
         ))
       : "";

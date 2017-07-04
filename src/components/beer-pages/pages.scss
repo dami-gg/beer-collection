@@ -4,6 +4,11 @@
   padding: 0 15%;
   &__heading {
     margin-bottom: 30px;
+    text-align: center;
+
+    @media(min-width: 768px) {
+      text-align: left;
+    }
   }
   .form-control[disabled] {
     cursor: default;

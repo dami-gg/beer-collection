@@ -9,7 +9,7 @@
   }
   @media(min-width: 992px) {
     width: 33%;
-  }
+  }  
   &__card {
     background-color: white;
     display: flex;
@@ -22,6 +22,12 @@
       width: 50%;
     }
   }
+
+&--disabled &__card { 
+  background-color: lightgray;
+  pointer-events: none;
+}
+
   &__image-wrapper {
     width: 40%;
     @media(min-width: 768px) {
