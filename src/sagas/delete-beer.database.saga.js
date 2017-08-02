@@ -17,8 +17,10 @@ function* deleteBeerFromDatabaseSaga(action) {
 }
 
 function deleteBeerFromDatabase(beer) {
+  const user = firebase.auth().currentUser;
+  
   return new Promise((resolve, reject) => {
-    firebase.database().ref(`beers/${beer.id}`)
+    firebase.database().ref(`users/${user.uid}/beers/${beer.id}`)
         .remove()
         .then(() => resolve())
         .catch(error => reject(error));

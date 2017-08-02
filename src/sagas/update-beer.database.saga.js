@@ -17,8 +17,10 @@ function* updateBeerInDatabaseSaga(action) {
 }
 
 function putBeerToDatabase(beer) {
-  return new Promise((resolve, reject) => {
-    firebase.database().ref(`beers/${beer.id}`)
+    const user = firebase.auth().currentUser;
+
+    return new Promise((resolve, reject) => {
+      firebase.database().ref(`users/${user.uid}/beers/${beer.id}`)
         .update({
           id: beer.id,
           name: beer.name,

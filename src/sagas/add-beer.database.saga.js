@@ -21,12 +21,13 @@ function* addBeerToDatabase(action) {
 }
 
 function postBeerToDatabase(beer) {
-  beer.id = v4();
+  const user = firebase.auth().currentUser;
+  beer.id = v4();  
   
   return new Promise((resolve, reject) => {
     firebase
       .database()
-      .ref(`beers/${beer.id}`)
+      .ref(`users/${user.uid}/beers/${beer.id}`)
       .set({
         id: beer.id,
         name: beer.name || "Beer without name",

@@ -22,6 +22,6 @@ export const logUserIn = (user: User): ActionWithUserParameter => {
 
 export const logUserOut = (): ActionWithNoParameters => {
   return {
-    type: LOG_USER_IN
+    type: LOG_USER_OUT
   };
 };
