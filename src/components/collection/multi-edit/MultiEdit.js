@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import EditableTable from "../../common/editable-table/EditableTable";
+import Button from "../../common/button/Button";
 
 import {
   addBeer,
@@ -12,6 +13,7 @@ import {
   deleteBeer
 } from "../../../actions/collection.actions";
 import { COLUMNS } from "./multi-edit.constants";
+import { exportAsCsvFile } from "../../collection/collection.helpers";
 
 import "./multi-edit.scss";
 
@@ -33,6 +35,7 @@ class MultiEdit extends Component {
     this.createBeer = this.createBeer.bind(this);
     this.editBeer = this.editBeer.bind(this);
     this.deleteBeer = this.deleteBeer.bind(this);
+    this.exportAsCsvFile = this.exportAsCsvFile.bind(this);
   }
 
   getRows(): Array<Array<any>> {
@@ -59,15 +62,28 @@ class MultiEdit extends Component {
     this.props.deleteBeer(deletedBeer);
   }
 
+  exportAsCsvFile = (): void => {
+    exportAsCsvFile(this.props.collection, "collection.csv");
+  };
+
   render() {
     return (
-      <EditableTable
-        columns={COLUMNS}
-        rows={this.props.collection}
-        onCreate={this.createBeer}
-        onEdit={this.editBeer}
-        onDelete={this.deleteBeer}
-      />
+      <div className="multi-edit">
+        <Button
+          className="multi-edit__export-button"
+          color="blue"
+          onClick={this.exportAsCsvFile}>
+          Export as CSV file
+        </Button>
+
+        <EditableTable
+          columns={COLUMNS}
+          rows={this.props.collection}
+          onCreate={this.createBeer}
+          onEdit={this.editBeer}
+          onDelete={this.deleteBeer}
+        />
+      </div>
     );
   }
 }

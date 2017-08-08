@@ -15,7 +15,8 @@ import {
   getAllBeerOrigins,
   getFilteredBeers,
   getBeersForPage,
-  preloadCollectionImagesForPage
+  preloadCollectionImagesForPage,
+  exportAsCsvFile
 } from "./collection.helpers";
 
 import "./collection.scss";
@@ -60,6 +61,7 @@ export class Collection extends Component {
     this.navigateToPage = this.navigateToPage.bind(this);
     this.redirectToAddPage = this.redirectToAddPage.bind(this);
     this.updateFilter = this.updateFilter.bind(this);
+    this.exportAsCsvFile = this.exportAsCsvFile.bind(this);
   }
 
   componentWillMount(): void {
@@ -116,6 +118,10 @@ export class Collection extends Component {
     this.setState({ ...newState, filteredBeers, beersInCurrentPage });
   };
 
+  exportAsCsvFile = (): void => {
+    exportAsCsvFile(this.props.collection, "collection.csv");
+  };
+
   render() {
     return (
       <div className="collection">
@@ -134,13 +140,23 @@ export class Collection extends Component {
           allBeerOrigins={this.allBeerOrigins}
         />
 
-        <FloatingButton
-          iconClass="fa fa-plus"
-          label="Add a new beer"
-          buttonColor="green"
-          iconColor="white"
-          clickHandler={this.redirectToAddPage}
-        />
+        <div className="collection__floating-buttons">
+          <FloatingButton
+            iconClass="fa fa-download"
+            label="Export as CSV file"
+            buttonColor="grey"
+            iconColor="white"
+            clickHandler={this.exportAsCsvFile}
+          />
+
+          <FloatingButton
+            iconClass="fa fa-plus"
+            label="Add a new beer"
+            buttonColor="green"
+            iconColor="white"
+            clickHandler={this.redirectToAddPage}
+          />
+        </div>
       </div>
     );
   }

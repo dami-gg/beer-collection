@@ -67,7 +67,9 @@ const applyFilters = (
     return false;
   }
   if (
-    typeFilter && beer.type !== typeFilter && typeFilter !== ALL_FILTER_OPTION
+    typeFilter &&
+    beer.type !== typeFilter &&
+    typeFilter !== ALL_FILTER_OPTION
   ) {
     return false;
   }
@@ -89,4 +91,38 @@ export const getBeersForPage = (
   const offset = (currentPage ? currentPage - 1 : 0) * RESULTS_PER_PAGE;
 
   return beers.slice(offset, offset + RESULTS_PER_PAGE);
+};
+
+const COLUMN_DELIMITER: string = ",";
+const LINE_DELIMITER: string = "\r\n";
+
+const convertCollectionToCsv: string = (collection: Array<Beer>) => {
+  let csv: string = "";
+
+  collection.forEach((beer: Beer, index: number) => {
+    csv += `${beer.id}${COLUMN_DELIMITER}
+            ${beer.name}${COLUMN_DELIMITER}
+            ${beer.type}${COLUMN_DELIMITER}
+            ${beer.origin}${COLUMN_DELIMITER}
+            ${beer.image}${COLUMN_DELIMITER}
+            ${beer.rating}${LINE_DELIMITER}`;
+  });
+
+  return csv;
+};
+
+export const exportAsCsvFile: void = (
+  collection: Array<Beer>,
+  fileName?: string
+) => {
+  if (!collection || !collection.length) {
+    return;
+  }
+
+  let csv = "data:text/csv;charset=utf-8," + convertCollectionToCsv(collection);
+
+  let link = document.createElement("a");
+  link.setAttribute("href", encodeURI(csv));
+  link.setAttribute("download", fileName || "export.csv");
+  link.click();
 };

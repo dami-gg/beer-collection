@@ -3,4 +3,17 @@
   flex-direction: column;
   margin-top: 30px;
   padding: 0 2%;    
+
+  &__floating-buttons {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 100;
+
+    :not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
 }
