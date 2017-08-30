@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiEdit dumb component should match the snapshot 1`] = `
+<div
+  className="multi-edit"
+>
+  <button
+    className="button button--blue multi-edit__export-button"
+    onClick={[Function]}
+    type="button"
+  >
+    Export as CSV file
+  </button>
+  <div
+    className="editable-table"
+  >
+    <div
+      className="editable-table__header"
+    >
+      <div
+        className="editable-table__header__column "
+      >
+        Name
+      </div>
+      <div
+        className="editable-table__header__column "
+      >
+        Type
+      </div>
+      <div
+        className="editable-table__header__column "
+      >
+        Origin
+      </div>
+      <div
+        className="editable-table__header__column "
+      >
+        Rating
+      </div>
+      <div
+        className="editable-table__header__column mobile-hidden"
+      >
+        Image
+      </div>
+    </div>
+    <div
+      className="row row--edit"
+    >
+      <div
+        className="cell "
+      >
+        <input
+          className="cell__input cell__input--text"
+          onChange={[Function]}
+          placeholder="Name"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="cell "
+      >
+        <input
+          className="cell__input cell__input--text"
+          onChange={[Function]}
+          placeholder="Type"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="cell "
+      >
+        <input
+          className="cell__input cell__input--text"
+          onChange={[Function]}
+          placeholder="Origin"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="cell "
+      >
+        <input
+          className="cell__input cell__input--number"
+          onChange={[Function]}
+          placeholder="Rating"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="cell mobile-hidden"
+      >
+        <div
+          className="cell__image-upload"
+        >
+          <div
+            className="image-uploader"
+          >
+            <div
+              className="image-uploader__preview 
+                      image-uploader__preview--empty
+                      image-uploader__preview--hidden"
+            />
+            <div
+              className="image-uploader__uploader"
+            >
+              <button
+                className="button button--blue image-uploader__button"
+                onClick={[Function]}
+                type="button"
+              >
+                <label
+                  className="image-uploader__button__label"
+                  htmlFor="image-uploader__input"
+                >
+                  Select image
+                </label>
+              </button>
+              <input
+                className="image-uploader__input"
+                id="image-uploader__input"
+                onChange={[Function]}
+                type="file"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="buttons"
+      >
+        <button
+          className="button button--green "
+          onClick={[Function]}
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          className="button button--grey "
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

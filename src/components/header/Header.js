@@ -1,4 +1,6 @@
 // @flow
+import type { User } from '../../types/user.types';
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,6 +13,10 @@ import "./header.scss";
 import { logout } from "../../helpers/authentication.helpers";
 
 export class Header extends Component {
+  props: {
+    user: User
+  }
+  
   render() {
     return (
       <div className="header">

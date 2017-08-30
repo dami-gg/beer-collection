@@ -1,14 +1,12 @@
 import React from "react";
-import ConnectedHeader, { Header } from "./Header";
-
-import { StaticRouter as Router, Link } from "react-router-dom";
-import Button from "../common/button/Button";
+import ConnectedMultiEdit, { MultiEdit } from "./MultiEdit";
+import EditableTable from "../../common/editable-table/EditableTable";
 
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 
-describe("Header", () => {
+describe("MultiEdit", () => {
   let component,
     container,
     element,
@@ -24,9 +22,7 @@ describe("Header", () => {
 
     it("should match the snapshot", () => {
       component = renderer.create(
-        <Router context={mock.context}>
-          <Header />
-        </Router>
+        <MultiEdit collection={mock.state.collection} />
       );
       let json = component.toJSON();
 
@@ -34,29 +30,18 @@ describe("Header", () => {
     });
 
     describe("render", () => {
-      it("should render a Link component", () => {
-        component = renderDumbComponent();
+      beforeEach(() => (component = renderDumbComponent()));
 
-        element = component.find(Link);
-
-        expect(element.length).toEqual(1);
-      });
-
-      it("should render a logout Button component when there is a user", () => {
-        component = renderDumbComponent();
-
-        element = component.find(Button);
+      it("should render an export button", () => {
+        element = component.find(".multi-edit__export-button");
 
         expect(element.length).toEqual(1);
       });
 
-      it("should not render a logout Button component when there is no user", () => {
-        delete mock.state.authentication.user;
-        component = renderDumbComponent();
+      it("should render a EditableTable", () => {
+        element = component.find(EditableTable);
 
-        element = component.find(Button);
-
-        expect(element.length).toEqual(0);
+        expect(element.length).toEqual(1);
       });
     });
   });
@@ -72,28 +57,25 @@ describe("Header", () => {
       });
 
       it("should match props with state", () => {
-        expect(container.prop("user")).toEqual(mock.state.authentication.user);
+        expect(container.prop("collection")).toEqual(mock.state.collection);
       });
     });
   });
 
   function renderDumbComponent() {
-    return shallow(<Header user={mock.state.authentication.user} />);
+    return shallow(<MultiEdit />);
   }
 
   function renderSmartComponent(initialState = mock.state) {
     let store = storeConfig(initialState);
 
-    return shallow(<ConnectedHeader store={store} />);
+    return shallow(<ConnectedMultiEdit store={store} />);
   }
 
   function mocks() {
     mock = {
-      context: {},
       state: {
-        authentication: {
-          user: { id: 1, name: "Name" }
-        }
+        collection: []
       }
     };
   }

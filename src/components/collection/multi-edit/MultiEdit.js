@@ -17,7 +17,7 @@ import { exportAsCsvFile } from "../../collection/collection.helpers";
 
 import "./multi-edit.scss";
 
-class MultiEdit extends Component {
+export class MultiEdit extends Component {
   createBeer: Function;
   editBeer: Function;
   deleteBeer: Function;
