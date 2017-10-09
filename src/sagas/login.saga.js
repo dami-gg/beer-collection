@@ -1,4 +1,4 @@
-import {takeEvery, fork} from 'redux-saga/effects';
+import {takeEvery, fork, all} from 'redux-saga/effects';
 
 import {LOG_USER_IN} from '../actions/authentication.actions';
 
@@ -14,14 +14,14 @@ function* watchUserLoggedIn() {
 }
 
 function* triggerCollectionSagas() { 
-  yield [
+  yield all([
     fork(watchAddedBeerInApplicationSaga),
     fork(watchAddedBeerInDatabaseSaga),
     fork(watchUpdatedBeerInApplicationSaga),
     fork(watchUpdatedBeerInDatabaseSaga),
     fork(watchDeletedBeerInApplicationSaga),
     fork(watchDeletedBeerInDatabaseSaga)
-  ];
+  ]);
 }
 
 export default watchUserLoggedIn;
