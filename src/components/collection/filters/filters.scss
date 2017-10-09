@@ -28,7 +28,7 @@
     &--pagination {
       align-self: center;      
       @media(min-width: 768px) {
-        width: 20%;
+        min-width: 20%;
         margin-left: auto;
       }
     }
