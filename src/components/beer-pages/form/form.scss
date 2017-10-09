@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       flex-direction: row;
       justify-content: space-between;
     }
@@ -15,7 +15,7 @@
     flex-direction: column;
     order: 1;
     margin-top: 25px;
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       width: 50%;
       order: 0;
       margin-top: 0;
@@ -24,13 +24,18 @@
   &__buttons {
     display: flex;
     justify-content: center;
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       justify-content: flex-start;
     }
     .button {
-      margin-right: 15px;
       width: 150px;
       height: 40px;
+      &--positive {
+        margin-right: 10px;
+      }
+      &--negative {
+        margin-left: 10px;
+      }
     }
   }
   .image-uploader__uploader {

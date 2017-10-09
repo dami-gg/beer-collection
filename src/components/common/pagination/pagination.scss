@@ -14,14 +14,16 @@
       color: white;
     }
 
-    &:hover:not(&--active) {
-      background-color: #ddd;
-    }
-
     &--disabled:hover {
       background-color: transparent !important;
       cursor: default;
       color: grey;
+    }
+
+    @media (min-width: 768px) {
+      &:hover:not(&--active) {
+        background-color: #ddd;
+      }
     }
   }
 }

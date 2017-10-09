@@ -9,9 +9,7 @@ import ImageUploader from "../../common/image-uploader/ImageUploader";
 
 import type { BeerFormValues } from "../../../types/beer.types";
 
-import {
-  handleImageUpload
-} from "../../common/image-uploader/image-uploader.helpers";
+import { handleImageUpload } from "../../common/image-uploader/image-uploader.helpers";
 
 import "./form.scss";
 
@@ -73,8 +71,7 @@ export class Form extends Component {
     return (
       <form
         className="beer-form"
-        onSubmit={this.props.handleSubmit(this.preSubmit)}
-      >
+        onSubmit={this.props.handleSubmit(this.preSubmit)}>
         <div className="beer-form__inputs">
           <FormFields readOnly={this.props.readOnly} />
 
@@ -89,11 +86,14 @@ export class Form extends Component {
         </div>
 
         <div className="beer-form__buttons">
-          <Button type="submit" color="green">
+          <Button className="button--positive" type="submit" color="green">
             {this.props.submitButtonLabel || "Save"}
           </Button>
 
-          <Button color="red" onClick={this.props.onCancel}>
+          <Button
+            className="button--negative"
+            color="red"
+            onClick={this.props.onCancel}>
             {this.props.cancelButtonLabel || "Cancel"}
           </Button>
         </div>
