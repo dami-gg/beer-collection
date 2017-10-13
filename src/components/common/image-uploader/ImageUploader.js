@@ -72,7 +72,7 @@ class ImageUploader extends PureComponent {
             />
 
             <GalleryOpener
-              className="image-uploader__button"
+              className="button-wrapper"
               buttonLabel={this.props.galleryButtonLabel}
             />
           </div>

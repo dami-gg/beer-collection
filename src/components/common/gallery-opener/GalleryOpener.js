@@ -1,27 +1,52 @@
 // @flow
 
 import Button from "../button/Button";
+import Modal from "../modal/Modal";
+import Gallery from "../../gallery/Gallery";
 
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
-export class GalleryOpener extends PureComponent {
+export class GalleryOpener extends Component {
   props: {
     className?: string,
     buttonLabel?: string
   };
 
-  openGallery() {}
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpened: false
+    };
+
+    this.closeGallery = this.closeGallery.bind(this);
+  }
+
+  openGallery() {
+    this.setState({
+      isOpened: true
+    });
+  }
+
+  closeGallery() {
+    this.setState({
+      isOpened: false
+    });
+  }
 
   render() {
     return (
-      <Button
-        className={`button--positive ${this.props.className
-          ? this.props.className
-          : ""}`}
-        color="purple"
-        onClick={this.openGallery}>
-        {this.props.buttonLabel || "Select from gallery"}
-      </Button>
+      <div className={this.props.className ? this.props.className : ""}>
+        <Button
+          className="button--positive"
+          color="purple"
+          onClick={event => this.openGallery()}>
+          {this.props.buttonLabel || "Select from gallery"}
+        </Button>
+        <Modal isOpened={this.state.isOpened} onClose={this.closeGallery}>
+          <Gallery />
+        </Modal>
+      </div>
     );
   }
 }

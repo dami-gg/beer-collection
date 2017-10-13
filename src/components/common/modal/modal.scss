@@ -1,0 +1,24 @@
+.modal {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 150px;
+  left: 150px;
+  z-index: 9999;
+  background-color: white;
+
+  &__opened {
+    display: block;
+  }
+  &__closed {
+    display: none;
+  }
+
+  &__close-button {
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}

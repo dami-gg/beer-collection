@@ -23,11 +23,14 @@
       display: none;
     }
   }
-  &__button {
+  .button {
     padding: 6px 12px;    
     &__label {
       cursor: pointer;
     }
+  }
+  &__button:first-child {
+    margin-bottom: 15px;
   }
   &__input {
     display: none;
