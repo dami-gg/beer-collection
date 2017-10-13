@@ -2,13 +2,15 @@
 import React, { PureComponent } from "react";
 
 import Button from "../button/Button";
+import GalleryOpener from "../gallery-opener/GalleryOpener";
+
 import { readFile } from "./image-uploader.helpers";
 
 import "./image-uploader.scss";
 
 class ImageUploader extends PureComponent {
   handleImageSelection: Function;
-  
+
   props: {
     onImageSelected: Function,
     thumbnail: string,
@@ -16,7 +18,8 @@ class ImageUploader extends PureComponent {
     currentImage: string,
     onImageLoaded: Function,
     hidePreview?: boolean,
-    buttonLabel?: string
+    uploadButtonLabel?: string,
+    galleryButtonLabel?: string
   };
 
   constructor(props: Object) {
@@ -38,25 +41,26 @@ class ImageUploader extends PureComponent {
       <div className="image-uploader">
         <div
           className={`image-uploader__preview 
-          ${this.props.thumbnail || this.props.currentImage ? "" : "image-uploader__preview--empty"}
-          ${this.props.hidePreview ? "image-uploader__preview--hidden" : ""}`}
-        >
-          {(this.props.thumbnail || this.props.currentImage) &&
+          ${this.props.thumbnail || this.props.currentImage
+            ? ""
+            : "image-uploader__preview--empty"}
+          ${this.props.hidePreview ? "image-uploader__preview--hidden" : ""}`}>
+          {(this.props.thumbnail || this.props.currentImage) && (
             <img
               className="image-uploader__preview__image"
               src={this.props.thumbnail || this.props.currentImage}
               alt="Thumbnail"
-            />}
+            />
+          )}
         </div>
 
-        {!this.props.readOnly &&
+        {!this.props.readOnly && (
           <div className="image-uploader__uploader">
             <Button className="image-uploader__button" color="blue">
               <label
                 className="image-uploader__button__label"
-                htmlFor="image-uploader__input"
-              >
-                {this.props.buttonLabel || "Select image"}
+                htmlFor="image-uploader__input">
+                {this.props.uploadButtonLabel || "Select image"}
               </label>
             </Button>
 
@@ -66,7 +70,13 @@ class ImageUploader extends PureComponent {
               type="file"
               onChange={this.handleImageSelection}
             />
-          </div>}
+
+            <GalleryOpener
+              className="image-uploader__button"
+              buttonLabel={this.props.galleryButtonLabel}
+            />
+          </div>
+        )}
       </div>
     );
   }

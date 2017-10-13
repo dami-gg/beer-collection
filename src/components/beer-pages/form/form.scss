@@ -38,7 +38,15 @@
       }
     }
   }
-  .image-uploader__uploader {
-    margin-top: 20px;
+  .image-uploader {
+    &__uploader {
+      margin-top: 20px;
+    }
+    &__button {
+      width: 100%;
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
   }
 }

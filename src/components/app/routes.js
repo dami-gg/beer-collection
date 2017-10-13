@@ -14,6 +14,7 @@ const multiEditAsyncLoader = () => import("../collection/multi-edit/MultiEdit");
 const statisticsAsyncLoader = () => import("../statistics/Statistics");
 const ratingAsyncLoader = () => import("../statistics/graphs/Rating");
 const originAsyncLoader = () => import("../statistics/graphs/Origin");
+const galleryAsyncLoader = () => import("../gallery/Gallery");
 const errorAsyncLoader = () => import("../error/Error");
 
 export const routes = (
@@ -50,6 +51,7 @@ export const routes = (
       component={Authenticated(Async(ratingAsyncLoader))}
     />
     <Route path="/origin" component={Authenticated(Async(originAsyncLoader))} />
+    <Route path="/gallery" component={Authenticated(Async(galleryAsyncLoader))} />
     <Route path="/login" component={Async(loginAsyncLoader)} />
     <Route component={Async(errorAsyncLoader)} />
   </Switch>

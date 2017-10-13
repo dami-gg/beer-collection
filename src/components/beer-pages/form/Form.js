@@ -81,7 +81,8 @@ export class Form extends Component {
             readOnly={this.props.readOnly}
             currentImage={this.props.currentImage}
             onImageLoaded={this.getThumbnail}
-            buttonLabel={"Upload image"}
+            uploadButtonLabel="Upload image"
+            galleryButtonLabel="Select from gallery"
           />
         </div>
 

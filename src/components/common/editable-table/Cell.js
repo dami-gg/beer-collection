@@ -72,13 +72,11 @@ class Cell extends Component {
   }
 
   getReadOnlyImage() {
-    return this.props.content
-      ? <img
-          className="cell__image"
-          src={this.props.content}
-          alt="Current"
-        />
-      : <span className="cell__text">No image</span>;
+    return this.props.content ? (
+      <img className="cell__image" src={this.props.content} alt="Current" />
+    ) : (
+      <span className="cell__text">No image</span>
+    );
   }
 
   getEditableText() {
@@ -94,18 +92,7 @@ class Cell extends Component {
   }
 
   getEditableImage() {
-    return this.props.content
-      ? <div className="cell__image-upload">
-          <img
-            className="cell__image"
-            src={this.props.content}
-            alt="Uploaded"
-          />
-          {this.getImageUploader()}
-        </div>
-      : <div className="cell__image-upload">
-          {this.getImageUploader()}
-        </div>;
+    return <div className="cell__image-upload">{this.getImageUploader()}</div>;
   }
 
   loadImage(imageFile: Object) {
@@ -126,6 +113,8 @@ class Cell extends Component {
         currentImage={this.props.content}
         onImageLoaded={this.getThumbnail}
         hidePreview={true}
+        uploadButtonLabel="Upload"
+        galleryButtonLabel="Select"
       />
     );
   }
@@ -138,8 +127,9 @@ class Cell extends Component {
   render() {
     return (
       <div
-        className={`cell ${this.props.column.hiddenOnMobile ? "mobile-hidden" : ""}`}
-      >
+        className={`cell ${this.props.column.hiddenOnMobile
+          ? "mobile-hidden"
+          : ""}`}>
         {this.getContent()}
       </div>
     );

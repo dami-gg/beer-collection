@@ -31,5 +31,10 @@ export const PAGE_OPTIONS: Array<Object> = [
     url: "/map",
     image: globe,
     disabled: true
+  },
+  {
+    title: "Logo gallery",
+    url: "/gallery",
+    image: ''
   }
 ];

@@ -63,4 +63,12 @@
       border-color: grey;
     }
   }
+  &--purple {
+    color: white;
+    background-color: darkviolet;
+    border-color: darkviolet;
+    &:hover {
+      background-color: purple;
+    }
+  }
 }
