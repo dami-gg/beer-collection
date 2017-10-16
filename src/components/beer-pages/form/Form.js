@@ -1,15 +1,17 @@
 // @flow
+
+import type { BeerFormValues } from "../../../types/beer.types";
+import type { Image } from "../../../types/image.types";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 
 import Button from "../../common/button/Button";
 import FormFields from "../form-fields/FormFields";
-import ImageUploader from "../../common/image-uploader/ImageUploader";
+import ImageSelector from "../../common/image-selector/ImageSelector";
 
-import type { BeerFormValues } from "../../../types/beer.types";
-
-import { handleImageUpload } from "../../common/image-uploader/image-uploader.helpers";
+import { uploadImage } from "../../common/image-selector/image-selector.helpers";
 
 import "./form.scss";
 
@@ -25,12 +27,15 @@ type Props = {
 
 type State = {
   imageFile: any,
-  thumbnail: string
+  thumbnail: string,
+  imageSelected: boolean,
+  imageUploaded: boolean
 };
 
 export class Form extends Component<Props, State> {
   preSubmit: Function;
-  loadImage: Function;
+  handleImageUpload: Function;
+  handleImageSelection: Function;
   getThumbnail: Function;
 
   constructor(props: Props) {
@@ -38,11 +43,14 @@ export class Form extends Component<Props, State> {
 
     this.state = {
       imageFile: undefined,
-      thumbnail: ""
+      thumbnail: "",
+      imageSelected: false,
+      imageUploaded: false
     };
 
     this.preSubmit = this.preSubmit.bind(this);
-    this.loadImage = this.loadImage.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleImageSelection = this.handleImageSelection.bind(this);
     this.getThumbnail = this.getThumbnail.bind(this);
   }
 
@@ -53,13 +61,28 @@ export class Form extends Component<Props, State> {
    * @param formValues
    */
   preSubmit(formValues: BeerFormValues) {
-    handleImageUpload(this.state.imageFile)
-      .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
-      .catch(error => console.log(error)); // TODO Handle error
+    if (this.state.imageUploaded) {
+      uploadImage(this.state.imageFile)
+        .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
+        .catch(error => console.log(error)); // TODO Handle error
+    } else {
+      this.props.onSubmit(formValues, this.state.thumbnail);
+    }
   }
 
-  loadImage(imageFile: Object) {
-    this.setState({ imageFile });
+  handleImageUpload(imageFile: Object) {
+    this.setState({
+      imageFile,
+      imageUploaded: true,
+      imageSelected: false
+    });
+  }
+
+  handleImageSelection(image: Image) {
+    this.setState({
+      imageSelected: true,
+      imageUploaded: false
+    });
   }
 
   getThumbnail(thumbnail: string) {
@@ -74,8 +97,9 @@ export class Form extends Component<Props, State> {
         <div className="beer-form__inputs">
           <FormFields readOnly={this.props.readOnly} />
 
-          <ImageUploader
-            onImageSelected={this.loadImage}
+          <ImageSelector
+            onImageUploaded={this.handleImageUpload}
+            onImageSelected={this.handleImageSelection}
             thumbnail={this.state.thumbnail}
             readOnly={this.props.readOnly}
             currentImage={this.props.currentImage}

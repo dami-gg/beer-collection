@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 
-import ImageUploader from "../../common/image-uploader/ImageUploader";
+import ImageSelector from "../../common/image-selector/ImageSelector";
 
 import "./cell.scss";
 
@@ -92,7 +92,7 @@ class Cell extends Component<Props, State> {
   }
 
   getEditableImage() {
-    return <div className="cell__image-upload">{this.getImageUploader()}</div>;
+    return <div className="cell__image-upload">{this.getImageSelector()}</div>;
   }
 
   loadImage(imageFile: Object) {
@@ -104,10 +104,10 @@ class Cell extends Component<Props, State> {
     this.props.onChange(this.props.column, thumbnail);
   }
 
-  getImageUploader() {
+  getImageSelector() {
     return (
-      <ImageUploader
-        onImageSelected={this.loadImage}
+      <ImageSelector
+        onImageUploaded={this.loadImage}
         thumbnail={this.props.content}
         readOnly={this.props.readOnly}
         currentImage={this.props.content}

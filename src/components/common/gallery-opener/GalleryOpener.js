@@ -1,5 +1,7 @@
 // @flow
 
+import type { Image } from "../../types/image.types";
+
 import Button from "../button/Button";
 import Modal from "../modal/Modal";
 import Gallery from "../../gallery/Gallery";
@@ -8,24 +10,31 @@ import React, { Component } from "react";
 
 type Props = {
   className?: string,
-  buttonLabel?: string
+  buttonLabel?: string,
+  onSelection?: Function
 };
 
 type State = {
-  isOpened: boolean
-}
+  isOpened: boolean,
+  selectedImage: Image
+};
 
 export class GalleryOpener extends Component<Props, State> {
   closeGallery: Function;
-  
+  handleSelection: Function;
+  saveSelection: Function;
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      isOpened: false
+      isOpened: false,
+      selectedImage: undefined
     };
 
     this.closeGallery = this.closeGallery.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
+    this.saveSelection = this.saveSelection.bind(this);
   }
 
   openGallery() {
@@ -40,6 +49,14 @@ export class GalleryOpener extends Component<Props, State> {
     });
   }
 
+  handleSelection(selectedImage: Image) {
+    this.setState({ selectedImage });
+  }
+
+  saveSelection() {
+    this.props.onSelection(this.state.selectedImage);
+  }
+
   render() {
     return (
       <div className={this.props.className ? this.props.className : ""}>
@@ -49,8 +66,15 @@ export class GalleryOpener extends Component<Props, State> {
           onClick={event => this.openGallery()}>
           {this.props.buttonLabel || "Select from gallery"}
         </Button>
-        <Modal isOpened={this.state.isOpened} onClose={this.closeGallery}>
-          <Gallery />
+
+        <Modal
+          isOpened={this.state.isOpened}
+          onClose={this.closeGallery}
+          onSave={this.saveSelection}>
+          <Gallery
+            onSelect={this.handleSelection}
+            selectedImage={this.state.selectedImage}
+          />
         </Modal>
       </div>
     );

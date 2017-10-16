@@ -9,7 +9,7 @@ export const readFile = (file: Object, callback: Function) => {
   reader.readAsDataURL(file);
 };
 
-export const handleImageUpload = (imageFile: Object): Promise<any> => {
+export const uploadImage = (imageFile: Object): Promise<any> => {
   return new Promise((resolve, reject) => {
     if (imageFile) {
       const storageRef = firebase
@@ -38,9 +38,9 @@ export const handleImageUpload = (imageFile: Object): Promise<any> => {
   });
 };
 
-export const handleBatchImageUpload = (imageFiles: Array<Object>) => {
+export const uploadImagesBatch = (imageFiles: Array<Object>) => {
   const uploadProcesses = imageFiles.map(imageFile =>
-    handleImageUpload(imageFile)
+    uploadImage(imageFile)
   );
   return Promise.all(uploadProcesses);
 };

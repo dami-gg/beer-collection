@@ -11,16 +11,24 @@ import "./gallery.scss";
 
 type Props = {
   gallery: Array<Image>,
-  onSelect: Function
+  onSelect?: Function,
+  selectedImage?: Image
 };
 
 export class Gallery extends Component<Props> {
-  images: Array<string>;
-
   renderImages() {
     return this.props.gallery.map((image: Image, index) => (
-      <div className="gallery__image" key={index}>
+      <div
+        className={`gallery__frame 
+        ${this.props.onSelect ? "gallery__frame--selectable" : ""}
+        ${this.props.selectedImage && this.props.selectedImage.url === image.url
+          ? "gallery__frame--selected"
+          : ""}          
+          `}
+        onClick={event => this.props.onSelect && this.props.onSelect(image)}
+        key={index}>
         <img
+        className="gallery__frame__image"
           src={image.url}
           alt={`Logo ${index}`}
           width={IMAGE_SIZE}

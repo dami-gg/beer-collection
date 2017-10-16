@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Cell from "./Cell";
 import Buttons from "./Buttons";
 
-import { handleBatchImageUpload } from "../../common/image-uploader/image-uploader.helpers";
+import { uploadImagesBatch } from "../../common/image-selector/image-selector.helpers";
 
 import "./row.scss";
 
@@ -117,7 +117,7 @@ class Row extends Component<Props, State> {
 
   finishEdition() {
     if (this.state.imagesToUpload.length > 0) {
-      handleBatchImageUpload(this.state.imagesToUpload)
+      uploadImagesBatch(this.state.imagesToUpload)
         .then(imageUrl => {
           this.saveChanges();
         })

@@ -1,14 +1,18 @@
 // @flow
+
+import type { Image } from "../../../types/image.types";
+
 import React, { PureComponent } from "react";
 
 import Button from "../button/Button";
 import GalleryOpener from "../gallery-opener/GalleryOpener";
 
-import { readFile } from "./image-uploader.helpers";
+import { readFile } from "./image-selector.helpers";
 
-import "./image-uploader.scss";
+import "./image-selector.scss";
 
 type Props = {
+  onImageUploaded: Function,
   onImageSelected: Function,
   thumbnail: string,
   readOnly?: boolean,
@@ -19,35 +23,42 @@ type Props = {
   galleryButtonLabel?: string
 };
 
-class ImageUploader extends PureComponent<Props> {
+class ImageSelector extends PureComponent<Props> {
+  handleImageUpload: Function;
   handleImageSelection: Function;
 
   constructor(props: Props) {
     super(props);
 
+    this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleImageSelection = this.handleImageSelection.bind(this);
   }
 
-  handleImageSelection(event: Object) {
+  handleImageUpload(event: Object) {
     event.persist();
     const imageFile = event.target.files[0];
     readFile(imageFile, this.props.onImageLoaded);
 
-    this.props.onImageSelected(imageFile);
+    this.props.onImageUploaded(imageFile);
+  }
+
+  handleImageSelection(image: Image) {
+    this.props.onImageLoaded(image.url);
+    this.props.onImageSelected(image);
   }
 
   render() {
     return (
-      <div className="image-uploader">
+      <div className="image-selector">
         <div
-          className={`image-uploader__preview 
+          className={`image-selector__preview 
           ${this.props.thumbnail || this.props.currentImage
             ? ""
-            : "image-uploader__preview--empty"}
-          ${this.props.hidePreview ? "image-uploader__preview--hidden" : ""}`}>
+            : "image-selector__preview--empty"}
+          ${this.props.hidePreview ? "image-selector__preview--hidden" : ""}`}>
           {(this.props.thumbnail || this.props.currentImage) && (
             <img
-              className="image-uploader__preview__image"
+              className="image-selector__preview__image"
               src={this.props.thumbnail || this.props.currentImage}
               alt="Thumbnail"
             />
@@ -55,25 +66,26 @@ class ImageUploader extends PureComponent<Props> {
         </div>
 
         {!this.props.readOnly && (
-          <div className="image-uploader__uploader">
-            <Button className="image-uploader__button" color="blue">
+          <div className="image-selector__uploader">
+            <Button className="image-selector__button" color="blue">
               <label
-                className="image-uploader__button__label"
-                htmlFor="image-uploader__input">
+                className="image-selector__button__label"
+                htmlFor="image-selector__input">
                 {this.props.uploadButtonLabel || "Select image"}
               </label>
             </Button>
 
             <input
-              id="image-uploader__input"
-              className="image-uploader__input"
+              id="image-selector__input"
+              className="image-selector__input"
               type="file"
-              onChange={this.handleImageSelection}
+              onChange={this.handleImageUpload}
             />
 
             <GalleryOpener
               className="button-wrapper"
               buttonLabel={this.props.galleryButtonLabel}
+              onSelection={this.handleImageSelection}
             />
           </div>
         )}
@@ -82,4 +94,4 @@ class ImageUploader extends PureComponent<Props> {
   }
 }
 
-export default ImageUploader;
+export default ImageSelector;
