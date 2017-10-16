@@ -5,23 +5,23 @@ import ImageUploader from "../../common/image-uploader/ImageUploader";
 
 import "./cell.scss";
 
+type Props = {
+  content: string,
+  column: Object,
+  onChange: Function,
+  onImageChange: Function,
+  readOnly?: boolean
+};
+
 type State = {
   thumbnail: any
 };
 
-class Cell extends Component {
+class Cell extends Component<Props, State> {
   state: State;
   handleChange: Function;
   loadImage: Function;
   getThumbnail: Function;
-
-  props: {
-    content: string,
-    column: Object,
-    onChange: Function,
-    onImageChange: Function,
-    readOnly: boolean
-  };
 
   constructor(props: Object) {
     super(props);

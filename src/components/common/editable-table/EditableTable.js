@@ -5,21 +5,22 @@ import Row from "./Row";
 
 import "./editable-table.scss";
 
-class EditableTable extends PureComponent {
-  props: {
-    columns: Array<Object>,
-    rows: Array<Object>,
-    onEdit: Function,
-    onCreate: Function,
-    onDelete: Function
-  };
+type Props = {
+  columns: Array<Object>,
+  rows: Array<Object>,
+  onEdit: Function,
+  onCreate: Function,
+  onDelete: Function
+};
 
+class EditableTable extends PureComponent<Props> {
   getHeader() {
     return this.props.columns.map((column: Object) => (
       <div
-        className={`editable-table__header__column ${column.hiddenOnMobile ? "mobile-hidden" : ""}`}
-        key={column.id}
-      >
+        className={`editable-table__header__column ${column.hiddenOnMobile
+          ? "mobile-hidden"
+          : ""}`}
+        key={column.id}>
         {column.name}
       </div>
     ));
@@ -52,9 +53,7 @@ class EditableTable extends PureComponent {
   render() {
     return (
       <div className="editable-table">
-        <div className="editable-table__header">
-          {this.getHeader()}
-        </div>
+        <div className="editable-table__header">{this.getHeader()}</div>
         {this.getExtraRow()}
         {this.getRows()}
       </div>

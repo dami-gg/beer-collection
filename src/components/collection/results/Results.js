@@ -11,13 +11,13 @@ import { getBeerTypeLabelStyle } from "./results.helpers";
 
 import "./results.scss";
 
-class Results extends PureComponent {
-  props: {
-    results: Array<Beer>,
-    allBeerTypes: Array<string>,
-    allBeerOrigins: Array<string>
-  };
+type Props = {
+  results: Array<Beer>,
+  allBeerTypes: Array<string>,
+  allBeerOrigins: Array<string>
+};
 
+class Results extends PureComponent<Props> {
   getResultLinks() {
     return this.props.results.map((beer: Beer) => {
       return (
@@ -29,12 +29,13 @@ class Results extends PureComponent {
                 style={getBeerTypeLabelStyle(
                   beer.type || "",
                   this.props.allBeerTypes
-                )}
-              >
+                )}>
                 {beer.type}
               </div>
               <img
-                className={`beer__image ${!beer.image ? "beer__image--placeholder" : ""}`}
+                className={`beer__image ${!beer.image
+                  ? "beer__image--placeholder"
+                  : ""}`}
                 width="200"
                 height="200"
                 src={beer.image || placeholderLabel}
@@ -52,11 +53,7 @@ class Results extends PureComponent {
   }
 
   render() {
-    return (
-      <div className="results">
-        {this.getResultLinks()}
-      </div>
-    );
+    return <div className="results">{this.getResultLinks()}</div>;
   }
 }
 

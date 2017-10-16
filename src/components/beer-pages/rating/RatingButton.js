@@ -2,12 +2,12 @@
 import React, { PureComponent } from "react";
 import { Field } from "redux-form";
 
-class RatingButton extends PureComponent {
-  props: {
-    value: string,
-    icon: string
-  };
+type Props = {
+  value: string,
+  icon: string
+};
 
+class RatingButton extends PureComponent<Props> {
   render() {
     return (
       <label>
@@ -18,7 +18,10 @@ class RatingButton extends PureComponent {
           value={this.props.value}
           className="rating__input"
         />
-        <i className={`fa fa-${this.props.icon}-o rating__icon`} aria-hidden="true" />
+        <i
+          className={`fa fa-${this.props.icon}-o rating__icon`}
+          aria-hidden="true"
+        />
       </label>
     );
   }

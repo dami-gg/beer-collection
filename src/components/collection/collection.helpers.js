@@ -96,25 +96,25 @@ export const getBeersForPage = (
 const COLUMN_DELIMITER: string = ",";
 const LINE_DELIMITER: string = "\r\n";
 
-const convertCollectionToCsv: string = (collection: Array<Beer>) => {
+const convertCollectionToCsv = (collection: Array<Beer>): string => {
   let csv: string = "";
 
   collection.forEach((beer: Beer, index: number) => {
     csv += `${beer.id}${COLUMN_DELIMITER}
             ${beer.name}${COLUMN_DELIMITER}
-            ${beer.type}${COLUMN_DELIMITER}
-            ${beer.origin}${COLUMN_DELIMITER}
-            ${beer.image}${COLUMN_DELIMITER}
-            ${beer.rating}${LINE_DELIMITER}`;
+            ${beer.type ? beer.type : ""}${COLUMN_DELIMITER}
+            ${beer.origin ? beer.origin : ""}${COLUMN_DELIMITER}
+            ${beer.image ? beer.image : ""}${COLUMN_DELIMITER}
+            ${beer.rating ? beer.rating : ""}${LINE_DELIMITER}`;
   });
 
   return csv;
 };
 
-export const exportAsCsvFile: void = (
+export const exportAsCsvFile = (
   collection: Array<Beer>,
   fileName?: string
-) => {
+): void => {
   if (!collection || !collection.length) {
     return;
   }

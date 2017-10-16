@@ -7,23 +7,22 @@ import Options from "./Options";
 
 import "./dropdown-filter.scss";
 
+type Props = {
+  id?: string,
+  type: string,
+  className: string,
+  values: Array<string>,
+  allOptionsLabel?: string,
+  onOptionSelected: Function
+};
+
 type State = {
   selectedOption: string,
   showOptions: boolean
 };
 
-class DropdownFilter extends Component {
-  state: State;
+class DropdownFilter extends Component<Props, State> {
   handleClickOutside: Function;
-
-  props: {
-    id?: string,
-    type: string,
-    className: string,
-    values: Array<string>,
-    allOptionsLabel?: string,
-    onOptionSelected: Function
-  };
 
   constructor(props: Object) {
     super(props);
@@ -65,13 +64,12 @@ class DropdownFilter extends Component {
   render() {
     return (
       <div
-        className={`dropdown-filter dropdown-filter--${this.props.type} ${this.props.className}`}
-      >
+        className={`dropdown-filter dropdown-filter--${this.props.type} ${this
+          .props.className}`}>
         <Button
           className="dropdown-filter__button"
           color="blue"
-          onClick={event => this.toggleContent()}
-        >
+          onClick={event => this.toggleContent()}>
           {this.state.selectedOption}
           <span className="dropdown-filter__arrow" />
         </Button>

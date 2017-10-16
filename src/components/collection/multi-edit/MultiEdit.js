@@ -17,19 +17,19 @@ import { exportAsCsvFile } from "../../collection/collection.helpers";
 
 import "./multi-edit.scss";
 
-export class MultiEdit extends Component {
+type Props = {
+  collection: Array<Beer>,
+  addBeer: Function,
+  updateBeer: Function,
+  deleteBeer: Function
+};
+
+export class MultiEdit extends Component<Props> {
   createBeer: Function;
   editBeer: Function;
   deleteBeer: Function;
 
-  props: {
-    collection: Array<Beer>,
-    addBeer: Function,
-    updateBeer: Function,
-    deleteBeer: Function
-  };
-
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.createBeer = this.createBeer.bind(this);
@@ -44,9 +44,11 @@ export class MultiEdit extends Component {
       beer.type,
       beer.origin,
       beer.rating,
-      beer.image
-        ? <img src={beer.image} alt={`${beer.name} logo`} />
-        : <span>No image</span>
+      beer.image ? (
+        <img src={beer.image} alt={`${beer.name} logo`} />
+      ) : (
+        <span>No image</span>
+      )
     ]);
   }
 

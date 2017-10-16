@@ -1,6 +1,6 @@
 // @flow
 
-import { Image } from "../types/image.types";
+import type { Image } from "../types/image.types";
 
 import { ADD_IMAGE_TO_STATE, ADD_IMAGE_ERROR } from "../actions/gallery.actions";
 

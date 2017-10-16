@@ -8,21 +8,21 @@ import { readFile } from "./image-uploader.helpers";
 
 import "./image-uploader.scss";
 
-class ImageUploader extends PureComponent {
+type Props = {
+  onImageSelected: Function,
+  thumbnail: string,
+  readOnly?: boolean,
+  currentImage: string,
+  onImageLoaded: Function,
+  hidePreview?: boolean,
+  uploadButtonLabel?: string,
+  galleryButtonLabel?: string
+};
+
+class ImageUploader extends PureComponent<Props> {
   handleImageSelection: Function;
 
-  props: {
-    onImageSelected: Function,
-    thumbnail: string,
-    readOnly: boolean,
-    currentImage: string,
-    onImageLoaded: Function,
-    hidePreview?: boolean,
-    uploadButtonLabel?: string,
-    galleryButtonLabel?: string
-  };
-
-  constructor(props: Object) {
+  constructor(props: Props) {
     super(props);
 
     this.handleImageSelection = this.handleImageSelection.bind(this);

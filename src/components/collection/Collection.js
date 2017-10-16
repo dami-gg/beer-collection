@@ -21,6 +21,13 @@ import {
 
 import "./collection.scss";
 
+type Props = {
+  collection: Array<Beer>,
+  match: Object,
+  location: Object,
+  history: Object
+}
+
 type State = {
   searchFilterRegex?: Object,
   typeFilter?: string,
@@ -31,21 +38,13 @@ type State = {
   beersInCurrentPage: Array<any>
 };
 
-export class Collection extends Component {
-  state: State;
+export class Collection extends Component<Props, State> {
   navigateToPage: Function;
   redirectToAddPage: Function;
   allBeerTypes: Array<string>;
   allBeerOrigins: Array<string>;
 
-  props: {
-    collection: Array<Beer>,
-    match: Object,
-    location: Object,
-    history: Object
-  };
-
-  constructor(props: Object) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {

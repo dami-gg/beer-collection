@@ -13,28 +13,27 @@ import { handleImageUpload } from "../../common/image-uploader/image-uploader.he
 
 import "./form.scss";
 
+type Props = {
+  onSubmit: Function,
+  onCancel: Function,
+  readOnly: boolean,
+  submitButtonLabel: string,
+  cancelButtonLabel: string,
+  currentImage: string,
+  handleSubmit: Function // redux-form automatically adds a method called handleSubmit to the props
+};
+
 type State = {
   imageFile: any,
   thumbnail: string
 };
 
-export class Form extends Component {
-  state: State;
+export class Form extends Component<Props, State> {
   preSubmit: Function;
   loadImage: Function;
   getThumbnail: Function;
 
-  props: {
-    onSubmit: Function,
-    onCancel: Function,
-    readOnly: boolean,
-    submitButtonLabel: string,
-    cancelButtonLabel: string,
-    currentImage: string,
-    handleSubmit: Function // redux-form automatically adds a method called handleSubmit to the props
-  };
-
-  constructor(props: Object) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {

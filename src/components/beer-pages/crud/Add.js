@@ -8,15 +8,15 @@ import { withRouter } from "react-router";
 import { addBeer } from "../../../actions/collection.actions";
 import Page from "../Page";
 
-export class Add extends Component {
-  props: {
-    params: Object,
-    addBeer: Function,
-    match: Object,
-    location: Object,
-    history: Object
-  };
+type Props = {
+  params: Object,
+  addBeer: Function,
+  match: Object,
+  location: Object,
+  history: Object
+};
 
+export class Add extends Component<Props> {
   submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
     let beer = {
       name: formValues.name,

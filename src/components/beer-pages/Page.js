@@ -1,36 +1,36 @@
 // @flow
-import type {Beer} from '../../types/beer.types';
+import type { Beer } from "../../types/beer.types";
 
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from "react";
 
-import Form from './form/Form';
+import Form from "./form/Form";
 
-import './pages.scss';
+import "./pages.scss";
 
-class Page extends PureComponent {
-  props: {
-    heading: string,
-    submitHandler: Function,
-    cancelHandler: Function,
-    submitButtonLabel: string,
-    cancelButtonLabel: string,
-    currentBeer?: Beer,
-    readOnly?: boolean
-  };
+type Props = {
+  heading: string,
+  submitHandler: Function,
+  cancelHandler: Function,
+  submitButtonLabel: string,
+  cancelButtonLabel: string,
+  currentBeer?: Beer,
+  readOnly?: boolean
+};
 
+class Page extends PureComponent<Props> {
   render() {
     return (
-        <section className="beer-page">
-          <h1 className="beer-page__heading">{this.props.heading}</h1>
-          <Form
-              onSubmit={this.props.submitHandler}
-              onCancel={this.props.cancelHandler}
-              submitButtonLabel={this.props.submitButtonLabel}
-              cancelButtonLabel={this.props.cancelButtonLabel}
-              currentImage={this.props.currentBeer && this.props.currentBeer.image}
-              readOnly={this.props.readOnly}>
-          </Form>
-        </section>
+      <section className="beer-page">
+        <h1 className="beer-page__heading">{this.props.heading}</h1>
+        <Form
+          onSubmit={this.props.submitHandler}
+          onCancel={this.props.cancelHandler}
+          submitButtonLabel={this.props.submitButtonLabel}
+          cancelButtonLabel={this.props.cancelButtonLabel}
+          currentImage={this.props.currentBeer && this.props.currentBeer.image}
+          readOnly={this.props.readOnly}
+        />
+      </section>
     );
   }
 }

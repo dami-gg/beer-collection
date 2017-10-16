@@ -5,17 +5,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-import "./graphs.scss";
-
 import { COLORS } from "./graphs.constants";
 import { getRatingData } from "./graphs.helpers";
 
-class Rating extends Component {
-  data: Array<Object>;
+import "./graphs.scss";
 
-  props: {
-    collection: Array<Beer>
-  };
+type Props = {
+  collection: Array<Beer>
+};
+
+class Rating extends Component<Props> {
+  data: Array<Object>;
 
   componentWillMount() {
     this.data = getRatingData(this.props.collection);
@@ -34,8 +34,7 @@ class Rating extends Component {
               innerRadius={60}
               outerRadius={80}
               fill="#8884d8"
-              paddingAngle={5}
-            >
+              paddingAngle={5}>
               {this.data.map((entry, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
               ))}

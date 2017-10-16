@@ -17,11 +17,11 @@ import { getOriginData } from "./graphs.helpers";
 
 import "./graphs.scss";
 
-class Origin extends Component {
-  props: {
-    collection: Array<Beer>
-  };
+type Props = {
+  collection: Array<Beer>
+};
 
+class Origin extends Component<Props> {
   render() {
     const data = getOriginData(this.props.collection);
 

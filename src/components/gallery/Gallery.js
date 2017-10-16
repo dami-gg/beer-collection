@@ -1,6 +1,6 @@
 // @flow
 
-import { Image } from "../../types/image.types";
+import type { Image } from "../../types/image.types";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -9,13 +9,13 @@ import { IMAGE_SIZE } from "./gallery.constants";
 
 import "./gallery.scss";
 
-export class Gallery extends Component {
-  images: Array<string>;
+type Props = {
+  gallery: Array<Image>,
+  onSelect: Function
+};
 
-  props: {
-    gallery: Array<Image>,
-    onSelect: Function
-  };
+export class Gallery extends Component<Props> {
+  images: Array<string>;
 
   renderImages() {
     return this.props.gallery.map((image: Image, index) => (

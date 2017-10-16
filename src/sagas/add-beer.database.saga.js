@@ -8,11 +8,11 @@ import {
   ADD_BEER_ERROR
 } from "../actions/collection.actions";
 
-function* watchAddedBeerInApplicationSaga() {
+function* watchAddedBeerInApplicationSaga(): Generator<any,any,any> {
   yield takeEvery(ADD_BEER_TO_DATABASE, addBeerToDatabase);
 }
 
-function* addBeerToDatabase(action) {
+function* addBeerToDatabase(action): Generator<any,any,any> {
   try {
     yield call(postBeerToDatabase, action.beer);
   } catch (error) {
@@ -22,8 +22,8 @@ function* addBeerToDatabase(action) {
 
 function postBeerToDatabase(beer) {
   const user = firebase.auth().currentUser;
-  beer.id = v4();  
-  
+  beer.id = v4();
+
   return new Promise((resolve, reject) => {
     firebase
       .database()

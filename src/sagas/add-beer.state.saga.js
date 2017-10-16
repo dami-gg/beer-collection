@@ -18,7 +18,7 @@ import {
   ADD_IMAGE_ERROR
 } from "../actions/gallery.actions";
 
-function* watchAddedBeerInDatabaseSaga() {
+function* watchAddedBeerInDatabaseSaga(): Generator<any,any,any> {
   const user = firebase.auth().currentUser;
 
   const updateChannel = createEventChannel(
@@ -30,7 +30,7 @@ function* watchAddedBeerInDatabaseSaga() {
   yield takeEvery(updateChannel, addBeerToStateSaga);
 }
 
-function* addBeerToStateSaga(beer: Beer) {
+function* addBeerToStateSaga(beer: Beer): Generator<any,any,any> {
   try {
     yield put({ type: ADD_BEER_TO_STATE, beer });
   } catch (error) {

@@ -5,7 +5,9 @@ import error from "../../assets/images/error.png";
 
 import "./error.scss";
 
-class Error extends PureComponent {
+type Props = {};
+
+class Error extends PureComponent<Props> {
   render() {
     return (
       <div className="error-page">

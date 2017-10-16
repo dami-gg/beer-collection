@@ -1,29 +1,32 @@
 // @flow
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {BrowserRouter as Router} from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import Header from '../header/Header';
-import {routes} from './routes';
-import {logUserIn, logUserOut} from '../../actions/authentication.actions';
-import {completeAuthentication, startAuthenticationListener} from '../../helpers/authentication.helpers';
+import Header from "../header/Header";
+import { routes } from "./routes";
+import { logUserIn, logUserOut } from "../../actions/authentication.actions";
+import {
+  completeAuthentication,
+  startAuthenticationListener
+} from "../../helpers/authentication.helpers";
 
-import type {User} from '../../types/user.types';
+import type { User } from "../../types/user.types";
 
-import './app.scss';
+import "./app.scss";
 
-export class App extends Component {
+type Props = {
+  user: User,
+  logUserIn: Function,
+  logUserOut: Function,
+  match: Object,
+  location: Object,
+  history: Object
+};
+
+export class App extends Component<Props> {
   login: Function;
   logout: Function;
-
-  props: {
-    user: User,
-    logUserIn: Function,
-    logUserOut: Function,
-    match: Object,
-    location: Object,
-    history: Object
-  };
 
   constructor(props: Object) {
     super(props);
@@ -47,12 +50,12 @@ export class App extends Component {
 
   render() {
     return (
-        <Router>
-          <div className="app">
-            <Header />
-            {routes}
-          </div>
-        </Router>
+      <Router>
+        <div className="app">
+          <Header />
+          {routes}
+        </div>
+      </Router>
     );
   }
 }
@@ -69,10 +72,7 @@ const mapDispatchToProps = dispatch => {
     logUserOut: () => {
       dispatch(logUserOut());
     }
-  }
+  };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps)(App);
-
+export default connect(mapStateToProps, mapDispatchToProps)(App);

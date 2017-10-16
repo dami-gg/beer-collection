@@ -9,7 +9,7 @@ export const readFile = (file: Object, callback: Function) => {
   reader.readAsDataURL(file);
 };
 
-export const handleImageUpload = (imageFile: Object) => {
+export const handleImageUpload = (imageFile: Object): Promise<any> => {
   return new Promise((resolve, reject) => {
     if (imageFile) {
       const storageRef = firebase

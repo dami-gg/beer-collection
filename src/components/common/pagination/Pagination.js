@@ -8,22 +8,22 @@ import { PLACEHOLDER_PAGE_LABEL } from "./pagination.constants";
 
 import "./pagination.scss";
 
-class Pagination extends PureComponent {
+type Props = {
+  className: string,
+  numItems: number,
+  currentPage: number,
+  resultsPerPage: number,
+  totalPageButtons: number,
+  onNavigation: Function
+};
+
+class Pagination extends PureComponent<Props> {
   totalPages: number;
   navigateToPage: Function;
   navigateToPreviousPage: Function;
   navigateToNextPage: Function;
 
-  props: {
-    className: string,
-    numItems: number,
-    currentPage: number,
-    resultsPerPage: number,
-    totalPageButtons: number,
-    onNavigation: Function
-  };
-
-  constructor(props: Object) {
+  constructor(props: Props) {
     super(props);
 
     this.navigateToPage = this.navigateToPage.bind(this);
@@ -78,8 +78,9 @@ class Pagination extends PureComponent {
   render() {
     return (
       <div
-        className={`pagination ${this.totalPages === 1 ? "pagination--hidden" : ""} ${this.props.className}`}
-      >
+        className={`pagination ${this.totalPages === 1
+          ? "pagination--hidden"
+          : ""} ${this.props.className}`}>
         <PageButton
           label="&laquo;"
           disabled={this.props.currentPage === 1}

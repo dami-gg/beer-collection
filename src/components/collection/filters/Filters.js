@@ -13,18 +13,18 @@ import "./filters.scss";
 
 const TOTAL_PAGE_BUTTONS: number = 7;
 
-class Filters extends PureComponent {
+type Props = {
+  numItems: number,
+  currentPage: number,
+  onPageChange: Function,
+  allBeerTypes: Array<string>,
+  allBeerOrigins: Array<string>,
+  onFilterUpdate: Function
+};
+
+class Filters extends PureComponent<Props> {
   allBeerTypesLabel: string = "All types";
   allBeerOriginsLabel: string = "All origins";
-
-  props: {
-    numItems: number,
-    currentPage: number,
-    onPageChange: Function,
-    allBeerTypes: Array<string>,
-    allBeerOrigins: Array<string>,
-    onFilterUpdate: Function
-  };
 
   updateSearchFilter = (query: string) => {
     const searchFilterRegex = getRegularExpression(query);
@@ -39,9 +39,8 @@ class Filters extends PureComponent {
 
   updateOriginFilter = (origin: string) => {
     this.props.onFilterUpdate({
-      originFilter: origin !== this.allBeerOriginsLabel
-        ? origin
-        : ALL_FILTER_OPTION
+      originFilter:
+        origin !== this.allBeerOriginsLabel ? origin : ALL_FILTER_OPTION
     });
   };
 

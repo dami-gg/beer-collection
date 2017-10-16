@@ -4,13 +4,13 @@ import React, { PureComponent } from "react";
 
 import "./modal.scss";
 
-export class Modal extends PureComponent {
-  props: {
-    children: Object,
-    isOpened: boolean,
-    onClose: Function
-  };
+type Props = {
+  children: Object,
+  isOpened: boolean,
+  onClose: Function
+};
 
+export class Modal extends PureComponent<Props> {
   render() {
     return (
       <div

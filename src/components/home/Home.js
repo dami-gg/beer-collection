@@ -9,11 +9,11 @@ import { PAGE_OPTIONS } from "./home.constants";
 import { RESULTS_PER_PAGE } from "../collection/collection.constants";
 import { preloadBeerImage } from "../collection/collection.helpers";
 
-export class Home extends Component {
-  props: {
-    collection: Array<Beer>
-  };
+type Props = {
+  collection: Array<Beer>
+};
 
+export class Home extends Component<Props> {
   componentDidUpdate(): void {
     // Preload images for fast load of the first page of the collection in case the user navigates there
     if (

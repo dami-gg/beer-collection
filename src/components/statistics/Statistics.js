@@ -2,9 +2,11 @@
 import React, { PureComponent } from "react";
 
 import Dashboard from "../dashboard/Dashboard";
-import {PAGE_OPTIONS} from "./statistics.constants";
+import { PAGE_OPTIONS } from "./statistics.constants";
 
-export class Statistics extends PureComponent {
+type Props = {};
+
+export class Statistics extends PureComponent<Props> {
   render() {
     return (
       <div className="statistics">

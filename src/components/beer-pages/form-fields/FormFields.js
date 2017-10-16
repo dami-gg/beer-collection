@@ -6,11 +6,11 @@ import Rating from '../rating/Rating';
 
 import '../form/form.scss';
 
-class FormFields extends PureComponent {
-  props: {
+type Props = {
     readOnly?: boolean
-  }
+}
 
+class FormFields extends PureComponent<Props> {
   render() {
     return (
         <div className="beer-form__fields">

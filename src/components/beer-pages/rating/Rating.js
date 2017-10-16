@@ -6,7 +6,9 @@ import { RATINGS } from "./rating.constants";
 
 import "./rating.scss";
 
-class Rating extends PureComponent {
+type Props = {};
+
+class Rating extends PureComponent<Props> {
   getButtons() {
     return RATINGS.map((rating, index) => (
       <RatingButton key={index} value={`${rating.value}`} icon={rating.icon} />
@@ -14,11 +16,7 @@ class Rating extends PureComponent {
   }
 
   render() {
-    return (
-      <div className="rating">
-        {this.getButtons()}
-      </div>
-    );
+    return <div className="rating">{this.getButtons()}</div>;
   }
 }
 

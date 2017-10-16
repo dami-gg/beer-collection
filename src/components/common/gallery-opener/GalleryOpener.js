@@ -6,13 +6,19 @@ import Gallery from "../../gallery/Gallery";
 
 import React, { Component } from "react";
 
-export class GalleryOpener extends Component {
-  props: {
-    className?: string,
-    buttonLabel?: string
-  };
+type Props = {
+  className?: string,
+  buttonLabel?: string
+};
 
-  constructor(props) {
+type State = {
+  isOpened: boolean
+}
+
+export class GalleryOpener extends Component<Props, State> {
+  closeGallery: Function;
+  
+  constructor(props: Props) {
     super(props);
 
     this.state = {

@@ -3,21 +3,20 @@ import React, { Component } from "react";
 
 import "./search-box.scss";
 
+type Props = {
+  className: string,
+  changeHandler: Function
+};
+
 type State = {
   value: string
 };
 
-class SearchBox extends Component {
-  state: State;
+class SearchBox extends Component<Props, State> {
   onChange: Function;
-  clearInput: Function;
+  clearInput: Function;  
 
-  props: {
-    className: string,
-    changeHandler: Function
-  };
-
-  constructor(props: Object) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -29,7 +28,7 @@ class SearchBox extends Component {
   }
 
   onChange(event: Object): void {
-    const value = event.target.value;
+    const value: string = event.target.value;
 
     this.setState({ value });
     this.props.changeHandler(value);

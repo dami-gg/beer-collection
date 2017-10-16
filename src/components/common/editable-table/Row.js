@@ -4,11 +4,17 @@ import React, { Component } from "react";
 import Cell from "./Cell";
 import Buttons from "./Buttons";
 
-import {
-  handleBatchImageUpload
-} from "../../common/image-uploader/image-uploader.helpers";
+import { handleBatchImageUpload } from "../../common/image-uploader/image-uploader.helpers";
 
 import "./row.scss";
+
+type Props = {
+  row: Object,
+  columns: Array<Object>,
+  type?: string,
+  onSave: Function,
+  onDelete?: Function
+};
 
 type State = {
   readOnly?: boolean,
@@ -24,8 +30,7 @@ type State = {
   negativeButtonColor?: string
 };
 
-class Row extends Component {
-  state: State;
+class Row extends Component<Props, State> {
   setReadOnlyMode: Function;
   setEditMode: Function;
   setDeleteMode: Function;
@@ -34,14 +39,6 @@ class Row extends Component {
   deleteRow: Function;
   updateChanges: Function;
   enqueueImage: Function;
-
-  props: {
-    row: Object,
-    columns: Array<Object>,
-    type?: string,
-    onSave: Function,
-    onDelete?: Function
-  };
 
   constructor(props: Object) {
     super(props);

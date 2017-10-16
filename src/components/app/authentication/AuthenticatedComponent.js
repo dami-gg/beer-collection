@@ -5,15 +5,15 @@ import { withRouter } from "react-router";
 
 import type { User } from "../../../types/user.types";
 
-export default function Authenticated(OriginalComponent: any) {
-  class AuthenticatedComponent extends Component {
-    props: {
-      user: User,
-      match: Object,
-      location: Object,
-      history: Object
-    };
+type Props = {
+  user: User,
+  match: Object,
+  location: Object,
+  history: Object
+};
 
+export default function Authenticated(OriginalComponent: any) {
+  class AuthenticatedComponent extends Component<Props> {
     componentWillMount() {
       this.checkIfUnauthenticated();
     }
@@ -34,9 +34,7 @@ export default function Authenticated(OriginalComponent: any) {
 
     render() {
       return (
-        <div>
-          {this.props.user && <OriginalComponent {...this.props} />}
-        </div>
+        <div>{this.props.user && <OriginalComponent {...this.props} />}</div>
       );
     }
   }

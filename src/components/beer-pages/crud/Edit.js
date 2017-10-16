@@ -1,31 +1,37 @@
 // @flow
-import type {Beer, BeerFormValues} from '../../../types/beer.types';
+import type { Beer, BeerFormValues } from "../../../types/beer.types";
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
-import {updateBeer} from '../../../actions/collection.actions';
-import {setCurrentBeer, resetCurrentBeer} from '../../../actions/navigation.actions';
-import {findBeerInCollectionById} from '../../collection/collection.helpers';
-import Page from '../Page';
+import { updateBeer } from "../../../actions/collection.actions";
+import {
+  setCurrentBeer,
+  resetCurrentBeer
+} from "../../../actions/navigation.actions";
+import { findBeerInCollectionById } from "../../collection/collection.helpers";
+import Page from "../Page";
 
-export class Edit extends Component {
-  props: {
-    params: Object,
-    currentBeer: Beer,
-    collection: Array<Beer>,
-    setCurrentBeer: Function,
-    resetCurrentBeer: Function,
-    updateBeer: Function,
-    match: Object,
-    location: Object,
-    history: Object
-  };
+type Props = {
+  params: Object,
+  currentBeer: Beer,
+  collection: Array<Beer>,
+  setCurrentBeer: Function,
+  resetCurrentBeer: Function,
+  updateBeer: Function,
+  match: Object,
+  location: Object,
+  history: Object
+};
 
+export class Edit extends Component<Props> {
   componentWillMount(): void {
     // Find beer in collection and store it in state
-    const currentBeer: Beer = findBeerInCollectionById(this.props.match.params.beerId, this.props.collection);
+    const currentBeer: Beer = findBeerInCollectionById(
+      this.props.match.params.beerId,
+      this.props.collection
+    );
     this.props.setCurrentBeer(currentBeer);
   }
 
@@ -45,26 +51,26 @@ export class Edit extends Component {
 
     this.props.updateBeer(beer);
     this.redirectToViewPage();
-  }
+  };
 
   cancelHandler = (): void => {
     this.redirectToViewPage();
-  }
+  };
 
   redirectToViewPage = (): void => {
     this.props.history.push(`/beer/view/${this.props.currentBeer.id}`);
-  }
+  };
 
   render() {
     return (
-        <Page
-            heading="Edit beer from your collection"
-            submitHandler={this.submitHandler}
-            cancelHandler={this.cancelHandler}
-            submitButtonLabel="Save"
-            cancelButtonLabel="Cancel"
-            currentBeer={this.props.currentBeer}>
-        </Page>
+      <Page
+        heading="Edit beer from your collection"
+        submitHandler={this.submitHandler}
+        cancelHandler={this.cancelHandler}
+        submitButtonLabel="Save"
+        cancelButtonLabel="Cancel"
+        currentBeer={this.props.currentBeer}
+      />
     );
   }
 }
@@ -86,13 +92,8 @@ const mapDispatchToProps = (dispatch: Function): Object => {
 
     resetCurrentBeer: () => {
       dispatch(resetCurrentBeer());
-    },
-  }
+    }
+  };
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Edit)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Edit));
