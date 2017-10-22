@@ -21,23 +21,28 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
   @media (min-width: 1280px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
   &__frame {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 10px auto;
 
     &--selectable {
       cursor: pointer;
       &:hover {
-        border: 1px solid blue;
+        img {
+          box-shadow: 0 0 0 2px blue;
+        }
       }
     }
 
     &--selected {
-      border: 1px solid red;
+      img {
+        box-shadow: 0 0 0 2px blue;
+      }
     }
   }
 }

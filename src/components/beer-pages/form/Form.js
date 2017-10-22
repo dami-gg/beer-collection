@@ -110,12 +110,11 @@ export class Form extends Component<Props, State> {
         </div>
 
         <div className="beer-form__buttons">
-          <Button className="button--positive" type="submit" color="green">
+          <Button type="submit" color="green">
             {this.props.submitButtonLabel || "Save"}
           </Button>
 
           <Button
-            className="button--negative"
             color="red"
             onClick={this.props.onCancel}>
             {this.props.cancelButtonLabel || "Cancel"}

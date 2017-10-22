@@ -1,6 +1,6 @@
 // @flow
 
-import type { Image } from "../../types/image.types";
+import type { Image } from "../../../types/image.types";
 
 import Button from "../button/Button";
 import Modal from "../modal/Modal";

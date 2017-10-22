@@ -14,6 +14,9 @@ type Props = {
 };
 
 export class Modal extends PureComponent<Props> {
+  handleSaveButtonClick: Function;
+  handleCancelButtonClick: Function;
+  
   constructor(props: Props) {
     super(props);
 
@@ -23,7 +26,7 @@ export class Modal extends PureComponent<Props> {
 
   handleSaveButtonClick(event: Object) {
     event.preventDefault();
-    this.props.onSave();
+    this.props.onSave && this.props.onSave();
     this.props.onClose();
   }
 
@@ -35,32 +38,35 @@ export class Modal extends PureComponent<Props> {
   render() {
     return (
       <div
-        className={`modal ${this.props.isOpened
-          ? "modal__opened"
-          : "modal__closed"}`}>
-        <div
-          className="modal__close-button"
-          onClick={event => this.props.onClose()}>
-          <i className="fa fa-times" />
-        </div>
-        <div className="modal__content">{this.props.children}</div>
-        {this.props.onSave && ( // TODO Replace by Buttons (and make it common)
-          <div className="modal__buttons">
-            <Button
-              className="modal__button--save"
-              type="submit"
-              color="green"
-              onClick={event => this.handleSaveButtonClick(event)}>
-              Save
-            </Button>
-            <Button
-              className="modal__button--cancel"
-              color="grey"
-              onClick={event => this.handleCancelButtonClick(event)}>
-              Cancel
-            </Button>
+        className={`modal-wrapper ${this.props.isOpened
+          ? "modal-wrapper--opened"
+          : "modal-wrapper--closed"}`}>
+        <div className="modal">
+          <div
+            className="modal__close-button"
+            onClick={event => this.props.onClose()}>
+            <i className="fa fa-times" />
           </div>
-        )}
+          <div className="modal__content">{this.props.children}</div>
+          {this.props.onSave && ( // TODO Replace by Buttons (and make it common)
+            <div className="modal__buttons">
+              <Button
+                className="modal__button--save"
+                type="submit"
+                color="green"
+                onClick={event => this.handleSaveButtonClick(event)}>
+                Save
+              </Button>
+              <Button
+                className="modal__button--cancel"
+                color="red"
+                onClick={event => this.handleCancelButtonClick(event)}>
+                Cancel
+              </Button>
+            </div>
+          )}
+        </div>
+        <div className="overlay"></div>
       </div>
     );
   }

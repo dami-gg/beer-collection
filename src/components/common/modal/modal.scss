@@ -1,28 +1,79 @@
-.modal {
-  position: absolute;
-  width: 80%;
-  top: 10%;
-  left: 10%;
-  z-index: 9999;
-  background-color: white;
-
-  &__opened {
+.modal-wrapper {
+  &--opened {
     display: flex;
-    flex-direction: column;
   }
-  &__closed {
+  &--closed {
     display: none;
   }
 
-  &__close-button {
-    color: black;
-    text-align: right;
-    padding: 10px;
-    font-size: 20px;
-    cursor: pointer;
+  .modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: white;
+    max-height: 100%;
+
+    @media (min-width: 768px) {
+      width: 80%;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      max-height: 90%;
+    }
+
+    &__content {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__close-button {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+        color: black;
+        text-align: right;
+        padding-top: 5px;
+        padding-right: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 80px;
+      padding: 2%;
+
+      .button {
+        width: 49%;
+        &:first-child {
+          margin-right: 1%;
+        }
+        &:last-child {
+          margin-left: 1%;
+        }
+      }
+    }
   }
 
-  &__buttons {
-    padding: 2%;
-  } 
+  .overlay {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+  }
 }

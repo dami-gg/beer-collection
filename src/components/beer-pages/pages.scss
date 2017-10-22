@@ -1,12 +1,15 @@
 .beer-page {
   display: flex;
   flex-direction: column;
-  padding: 0 15%;
+  @media (min-width: 768px) {
+    padding: 0 15%;
+  }
+
   &__heading {
     margin-bottom: 30px;
     text-align: center;
 
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       text-align: left;
     }
   }
