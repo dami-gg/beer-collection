@@ -22,8 +22,10 @@ class Results extends PureComponent<Props> {
     return this.props.results.map((beer: Beer) => {
       return (
         <Link to={`/beer/view/${beer.id}`} className="beer" key={beer.id}>
-          <ul className="beer__card">
-            <li>
+          <ul className={`beer__card ${!beer.image
+            ? "beer__card--placeholder"
+            : ""}`}>
+            <li className="beer__cover">
               <div
                 className="beer__type"
                 style={getBeerTypeLabelStyle(
@@ -33,9 +35,7 @@ class Results extends PureComponent<Props> {
                 {beer.type}
               </div>
               <img
-                className={`beer__image ${!beer.image
-                  ? "beer__image--placeholder"
-                  : ""}`}
+                className="beer__image"
                 width="200"
                 height="200"
                 src={beer.image || placeholderLabel}
