@@ -27,6 +27,7 @@ class Page extends PureComponent<Props> {
           onCancel={this.props.cancelHandler}
           submitButtonLabel={this.props.submitButtonLabel}
           cancelButtonLabel={this.props.cancelButtonLabel}
+          initialValues={this.props.currentBeer || {}}
           currentImage={this.props.currentBeer && this.props.currentBeer.image}
           readOnly={this.props.readOnly}
         />

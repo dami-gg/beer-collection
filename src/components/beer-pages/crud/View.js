@@ -6,37 +6,51 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import { updateBeer } from "../../../actions/collection.actions";
-import {
-  setCurrentBeer,
-  resetCurrentBeer
-} from "../../../actions/navigation.actions";
 import { findBeerInCollectionById } from "../../collection/collection.helpers";
 import Page from "../Page";
 
 type Props = {
   params: Object,
-  currentBeer: Beer,
   collection: Array<Beer>,
-  setCurrentBeer: Function,
   updateBeer: Function,
-  resetCurrentBeer: Function,
   match: Object,
   location: Object,
   history: Object
 };
 
-export class View extends Component<Props> {
+type State = {
+  currentBeer: Beer
+};
+
+export class View extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      currentBeer: undefined
+    };
+  }
+
   componentWillMount(): void {
     // Find beer in collection and store it in state
     const currentBeer: Beer = findBeerInCollectionById(
       this.props.match.params.beerId,
       this.props.collection
     );
-    this.props.setCurrentBeer(currentBeer);
+
+    this.setCurrentBeer(currentBeer);
   }
 
   componentWillUnmount(): void {
-    this.props.resetCurrentBeer();
+    this.resetCurrentBeer();
+  }
+
+  setCurrentBeer(currentBeer: Beer): void {
+    this.setState({ currentBeer });
+  }
+
+  resetCurrentBeer(): void {
+    this.setState({ currentBeer: undefined });
   }
 
   submitHandler = (): void => {
@@ -48,7 +62,7 @@ export class View extends Component<Props> {
   };
 
   redirectToEditPage = (): void => {
-    this.props.history.push(`/beer/edit/${this.props.currentBeer.id}`);
+    this.props.history.push(`/beer/edit/${this.state.currentBeer.id}`);
   };
 
   redirectToCollection = (): void => {
@@ -58,12 +72,12 @@ export class View extends Component<Props> {
   render() {
     return (
       <Page
-        heading={this.props.currentBeer && this.props.currentBeer.name}
+        heading={this.state.currentBeer && this.state.currentBeer.name}
         submitHandler={this.submitHandler}
         cancelHandler={this.cancelHandler}
         submitButtonLabel="Edit"
         cancelButtonLabel="Back"
-        currentBeer={this.props.currentBeer}
+        currentBeer={this.state.currentBeer}
         readOnly={true}
       />
     );
@@ -71,22 +85,13 @@ export class View extends Component<Props> {
 }
 
 const mapStateToProps = (state: Object): Object => ({
-  collection: state.collection,
-  currentBeer: state.navigation.currentBeer
+  collection: state.collection
 });
 
 const mapDispatchToProps = (dispatch: Function): Object => {
   return {
     updateBeer: (beer: Beer) => {
       dispatch(updateBeer(beer));
-    },
-
-    setCurrentBeer: (beer: Beer) => {
-      dispatch(setCurrentBeer(beer));
-    },
-
-    resetCurrentBeer: () => {
-      dispatch(resetCurrentBeer());
     }
   };
 };

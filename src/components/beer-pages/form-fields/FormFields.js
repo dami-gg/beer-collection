@@ -1,44 +1,40 @@
 // @flow
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from "react";
 
-import FormField from '../../common/form-field/FormField';
-import Rating from '../rating/Rating';
+import FormField from "../../common/form-field/FormField";
 
-import '../form/form.scss';
+import "../form/form.scss";
 
 type Props = {
-    readOnly?: boolean
-}
+  fields: Array<String>,
+  values: Object,
+  readOnly?: boolean,
+  onChange: Function,
+  children?: Object
+};
 
 class FormFields extends PureComponent<Props> {
+  getFormFields() {
+    return this.props.fields.map((field: String) => (
+      <FormField
+        key={field}
+        name={field}
+        label={field.charAt(0).toUpperCase() + field.slice(1)}
+        value={this.props.values[field]}
+        disabled={this.props.readOnly}
+        onChange={event => this.props.onChange(field, event.target.value)}
+        placeholder={`Enter ${field}`}
+      />
+    ));
+  }
+
   render() {
     return (
-        <div className="beer-form__fields">
-          <FormField
-              name="name"
-              label="Name"
-              disabled={this.props.readOnly}
-              placeholder="Enter name">
-          </FormField>
+      <div className="form__fields">
+        {this.getFormFields()}
 
-          <FormField
-              name="type"
-              label="Type"
-              disabled={this.props.readOnly}
-              placeholder="Enter type">
-          </FormField>
-
-          <FormField
-              name="origin"
-              label="Origin"
-              disabled={this.props.readOnly}
-              placeholder="Enter origin">
-          </FormField>
-
-          <Rating
-              readOnly={this.props.readOnly}>
-          </Rating>
-        </div>
+        {this.props.children}        
+      </div>
     );
   }
 }

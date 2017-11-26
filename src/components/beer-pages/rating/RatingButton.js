@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Field } from "redux-form";
 
 type Props = {
   value: string,
@@ -11,7 +10,7 @@ class RatingButton extends PureComponent<Props> {
   render() {
     return (
       <label>
-        <Field
+        <input
           name="rating"
           type="radio"
           component="input"

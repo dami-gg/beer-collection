@@ -4,7 +4,6 @@ import type { User } from "../../types/user.types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { reduxForm } from "redux-form";
 
 import Button from "../common/button/Button";
 import FormField from "../common/form-field/FormField";
@@ -74,6 +73,4 @@ const mapStateToProps = state => ({
   user: state.authentication.user
 });
 
-export default withRouter(
-  connect(mapStateToProps)(reduxForm({ form: "login" })(Login))
-);
+export default withRouter(connect(mapStateToProps)(Login));

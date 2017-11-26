@@ -1,15 +1,14 @@
 // @flow
 
-import type { BeerFormValues } from "../../../types/beer.types";
+import type { Beer } from "../../../types/beer.types";
 import type { Image } from "../../../types/image.types";
 
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
 
 import Button from "../../common/button/Button";
 import FormFields from "../form-fields/FormFields";
 import ImageSelector from "../../common/image-selector/ImageSelector";
+import Rating from "../rating/Rating";
 
 import { uploadImage } from "../../common/image-selector/image-selector.helpers";
 
@@ -21,11 +20,13 @@ type Props = {
   readOnly: boolean,
   submitButtonLabel: string,
   cancelButtonLabel: string,
+  currentBeer: Beer,
   currentImage: string,
-  handleSubmit: Function // redux-form automatically adds a method called handleSubmit to the props
+  initialValues: any
 };
 
 type State = {
+  formValues: Object,
   imageFile: any,
   thumbnail: string,
   imageSelected: boolean,
@@ -42,6 +43,7 @@ export class Form extends Component<Props, State> {
     super(props);
 
     this.state = {
+      formValues: props.initialValues,
       imageFile: undefined,
       thumbnail: "",
       imageSelected: false,
@@ -52,21 +54,22 @@ export class Form extends Component<Props, State> {
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleImageSelection = this.handleImageSelection.bind(this);
     this.getThumbnail = this.getThumbnail.bind(this);
+    this.updateForm = this.updateForm.bind(this);
   }
 
   /**
    * Prepares context before communicating to the parent component the submitted values which includes the
    * upload of the image to firebase (this cannot be done before in case the form is not submitted in the end)
-   *
-   * @param formValues
    */
-  preSubmit(formValues: BeerFormValues) {
+  preSubmit(event: Object) {
+    event.preventDefault();
+
     if (this.state.imageUploaded) {
       uploadImage(this.state.imageFile)
-        .then(imageUrl => this.props.onSubmit(formValues, imageUrl))
+        .then(imageUrl => this.props.onSubmit(this.state.formValues, imageUrl))
         .catch(error => console.log(error)); // TODO Handle error
     } else {
-      this.props.onSubmit(formValues, this.state.thumbnail);
+      this.props.onSubmit(this.state.formValues, this.state.thumbnail);
     }
   }
 
@@ -89,13 +92,24 @@ export class Form extends Component<Props, State> {
     this.setState({ thumbnail });
   }
 
+  updateForm(field, value) {
+    const currentValues = this.state.formValues;
+    currentValues[field] = value;
+
+    this.setState({ formValues: currentValues });
+  }
+
   render() {
     return (
-      <form
-        className="beer-form"
-        onSubmit={this.props.handleSubmit(this.preSubmit)}>
-        <div className="beer-form__inputs">
-          <FormFields readOnly={this.props.readOnly} />
+      <form className="form" onSubmit={event => this.preSubmit(event)}>
+        <div className="form__inputs">
+          <FormFields
+            fields={["name", "type", "origin"]}
+            values={this.state.formValues}
+            readOnly={this.props.readOnly}
+            onChange={this.updateForm}>
+            <Rating readOnly={this.props.readOnly} />
+          </FormFields>
 
           <ImageSelector
             onImageUploaded={this.handleImageUpload}
@@ -109,14 +123,12 @@ export class Form extends Component<Props, State> {
           />
         </div>
 
-        <div className="beer-form__buttons">
+        <div className="form__buttons">
           <Button type="submit" color="green">
             {this.props.submitButtonLabel || "Save"}
           </Button>
 
-          <Button
-            color="red"
-            onClick={this.props.onCancel}>
+          <Button color="red" onClick={this.props.onCancel}>
             {this.props.cancelButtonLabel || "Cancel"}
           </Button>
         </div>
@@ -125,12 +137,4 @@ export class Form extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: Object): Object => ({
-  initialValues: state.navigation.currentBeer || {}
-});
-
-export default connect(mapStateToProps)(
-  reduxForm({
-    form: "beerForm"
-  })(Form)
-);
+export default Form;

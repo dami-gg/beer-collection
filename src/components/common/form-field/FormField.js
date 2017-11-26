@@ -1,27 +1,42 @@
 // @flow
-import React from "react";
-
-import { Field } from "redux-form";
+import React, { PureComponent } from "react";
 
 import "./form-field.scss";
 
-const FormField = (props: Object) =>
-  <div className="form__field">
-    {props.label &&
-      <label className="form__field__label" htmlFor={props.name}>
-        {props.label}
-      </label>}
+type Props = {
+  name: String,
+  label?: String,
+  type?: String,
+  value: String,
+  disabled?: Boolean,
+  placeholder?: String,
+  onChange: Function
+};
 
-    <Field
-      className="form__field__input"
-      id={props.label || "field"}
-      type={props.type || "text"}
-      name={props.name}
-      value=""
-      disabled={props.disabled}
-      component="input"
-      placeholder={props.placeholder}
-    />
-  </div>;
+class FormField extends PureComponent<Props> {
+  render() {
+    return (
+      <div className="form__field">
+        {this.props.label && (
+          <label className="form__field__label" htmlFor={this.props.name}>
+            {this.props.label}
+          </label>
+        )}
+
+        <input
+          className="form__field__input"
+          id={this.props.label || "field"}
+          type={this.props.type || "text"}
+          name={this.props.name}
+          defaultValue={this.props.value}
+          disabled={this.props.disabled}
+          component="input"
+          onChange={this.props.onChange}
+          placeholder={this.props.placeholder}
+        />
+      </div>
+    );
+  }
+}
 
 export default FormField;
