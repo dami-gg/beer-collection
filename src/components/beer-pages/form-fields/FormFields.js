@@ -15,7 +15,7 @@ type Props = {
 
 class FormFields extends PureComponent<Props> {
   getFormFields() {
-    return this.props.fields.map((field: String) => (
+    return this.props.fields.map((field: String, index: Number) => (
       <FormField
         key={field}
         name={field}
@@ -24,6 +24,7 @@ class FormFields extends PureComponent<Props> {
         disabled={this.props.readOnly}
         onChange={event => this.props.onChange(field, event.target.value)}
         placeholder={`Enter ${field}`}
+        autofocus={index === 0 ? true : false}
       />
     ));
   }
@@ -33,7 +34,7 @@ class FormFields extends PureComponent<Props> {
       <div className="form__fields">
         {this.getFormFields()}
 
-        {this.props.children}        
+        {this.props.children}
       </div>
     );
   }

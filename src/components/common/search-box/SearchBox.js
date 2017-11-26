@@ -52,6 +52,7 @@ class SearchBox extends Component<Props, State> {
           value={this.state.value}
           placeholder="Search by name"
           onChange={this.onChange}
+          autoFocus
         />
         <div className="search-box__clear">
           {this.inputIsDirty() &&

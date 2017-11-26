@@ -104,7 +104,7 @@ export class Form extends Component<Props, State> {
       <form className="form" onSubmit={event => this.preSubmit(event)}>
         <div className="form__inputs">
           <FormFields
-            fields={["name", "type", "origin"]}
+            fields={["name", "type", "origin"]} // TODO Make this generic
             values={this.state.formValues}
             readOnly={this.props.readOnly}
             onChange={this.updateForm}>

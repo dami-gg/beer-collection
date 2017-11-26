@@ -10,7 +10,8 @@ type Props = {
   value: String,
   disabled?: Boolean,
   placeholder?: String,
-  onChange: Function
+  onChange: Function,
+  autofocus?: boolean
 };
 
 class FormField extends PureComponent<Props> {
@@ -33,6 +34,7 @@ class FormField extends PureComponent<Props> {
           component="input"
           onChange={this.props.onChange}
           placeholder={this.props.placeholder}
+          autoFocus={this.props.autofocus}
         />
       </div>
     );
