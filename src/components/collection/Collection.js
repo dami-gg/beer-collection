@@ -9,7 +9,7 @@ import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
 
-import { ALL_FILTER_OPTION } from "./collection.constants";
+import { ALL_FILTER_OPTION, RESULTS_PER_PAGE } from "./collection.constants";
 import {
   getAllBeerTypes,
   getAllBeerOrigins,
@@ -26,7 +26,7 @@ type Props = {
   match: Object,
   location: Object,
   history: Object
-}
+};
 
 type State = {
   searchFilterRegex?: Object,
@@ -64,14 +64,9 @@ export class Collection extends Component<Props, State> {
   }
 
   componentWillMount(): void {
-    this.allBeerTypes = getAllBeerTypes(this.props.collection);
-    this.allBeerOrigins = getAllBeerOrigins(this.props.collection);
-
-    this.setState({
-      nextPagePreloaded: false
-    });
-
-    this.updateResults();
+    if (this.props.collection.length) {
+      this.prepareContext();
+    }
   }
 
   componentDidMount(): void {
@@ -84,6 +79,28 @@ export class Collection extends Component<Props, State> {
 
       this.setState({ nextPagePreloaded: true });
     }
+  }
+
+  componentWillReceiveProps(newProps: Object): void {
+    this.prepareContext();
+  }
+
+  shouldComponentUpdate(): boolean {
+    return (
+      this.state.beersInCurrentPage &&
+      this.state.beersInCurrentPage.length <= RESULTS_PER_PAGE
+    );
+  }
+
+  prepareContext(): void {
+    this.allBeerTypes = getAllBeerTypes(this.props.collection);
+    this.allBeerOrigins = getAllBeerOrigins(this.props.collection);
+
+    this.setState({
+      nextPagePreloaded: false
+    });
+
+    this.updateResults();
   }
 
   navigateToPage = (currentPage: number): void => {
