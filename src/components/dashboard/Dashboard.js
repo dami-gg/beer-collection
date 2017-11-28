@@ -1,6 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
+
 import Option from "./option/Option";
+
+import ErrorBoundary from "../common/error-boundary/ErrorBoundary";
 
 import "./dashboard.scss";
 
@@ -14,13 +17,14 @@ class Dashboard extends PureComponent<Props> {
       ? this.props.items.map(
           (item, i) =>
             !item.hidden && (
-              <Option
-                key={i}
-                title={item.title}
-                url={item.url}
-                image={item.image}
-                disabled={item.disabled}
-              />
+              <ErrorBoundary key={i}>
+                <Option
+                  title={item.title}
+                  url={item.url}
+                  image={item.image}
+                  disabled={item.disabled}
+                />
+              </ErrorBoundary>
             )
         )
       : "";

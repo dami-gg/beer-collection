@@ -9,6 +9,7 @@ import Button from "../../common/button/Button";
 import FormFields from "../form-fields/FormFields";
 import ImageSelector from "../../common/image-selector/ImageSelector";
 import Rating from "../rating/Rating";
+import ErrorBoundary from "../../common/error-boundary/ErrorBoundary";
 
 import { uploadImage } from "../../common/image-selector/image-selector.helpers";
 
@@ -103,24 +104,28 @@ export class Form extends Component<Props, State> {
     return (
       <form className="form" onSubmit={event => this.preSubmit(event)}>
         <div className="form__inputs">
-          <FormFields
-            fields={["name", "type", "origin"]} // TODO Make this generic
-            values={this.state.formValues}
-            readOnly={this.props.readOnly}
-            onChange={this.updateForm}>
-            <Rating readOnly={this.props.readOnly} />
-          </FormFields>
+          <ErrorBoundary>
+            <FormFields
+              fields={["name", "type", "origin"]} // TODO Make this generic
+              values={this.state.formValues}
+              readOnly={this.props.readOnly}
+              onChange={this.updateForm}>
+              <Rating readOnly={this.props.readOnly} />
+            </FormFields>
+          </ErrorBoundary>
 
-          <ImageSelector
-            onImageUploaded={this.handleImageUpload}
-            onImageSelected={this.handleImageSelection}
-            thumbnail={this.state.thumbnail}
-            readOnly={this.props.readOnly}
-            currentImage={this.props.currentImage}
-            onImageLoaded={this.getThumbnail}
-            uploadButtonLabel="Upload image"
-            galleryButtonLabel="Select from gallery"
-          />
+          <ErrorBoundary>
+            <ImageSelector
+              onImageUploaded={this.handleImageUpload}
+              onImageSelected={this.handleImageSelection}
+              thumbnail={this.state.thumbnail}
+              readOnly={this.props.readOnly}
+              currentImage={this.props.currentImage}
+              onImageLoaded={this.getThumbnail}
+              uploadButtonLabel="Upload image"
+              galleryButtonLabel="Select from gallery"
+            />
+          </ErrorBoundary>
         </div>
 
         <div className="form__buttons">

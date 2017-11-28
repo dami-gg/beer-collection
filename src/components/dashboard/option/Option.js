@@ -12,6 +12,8 @@ type Props = {
 };
 
 class Option extends PureComponent<Props> {
+  temp: string;
+  
   render() {
     return (
       <div

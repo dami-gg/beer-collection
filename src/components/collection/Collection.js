@@ -8,6 +8,7 @@ import { withRouter } from "react-router";
 import Filters from "./filters/Filters";
 import Results from "./results/Results";
 import FloatingButton from "../common/floating-button/FloatingButton";
+import ErrorBoundary from "../common/error-boundary/ErrorBoundary";
 
 import { ALL_FILTER_OPTION, RESULTS_PER_PAGE } from "./collection.constants";
 import {
@@ -150,11 +151,13 @@ export class Collection extends Component<Props, State> {
           onFilterUpdate={this.updateFilter}
         />
 
-        <Results
-          results={this.state.beersInCurrentPage}
-          allBeerTypes={this.allBeerTypes}
-          allBeerOrigins={this.allBeerOrigins}
-        />
+        <ErrorBoundary>
+          <Results
+            results={this.state.beersInCurrentPage}
+            allBeerTypes={this.allBeerTypes}
+            allBeerOrigins={this.allBeerOrigins}
+          />
+        </ErrorBoundary>
 
         <div className="collection__floating-buttons">
           <FloatingButton
