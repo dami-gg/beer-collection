@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 
 import EditableTable from "../../common/editable-table/EditableTable";
 import Button from "../../common/button/Button";
+import SearchBox from "../../common/search-box/SearchBox";
 
 import {
   addBeer,
@@ -13,7 +14,11 @@ import {
   deleteBeer
 } from "../../../actions/collection.actions";
 import { COLUMNS } from "./multi-edit.constants";
-import { exportAsCsvFile } from "../../collection/collection.helpers";
+import {
+  exportAsCsvFile,
+  getFilteredBeers
+} from "../../collection/collection.helpers";
+import { getRegularExpression } from "../filters/filters.helpers";
 
 import "./multi-edit.scss";
 
@@ -24,7 +29,11 @@ type Props = {
   deleteBeer: Function
 };
 
-export class MultiEdit extends Component<Props> {
+type State = {
+  results: Array<Beer>
+};
+
+export class MultiEdit extends Component<Props, State> {
   createBeer: Function;
   editBeer: Function;
   deleteBeer: Function;
@@ -36,6 +45,10 @@ export class MultiEdit extends Component<Props> {
     this.editBeer = this.editBeer.bind(this);
     this.deleteBeer = this.deleteBeer.bind(this);
     this.exportAsCsvFile = this.exportAsCsvFile.bind(this);
+
+    this.state = {
+      results: props.collection
+    };
   }
 
   getRows(): Array<Array<any>> {
@@ -68,19 +81,33 @@ export class MultiEdit extends Component<Props> {
     exportAsCsvFile(this.props.collection, "collection.csv");
   };
 
+  filterResults = (query: string) => {
+    const searchFilterRegex = getRegularExpression(query);
+    const results = getFilteredBeers(this.props.collection, searchFilterRegex);
+
+    this.setState({ results });
+  };
+
   render() {
     return (
       <div className="multi-edit">
-        <Button
-          className="multi-edit__export-button"
-          color="blue"
-          onClick={this.exportAsCsvFile}>
-          Export as CSV file
-        </Button>
+        <div className="multi-edit__top">
+          <SearchBox
+            className="multi-edit__search"
+            changeHandler={this.filterResults}
+          />
+
+          <Button
+            className="multi-edit__export-button"
+            color="blue"
+            onClick={this.exportAsCsvFile}>
+            Export as CSV file
+          </Button>
+        </div>
 
         <EditableTable
           columns={COLUMNS}
-          rows={this.props.collection}
+          rows={this.state.results}
           onCreate={this.createBeer}
           onEdit={this.editBeer}
           onDelete={this.deleteBeer}

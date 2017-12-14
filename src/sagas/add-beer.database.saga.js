@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import firebase from "firebase";
 
-import { v4 } from "node-uuid";
+import { v4 } from "uuid";
 
 import {
   ADD_BEER_TO_DATABASE,

@@ -1,9 +1,23 @@
 .multi-edit {
+  &__top {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 30px;
+  }
+
+  &__search {
+    width: 40%;
+    margin: 0 5%;
+    @media (min-width: 768px) {
+      width: 60%;
+    }
+  }
+
   &__export-button {
-    float: right;
-    margin-right: 30px;
-    margin-bottom: 15px;
-    padding-right: 10px;
-    padding-left: 10px;
+    width: 40%;
+    margin: 0 5%;
+    @media (min-width: 768px) {
+      width: 20%;
+    }
   }
 }
