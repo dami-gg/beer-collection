@@ -68,11 +68,39 @@ class Pagination extends PureComponent<Props> {
       <PageButton
         key={i}
         label={item}
+        className={
+          Math.abs(i - (this.props.currentPage - 1)) > 1
+            ? "small-screens--hidden"
+            : ""
+        }
         clickHandler={this.navigateToPage}
         active={this.props.currentPage === item}
         disabled={item === PLACEHOLDER_PAGE_LABEL}
       />
     ));
+  }
+
+  generateOutmostButton(position: string = "left") {
+    if (this.props.numItems && this.props.numItems > 0) {
+      const isLeftPositioned = position === "left";
+      const isDisabled = isLeftPositioned
+        ? this.props.currentPage === 1
+        : this.props.currentPage === this.totalPages;
+
+        console.log(isDisabled);
+
+      return (
+        <PageButton
+          label={isLeftPositioned ? "<" : ">"}
+          disabled={isDisabled}
+          clickHandler={
+            isLeftPositioned
+              ? this.navigateToPreviousPage
+              : this.navigateToNextPage
+          }
+        />
+      );
+    }
   }
 
   render() {
@@ -81,19 +109,11 @@ class Pagination extends PureComponent<Props> {
         className={`pagination ${this.totalPages === 1
           ? "pagination--hidden"
           : ""} ${this.props.className}`}>
-        <PageButton
-          label="&laquo;"
-          disabled={this.props.currentPage === 1}
-          clickHandler={this.navigateToPreviousPage}
-        />
+        {this.generateOutmostButton("left")}
 
         {this.generatePageButtons()}
 
-        <PageButton
-          label="&raquo;"
-          disabled={this.props.currentPage === this.totalPages}
-          clickHandler={this.navigateToNextPage}
-        />
+        {this.generateOutmostButton("right")}
       </div>
     );
   }

@@ -13,13 +13,14 @@ export const getButtonLabels = (
     return generateInitialPageButtons(totalPages, totalPageButtons);
   } else if (currentPage >= totalPages - 2) {
     return generateEndingPageButtons(totalPages, currentPage);
-  } else {
-    return generateIntermediatePageButtons(totalPages, totalPageButtons);
   }
+  return generateIntermediatePageButtons(totalPages, totalPageButtons);
 };
 
 const generateMinimumButtons = (totalPages: number): Array<any> => {
-  return Array(totalPages).fill(0).map((value, index) => index + 1);
+  return Array(totalPages)
+    .fill(0)
+    .map((value, index) => index + 1);
 };
 
 const generateInitialPageButtons = (
