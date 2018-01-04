@@ -19,15 +19,17 @@ type Props = {
 };
 
 type State = {
-  currentBeer: Beer
+  currentBeer: Beer | null
 };
 
-export class View extends Component<Props, State> {
+export class View extends Component<void, Props, State> {
+  state: State;
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      currentBeer: undefined
+      currentBeer: null
     };
   }
 
@@ -62,7 +64,9 @@ export class View extends Component<Props, State> {
   };
 
   redirectToEditPage = (): void => {
-    this.props.history.push(`/beer/edit/${this.state.currentBeer.id}`);
+    if (this.state.currentBeer) {
+      this.props.history.push(`/beer/edit/${this.state.currentBeer.id}`);
+    }
   };
 
   redirectToCollection = (): void => {
@@ -72,7 +76,7 @@ export class View extends Component<Props, State> {
   render() {
     return (
       <Page
-        heading={this.state.currentBeer && this.state.currentBeer.name}
+        heading={this.state.currentBeer ? this.state.currentBeer.name : ''}
         submitHandler={this.submitHandler}
         cancelHandler={this.cancelHandler}
         submitButtonLabel="Edit"

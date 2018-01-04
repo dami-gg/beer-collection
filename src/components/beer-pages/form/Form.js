@@ -21,7 +21,7 @@ type Props = {
   readOnly: boolean,
   submitButtonLabel: string,
   cancelButtonLabel: string,
-  currentBeer: Beer,
+  currentBeer?: Beer,
   currentImage: string,
   initialValues: any
 };
@@ -34,11 +34,13 @@ type State = {
   imageUploaded: boolean
 };
 
-export class Form extends Component<Props, State> {
+export class Form extends Component<void, Props, State> {
+  state: State;
   preSubmit: Function;
   handleImageUpload: Function;
   handleImageSelection: Function;
   getThumbnail: Function;
+  updateForm: Function;
 
   constructor(props: Props) {
     super(props);
@@ -93,7 +95,7 @@ export class Form extends Component<Props, State> {
     this.setState({ thumbnail });
   }
 
-  updateForm(field, value) {
+  updateForm(field: string, value: any) {
     const currentValues = this.state.formValues;
     currentValues[field] = value;
 

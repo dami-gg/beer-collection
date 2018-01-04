@@ -21,7 +21,7 @@ type Props = {
   collection: Array<Beer>
 };
 
-class Origin extends Component<Props> {
+class Origin extends Component<void, Props, void> {
   render() {
     const data = getOriginData(this.props.collection);
 

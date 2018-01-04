@@ -16,10 +16,11 @@ type Props = {
 
 type State = {
   isOpened: boolean,
-  selectedImage: Image
+  selectedImage: Image | null
 };
 
-export class GalleryOpener extends Component<Props, State> {
+export class GalleryOpener extends Component<void, Props, State> {
+  state: State;
   closeGallery: Function;
   handleSelection: Function;
   saveSelection: Function;
@@ -29,7 +30,7 @@ export class GalleryOpener extends Component<Props, State> {
 
     this.state = {
       isOpened: false,
-      selectedImage: undefined
+      selectedImage: null
     };
 
     this.closeGallery = this.closeGallery.bind(this);
@@ -54,7 +55,7 @@ export class GalleryOpener extends Component<Props, State> {
   }
 
   saveSelection() {
-    this.props.onSelection(this.state.selectedImage);
+    this.props.onSelection && this.props.onSelection(this.state.selectedImage);
   }
 
   render() {

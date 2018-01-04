@@ -24,7 +24,7 @@ type Props = {
   history: Object
 };
 
-export class App extends Component<Props> {
+export class App extends Component<void, Props, void> {
   login: Function;
   logout: Function;
 

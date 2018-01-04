@@ -6,16 +6,16 @@ import FormField from "../../common/form-field/FormField";
 import "../form/form.scss";
 
 type Props = {
-  fields: Array<String>,
+  fields: Array<string>,
   values: Object,
   readOnly?: boolean,
   onChange: Function,
   children?: Object
 };
 
-class FormFields extends PureComponent<Props> {
+class FormFields extends PureComponent<void, Props, void> {
   getFormFields() {
-    return this.props.fields.map((field: String, index: Number) => (
+    return this.props.fields.map((field: string, index: number) => (
       <FormField
         key={field}
         name={field}

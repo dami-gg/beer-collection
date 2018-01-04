@@ -21,7 +21,8 @@ type State = {
   showOptions: boolean
 };
 
-class DropdownFilter extends Component<Props, State> {
+class DropdownFilter extends Component<void, Props, State> {
+  state: State;
   handleClickOutside: Function;
 
   constructor(props: Object) {

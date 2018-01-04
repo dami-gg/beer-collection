@@ -13,11 +13,11 @@ type Props = {
   cancelHandler: Function,
   submitButtonLabel: string,
   cancelButtonLabel: string,
-  currentBeer?: Beer,
+  currentBeer?: Beer | null,
   readOnly?: boolean
 };
 
-class Page extends PureComponent<Props> {
+class Page extends PureComponent<void, Props, void> {
   render() {
     return (
       <section className="beer-page">
@@ -28,7 +28,11 @@ class Page extends PureComponent<Props> {
           submitButtonLabel={this.props.submitButtonLabel}
           cancelButtonLabel={this.props.cancelButtonLabel}
           initialValues={this.props.currentBeer || {}}
-          currentImage={this.props.currentBeer && this.props.currentBeer.image}
+          currentImage={
+            this.props.currentBeer && this.props.currentBeer.image
+              ? this.props.currentBeer.image
+              : ""
+          }
           readOnly={this.props.readOnly}
         />
       </section>

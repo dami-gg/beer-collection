@@ -7,7 +7,7 @@ import "./error.scss";
 
 type Props = {};
 
-class Error extends PureComponent<Props> {
+class Error extends PureComponent<void, Props, void> {
   render() {
     return (
       <div className="error-page">

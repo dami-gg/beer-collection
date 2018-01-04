@@ -39,7 +39,8 @@ type State = {
   beersInCurrentPage: Array<any>
 };
 
-export class Collection extends Component<Props, State> {
+export class Collection extends Component<void, Props, State> {
+  state: State;
   navigateToPage: Function;
   redirectToAddPage: Function;
   allBeerTypes: Array<string>;

@@ -16,7 +16,7 @@ type Props = {
   user: User
 };
 
-export class Header extends Component<Props> {
+export class Header extends Component<void, Props, void> {
   render() {
     return (
       <div className="header">

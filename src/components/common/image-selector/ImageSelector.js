@@ -13,7 +13,7 @@ import "./image-selector.scss";
 
 type Props = {
   onImageUploaded: Function,
-  onImageSelected: Function,
+  onImageSelected?: Function,
   thumbnail: string,
   readOnly?: boolean,
   currentImage: string,
@@ -23,7 +23,7 @@ type Props = {
   galleryButtonLabel?: string
 };
 
-class ImageSelector extends PureComponent<Props> {
+class ImageSelector extends PureComponent<void, Props, void> {
   handleImageUpload: Function;
   handleImageSelection: Function;
 
@@ -44,7 +44,7 @@ class ImageSelector extends PureComponent<Props> {
 
   handleImageSelection(image: Image) {
     this.props.onImageLoaded(image.url);
-    this.props.onImageSelected(image);
+    this.props.onImageSelected && this.props.onImageSelected(image);
   }
 
   render() {

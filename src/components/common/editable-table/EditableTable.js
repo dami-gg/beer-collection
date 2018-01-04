@@ -13,7 +13,7 @@ type Props = {
   onDelete: Function
 };
 
-class EditableTable extends PureComponent<Props> {
+class EditableTable extends PureComponent<void, Props, void> {
   getHeader() {
     return this.props.columns.map((column: Object) => (
       <div

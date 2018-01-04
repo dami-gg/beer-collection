@@ -12,7 +12,8 @@ type State = {
   value: string
 };
 
-class SearchBox extends Component<Props, State> {
+class SearchBox extends Component<void, Props, State> {
+  state: State;
   onChange: Function;
   clearInput: Function;  
 

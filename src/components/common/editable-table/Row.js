@@ -30,7 +30,8 @@ type State = {
   negativeButtonColor?: string
 };
 
-class Row extends Component<Props, State> {
+class Row extends Component<void, Props, State> {
+  state: State;
   setReadOnlyMode: Function;
   setEditMode: Function;
   setDeleteMode: Function;

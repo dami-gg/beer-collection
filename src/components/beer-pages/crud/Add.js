@@ -16,7 +16,7 @@ type Props = {
   history: Object
 };
 
-export class Add extends Component<Props> {
+export class Add extends Component<void, Props, void> {
   submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
     let beer = {
       name: formValues.name,

@@ -22,15 +22,17 @@ type Props = {
 };
 
 type State = {
-  currentBeer: Beer
+  currentBeer: Beer | null
 };
 
-export class Edit extends Component<Props, State> {
+export class Edit extends Component<void, Props, State> {
+  state: State;
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      currentBeer: undefined
+      currentBeer: null
     };
   }
 
@@ -56,17 +58,19 @@ export class Edit extends Component<Props, State> {
   }
 
   submitHandler = (formValues: BeerFormValues, imageUrl: string): void => {
-    let beer: Beer = {
-      id: this.state.currentBeer.id,
-      name: formValues.name,
-      type: formValues.type,
-      origin: formValues.origin,
-      image: imageUrl || this.state.currentBeer.image,
-      rating: formValues.rating
-    };
+    if (this.state.currentBeer) {
+      let beer: Beer = {
+        id: this.state.currentBeer.id,
+        name: formValues.name,
+        type: formValues.type,
+        origin: formValues.origin,
+        image: imageUrl || this.state.currentBeer.image,
+        rating: formValues.rating
+      };
 
-    this.props.updateBeer(beer);
-    this.redirectToViewPage();
+      this.props.updateBeer(beer);
+      this.redirectToViewPage();
+    }
   };
 
   cancelHandler = (): void => {
@@ -74,7 +78,9 @@ export class Edit extends Component<Props, State> {
   };
 
   redirectToViewPage = (): void => {
-    this.props.history.push(`/beer/view/${this.state.currentBeer.id}`);
+    if (this.state.currentBeer) {
+      this.props.history.push(`/beer/view/${this.state.currentBeer.id}`);
+    }
   };
 
   render() {

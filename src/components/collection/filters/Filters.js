@@ -22,7 +22,7 @@ type Props = {
   onFilterUpdate: Function
 };
 
-class Filters extends PureComponent<Props> {
+class Filters extends PureComponent<void, Props, void> {
   allBeerTypesLabel: string = "All types";
   allBeerOriginsLabel: string = "All origins";
 

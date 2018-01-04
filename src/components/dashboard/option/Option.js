@@ -11,7 +11,7 @@ type Props = {
   disabled?: boolean
 };
 
-class Option extends PureComponent<Props> {
+class Option extends PureComponent<void, Props, void> {
   temp: string;
   
   render() {

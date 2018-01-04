@@ -6,7 +6,7 @@ type Props = {
   icon: string
 };
 
-class RatingButton extends PureComponent<Props> {
+class RatingButton extends PureComponent<void, Props, void> {
   render() {
     return (
       <label>

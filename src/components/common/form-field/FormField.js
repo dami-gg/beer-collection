@@ -4,17 +4,17 @@ import React, { PureComponent } from "react";
 import "./form-field.scss";
 
 type Props = {
-  name: String,
-  label?: String,
-  type?: String,
-  value: String,
-  disabled?: Boolean,
-  placeholder?: String,
-  onChange: Function,
+  name: string,
+  label?: string,
+  type?: string,
+  value?: string,
+  disabled?: boolean,
+  placeholder?: string,
+  onChange?: Function,
   autofocus?: boolean
 };
 
-class FormField extends PureComponent<Props> {
+class FormField extends PureComponent<void, Props, void> {
   render() {
     return (
       <div className="form__field">
