@@ -5,6 +5,7 @@ exports[`SearchBox should match the snapshot 1`] = `
   className="search-box undefined"
 >
   <input
+    autoFocus={true}
     className="search-box__input"
     onChange={[Function]}
     placeholder="Search by name"

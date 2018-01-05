@@ -8,7 +8,7 @@ exports[`Statistics should match the snapshot 1`] = `
     className="dashboard"
   >
     <div
-      className="dashboard__option"
+      className="dashboard__option "
     >
       <a
         className="dashboard__option__card"

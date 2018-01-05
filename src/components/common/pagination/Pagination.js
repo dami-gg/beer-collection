@@ -87,8 +87,6 @@ class Pagination extends PureComponent<void, Props, void> {
         ? this.props.currentPage === 1
         : this.props.currentPage === this.totalPages;
 
-        console.log(isDisabled);
-
       return (
         <PageButton
           label={isLeftPositioned ? "<" : ">"}

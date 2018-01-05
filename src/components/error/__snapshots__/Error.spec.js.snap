@@ -9,11 +9,6 @@ exports[`Error should match the snapshot 1`] = `
   >
     This page could not be found!
   </h1>
-  <p
-    className="error-page__text"
-  >
-    Please try again
-  </p>
   <div
     className="error-page__image-wrapper"
   >
@@ -23,5 +18,10 @@ exports[`Error should match the snapshot 1`] = `
       src="error.png"
     />
   </div>
+  <p
+    className="error-page__text"
+  >
+    Please try again
+  </p>
 </div>
 `;

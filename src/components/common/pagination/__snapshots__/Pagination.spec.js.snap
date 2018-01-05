@@ -5,19 +5,9 @@ exports[`Pagination should match the snapshot 1`] = `
   className="pagination  undefined"
 >
   <a
-    className="pagination__button
-                     
-                     "
-    onClick={[Function]}
-  >
-    <span>
-      «
-    </span>
-  </a>
-  <a
-    className="pagination__button
-                     
-                     "
+    className="pagination__button 
+                   
+                   "
     onClick={[Function]}
   >
     <span>
@@ -25,9 +15,9 @@ exports[`Pagination should match the snapshot 1`] = `
     </span>
   </a>
   <a
-    className="pagination__button
-                     
-                     pagination__button--disabled"
+    className="pagination__button 
+                   
+                   pagination__button--disabled"
     onClick={[Function]}
   >
     <span>
@@ -35,9 +25,9 @@ exports[`Pagination should match the snapshot 1`] = `
     </span>
   </a>
   <a
-    className="pagination__button
-                     
-                     "
+    className="pagination__button 
+                   
+                   "
     onClick={[Function]}
   >
     <span>
@@ -45,17 +35,17 @@ exports[`Pagination should match the snapshot 1`] = `
     </span>
   </a>
   <a
-    className="pagination__button
-                     pagination__button--active
-                     "
+    className="pagination__button 
+                   pagination__button--active
+                   "
     onClick={[Function]}
   >
     <span />
   </a>
   <a
-    className="pagination__button
-                     
-                     "
+    className="pagination__button 
+                   
+                   "
     onClick={[Function]}
   >
     <span>
@@ -63,9 +53,9 @@ exports[`Pagination should match the snapshot 1`] = `
     </span>
   </a>
   <a
-    className="pagination__button
-                     
-                     pagination__button--disabled"
+    className="pagination__button 
+                   
+                   pagination__button--disabled"
     onClick={[Function]}
   >
     <span>
@@ -73,23 +63,13 @@ exports[`Pagination should match the snapshot 1`] = `
     </span>
   </a>
   <a
-    className="pagination__button
-                     
-                     "
+    className="pagination__button 
+                   
+                   "
     onClick={[Function]}
   >
     <span>
       NaN
-    </span>
-  </a>
-  <a
-    className="pagination__button
-                     
-                     "
-    onClick={[Function]}
-  >
-    <span>
-      »
     </span>
   </a>
 </div>

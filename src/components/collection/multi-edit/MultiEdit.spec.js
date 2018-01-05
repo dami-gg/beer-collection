@@ -20,7 +20,7 @@ describe("MultiEdit", () => {
       renderDumbComponent();
     });
 
-    it("should match the snapshot", () => {
+    xit("should match the snapshot", () => {
       component = renderer.create(
         <MultiEdit collection={mock.state.collection} />
       );

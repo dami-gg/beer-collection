@@ -8,6 +8,7 @@ exports[`Filters should match the snapshot 1`] = `
     className="search-box filters__filter filters__filter--search"
   >
     <input
+      autoFocus={true}
       className="search-box__input"
       onChange={[Function]}
       placeholder="Search by name"
@@ -63,19 +64,9 @@ exports[`Filters should match the snapshot 1`] = `
     className="pagination  filters__filter filters__filter--pagination"
   >
     <a
-      className="pagination__button
-                       
-                       "
-      onClick={[Function]}
-    >
-      <span>
-        «
-      </span>
-    </a>
-    <a
-      className="pagination__button
-                       
-                       "
+      className="pagination__button 
+                   
+                   "
       onClick={[Function]}
     >
       <span>
@@ -83,9 +74,9 @@ exports[`Filters should match the snapshot 1`] = `
       </span>
     </a>
     <a
-      className="pagination__button
-                       
-                       pagination__button--disabled"
+      className="pagination__button 
+                   
+                   pagination__button--disabled"
       onClick={[Function]}
     >
       <span>
@@ -93,9 +84,9 @@ exports[`Filters should match the snapshot 1`] = `
       </span>
     </a>
     <a
-      className="pagination__button
-                       
-                       "
+      className="pagination__button 
+                   
+                   "
       onClick={[Function]}
     >
       <span>
@@ -103,9 +94,9 @@ exports[`Filters should match the snapshot 1`] = `
       </span>
     </a>
     <a
-      className="pagination__button
-                       
-                       "
+      className="pagination__button 
+                   
+                   "
       onClick={[Function]}
     >
       <span>
@@ -113,9 +104,9 @@ exports[`Filters should match the snapshot 1`] = `
       </span>
     </a>
     <a
-      className="pagination__button
-                       
-                       "
+      className="pagination__button 
+                   
+                   "
       onClick={[Function]}
     >
       <span>
@@ -123,9 +114,9 @@ exports[`Filters should match the snapshot 1`] = `
       </span>
     </a>
     <a
-      className="pagination__button
-                       
-                       pagination__button--disabled"
+      className="pagination__button 
+                   
+                   pagination__button--disabled"
       onClick={[Function]}
     >
       <span>
@@ -133,23 +124,13 @@ exports[`Filters should match the snapshot 1`] = `
       </span>
     </a>
     <a
-      className="pagination__button
-                       
-                       "
+      className="pagination__button 
+                   
+                   "
       onClick={[Function]}
     >
       <span>
         NaN
-      </span>
-    </a>
-    <a
-      className="pagination__button
-                       
-                       "
-      onClick={[Function]}
-    >
-      <span>
-        »
       </span>
     </a>
   </div>
