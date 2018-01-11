@@ -5,14 +5,13 @@ cache:
   directories:
   - node_modules
 before_script:
-- npm install -s
-- npm run flow version
 - npm run flow
 script:
 - npm test
 - npm run build
 deploy:
   provider: firebase
+  skip_cleanup: true
   token:
     secure: "MN4NmY9QnE/MXeyzYxCH4T4reNsbtJvJ/fYTVGpSl4jOWqhgEJ5xQ+nLfpCNb4MTQILq+JE/aMbshvnN+uGRLv2f+Yj+K5XEXcfCugPwCGbTVFNbXxAZsnJ7pvpLNT6kuiit1quQ9HIQwbXAI3yXIZm/F0/U/B5JFP+nd8kL20oTI9deUHz+xD5KbnDan+puYcpsTsoAWn6CTluSvK1hyj8MqzYRkygvUQyxirmo1DRL9rRJduXr5nzU92kVSK4UjqSRO2Yhco4yYg+gwKyyWIHiL7E8feF2uZUdJOhNXgGJi33VDJK31k654Vda6nYbUcOr1Qc2FsTNdnSjHurrYE0kEHC7a7eoiUIg99etnsmGYwFrRnWiRArJbFbXXgBkzUo0W24z9lHmyU3sHs2DT1jY2HINwc+QOgdnRgSY6IMiCUGBKPCw6+gsxTWp2nhXkTtU+AZmEWfdNKKEqaFXqJSGGLVXwqGA0YLWE9D9fFNJNknL0eBwHQwvBaM8ZCkRoVHatwFPgdEruSUQ41U7kRxb+MR5HEu1yIaIq4qo92nTL08+/N3cZ+xUMqmpyMLkv636qJWudg56T1Qj+G17XXY6VtI8LDVMhsATNW/VaPgi4NHZCLUnqeItin3DVo8oTGLuFG3SqHDrcqgi72eefCjb57AWM5URkocowDjRs8o="
 env:
