@@ -24,7 +24,6 @@ class FormFields extends PureComponent<Props> {
         disabled={this.props.readOnly}
         onChange={event => this.props.onChange(field, event.target.value)}
         placeholder={`Enter ${field}`}
-        autofocus={index === 0 ? true : false}
       />
     ));
   }
