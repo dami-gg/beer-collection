@@ -4,7 +4,7 @@ import type { Beer } from "../../../types/beer.types";
 import {
   RATINGS_LABELS,
   NOT_RATED_KEY
-} from "../../beer-pages/rating/rating.constants";
+} from "../../beer-pages/ratings/ratings.constants";
 
 export const getOriginData = (collection: Array<Beer>) => {
   let index: number;

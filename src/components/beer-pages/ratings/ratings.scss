@@ -1,4 +1,4 @@
-.rating {
+.ratings {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
@@ -11,7 +11,7 @@
   &__input {
     display: none;
 
-    &:checked + .rating__icon {
+    &:checked + .ratings__icon {
       color: yellow;
     }
   }

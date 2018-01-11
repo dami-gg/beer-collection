@@ -4,11 +4,16 @@ import React, { PureComponent } from "react";
 type Props = {
   value: string,
   icon: string,
-  readOnly?: boolean
+  readOnly?: boolean,
+  selected: boolean,
+  onChange: Function
 };
 
 class RatingButton extends PureComponent<void, Props, void> {
   render() {
+    let defaultChecked = this.props.selected
+      ? { defaultChecked: "defaultChecked" }
+      : {};
     let disabled = this.props.readOnly ? { disabled: "disabled" } : {};
 
     return (
@@ -18,11 +23,13 @@ class RatingButton extends PureComponent<void, Props, void> {
           type="radio"
           component="input"
           value={this.props.value}
-          className="rating__input"
+          className="ratings__input"
+          onChange={this.props.onChange}
+          {...defaultChecked}
           {...disabled}
         />
         <i
-          className={`fa fa-${this.props.icon}-o rating__icon`}
+          className={`fa fa-${this.props.icon}-o ratings__icon`}
           aria-hidden="true"
         />
       </label>

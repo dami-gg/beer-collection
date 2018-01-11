@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import Button from "../../common/button/Button";
 import FormFields from "../form-fields/FormFields";
 import ImageSelector from "../../common/image-selector/ImageSelector";
-import Rating from "../rating/Rating";
+import Ratings from "../ratings/Ratings";
 import ErrorBoundary from "../../common/error-boundary/ErrorBoundary";
 
 import { uploadImage } from "../../common/image-selector/image-selector.helpers";
@@ -112,7 +112,13 @@ export class Form extends Component<void, Props, State> {
               values={this.state.formValues}
               readOnly={this.props.readOnly}
               onChange={this.updateForm}>
-              <Rating readOnly={this.props.readOnly} />
+              <Ratings
+                readOnly={this.props.readOnly}
+                currentValue={
+                  this.state.formValues && this.state.formValues["rating"]
+                }
+                onChange={this.updateForm}
+              />
             </FormFields>
           </ErrorBoundary>
 
