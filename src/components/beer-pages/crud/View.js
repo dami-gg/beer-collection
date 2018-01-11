@@ -22,7 +22,7 @@ type State = {
   currentBeer: Beer | null
 };
 
-export class View extends Component<void, Props, State> {
+export class View extends Component<Props, State> {
   state: State;
 
   constructor(props: Props) {

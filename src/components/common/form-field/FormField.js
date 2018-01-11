@@ -14,7 +14,7 @@ type Props = {
   autofocus?: boolean
 };
 
-class FormField extends PureComponent<void, Props, void> {
+class FormField extends PureComponent<Props> {
   render() {
     return (
       <div className="form__field">

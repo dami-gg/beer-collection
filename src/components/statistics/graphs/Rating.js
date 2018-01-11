@@ -14,7 +14,7 @@ type Props = {
   collection: Array<Beer>
 };
 
-class Rating extends Component<void, Props, void> {
+class Rating extends Component<Props> {
   data: Array<Object>;
 
   componentWillMount() {

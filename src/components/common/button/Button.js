@@ -11,7 +11,7 @@ type Props = {
   children?: any
 };
 
-class Button extends PureComponent<void, Props, void> {
+class Button extends PureComponent<Props> {
   render() {
     return (
       <button

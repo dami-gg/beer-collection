@@ -17,7 +17,7 @@ type State = {
   thumbnail: any
 };
 
-class Cell extends Component<void, Props, State> {
+class Cell extends Component<Props, State> {
   state: State;
   handleChange: Function;
   loadImage: Function;

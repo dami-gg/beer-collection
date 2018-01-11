@@ -18,7 +18,7 @@ type Props = {
   allBeerOrigins: Array<string>
 };
 
-class Results extends PureComponent<void, Props, void> {
+class Results extends PureComponent<Props> {
   getResultLinks() {
     return this.props.results.map((beer: Beer) => {
       return (

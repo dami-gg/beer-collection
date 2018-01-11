@@ -23,7 +23,7 @@ type Props = {
   galleryButtonLabel?: string
 };
 
-class ImageSelector extends PureComponent<void, Props, void> {
+class ImageSelector extends PureComponent<Props> {
   handleImageUpload: Function;
   handleImageSelection: Function;
 

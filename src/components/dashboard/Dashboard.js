@@ -11,7 +11,7 @@ type Props = {
   items: Array<Object>
 };
 
-class Dashboard extends PureComponent<void, Props, void> {
+class Dashboard extends PureComponent<Props> {
   getDashboardItems() {
     return this.props.items && this.props.items.length
       ? this.props.items.map(

@@ -11,7 +11,7 @@ type Props = {
   iconColor: string
 };
 
-class FloatingButton extends PureComponent<void, Props, void> {
+class FloatingButton extends PureComponent<Props> {
   handleStyleCustomization() {
     let style = {};
 

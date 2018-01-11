@@ -17,7 +17,7 @@ type Props = {
   onNavigation: Function
 };
 
-class Pagination extends PureComponent<void, Props, void> {
+class Pagination extends PureComponent<Props> {
   totalPages: number;
   navigateToPage: Function;
   navigateToPreviousPage: Function;

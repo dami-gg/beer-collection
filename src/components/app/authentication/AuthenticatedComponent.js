@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function Authenticated(OriginalComponent: any) {
-  class AuthenticatedComponent extends Component<void, Props, void> {
+  class AuthenticatedComponent extends Component<Props> {
     componentWillMount() {
       this.checkIfUnauthenticated();
     }

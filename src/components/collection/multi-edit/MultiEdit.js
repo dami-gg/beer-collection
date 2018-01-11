@@ -33,7 +33,7 @@ type State = {
   results: Array<Beer>
 };
 
-export class MultiEdit extends Component<void, Props, State> {
+export class MultiEdit extends Component<Props, State> {
   state: State;
   createBeer: Function;
   editBeer: Function;

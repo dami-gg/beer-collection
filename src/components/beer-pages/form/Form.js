@@ -34,7 +34,7 @@ type State = {
   imageUploaded: boolean
 };
 
-export class Form extends Component<void, Props, State> {
+export class Form extends Component<Props, State> {
   state: State;
   preSubmit: Function;
   handleImageUpload: Function;

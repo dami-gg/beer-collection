@@ -12,7 +12,7 @@ type State = {
   hasError: boolean
 };
 
-class ErrorBoundary extends Component<void, Props, State> {
+class ErrorBoundary extends Component<Props, State> {
   state: State;
   constructor(props) {
     super(props);

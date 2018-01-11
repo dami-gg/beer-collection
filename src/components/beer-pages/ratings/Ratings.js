@@ -14,7 +14,7 @@ type Props = {
   onChange: Function
 };
 
-class Ratings extends PureComponent<void, Props, void> {
+class Ratings extends PureComponent<Props> {
   getButtons() {
     return RATINGS.map((rating: Rating, index: number) => (
       <RatingButton

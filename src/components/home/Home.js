@@ -13,7 +13,7 @@ type Props = {
   collection: Array<Beer>
 };
 
-export class Home extends Component<void, Props, void> {
+export class Home extends Component<Props> {
   componentDidUpdate(): void {
     // Preload images for fast load of the first page of the collection in case the user navigates there
     if (

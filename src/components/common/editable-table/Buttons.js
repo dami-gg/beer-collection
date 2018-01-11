@@ -14,7 +14,7 @@ type Props = {
   negativeButtonColor?: string
 };
 
-class Buttons extends PureComponent<void, Props, void> {
+class Buttons extends PureComponent<Props> {
   render() {
     return (
       <div className="buttons">

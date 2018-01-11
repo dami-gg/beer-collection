@@ -10,7 +10,7 @@ type Props = {
   visible: boolean
 };
 
-class Options extends PureComponent<void, Props, void> {
+class Options extends PureComponent<Props> {
   handleOptionSelection = (option?: string) => {
     this.props.onOptionSelected(option);
   };

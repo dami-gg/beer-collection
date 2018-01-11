@@ -13,7 +13,7 @@ type Props = {
   children?: Object
 };
 
-class FormFields extends PureComponent<void, Props, void> {
+class FormFields extends PureComponent<Props> {
   getFormFields() {
     return this.props.fields.map((field: string, index: number) => (
       <FormField

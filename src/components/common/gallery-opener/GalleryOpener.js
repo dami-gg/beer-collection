@@ -19,7 +19,7 @@ type State = {
   selectedImage: Image | null
 };
 
-export class GalleryOpener extends Component<void, Props, State> {
+export class GalleryOpener extends Component<Props, State> {
   state: State;
   closeGallery: Function;
   handleSelection: Function;

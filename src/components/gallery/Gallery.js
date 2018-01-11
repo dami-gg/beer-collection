@@ -15,7 +15,7 @@ type Props = {
   selectedImage?: Image
 };
 
-export class Gallery extends Component<void, Props, void> {
+export class Gallery extends Component<Props> {
   renderImages() {
     return this.props.gallery.map((image: Image, index) => (
       <div

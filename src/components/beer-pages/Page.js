@@ -17,7 +17,7 @@ type Props = {
   readOnly?: boolean
 };
 
-class Page extends PureComponent<void, Props, void> {
+class Page extends PureComponent<Props> {
   render() {
     return (
       <section className="beer-page">
@@ -33,7 +33,7 @@ class Page extends PureComponent<void, Props, void> {
               ? this.props.currentBeer.image
               : ""
           }
-          readOnly={this.props.readOnly}
+          readOnly={this.props.readOnly || false}
         />
       </section>
     );

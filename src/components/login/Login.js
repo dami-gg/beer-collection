@@ -24,7 +24,7 @@ type Props = {
   authenticate: Function
 };
 
-export class Login extends Component<void, Props, void> {
+export class Login extends Component<Props> {
   componentWillMount() {
     this.checkIfAuthenticated();
   }

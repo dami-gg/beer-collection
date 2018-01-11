@@ -13,7 +13,7 @@ type Props = {
   onSave?: Function
 };
 
-export class Modal extends PureComponent<void, Props, void> {
+export class Modal extends PureComponent<Props> {
   handleSaveButtonClick: Function;
   handleCancelButtonClick: Function;
   

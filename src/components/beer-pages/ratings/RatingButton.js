@@ -9,7 +9,7 @@ type Props = {
   onChange: Function
 };
 
-class RatingButton extends PureComponent<void, Props, void> {
+class RatingButton extends PureComponent<Props> {
   render() {
     let defaultChecked = this.props.selected
       ? { defaultChecked: "defaultChecked" }
