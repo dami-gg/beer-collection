@@ -3,11 +3,14 @@ import React, { PureComponent } from "react";
 
 type Props = {
   value: string,
-  icon: string
+  icon: string,
+  readOnly?: boolean
 };
 
 class RatingButton extends PureComponent<void, Props, void> {
   render() {
+    let disabled = this.props.readOnly ? { disabled: "disabled" } : {};
+
     return (
       <label>
         <input
@@ -16,6 +19,7 @@ class RatingButton extends PureComponent<void, Props, void> {
           component="input"
           value={this.props.value}
           className="rating__input"
+          {...disabled}
         />
         <i
           className={`fa fa-${this.props.icon}-o rating__icon`}

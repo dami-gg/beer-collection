@@ -13,7 +13,12 @@ type Props = {
 class Rating extends PureComponent<void, Props, void> {
   getButtons() {
     return RATINGS.map((rating, index) => (
-      <RatingButton key={index} value={`${rating.value}`} icon={rating.icon} />
+      <RatingButton
+        key={index}
+        value={`${rating.value}`}
+        icon={rating.icon}
+        readOnly={this.props.readOnly}
+      />
     ));
   }
 
