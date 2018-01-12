@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dami-gg/beer-collection.svg?branch=master)](https://travis-ci.org/dami-gg/beer-collection)
+
 # Beer collection
 
 Application to organise your own catalog of beer reviews.
