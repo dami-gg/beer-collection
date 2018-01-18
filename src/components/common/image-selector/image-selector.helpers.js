@@ -1,5 +1,6 @@
 // @flow
 import firebase from "firebase";
+import { addImageToState } from "../../../actions/gallery.actions";
 
 export const readFile = (file: Object, callback: Function) => {
   const reader = new FileReader();
@@ -11,6 +12,7 @@ export const readFile = (file: Object, callback: Function) => {
 
 export const uploadImage = (imageFile: Object): Promise<any> => {
   return new Promise((resolve, reject) => {
+    debugger;
     if (imageFile) {
       const storageRef = firebase
         .storage()
@@ -29,7 +31,9 @@ export const uploadImage = (imageFile: Object): Promise<any> => {
         },
         () => {
           // Upload is complete
-          resolve(uploadProcess.snapshot.downloadURL);
+          const imageUrl = uploadProcess.snapshot.downloadURL;
+          addImageToState(imageUrl);
+          resolve(imageUrl);
         }
       );
     } else {
@@ -39,8 +43,6 @@ export const uploadImage = (imageFile: Object): Promise<any> => {
 };
 
 export const uploadImagesBatch = (imageFiles: Array<Object>) => {
-  const uploadProcesses = imageFiles.map(imageFile =>
-    uploadImage(imageFile)
-  );
+  const uploadProcesses = imageFiles.map(imageFile => uploadImage(imageFile));
   return Promise.all(uploadProcesses);
 };

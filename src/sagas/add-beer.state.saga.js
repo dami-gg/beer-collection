@@ -39,7 +39,6 @@ function* addBeerToStateSaga(beer: Beer): Generator<any,any,any> {
   try {
     if (beer && beer.image) {
       const image: Image = {
-        id: beer.id,
         url: beer.image
       };
 
