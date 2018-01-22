@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../common/button/Button";
 
-import logo from "../../assets/images/logo.png";
+import Logo from "../common/logo/Logo";
 import { logout } from "../../helpers/authentication.helpers";
 
 import "./header.scss";
@@ -21,10 +21,7 @@ export class Header extends Component<Props> {
     return (
       <div className="header">
         <Link to="/" className="logo-container">
-          <div className="logo">
-            <img src={logo} alt="logo" height="30px" width="25px" />
-          </div>
-          <span className="title">Beer collection</span>
+          <Logo collapsed={true} />
         </Link>
         {this.props.user && (
           <div className="logout">

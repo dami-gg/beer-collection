@@ -8,7 +8,7 @@ import Form from "./form/Form";
 import "./pages.scss";
 
 type Props = {
-  heading: string,
+  heading?: string,
   submitHandler: Function,
   cancelHandler: Function,
   submitButtonLabel: string,
@@ -21,7 +21,11 @@ class Page extends PureComponent<Props> {
   render() {
     return (
       <section className="beer-page">
-        <h1 className="beer-page__heading">{this.props.heading}</h1>
+        {this.props.heading ? (
+          <h1 className="beer-page__heading">{this.props.heading}</h1>
+        ) : (
+          ""
+        )}
         <Form
           onSubmit={this.props.submitHandler}
           onCancel={this.props.cancelHandler}
@@ -33,7 +37,7 @@ class Page extends PureComponent<Props> {
               ? this.props.currentBeer.image
               : ""
           }
-          readOnly={this.props.readOnly || false}
+          readOnly={this.props.readOnly || false}
         />
       </section>
     );
