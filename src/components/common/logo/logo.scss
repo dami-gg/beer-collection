@@ -1,0 +1,58 @@
+@import "../../../assets/styles/colors.scss";
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+  &__image-wrapper {
+    order: 1;
+
+    @media (min-width: 768px) {
+      order: 0;
+    }
+  }
+
+  &__image {
+    height: 24vh;
+  }
+
+  &__title {
+    font-family: "Cookie", cursive;
+    font-size: 15vw;
+    text-align: center;
+    color: $beer-yellow;
+    margin: 0;
+    display: inline-block;
+    text-shadow: 1px 2px #b85b3f;
+
+    @media (min-width: 768px) {
+      font-size: 12vw;
+      text-shadow: 5px 5px #b85b3f;
+    }
+  }
+
+  &--collapsed {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0;
+    justify-content: normal;
+
+    .logo__image-wrapper {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 5px;
+      order: 0;
+    }
+
+    .logo__title {
+      font-size: 22pt;
+      text-shadow: 1px 2px #b85b3f;
+    }
+  }
+}

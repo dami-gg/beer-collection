@@ -1,15 +1,17 @@
+@import "../../../assets/styles/colors.scss";
+
 .search-box {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid $contrast;
 
   &__input {
     height: 40px;
     width: 85%;
     background: none;
     border: none;
-    color: white;
-    -webkit-text-fill-color: white;
+    color: black;
+    -webkit-text-fill-color: black;
     font-size: 14px;
 
     @media(min-width: 768px) {

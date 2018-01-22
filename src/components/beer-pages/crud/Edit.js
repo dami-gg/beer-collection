@@ -86,7 +86,9 @@ export class Edit extends Component<Props, State> {
   render() {
     return (
       <Page
-        heading="Edit beer from your collection"
+        heading={`Edit ${this.state.currentBeer
+          ? this.state.currentBeer.name
+          : "beer"}'s information`}
         submitHandler={this.submitHandler}
         cancelHandler={this.cancelHandler}
         submitButtonLabel="Save"
