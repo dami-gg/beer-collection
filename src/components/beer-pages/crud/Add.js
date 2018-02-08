@@ -41,7 +41,6 @@ export class Add extends Component<Props> {
   render() {
     return (
       <Page
-        heading="Add a new beer to your collection"
         submitHandler={this.submitHandler}
         cancelHandler={this.cancelHandler}
         submitButtonLabel="Save"

@@ -1,0 +1,18 @@
+.form__fields {
+  display: flex;
+  flex-direction: column;
+  order: 1;
+  margin-top: 25px;
+  
+  @media (min-width: 768px) {
+    width: 50%;
+    order: 0;
+    margin-top: 0;
+  }
+
+  .image-selector {
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+  }
+}

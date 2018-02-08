@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 
 import FormField from "../../common/form-field/FormField";
 
-import "../form/form.scss";
+import "./form-fields.scss";
 
 type Props = {
   fields: Array<string>,

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import Button from "../common/button/Button";
-import FormField from "../common/form-field/FormField";
+import Logo from "../common/logo/Logo";
 import Spinner from "../common/spinner/Spinner";
 import {
   isAuthenticating,
@@ -50,18 +50,15 @@ export class Login extends Component<Props> {
           <Spinner />
         ) : (
           <div className="login__box">
-            <form className="login__form">
-              <h1 className="login__form__title">Please sign in</h1>
-              <FormField label="Username" name="username" />
-              <FormField label="Password" name="password" />
-              <Button color="green" className="button--sign-in" type="submit">
-                Sign in
-              </Button>
-            </form>
+            <div className="teaser-wrapper">
+              <Logo />
+            </div>
 
-            <Button color="blue" onClick={handleAuthenticationWithGoogle}>
-              Sign in with Google
-            </Button>
+            <div className="button-wrapper">
+              <Button color="blue" onClick={handleAuthenticationWithGoogle}>
+                Sign in with Google
+              </Button>
+            </div>
           </div>
         )}
       </div>

@@ -48,11 +48,18 @@ export class App extends Component<Props> {
     this.props.logUserOut();
   }
 
+  isUserAuthenticated() {
+    return !!this.props.user;
+  }
+
   render() {
     return (
       <Router>
-        <div className="app">
-          <Header />
+        <div
+          className={`app ${this.isUserAuthenticated()
+            ? "app--with-header"
+            : ""}`}>
+          {this.isUserAuthenticated() && <Header />}
           {routes}
         </div>
       </Router>

@@ -76,7 +76,6 @@ export class View extends Component<Props, State> {
   render() {
     return (
       <Page
-        heading={this.state.currentBeer ? this.state.currentBeer.name : ''}
         submitHandler={this.submitHandler}
         cancelHandler={this.cancelHandler}
         submitButtonLabel="Edit"

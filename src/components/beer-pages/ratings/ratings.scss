@@ -1,10 +1,12 @@
+@import "../../../assets/styles/colors.scss";
+
 .ratings {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
   margin-bottom: 35px;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     padding: 0 80px;
   }
 
@@ -12,20 +14,19 @@
     display: none;
 
     &:checked + .ratings__icon {
-      color: yellow;
+      color: $highlighting;
     }
   }
 
   &__icon {
-    font-size: 30px;
+    font-size: 3rem;
 
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       cursor: pointer;
-      font-size: 40px;
     }
 
     &:hover {
-      color: deepskyblue;
+      color: $hovering;
     }
   }
 }

@@ -1,5 +1,7 @@
+@import "../../../assets/styles/colors.scss";
+
 .spinner {
-  color: yellow;
+  color: $highlighting;
   font-size: 100px;
   text-indent: -9999em;
   overflow: hidden;

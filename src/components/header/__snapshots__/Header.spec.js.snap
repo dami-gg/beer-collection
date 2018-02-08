@@ -10,20 +10,24 @@ exports[`Header dumb component should match the snapshot 1`] = `
     onClick={[Function]}
   >
     <div
-      className="logo"
+      className="logo logo--collapsed"
     >
-      <img
-        alt="logo"
-        height="30px"
-        src="logo.png"
-        width="25px"
-      />
+      <div
+        className="logo__image-wrapper"
+      >
+        <img
+          alt="logo"
+          className="logo__image"
+          src="logo.png"
+        />
+      </div>
+      <h1
+        className="logo__title"
+        data-text="Beer collection"
+      >
+        Beer collection
+      </h1>
     </div>
-    <span
-      className="title"
-    >
-      Beer collection
-    </span>
   </a>
 </div>
 `;
