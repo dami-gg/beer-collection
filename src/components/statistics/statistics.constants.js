@@ -1,12 +1,12 @@
 // @flow
 import origin from "../../assets/images/origin.png";
+import rating from "../../assets/images/rating.png";
 
 export const PAGE_OPTIONS: Array<Object> = [
   {
     title: "Rating",
-    url: "/ratings",
-    image: "https://unsplash.it/150/150", // TODO
-    hidden: true
+    url: "/rating",
+    image: rating
   },
   {
     title: "Origin",

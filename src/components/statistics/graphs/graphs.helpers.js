@@ -6,6 +6,10 @@ import {
   NOT_RATED_KEY
 } from "../../beer-pages/ratings/ratings.constants";
 
+/**
+ * Produces data related to beers origin in a format readable by the charting library:
+ *  - Array of objects which contain two properties: origin and count
+ */
 export const getOriginData = (collection: Array<Beer>) => {
   let index: number;
 
@@ -22,24 +26,28 @@ export const getOriginData = (collection: Array<Beer>) => {
   }, []);
 };
 
+/**
+ * Produces data related to beers ratings in a format readable by the charting library:
+ *  - Array of objects which contain two properties: rating and count
+ */
 export const getRatingData = (collection: Array<Beer>) => {
-  let ratingsCounts: Array<Object> = RATINGS_LABELS.reduce((accumulator: Array<
+  let ratingsCounts: Array<
     Object
-  >, current) => {
-    accumulator.push({ name: current, value: 0 });
+  > = RATINGS_LABELS.reduce((accumulator: Array<Object>, current) => {
+    accumulator.push({ rating: current, count: 0 });
     return accumulator;
   }, []);
 
   let index: number;
-  
+
   return collection.reduce((accumulator: Array<Object>, current: Beer) => {
     index = accumulator.findIndex(
       element =>
-        element.name === (current.rating ? current.rating : NOT_RATED_KEY)
+        element.rating === (current.rating ? current.rating : NOT_RATED_KEY)
     );
 
     if (index !== -1) {
-      accumulator[index].value++;
+      accumulator[index].count++;
     }
 
     return accumulator;

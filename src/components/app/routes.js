@@ -47,7 +47,7 @@ export const routes = (
       component={Authenticated(Async(statisticsAsyncLoader))}
     />
     <Route
-      path="/ratings"
+      path="/rating"
       component={Authenticated(Async(ratingAsyncLoader))}
     />
     <Route path="/origin" component={Authenticated(Async(originAsyncLoader))} />

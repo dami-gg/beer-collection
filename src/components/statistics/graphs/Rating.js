@@ -3,9 +3,9 @@ import type { Beer } from "../../../types/beer.types";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-import { COLORS } from "./graphs.constants";
+import { VictoryContainer, VictoryChart, VictoryBar } from "victory";
+
 import { getRatingData } from "./graphs.helpers";
 
 import "./graphs.scss";
@@ -22,25 +22,27 @@ class Rating extends Component<Props> {
   }
 
   render() {
+    const data = getRatingData(this.props.collection);
+
     return (
       <div className="graph graph--rating">
         <h1>Beers per rating</h1>
-        <ResponsiveContainer width="100%" height={400}>
-          <PieChart>
-            <Pie
-              data={this.data}
-              cx={120}
-              cy={200}
-              innerRadius={60}
-              outerRadius={80}
-              fill="#8884d8"
-              paddingAngle={5}>
-              {this.data.map((entry, index) => (
-                <Cell key={index} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+        <div className="graph-wrapper">
+          <VictoryChart domainPadding={{ x: 15 }}>
+            <VictoryBar
+              data={data}
+              barRatio={0.6}
+              x="rating"
+              y="count"
+              style={{ data: { fill: "#b85b3f" } }}
+              containerComponent={<VictoryContainer responsive={true} />}
+              animate={{
+                duration: 2000,
+                onLoad: { duration: 1000 }
+              }}
+            />
+          </VictoryChart>
+        </div>
       </div>
     );
   }
