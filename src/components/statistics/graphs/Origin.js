@@ -3,14 +3,8 @@ import type { Beer } from "../../../types/beer.types";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Cell,
-  ResponsiveContainer
-} from "recharts";
+
+import { VictoryContainer, VictoryPie } from "victory";
 
 import { COLORS } from "./graphs.constants";
 import { getOriginData } from "./graphs.helpers";
@@ -28,17 +22,21 @@ class Origin extends Component<Props> {
     return (
       <div className="graph graph--origin">
         <h1>Number of beers by origin</h1>
-        <ResponsiveContainer width="100%" height={400}>
-          <BarChart data={data}>
-            <XAxis dataKey="origin" stroke="white" />
-            <YAxis stroke="white" />
-            <Bar dataKey="count" fill="#8884d8">
-              {data.map((entry, index) => (
-                <Cell key={index} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="graph-wrapper">
+          <VictoryPie
+            data={data}
+            innerRadius={100}
+            labelRadius={110}
+            labels={entry =>
+              entry.count > 3 * this.props.collection.length / 100
+                ? entry.origin
+                : ""}
+            x="origin"
+            y="count"
+            colorScale={COLORS}
+            containerComponent={<VictoryContainer responsive={true} />}
+          />
+        </div>
       </div>
     );
   }
