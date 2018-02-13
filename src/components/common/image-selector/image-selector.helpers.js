@@ -12,7 +12,6 @@ export const readFile = (file: Object, callback: Function) => {
 
 export const uploadImage = (imageFile: Object): Promise<any> => {
   return new Promise((resolve, reject) => {
-    debugger;
     if (imageFile) {
       const storageRef = firebase
         .storage()

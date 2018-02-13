@@ -41,8 +41,9 @@ class Row extends Component<Props, State> {
     this.state = {
       mode: "read",
       editedRow: props.row,
-      imagesToUpload: [{ name: "A" }],
-      background: ""
+      imagesToUpload: [],
+      waitingForConfirmation: false,
+      background: this.props.type || "light"
     };
 
     this.setReadMode = this.setReadMode.bind(this);
@@ -56,15 +57,7 @@ class Row extends Component<Props, State> {
   }
 
   componentWillMount() {
-    this.isExtraRow() ? this.setEditMode() : this.setReadMode();
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log("nextState", nextState);
-  }
-
-  isExtraRow(): boolean {
-    return this.props.type === "extra";
+    this.setReadMode();
   }
 
   setReadMode() {
@@ -89,6 +82,49 @@ class Row extends Component<Props, State> {
       waitingForConfirmation: true,
       background: "danger"
     });
+  }
+
+  finishEdition() {
+    if (this.state.imagesToUpload.length) {
+      uploadImagesBatch(this.state.imagesToUpload)
+        .then(imageUrl => {
+          this.saveChanges();
+        })
+        .catch(error => console.log(error));
+    } else {
+      this.saveChanges();
+    }
+  }
+
+  saveChanges() {
+    this.props.onSave(this.state.editedRow);
+    this.setReadMode();
+  }
+
+  discardChanges() {
+    this.setState({
+      editedRow: this.props.row
+    });
+  }
+
+  deleteRow() {
+    if (this.props.onDelete) {
+      this.props.onDelete(this.props.row);
+    }
+  }
+
+  updateChanges(column: Object, value: any) {
+    this.setState({
+      editedRow: { ...this.state.editedRow, [column.id]: value }
+    });
+  }
+
+  enqueueImage(imageFile: Object) {
+    if (imageFile) {
+      this.setState({
+        imagesToUpload: [...this.state.imagesToUpload, imageFile]
+      });
+    }
   }
 
   getPositiveButton() {
@@ -121,16 +157,14 @@ class Row extends Component<Props, State> {
     switch (this.state.mode) {
       case "edit":
         return {
-          handler: this.isExtraRow()
-            ? this.discardChanges
-            : this.setReadOnlyMode,
+          handler: this.setReadMode,
           label: "Cancel",
           color: "grey"
         };
 
       case "delete":
         return {
-          handler: this.setReadOnlyMode,
+          handler: this.setReadMode,
           label: "Cancel",
           color: "grey"
         };
@@ -145,89 +179,42 @@ class Row extends Component<Props, State> {
     }
   }
 
-  finishEdition() {
-    // TODO !!!!!!!!!!
-    // For some reason imagesToUpload is reset when reaching this place, even if it's 
-    // correctly populated when enqueueing images before O_o
-    
-    console.log("Finish", this.state.imagesToUpload.length);
-    if (this.state.imagesToUpload.length) {
-      uploadImagesBatch(this.state.imagesToUpload)
-        .then(imageUrl => {
-          this.saveChanges();
-        })
-        .catch(error => console.log(error));
-    } else {
-      this.saveChanges();
-    }
-  }
-
-  saveChanges() {
-    this.props.onSave(this.state.editedRow);
-
-    if (this.isExtraRow()) {
-      this.discardChanges();
-    } else {
-      this.setReadMode();
-    }
-  }
-
-  discardChanges() {
-    this.setState({
-      editedRow: this.props.row
-    });
-  }
-
-  deleteRow() {
-    if (this.props.onDelete) {
-      this.props.onDelete(this.props.row);
-    }
-  }
-
   getCells() {
     return this.props.columns.map((column: Object) => (
       <Cell
-        key={column.id}
+        key={`${this.props.row.id}--${column.id}`}
         content={this.state.editedRow[column.id]}
         column={column}
         onChange={this.updateChanges}
         onImageChange={this.enqueueImage}
         readOnly={this.state.mode === "read"}
+        rowId={this.props.row.id}
       />
     ));
   }
 
-  updateChanges(column: Object, value: any) {
-    console.log("Update", this.state.imagesToUpload.length);
-    this.setState({
-      editedRow: { ...this.state.editedRow, [column.id]: value }
-    });
-  }
-
-  enqueueImage(imageFile: Object) {
-    console.log("Enqueue", this.state.imagesToUpload.length);
-    if (imageFile) {
-      this.setState({
-        imagesToUpload: [...this.state.imagesToUpload, imageFile]
-      });
-    }
-  }
-
   render() {
-    const positiveButton = this.getPositiveButton();
-    const negativeButton = this.getNegativeButton();
+    const {
+      handler: positiveHandler,
+      label: positiveLabel,
+      color: positiveColor
+    } = this.getPositiveButton();
+    const {
+      handler: negativeHandler,
+      label: negativeLabel,
+      color: negativeColor
+    } = this.getNegativeButton();
 
     return (
       <div className={`row row--${this.state.background}`}>
         {this.getCells()}
-        <span>{this.state.imagesToUpload.length}</span>
         <Buttons
-          onPositiveButtonClick={positiveButton.handler}
-          onNegativeButtonClick={negativeButton.handler}
-          positiveButtonLabel={positiveButton.label}
-          negativeButtonLabel={negativeButton.label}
-          positiveButtonColor={positiveButton.color}
-          negativeButtonColor={negativeButton.color}
+          onPositiveButtonClick={positiveHandler}
+          onNegativeButtonClick={negativeHandler}
+          positiveButtonLabel={positiveLabel}
+          negativeButtonLabel={negativeLabel}
+          positiveButtonColor={positiveColor}
+          negativeButtonColor={negativeColor}
         />
       </div>
     );

@@ -10,29 +10,19 @@ type Props = {
   column: Object,
   onChange: Function,
   onImageChange: Function,
-  readOnly?: boolean
+  readOnly?: boolean,
+  rowId?: string
 };
 
-type State = {
-  thumbnail: any
-};
-
-class Cell extends Component<Props, State> {
-  state: State;
+class Cell extends Component<Props> {
   handleChange: Function;
-  loadImage: Function;
-  getThumbnail: Function;
+  updateThumbnail: Function;
 
   constructor(props: Object) {
     super(props);
 
-    this.state = {
-      thumbnail: undefined
-    };
-
     this.handleChange = this.handleChange.bind(this);
-    this.loadImage = this.loadImage.bind(this);
-    this.getThumbnail = this.getThumbnail.bind(this);
+    this.updateThumbnail = this.updateThumbnail.bind(this);
   }
 
   getContent() {
@@ -44,7 +34,6 @@ class Cell extends Component<Props, State> {
   getReadOnlyContent() {
     switch (this.props.column.type) {
       case "text":
-        return this.getReadOnlyText();
       case "number":
         return this.getReadOnlyText();
       case "image":
@@ -57,7 +46,6 @@ class Cell extends Component<Props, State> {
   getEditableContent() {
     switch (this.props.column.type) {
       case "text":
-        return this.getEditableText();
       case "number":
         return this.getEditableText();
       case "image":
@@ -92,31 +80,25 @@ class Cell extends Component<Props, State> {
   }
 
   getEditableImage() {
-    return <div className="cell__image-upload">{this.getImageSelector()}</div>;
-  }
-
-  loadImage(imageFile: Object) {
-    this.props.onImageChange(imageFile);
-  }
-
-  getThumbnail(thumbnail: string) {
-    this.setState({ thumbnail });
-    this.props.onChange(this.props.column, thumbnail);
-  }
-
-  getImageSelector() {
     return (
-      <ImageSelector
-        onImageUploaded={this.loadImage}
-        thumbnail={this.props.content}
-        readOnly={this.props.readOnly}
-        currentImage={this.props.content}
-        onImageLoaded={this.getThumbnail}
-        hidePreview={true}
-        uploadButtonLabel="Upload"
-        galleryButtonLabel="Select"
-      />
+      <div className="cell__image-upload">
+        <ImageSelector
+          rowId={this.props.rowId} // To assign different ids to upload inputs and avoid collisions
+          onImageUploaded={this.props.onImageChange}
+          thumbnail={this.props.content}
+          readOnly={this.props.readOnly}
+          currentImage={this.props.content}
+          onImageLoaded={this.updateThumbnail}
+          hidePreview={true}
+          uploadButtonLabel="Upload"
+          galleryButtonLabel="Select"
+        />
+      </div>
     );
+  }
+
+  updateThumbnail(thumbnail: string) {
+    this.props.onChange(this.props.column, thumbnail);
   }
 
   handleChange(event: Object): void {

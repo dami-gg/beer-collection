@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 
 import Row from "./Row";
+import PersistentRow from "./PersistentRow";
 
 import "./editable-table.scss";
 
@@ -39,22 +40,14 @@ class EditableTable extends PureComponent<Props> {
     ));
   }
 
-  getExtraRow() {
-    return (
-      <Row
-        row={{}}
-        type="extra"
-        columns={this.props.columns}
-        onSave={this.props.onCreate}
-      />
-    );
-  }
-
   render() {
     return (
       <div className="editable-table">
         <div className="editable-table__header">{this.getHeader()}</div>
-        {this.getExtraRow()}
+        <PersistentRow
+          columns={this.props.columns}
+          onSave={this.props.onCreate}
+        />
         {this.getRows()}
       </div>
     );

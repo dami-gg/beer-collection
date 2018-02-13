@@ -4,36 +4,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   &__preview {
     display: flex;
     justify-content: center;
     width: 200px;
     height: 200px;
+
     &--empty {
       border: 1px solid $contrast;
       border-radius: 25px;
     }
+
     &--hidden {
       display: none;
     }
+
     &__image {
       border-radius: 25px;
       max-width: 200px;
       max-height: 200px;
     }
+
     &--empty &__image {
       display: none;
     }
   }
+
   .button {
     padding: 6px 12px;
+
     &__label {
       cursor: pointer;
     }
   }
+
   &__button:first-child {
     margin-bottom: 15px;
   }
+
   &__input {
     display: none;
   }
