@@ -17,22 +17,16 @@ type Props = {
 };
 
 type State = {
-  readOnly?: boolean,
+  mode: string,
   editedRow: Object,
   imagesToUpload: Array<Object>,
   waitingForConfirmation?: boolean,
-  background: string,
-  positiveButtonHandler?: Function,
-  negativeButtonHandler?: Function,
-  positiveButtonLabel?: string,
-  negativeButtonLabel?: string,
-  positiveButtonColor?: string,
-  negativeButtonColor?: string
+  background: string
 };
 
 class Row extends Component<Props, State> {
   state: State;
-  setReadOnlyMode: Function;
+  setReadMode: Function;
   setEditMode: Function;
   setDeleteMode: Function;
   finishEdition: Function;
@@ -45,12 +39,14 @@ class Row extends Component<Props, State> {
     super(props);
 
     this.state = {
+      mode: "read",
       editedRow: props.row,
       imagesToUpload: [],
-      background: ""
+      waitingForConfirmation: false,
+      background: this.props.type || "light"
     };
 
-    this.setReadOnlyMode = this.setReadOnlyMode.bind(this);
+    this.setReadMode = this.setReadMode.bind(this);
     this.setEditMode = this.setEditMode.bind(this);
     this.setDeleteMode = this.setDeleteMode.bind(this);
     this.finishEdition = this.finishEdition.bind(this);
@@ -61,63 +57,35 @@ class Row extends Component<Props, State> {
   }
 
   componentWillMount() {
-    if (this.isExtraRow()) {
-      this.setEditMode();
-    } else {
-      this.setReadOnlyMode();
-    }
+    this.setReadMode();
   }
 
-  isExtraRow(): boolean {
-    return this.props.type === "extra";
-  }
-
-  setReadOnlyMode() {
+  setReadMode() {
     this.setState({
-      readOnly: true,
+      mode: "read",
       waitingForConfirmation: false,
-      background: this.props.type || "light",
-      positiveButtonHandler: this.setEditMode,
-      negativeButtonHandler: this.setDeleteMode,
-      positiveButtonLabel: "Edit",
-      negativeButtonLabel: "Delete",
-      positiveButtonColor: "blue",
-      negativeButtonColor: "red"
+      background: this.props.type || "light"
     });
   }
 
   setEditMode() {
     this.setState({
-      readOnly: false,
+      mode: "edit",
       waitingForConfirmation: false,
-      background: "edit",
-      positiveButtonHandler: this.finishEdition,
-      negativeButtonHandler: this.isExtraRow()
-        ? this.discardChanges
-        : this.setReadOnlyMode,
-      positiveButtonLabel: "Save",
-      negativeButtonLabel: "Cancel",
-      positiveButtonColor: "green",
-      negativeButtonColor: "grey"
+      background: "edit"
     });
   }
 
   setDeleteMode() {
     this.setState({
-      readOnly: false,
+      mode: "delete",
       waitingForConfirmation: true,
-      background: "danger",
-      positiveButtonHandler: this.deleteRow,
-      negativeButtonHandler: this.setReadOnlyMode,
-      positiveButtonLabel: "Confirm",
-      negativeButtonLabel: "Cancel",
-      positiveButtonColor: "black",
-      negativeButtonColor: "grey"
+      background: "danger"
     });
   }
 
   finishEdition() {
-    if (this.state.imagesToUpload.length > 0) {
+    if (this.state.imagesToUpload.length) {
       uploadImagesBatch(this.state.imagesToUpload)
         .then(imageUrl => {
           this.saveChanges();
@@ -130,12 +98,7 @@ class Row extends Component<Props, State> {
 
   saveChanges() {
     this.props.onSave(this.state.editedRow);
-
-    if (this.isExtraRow()) {
-      this.discardChanges();
-    } else {
-      this.setReadOnlyMode();
-    }
+    this.setReadMode();
   }
 
   discardChanges() {
@@ -150,19 +113,6 @@ class Row extends Component<Props, State> {
     }
   }
 
-  getCells() {
-    return this.props.columns.map((column: Object) => (
-      <Cell
-        key={column.id}
-        content={this.state.editedRow[column.id]}
-        column={column}
-        onChange={this.updateChanges}
-        onImageChange={this.enqueueImage}
-        readOnly={this.state.readOnly}
-      />
-    ));
-  }
-
   updateChanges(column: Object, value: any) {
     this.setState({
       editedRow: { ...this.state.editedRow, [column.id]: value }
@@ -170,22 +120,101 @@ class Row extends Component<Props, State> {
   }
 
   enqueueImage(imageFile: Object) {
-    this.setState({
-      imagesToUpload: [...this.state.imagesToUpload, imageFile]
-    });
+    if (imageFile) {
+      this.setState({
+        imagesToUpload: [...this.state.imagesToUpload, imageFile]
+      });
+    }
+  }
+
+  getPositiveButton() {
+    switch (this.state.mode) {
+      case "edit":
+        return {
+          handler: this.finishEdition,
+          label: "Save",
+          color: "green"
+        };
+
+      case "delete":
+        return {
+          handler: this.deleteRow,
+          label: "Confirm",
+          color: "black"
+        };
+
+      case "read":
+      default:
+        return {
+          handler: this.setEditMode,
+          label: "Edit",
+          color: "blue"
+        };
+    }
+  }
+
+  getNegativeButton() {
+    switch (this.state.mode) {
+      case "edit":
+        return {
+          handler: this.setReadMode,
+          label: "Cancel",
+          color: "grey"
+        };
+
+      case "delete":
+        return {
+          handler: this.setReadMode,
+          label: "Cancel",
+          color: "grey"
+        };
+
+      case "read":
+      default:
+        return {
+          handler: this.setDeleteMode,
+          label: "Delete",
+          color: "red"
+        };
+    }
+  }
+
+  getCells() {
+    return this.props.columns.map((column: Object) => (
+      <Cell
+        key={`${this.props.row.id}--${column.id}`}
+        content={this.state.editedRow[column.id]}
+        column={column}
+        onChange={this.updateChanges}
+        onImageChange={this.enqueueImage}
+        readOnly={this.state.mode === "read"}
+        rowId={this.props.row.id}
+      />
+    ));
   }
 
   render() {
+    const {
+      handler: positiveHandler,
+      label: positiveLabel,
+      color: positiveColor
+    } = this.getPositiveButton();
+    const {
+      handler: negativeHandler,
+      label: negativeLabel,
+      color: negativeColor
+    } = this.getNegativeButton();
+
     return (
       <div className={`row row--${this.state.background}`}>
         {this.getCells()}
         <Buttons
-          onPositiveButtonClick={this.state.positiveButtonHandler}
-          onNegativeButtonClick={this.state.negativeButtonHandler}
-          positiveButtonLabel={this.state.positiveButtonLabel}
-          negativeButtonLabel={this.state.negativeButtonLabel}
-          positiveButtonColor={this.state.positiveButtonColor}
-          negativeButtonColor={this.state.negativeButtonColor}
+          onPositiveButtonClick={positiveHandler}
+          onNegativeButtonClick={negativeHandler}
+          positiveButtonLabel={positiveLabel}
+          negativeButtonLabel={negativeLabel}
+          positiveButtonColor={positiveColor}
+          negativeButtonColor={negativeColor}
         />
       </div>
     );

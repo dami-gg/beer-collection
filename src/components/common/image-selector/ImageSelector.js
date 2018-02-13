@@ -20,7 +20,8 @@ type Props = {
   onImageLoaded: Function,
   hidePreview?: boolean,
   uploadButtonLabel?: string,
-  galleryButtonLabel?: string
+  galleryButtonLabel?: string,
+  rowId?: string
 };
 
 class ImageSelector extends PureComponent<Props> {
@@ -70,15 +71,20 @@ class ImageSelector extends PureComponent<Props> {
             <Button className="image-selector__button" color="blue">
               <label
                 className="image-selector__button__label"
-                htmlFor="image-selector__input">
+                htmlFor={`image-selector__input${this.props.rowId
+                  ? `--${this.props.rowId}`
+                  : ""}`}>
                 {this.props.uploadButtonLabel || "Select image"}
               </label>
             </Button>
 
             <input
-              id="image-selector__input"
+              id={`image-selector__input${this.props.rowId
+                ? `--${this.props.rowId}`
+                : ""}`}
               className="image-selector__input"
               type="file"
+              accept="image/*"
               onChange={this.handleImageUpload}
             />
 
