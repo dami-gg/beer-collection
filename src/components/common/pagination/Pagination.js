@@ -89,7 +89,13 @@ class Pagination extends PureComponent<Props> {
 
       return (
         <PageButton
-          label={isLeftPositioned ? "<" : ">"}
+          label={
+            isLeftPositioned ? (
+              <i className={`fa fa-arrow-left`} aria-hidden="true" />
+            ) : (
+              <i className={`fa fa-arrow-right`} aria-hidden="true" />
+            )
+          }
           disabled={isDisabled}
           clickHandler={
             isLeftPositioned

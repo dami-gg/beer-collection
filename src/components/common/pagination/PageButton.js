@@ -7,7 +7,7 @@ const PageButton = (props: Object) => (
                    ${props.active ? "pagination__button--active" : ""}
                    ${props.disabled ? "pagination__button--disabled" : ""}`}
     onClick={() => props.clickHandler && props.clickHandler(props.label)}>
-    <span>{props.label}</span>
+    <span className="pagination__button__label">{props.label}</span>
   </a>
 );
 
