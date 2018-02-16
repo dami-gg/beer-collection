@@ -7,7 +7,9 @@ html {
 }
 
 body {
-  background: linear-gradient(#ffffff, $beer-yellow) fixed;
+  background: linear-gradient(white, $beer-yellow);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: black;
   margin: 0;
   padding: 0;
