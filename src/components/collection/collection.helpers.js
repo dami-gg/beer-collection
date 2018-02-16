@@ -3,6 +3,8 @@ import type { Beer } from "../../types/beer.types";
 
 import { RESULTS_PER_PAGE, ALL_FILTER_OPTION } from "./collection.constants";
 
+import { remove as removeDiacritics } from "diacritics";
+
 export const findBeerInCollectionById = (
   id: string,
   collection: Array<Beer>
@@ -63,7 +65,7 @@ const applyFilters = (
   typeFilter?: string,
   originFilter?: string
 ): boolean => {
-  if (filterRegex && !filterRegex.test(beer.name)) {
+  if (filterRegex && !filterRegex.test(removeDiacritics(beer.name))) {
     return false;
   }
   if (
