@@ -39,8 +39,8 @@ class Results extends PureComponent<Props> {
                 </div>
                 <img
                   className="beer__image"
-                  width="200"
-                  height="200"
+                  width="180"
+                  height="180"
                   src={beer.image || placeholderLabel}
                   alt={`${beer.name} logo`}
                 />

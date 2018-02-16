@@ -1,23 +1,28 @@
-  .dropdown-filter {
-    position: relative;
-    &::before,
-    &::after {
-      display: table;
-      content: "";
-    }
-    &__button {
-      width: 100%;
-    }
-    &__arrow {
-      display: inline-block;
-      width: 0;
-      height: 0;
-      margin-right: 0;
-      margin-left: 4px;
-      border-right: 5px solid transparent;
-      border-left: 5px solid transparent;
-      border-top: 5px dashed;
-      overflow: visible;
-      vertical-align: middle;
-    }    
+.dropdown-filter {
+  position: relative;
+  
+  &::before,
+  &::after {
+    display: table;
+    content: "";
   }
+
+  &__button {
+    width: 100%;
+    font-size: 14px;
+    height: 35px;
+  }
+
+  &__arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 0;
+    margin-left: 4px;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 5px dashed;
+    overflow: visible;
+    vertical-align: middle;
+  }
+}

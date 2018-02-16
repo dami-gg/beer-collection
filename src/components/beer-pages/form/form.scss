@@ -1,6 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
+
   &__inputs {
     display: flex;
     flex-direction: column;
@@ -10,6 +11,7 @@
       justify-content: space-between;
     }
   }
+
   &__buttons {
     display: flex;
     justify-content: center;
@@ -32,14 +34,40 @@
       }
     }
   }
+
   .image-selector {
     &__uploader {
       margin-top: 20px;
-    }
-    &__button {
+      display: flex;
+      justify-content: space-around;
       width: 100%;
+
+      @media (min-width: 768px) {
+        flex-direction: column;
+      }
+    }
+
+    &__button {
+      width: 45%;
+
       &:not(:first-child) {
         margin-top: 10px;
+      }
+
+      @media (min-width: 768px) {
+        width: 100%;
+      }
+    }
+
+    .button-wrapper {
+      width: 45%;
+
+      @media (min-width: 768px) {
+        width: 100%;
+      }
+
+      .button {
+        width: 100%;
       }
     }
   }

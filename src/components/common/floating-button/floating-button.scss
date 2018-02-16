@@ -19,13 +19,12 @@
   }
 
   &__label {
-    visibility: hidden;
     opacity: 0;
     order: -1;
     width: 150px;
 
     @media(min-width: 768px) {
-      display: flex;
+      display: none;
       align-items: center;
       transition: visibility 0s, opacity 0.5s ease;
       justify-content: flex-end;
@@ -45,7 +44,7 @@
 
   &__button:hover + &__label {
     @media(min-width: 768px) {
-      visibility: visible;
+      display: flex;
       opacity: 1;
     }
   }

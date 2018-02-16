@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-  padding: 0 2%;    
+  padding: 0 2%;
 
   &__floating-buttons {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     position: fixed;
     bottom: 40px;
     right: 40px;
