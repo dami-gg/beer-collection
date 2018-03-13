@@ -4,10 +4,8 @@ import type { Image } from "../../../types/image.types";
 
 import React, { PureComponent } from "react";
 
-import Button from "../button/Button";
+import ImageUploader from "../image-uploader/ImageUploader";
 import GalleryOpener from "../gallery-opener/GalleryOpener";
-
-import { readFile } from "./image-selector.helpers";
 
 import "./image-selector.scss";
 
@@ -21,26 +19,17 @@ type Props = {
   hidePreview?: boolean,
   uploadButtonLabel?: string,
   galleryButtonLabel?: string,
-  rowId?: string
+  rowId?: string,
+  inline?: boolean
 };
 
 class ImageSelector extends PureComponent<Props> {
-  handleImageUpload: Function;
   handleImageSelection: Function;
 
   constructor(props: Props) {
     super(props);
 
-    this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleImageSelection = this.handleImageSelection.bind(this);
-  }
-
-  handleImageUpload(event: Object) {
-    event.persist();
-    const imageFile = event.target.files[0];
-    readFile(imageFile, this.props.onImageLoaded);
-
-    this.props.onImageUploaded(imageFile);
   }
 
   handleImageSelection(image: Image) {
@@ -69,27 +58,16 @@ class ImageSelector extends PureComponent<Props> {
         </div>
 
         {!this.props.readOnly && (
-          <div className="image-selector__uploader">
-            <Button className="image-selector__button" color="blue">
-              <label
-                className="image-selector__button__label"
-                htmlFor={`image-selector__input${
-                  this.props.rowId ? `--${this.props.rowId}` : ""
-                }`}>
-                {this.props.uploadButtonLabel || "Select image"}
-              </label>
-            </Button>
-
-            <input
-              id={`image-selector__input${
-                this.props.rowId ? `--${this.props.rowId}` : ""
-              }`}
-              className="image-selector__input"
-              type="file"
-              accept="image/*"
-              onChange={this.handleImageUpload}
+          <div
+            className={`image-selector__uploader ${
+              this.props.inline ? "image-selector__uploader--inline" : ""
+            }`}>
+            <ImageUploader
+              selector={this.props.rowId}
+              onImageUploaded={this.props.onImageUploaded}
+              onImageLoaded={this.props.onImageLoaded}
+              uploadButtonLabel={this.props.uploadButtonLabel}
             />
-
             <GalleryOpener
               className="button-wrapper"
               buttonLabel={this.props.galleryButtonLabel}

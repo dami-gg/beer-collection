@@ -8,16 +8,16 @@ import {
   INFO
 } from "../constants/notifications.constants";
 
-export const showSuccessNotification = (title: string, message: string): void =>
+export const showSuccessNotification = (title: string, message?: string): void =>
   showNotification(SUCCESS, title, message);
 
-export const showErrorNotification = (title: string, message: string): void =>
+export const showErrorNotification = (title: string, message?: string): void =>
   showNotification(ERROR, title, message);
 
-export const showWarningNotification = (title: string, message: string): void =>
+export const showWarningNotification = (title: string, message?: string): void =>
   showNotification(WARNING, title, message);
 
-export const showInfoNotification = (title: string, message: string): void =>
+export const showInfoNotification = (title: string, message?: string): void =>
   showNotification(INFO, title, message);
 
 /*
@@ -30,7 +30,7 @@ const isValidNotificationType = (type: string): boolean =>
 const showNotification = (
   type: string = INFO,
   title: string = "",
-  message: string = ""
+  message?: string = ""
 ): void =>
   NotificationManager[isValidNotificationType(type) ? type : INFO](
     message,

@@ -92,6 +92,7 @@ class Cell extends Component<Props> {
           hidePreview={true}
           uploadButtonLabel="Upload"
           galleryButtonLabel="Select"
+          inline={true}
         />
       </div>
     );

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Cell from "./Cell";
 import Buttons from "./Buttons";
 
-import { uploadImagesBatch } from "../../common/image-selector/image-selector.helpers";
+import { uploadImagesBatch } from "../../common/image-uploader/image-uploader.helpers";
 
 import "./row.scss";
 

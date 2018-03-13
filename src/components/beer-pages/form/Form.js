@@ -11,8 +11,11 @@ import ImageSelector from "../../common/image-selector/ImageSelector";
 import Ratings from "../ratings/Ratings";
 import ErrorBoundary from "../../common/error-boundary/ErrorBoundary";
 
-import { uploadImage } from "../../common/image-selector/image-selector.helpers";
-import { showSuccessNotification } from "../../../helpers/notifications.helpers";
+import { uploadImage } from "../../common/image-uploader/image-uploader.helpers";
+import {
+  showSuccessNotification,
+  showErrorNotification
+} from "../../../helpers/notifications.helpers";
 
 import "./form.scss";
 
@@ -31,8 +34,8 @@ type State = {
   formValues: Object,
   imageFile: any,
   thumbnail: string,
-  imageSelected: boolean,
-  imageUploaded: boolean
+  imageSelectedFromGallery: boolean,
+  imageSelectedFromDisk: boolean
 };
 
 export class Form extends Component<Props, State> {
@@ -50,8 +53,8 @@ export class Form extends Component<Props, State> {
       formValues: props.initialValues,
       imageFile: undefined,
       thumbnail: "",
-      imageSelected: false,
-      imageUploaded: false
+      imageSelectedFromGallery: false,
+      imageSelectedFromDisk: false
     };
 
     this.preSubmit = this.preSubmit.bind(this);
@@ -68,10 +71,17 @@ export class Form extends Component<Props, State> {
   preSubmit(event: Object) {
     event.preventDefault();
 
-    if (this.state.imageUploaded) {
+    if (this.state.imageSelectedFromDisk) {
       uploadImage(this.state.imageFile)
-        .then(imageUrl => this.props.onSubmit(this.state.formValues, imageUrl))
-        .catch(error => console.log(error)); // TODO Handle error
+        .then(imageUrl => {
+          this.props.onSubmit(this.state.formValues, imageUrl);
+
+          showSuccessNotification("The image has been successfully uploaded");
+        })
+        .catch(error => {
+          console.log(error); // TODO Handle error
+          showErrorNotification("The image could not be uploaded");
+        });
     } else {
       this.props.onSubmit(this.state.formValues, this.state.thumbnail);
     }
@@ -80,20 +90,15 @@ export class Form extends Component<Props, State> {
   handleImageUpload(imageFile: Object) {
     this.setState({
       imageFile,
-      imageUploaded: true,
-      imageSelected: false
+      imageSelectedFromDisk: true,
+      imageSelectedFromGallery: false
     });
-
-    showSuccessNotification(
-      "New image added to gallery",
-      "The image has been successfully uploaded"
-    );
   }
 
   handleImageSelection(image: Image) {
     this.setState({
-      imageSelected: true,
-      imageUploaded: false
+      imageSelectedFromGallery: true,
+      imageSelectedFromDisk: false
     });
   }
 

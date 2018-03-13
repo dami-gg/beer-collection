@@ -1,0 +1,18 @@
+.image-uploader {
+  .button {
+    padding: 6px 12px;
+    width: 100%;
+
+    &__label {
+      cursor: pointer;
+    }
+  }
+
+  &__button:first-child {
+    margin-bottom: 15px;
+  }
+
+  &__input {
+    display: none;
+  }
+}
