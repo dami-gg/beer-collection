@@ -53,9 +53,11 @@ class ImageSelector extends PureComponent<Props> {
       <div className="image-selector">
         <div
           className={`image-selector__preview 
-          ${this.props.thumbnail || this.props.currentImage
-            ? ""
-            : "image-selector__preview--empty"}
+          ${
+            this.props.thumbnail || this.props.currentImage
+              ? ""
+              : "image-selector__preview--empty"
+          }
           ${this.props.hidePreview ? "image-selector__preview--hidden" : ""}`}>
           {(this.props.thumbnail || this.props.currentImage) && (
             <img
@@ -71,17 +73,17 @@ class ImageSelector extends PureComponent<Props> {
             <Button className="image-selector__button" color="blue">
               <label
                 className="image-selector__button__label"
-                htmlFor={`image-selector__input${this.props.rowId
-                  ? `--${this.props.rowId}`
-                  : ""}`}>
+                htmlFor={`image-selector__input${
+                  this.props.rowId ? `--${this.props.rowId}` : ""
+                }`}>
                 {this.props.uploadButtonLabel || "Select image"}
               </label>
             </Button>
 
             <input
-              id={`image-selector__input${this.props.rowId
-                ? `--${this.props.rowId}`
-                : ""}`}
+              id={`image-selector__input${
+                this.props.rowId ? `--${this.props.rowId}` : ""
+              }`}
               className="image-selector__input"
               type="file"
               accept="image/*"

@@ -14,6 +14,7 @@ import rootSaga from "./sagas";
 import App from "./components/app/App";
 
 import "./assets/styles/main.scss";
+import "react-notifications/lib/notifications.css";
 
 const config = {
   apiKey: "AIzaSyAxomPcdjUYjos_6-Vcjj07sazCVpoQBHE",

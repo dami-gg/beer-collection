@@ -56,9 +56,9 @@ export class App extends Component<Props> {
     return (
       <Router>
         <div
-          className={`app ${this.isUserAuthenticated()
-            ? "app--with-header"
-            : ""}`}>
+          className={`app ${
+            this.isUserAuthenticated() ? "app--with-header" : ""
+          }`}>
           {this.isUserAuthenticated() && <Header />}
           {routes}
         </div>

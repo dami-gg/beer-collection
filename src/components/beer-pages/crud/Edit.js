@@ -4,6 +4,7 @@ import type { Beer, BeerFormValues } from "../../../types/beer.types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { showSuccessNotification } from "../../../helpers/notifications.helpers";
 
 import { updateBeer } from "../../../actions/collection.actions";
 import { findBeerInCollectionById } from "../../collection/collection.helpers";
@@ -70,6 +71,11 @@ export class Edit extends Component<Props, State> {
 
       this.props.updateBeer(beer);
       this.redirectToViewPage();
+
+      showSuccessNotification(
+        "The beer has been modified",
+        `${beer.name}'s information has been updated`
+      );
     }
   };
 

@@ -4,6 +4,7 @@ import type { Beer, BeerFormValues } from "../../../types/beer.types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { showSuccessNotification } from "../../../helpers/notifications.helpers";
 
 import { addBeer } from "../../../actions/collection.actions";
 import Page from "../Page";
@@ -28,6 +29,11 @@ export class Add extends Component<Props> {
 
     this.props.addBeer(beer);
     this.redirectToCollection();
+
+    showSuccessNotification(
+      "The beer has been created",
+      `${beer.name} has been added to your collection`
+    );
   };
 
   cancelHandler = (): void => {

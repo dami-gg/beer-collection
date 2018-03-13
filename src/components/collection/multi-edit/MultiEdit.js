@@ -19,6 +19,7 @@ import {
   getFilteredBeers
 } from "../../collection/collection.helpers";
 import { getRegularExpression } from "../filters/filters.helpers";
+import { showSuccessNotification } from "../../../helpers/notifications.helpers";
 
 import "./multi-edit.scss";
 
@@ -68,14 +69,29 @@ export class MultiEdit extends Component<Props, State> {
 
   createBeer(newBeer: Beer) {
     this.props.addBeer(newBeer);
+
+    showSuccessNotification(
+      "The beer has been created",
+      `${newBeer.name} has been added to your collection`
+    );
   }
 
   editBeer(editedBeer: Beer) {
     this.props.updateBeer(editedBeer);
+
+    showSuccessNotification(
+      "The beer has been modified",
+      `${editedBeer.name}'s information has been updated`
+    );
   }
 
   deleteBeer(deletedBeer: Beer) {
     this.props.deleteBeer(deletedBeer);
+
+    showSuccessNotification(
+      "The beer has been deleted",
+      `${deletedBeer.name} is no longer in your collection`
+    );
   }
 
   exportAsCsvFile = (): void => {

@@ -12,6 +12,7 @@ import Ratings from "../ratings/Ratings";
 import ErrorBoundary from "../../common/error-boundary/ErrorBoundary";
 
 import { uploadImage } from "../../common/image-selector/image-selector.helpers";
+import { showSuccessNotification } from "../../../helpers/notifications.helpers";
 
 import "./form.scss";
 
@@ -82,6 +83,11 @@ export class Form extends Component<Props, State> {
       imageUploaded: true,
       imageSelected: false
     });
+
+    showSuccessNotification(
+      "New image added to gallery",
+      "The image has been successfully uploaded"
+    );
   }
 
   handleImageSelection(image: Image) {

@@ -21,14 +21,16 @@ export class Gallery extends Component<Props> {
       <div
         className={`gallery__frame 
         ${this.props.onSelect ? "gallery__frame--selectable" : ""}
-        ${this.props.selectedImage && this.props.selectedImage.url === image.url
-          ? "gallery__frame--selected"
-          : ""}          
+        ${
+          this.props.selectedImage && this.props.selectedImage.url === image.url
+            ? "gallery__frame--selected"
+            : ""
+        }          
           `}
         onClick={event => this.props.onSelect && this.props.onSelect(image)}
         key={index}>
         <img
-        className="gallery__frame__image"
+          className="gallery__frame__image"
           src={image.url}
           alt={`Logo ${index}`}
           width={IMAGE_SIZE}

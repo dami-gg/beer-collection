@@ -4,6 +4,7 @@ import type { User } from "../../types/user.types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { NotificationContainer } from "react-notifications";
 
 import Button from "../common/button/Button";
 
@@ -30,6 +31,8 @@ export class Header extends Component<Props> {
             </Button>
           </div>
         )}
+
+        <NotificationContainer />
       </div>
     );
   }

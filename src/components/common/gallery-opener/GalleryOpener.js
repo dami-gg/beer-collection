@@ -1,12 +1,11 @@
 // @flow
-
 import type { Image } from "../../../types/image.types";
+
+import React, { Component } from "react";
 
 import Button from "../button/Button";
 import Modal from "../modal/Modal";
 import Gallery from "../../gallery/Gallery";
-
-import React, { Component } from "react";
 
 type Props = {
   className?: string,
