@@ -29,7 +29,7 @@ class RatingButton extends PureComponent<Props> {
           {...disabled}
         />
         <i
-          className={`fa fa-${this.props.icon}-o ratings__icon`}
+          className={`fas fa-${this.props.icon} ratings__icon`}
           aria-hidden="true"
         />
       </label>

@@ -4,8 +4,9 @@ import type { Image } from "../../../types/image.types";
 
 import React, { PureComponent } from "react";
 
+import Button from "../button/Button";
 import ImageUploader from "../image-uploader/ImageUploader";
-import GalleryOpener from "../gallery-opener/GalleryOpener";
+import GalleryModalOpener from "../gallery-modal/GalleryModalOpener";
 
 import "./image-selector.scss";
 
@@ -23,7 +24,7 @@ type Props = {
   inline?: boolean
 };
 
-class ImageSelector extends PureComponent<Props> {
+export class ImageSelector extends PureComponent<Props> {
   handleImageSelection: Function;
 
   constructor(props: Props) {
@@ -67,8 +68,12 @@ class ImageSelector extends PureComponent<Props> {
               onImageUploaded={this.props.onImageUploaded}
               onImageLoaded={this.props.onImageLoaded}
               uploadButtonLabel={this.props.uploadButtonLabel}
+              wrapper={Button}
+              wrapperProps={{
+                color: "blue"
+              }}
             />
-            <GalleryOpener
+            <GalleryModalOpener
               className="button-wrapper"
               buttonLabel={this.props.galleryButtonLabel}
               onSelection={this.handleImageSelection}

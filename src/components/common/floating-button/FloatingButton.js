@@ -8,7 +8,8 @@ type Props = {
   label: string,
   clickHandler: Function,
   buttonColor: string,
-  iconColor: string
+  iconColor: string,
+  children?: any
 };
 
 class FloatingButton extends PureComponent<Props> {
@@ -35,6 +36,7 @@ class FloatingButton extends PureComponent<Props> {
           <i
             className={`${this.props.iconClass} floating-button__button__icon`}
           />
+          {this.props.children}
         </div>
 
         <div className="floating-button__label">

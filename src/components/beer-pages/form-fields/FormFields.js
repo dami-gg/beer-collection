@@ -10,7 +10,7 @@ type Props = {
   values: Object,
   readOnly?: boolean,
   onChange: Function,
-  children?: Object
+  children?: any
 };
 
 class FormFields extends PureComponent<Props> {

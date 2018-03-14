@@ -7,8 +7,8 @@
   }
 
   .modal {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 30px 1fr 80px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -22,7 +22,7 @@
       top: 20%;
       left: 50%;
       transform: translate(-50%, -20%);
-      max-height: 90%;
+      max-height: 85%;
     }
 
     &__content {

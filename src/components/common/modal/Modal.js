@@ -7,16 +7,17 @@ import Button from "../button/Button";
 import "./modal.scss";
 
 type Props = {
-  children: Object,
+  children?: any,
   isOpened: boolean,
   onClose: Function,
-  onSave?: Function
+  onSave?: Function,
+  className?: string
 };
 
 export class Modal extends PureComponent<Props> {
   handleSaveButtonClick: Function;
   handleCancelButtonClick: Function;
-  
+
   constructor(props: Props) {
     super(props);
 
@@ -38,9 +39,11 @@ export class Modal extends PureComponent<Props> {
   render() {
     return (
       <div
-        className={`modal-wrapper ${this.props.isOpened
-          ? "modal-wrapper--opened"
-          : "modal-wrapper--closed"}`}>
+        className={`modal-wrapper ${
+          this.props.isOpened
+            ? "modal-wrapper--opened"
+            : "modal-wrapper--closed"
+        } ${this.props.className ? this.props.className : ""}`}>
         <div className="modal">
           <div
             className="modal__close-button"
@@ -66,7 +69,7 @@ export class Modal extends PureComponent<Props> {
             </div>
           )}
         </div>
-        <div className="overlay"></div>
+        <div className="overlay" />
       </div>
     );
   }

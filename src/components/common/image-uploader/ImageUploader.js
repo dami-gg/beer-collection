@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import Button from "../button/Button";
 
@@ -9,14 +9,16 @@ import "./image-uploader.scss";
 
 type Props = {
   selector?: string,
+  wrapper?: any,
+  wrapperProps?: Object,
   onImageUploaded: Function,
-  onImageLoaded: Function,
+  onImageLoaded?: Function,
   uploadButtonLabel?: string
 };
 
-class ImageUploader extends Component<Props> {
+export class ImageUploader extends PureComponent<Props> {
   handleImageUpload: Function;
-  
+
   constructor(props: Props) {
     super(props);
 
@@ -32,10 +34,13 @@ class ImageUploader extends Component<Props> {
   }
 
   render() {
+    const Wrapper = this.props.wrapper || Button;
+
     return (
-      <div
-        className="image-uploader">
-        <Button className="image-uploader__button" color="blue">
+      <div className="image-uploader">
+        <Wrapper
+          className="image-uploader__button"
+          {...this.props.wrapperProps}>
           <label
             className="image-uploader__button__label"
             htmlFor={`image-uploader__input ${
@@ -43,9 +48,9 @@ class ImageUploader extends Component<Props> {
                 ? `image-uploader__input--${this.props.selector}`
                 : ""
             }`}>
-            {this.props.uploadButtonLabel || "Select image"}
+            {this.props.uploadButtonLabel}
           </label>
-        </Button>
+        </Wrapper>
 
         <input
           id={`image-uploader__input ${

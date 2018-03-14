@@ -1,11 +1,10 @@
 // @flow
 import firebase from "firebase";
-import { addImageToState } from "../../../actions/gallery.actions";
 
-export const readFile = (file: Object, callback: Function) => {
+export const readFile = (file: Object, callback?: Function) => {
   const reader = new FileReader();
 
-  reader.onload = () => callback(reader.result);
+  reader.onload = () => callback && callback(reader.result);
 
   reader.readAsDataURL(file);
 };
@@ -31,7 +30,6 @@ export const uploadImage = (imageFile: Object): Promise<any> => {
         () => {
           // Upload is complete
           const imageUrl = uploadProcess.snapshot.downloadURL;
-          addImageToState(imageUrl);
           resolve(imageUrl);
         }
       );

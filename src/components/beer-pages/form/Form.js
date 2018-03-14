@@ -4,6 +4,7 @@ import type { Beer } from "../../../types/beer.types";
 import type { Image } from "../../../types/image.types";
 
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Button from "../../common/button/Button";
 import FormFields from "../form-fields/FormFields";
@@ -12,6 +13,7 @@ import Ratings from "../ratings/Ratings";
 import ErrorBoundary from "../../common/error-boundary/ErrorBoundary";
 
 import { uploadImage } from "../../common/image-uploader/image-uploader.helpers";
+import { addImageToState } from "../../../actions/gallery.actions";
 import {
   showSuccessNotification,
   showErrorNotification
@@ -27,7 +29,8 @@ type Props = {
   cancelButtonLabel: string,
   currentBeer?: Beer,
   currentImage: string,
-  initialValues: any
+  initialValues: any,
+  addImageToState: Function
 };
 
 type State = {
@@ -74,6 +77,7 @@ export class Form extends Component<Props, State> {
     if (this.state.imageSelectedFromDisk) {
       uploadImage(this.state.imageFile)
         .then(imageUrl => {
+          this.props.addImageToState({ url: imageUrl });
           this.props.onSubmit(this.state.formValues, imageUrl);
 
           showSuccessNotification("The image has been successfully uploaded");
@@ -161,4 +165,14 @@ export class Form extends Component<Props, State> {
   }
 }
 
-export default Form;
+const mapStateToProps = (): Object => ({});
+
+const mapDispatchToProps = (dispatch: Function): Object => {
+  return {
+    addImageToState: (image: Image) => {
+      dispatch(addImageToState(image));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
