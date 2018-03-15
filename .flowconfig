@@ -1,5 +1,6 @@
 [ignore]
 .*node_modules/fbjs.*
+.*node_modules/protobufjs
 
 [options]
 module.file_ext=.js
