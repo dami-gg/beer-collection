@@ -102,12 +102,12 @@ const convertCollectionToCsv = (collection: Array<Beer>): string => {
   let csv: string = "";
 
   collection.forEach((beer: Beer, index: number) => {
-    csv += `${beer.id}${COLUMN_DELIMITER}
-            ${beer.name}${COLUMN_DELIMITER}
-            ${beer.type ? beer.type : ""}${COLUMN_DELIMITER}
-            ${beer.origin ? beer.origin : ""}${COLUMN_DELIMITER}
-            ${beer.image ? beer.image : ""}${COLUMN_DELIMITER}
-            ${beer.rating ? beer.rating : ""}${LINE_DELIMITER}`;
+    csv += `${beer.id}${COLUMN_DELIMITER}`;
+    csv += `${beer.name}${COLUMN_DELIMITER}`;
+    csv += `${beer.type ? beer.type : ""}${COLUMN_DELIMITER}`;
+    csv += `${beer.origin ? beer.origin : ""}${COLUMN_DELIMITER}`;
+    csv += `${beer.image ? beer.image : ""}${COLUMN_DELIMITER}`;
+    csv += `${beer.rating ? beer.rating : ""}${LINE_DELIMITER}`;
   });
 
   return csv;
